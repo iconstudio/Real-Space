@@ -1,0 +1,105 @@
+
+// 함선 속성
+F(스프라이트, 등급??, ??, ??, 파괴시 얻는 점수값(적), 속성1, 속성2, 속성3, false, 0);
+
+// 함선 무장
+max(장착 x좌표, 장착 y좌표, ??, ??, ??, 스프라이트 회전률, 회전 가능여부(포탑), 스프라이트, ??, 이미지 넘버, ??, ??,
+ 속성1, 속성2, true, 총알 속도??, 공격력??, 속성5, 속성6, 속성7);
+
+// 함선 부스터
+min(장착 x좌표, 장착 y좌표, ...);
+
+// KI.*I 형 변수들은 전부 스프라이트를 가리키는 변수임.
+
+
+속도
+아군 : Carrier1,2 Interceptor Battleship1 Fighter2=Fighter3 Battleship2 Fighter1 SuicideBomber
+적군 : Interceptor2,3 Fighter1=Fighter2=Cruiser1 Cruiser2 Battleship1, Battleship2, Carrier, Interceptor1
+
+[아군]
+
+case 101: (objAllyInterceptor)
+      F(KI.V, 1, paramInt1, paramInt2, 0, 30, 50, 0, false, 0);      (0, 30, 50, 0)
+
+      localgameimagelist = KI.LI;
+      n = KI.OZ; // *아마도 spark 형 공격을 하는 개체만 주어지는 값
+      max(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, localgameimagelist, null, n, 50, 40, true, 2, 30, f3, f4, j);
+
+case 102: (objAllyFighter1)
+      F(KI.W, 1, paramInt1, paramInt2, 0, 30, 35, 55, false, 0);      (0, 30, 35, 55)
+
+      max(16.0F * KI.ZB, -10.0F * KI.ZB, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, KI.RI, KI.Q, KI.RZ, 70, 40, true, 4, 30, f7, f8, m);
+      max(16.0F * KI.ZB, 10.0F * KI.ZB, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, KI.RI, KI.Q, KI.RZ, 70, 40, true, 4, 30, f7, f8, m);
+objAllyInterceptor, objAllyFighter2 보다 빠름
+
+case 103: (objAllySuicideBomber)
+      F(KI.X, 1, paramInt1, paramInt2, 0, 200, 45, 0, false, 0);      (0, 200, 45, 0)
+      abs();
+제일 빠름
+
+case 111: (objAllyFighter3)
+      F(KI.i, 2, paramInt1, paramInt2, 0, 50, 80, 95, false, 0);      (0, 50, 80, 95)
+
+      localgameimagelist = KI.LI;
+      n = KI.OZ; // *spark
+      max(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, localgameimagelist, null, n, 30, 20, true, 2, 45, f3, f4, j);
+objAllyFighter2, objAllyBattleship1, objAllyBattleship2 보다 빠름
+
+case 112: (objAllyFighter2)
+      F(KI.z, 2, paramInt1, paramInt2, 0, 50, 90, 110, false, 0);      (0, 50, 90, 110)
+      max(2.0F * KI.ZB, -15.0F * KI.ZB, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, KI.QI, KI.Q, KI.RZ, 40, 30, true, 4, 40, f7, f8, m);
+      max(2.0F * KI.ZB, 15.0F * KI.ZB, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, KI.QI, KI.Q, KI.RZ, 40, 30, true, 4, 40, f7, f8, m);
+objAllyBattleship1 보다 빠름
+
+case 120: (objAllyBattleship2)
+      F(KI.c, 3, paramInt1, paramInt2, 0, 70, 120, 250, false, 0);      (0, 70, 120, 250)
+
+      if (KI.QC == 1)
+        min.I(1, 2, 12, 16.0F, KI.T);
+      else if (KI.QC == 2)
+        min.I(1, 4, 12, 16.0F, KI.T);
+      min.I(-41.0F * KI.ZB, -28.0F * KI.ZB);
+      min.I(-41.0F * KI.ZB, 28.0F * KI.ZB);
+      max(30.0F * KI.ZB, -21.0F * KI.ZB, 2.0F * KI.ZB, 0.0F, 0.0F, 0.0F, true, KI.KI, false, KI.MI, null, KI.PZ, 20, 12, true, 3, 50, KI.nZ, f2, 30);
+      max(30.0F * KI.ZB, 21.0F * KI.ZB, 2.0F * KI.ZB, 0.0F, 0.0F, 0.0F, true, KI.KI, false, KI.MI, null, KI.PZ, 20, 12, true, 3, 50, KI.nZ, f2, 30);
+      max(-2.0F * KI.ZB, -45.0F * KI.ZB, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, KI.RI, KI.Q, KI.RZ, 22, 12, true, 4, 45, f7, f8, m);
+      max(-2.0F * KI.ZB, 45.0F * KI.ZB, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, KI.RI, KI.Q, KI.RZ, 22, 12, true, 4, 45, f7, f8, m);
+
+case 121: (objAllyBattleship1)
+      F(KI.b, 3, paramInt1, paramInt2, 0, 70, 110, 250, false, 0);      (0, 70, 110, 250)
+
+      max(-2.0F * KI.ZB, -16.0F * KI.ZB, 2.0F * KI.ZB, 0.0F, 0.0F, 0.0F, true, KI.KI, false, KI.MI, null, KI.PZ, 20, 12, true, 3, 50, KI.nZ, f2, 30);
+      max(-2.0F * KI.ZB, 16.0F * KI.ZB, 2.0F * KI.ZB, 0.0F, 0.0F, 0.0F, true, KI.KI, false, KI.MI, null, KI.PZ, 20, 12, true, 3, 50, KI.nZ, f2, 30);
+objAllyInterceptor 보다 빠름
+
+case 123: (objAllyCarrier1,2)
+      F(KI.f, 3, paramInt1, paramInt2, 0, 70, 160, 250, false, 0);      (0, 70, 160, 250)
+
+case 130: (objAllyDefender)
+      F(KI.j, 4, paramInt1, paramInt2, 0, 100, 300, 500, false, 0);      (100, 300, 500)
+
+      max(18.0F * KI.ZB, -35.0F * KI.ZB, 0.0F, 0.0F, 0.0F, 0.0F, true, KI.KI, false, KI.MI, null, KI.PZ, 12, 5, true, 3, 50, KI.nZ, f2, 30);
+      max(18.0F * KI.ZB, -18.0F * KI.ZB, 0.0F, 0.0F, 0.0F, 0.0F, true, KI.KI, false, KI.MI, null, KI.PZ, 12, 5, true, 3, 50, KI.nZ, f2, 30);
+      max(-58.0F * KI.ZB, -18.0F * KI.ZB, 0.0F, 0.0F, 0.0F, 3.926991F, false, KI.s, true, KI.PI, KI.Q, KI.RZ, 30, 25, true, 4, 50, f7, f8, m);
+      max(58.0F * KI.ZB, -18.0F * KI.ZB, 0.0F, 0.0F, 0.0F, 5.497788F, false, KI.a, true, KI.PI, KI.Q, KI.RZ, 30, 25, true, 4, 50, f7, f8, m);
+      max(-62.0F * KI.ZB, 33.0F * KI.ZB, 0.0F, 0.0F, 0.0F, 2.356195F, false, KI.e, true, KI.PI, KI.Q, KI.RZ, 30, 25, true, 4, 50, f7, f8, m);
+      max(62.0F * KI.ZB, 32.0F * KI.ZB, 0.0F, 0.0F, 0.0F, 0.7853982F, false, KI.g, true, KI.PI, KI.Q, KI.RZ, 30, 25, true, 4, 50, f7, f8, m);
+
+
+[적군]
+
+case 212: (objEnemyFighter1)
+      F(KI.q, 2, paramInt1, paramInt2, 600, 40, 70, 30, false, 0);      (600, 40, 70, 30)
+
+      localgameimagelist = KI.WI;
+      n = KI.OZ; // *spark
+      max(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, localgameimagelist, null, n, 35, 30, true, 2, 45, f3, f4, j);
+
+
+
+
+
+
+
+
+

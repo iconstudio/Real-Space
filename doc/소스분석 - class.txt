@@ -1,0 +1,35 @@
+
+[gamebase.class]
+
+-------------[starfield.class] 에서 사용-------------
+- effects3.jpg 파일에서 추출
+ZZ (스프라이트) 흰색 별
+CZ (스프라이트) 빨간 별
+BZ (스프라이트) 파란 별
+----------------------------------------------------
+
+RC = 뷰 너비 = UC
+TC = 뷰 높이 = VC
+ZB = 화면 비율
+
+[gameapp.class]
+
+HC = starfield.class
+KC = gamecamera.class
+
+[starfield.class]
+Z = 화면안의 최대 별 갯수
+L[] = 별의 스프라이트 (ZZ, CZ, BZ, null)
+H[] = 깜빡임 딜레이
+S[] 현재 스프라이트 재생 여부
+E[] 깜빡임 딜레이 카운터
+G[] 스프라이트 재생 시간
+
+F[] = 각각의 별의 x 좌표
+HNSM[] = 각각의 별의 y 좌표
+K[] = 각각의 별의 z 좌표
+
+[gamecamera.class]
+
+K = 카메라 x 좌표 속도
+L = 카메라 y 좌표 속도
