@@ -16,7 +16,7 @@ final class gametext extends oGameObject {
 		iI = new int[51];
 	}
 
-	final void I(String s, Color color, gamefont gamefont1, boolean flag, int i, int j, int k, int l, int i1,
+	final void I(String s, Color color, font gamefont1, boolean flag, int i, int j, int k, int l, int i1,
 			boolean flag1) {
 		if (gamefont1 == null)
 			return;
@@ -108,17 +108,17 @@ final class gametext extends oGameObject {
 			else if (UI.v) {
 				super.J = UI.J;
 				if (VI == 1) {
-					gamefont gamefont1 = RI;
+					font gamefont1 = RI;
 					super.S = UI.E - gamefont1.C;
 					if (Z && super.DI == 1) {
-						gamefont gamefont2 = RI;
+						font gamefont2 = RI;
 						super.S -= (gamefont2.C * (zI - 1)) / 2;
 					}
 				} else {
-					gamefont gamefont3 = RI;
+					font gamefont3 = RI;
 					super.S = UI.H + gamefont3.C;
 					if (Z && super.DI == 1) {
-						gamefont gamefont4 = RI;
+						font gamefont4 = RI;
 						super.S += (gamefont4.C * (zI - 1)) / 2;
 					}
 				}
@@ -156,17 +156,17 @@ final class gametext extends oGameObject {
 			k = (int) super.S + ((gamebase) (super.owner)).XC;
 		}
 		if (Z && super.DI == 1) {
-			gamefont gamefont1 = RI;
+			font gamefont1 = RI;
 			k -= (gamefont1.C * (zI - 1)) / 2;
 		}
 		super.A = j;
 		super.G = j;
-		gamefont gamefont2 = RI;
+		font gamefont2 = RI;
 		super.E = k - gamefont2.C;
 		super.H = k;
 		if (OI != null) {
 			int l = WI;
-			gamefont gamefont3 = RI;
+			font gamefont3 = RI;
 			int j1 = gamefont3.C * zI;
 			int l1 = QI.I(0, 0).C;
 			int j2 = QI.I(0, 0).B;
@@ -176,7 +176,7 @@ final class gametext extends oGameObject {
 			int i4 = j3 / j2 + 1;
 			l2 = l3 * l1;
 			j3 = i4 * j2;
-			gamefont gamefont8 = RI;
+			font gamefont8 = RI;
 			int k4 = k - gamefont8.C - PI;
 			int j4;
 			if (Z)
@@ -225,8 +225,8 @@ final class gametext extends oGameObject {
 			int i3 = 0;
 			for (int i1 = XI[i]; i3 < k1 && i1 < min && i1 < HNSM; i3++) {
 				char c = F[i1];
-				gamefont gamefont4 = RI;
-				sprite sprite1 = c <= 0 || c >= gamefont.D ? null : gamefont4.I[c];
+				font gamefont4 = RI;
+				sprite sprite1 = c <= 0 || c >= font.D ? null : gamefont4.I[c];
 				if (sprite1 != null) {
 					if (B != null || LI != null) {
 						if (getRGB && LI != null)
@@ -234,17 +234,17 @@ final class gametext extends oGameObject {
 								k2 = LI.I(toCharArray, I);
 							else
 								k2 = LI.I(min - i1);
-						gamefont gamefont5 = RI;
+						font gamefont5 = RI;
 						surface1.I(sprite1, k2, k3 - 1,
-								(k - sprite1.B) + (c <= 0 || c >= gamefont.D ? 0 : gamefont5.Z[c]) + 1, super.owner);
+								(k - sprite1.B) + (c <= 0 || c >= font.D ? 0 : gamefont5.Z[c]) + 1, super.owner);
 					}
 					if (getRGB && D != null)
 						if (min > HNSM + D.C)
 							i2 = D.I(toCharArray, I);
 						else
 							i2 = D.I(min - i1);
-					gamefont gamefont6 = RI;
-					surface1.I(sprite1, i2, k3, (k - sprite1.B) + (c <= 0 || c >= gamefont.D ? 0 : gamefont6.Z[c]),
+					font gamefont6 = RI;
+					surface1.I(sprite1, i2, k3, (k - sprite1.B) + (c <= 0 || c >= font.D ? 0 : gamefont6.Z[c]),
 							super.owner);
 					k3 += sprite1.C + RI.B;
 				} else if (c == ' ')
@@ -254,7 +254,7 @@ final class gametext extends oGameObject {
 				i1++;
 			}
 
-			gamefont gamefont7 = RI;
+			font gamefont7 = RI;
 			k += gamefont7.C;
 		}
 
@@ -278,7 +278,7 @@ final class gametext extends oGameObject {
 	Color OI;
 	int PI;
 	sprite_group QI;
-	gamefont RI;
+	font RI;
 	boolean TI;
 	oGameObject UI;
 	int VI;

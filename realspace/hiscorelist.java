@@ -17,7 +17,7 @@ class hiscorelist {
 		append = new String[i];
 	}
 
-	public final void I(gameapp gameapp, String s, Color color, Color color1, gamefont gamefont, int i, int j, float f,
+	public final void I(gameapp gameapp, String s, Color color, Color color1, font gamefont, int i, int j, float f,
 			float f1, int k) {
 		String s1 = s;
 		for (int l = 0; l < valueOf; l++)

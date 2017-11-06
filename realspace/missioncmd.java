@@ -34,7 +34,7 @@ final class missioncmd {
 	Color Q;
 	Color R;
 	Color T;
-	gamefont U;
+	font U;
 	palette V;
 	palette W;
 	gamesoundlist X;

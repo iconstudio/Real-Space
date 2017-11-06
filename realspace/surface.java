@@ -364,23 +364,23 @@ final class surface implements ImageProducer {
 		}
 	}
 
-	final void I(String s, int i, gamefont gamefont1, int j, int k) {
-		if (gamefont1 == null)
+	final void draw_string(String str, int i, font hfont, int j, int k) {
+		if (hfont == null)
 			return;
-		int l = s.length();
+		int l = str.length();
 		for (int i1 = 0; i1 < l; i1++) {
-			char c = s.charAt(i1);
-			sprite sprite1 = c <= 0 || c >= gamefont.D ? null : gamefont1.I[c];
-			if (sprite1 != null) {
+			char char_current = str.charAt(i1);
+			sprite curr = char_current <= 0 || char_current >= font.D ? null : hfont.I[char_current];
+			if (curr != null) {
 				if (i != 0xffffff)
-					I(sprite1, i, j, (k - sprite1.B) + (c <= 0 || c >= gamefont.D ? 0 : gamefont1.Z[c]), addConsumer);
+					I(curr, i, j, (k - curr.B) + (char_current <= 0 || char_current >= font.D ? 0 : hfont.Z[char_current]), addConsumer);
 				else
-					I(sprite1, j, (k - sprite1.B) + (c <= 0 || c >= gamefont.D ? 0 : gamefont1.Z[c]), addConsumer);
-				j += sprite1.C + gamefont1.B;
-			} else if (c == ' ')
-				j += gamefont1.B * 2;
+					I(curr, j, (k - curr.B) + (char_current <= 0 || char_current >= font.D ? 0 : hfont.Z[char_current]), addConsumer);
+				j += curr.C + hfont.B;
+			} else if (char_current == ' ')
+				j += hfont.B * 2;
 			else
-				j += gamefont1.B;
+				j += hfont.B;
 		}
 
 	}

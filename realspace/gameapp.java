@@ -465,14 +465,14 @@ public final class gameapp extends gamebase {
 		if (!super.pC && NC) {
 			int dx = (int) (20F * super.view_scale);
 			int dy = (int) (25F * super.view_scale);
-			surf_dest.I(super.uC, Constant.c_white_int, super.hFontSmall, dx - 1, dy + 1);
+			surf_dest.draw_string(super.uC, Constant.c_white_int, super.hFontSmall, dx - 1, dy + 1);
 			Object obj = dZ;
 			obj = ((oGameObjectlist) (obj)).C <= 0 ? null : ((Object) (((oGameObjectlist) (obj)).Z[0]));
 			if (obj != null && ((oGameObject) (obj)).e == 1) {
 				int k1 = (int) (220F * super.view_scale);
-				surf_dest.I("Damage", Constant.c_white_int, super.hFontSmall, k1 - 1, dy + 1);
+				surf_dest.draw_string("Damage", Constant.c_white_int, super.hFontSmall, k1 - 1, dy + 1);
 				k1 += super.hFontSmall.I("Damage") + 7;
-				gamefont gamefont1 = super.hFontSmall;
+				font gamefont1 = super.hFontSmall;
 				dy -= (gamefont1.C * 3) / 5;
 				float f1 = (float) (((oGameObject) (obj)).o + ((oGameObject) (obj)).n)
 						/ (float) (((oGameObject) (obj)).p + ((oGameObject) (obj)).q);
@@ -484,9 +484,9 @@ public final class gameapp extends gamebase {
 					else
 						MC = f1;
 				Object obj1;
-				gameutil.I(surf_dest, k1, dy + 2, getAppletContext, ((gamefont) (obj1 = super.eC)).C - 4, MC,
+				gameutil.I(surf_dest, k1, dy + 2, getAppletContext, ((font) (obj1 = super.eC)).C - 4, MC,
 						Constant.c_red_int, Constant.c_yellow_int);
-				surf_dest.I(k1, dy, getAppletContext, ((gamefont) (obj1 = super.eC)).C, Constant.c_dkgreen_int, 1);
+				surf_dest.I(k1, dy, getAppletContext, ((font) (obj1 = super.eC)).C, Constant.c_dkgreen_int, 1);
 				int k3 = (int) (35F * super.view_scale);
 				int i4 = (int) (20F * super.view_scale);
 				int k4 = i4 + (int) (48F * super.view_scale);
@@ -496,28 +496,28 @@ public final class gameapp extends gamebase {
 					surf_dest.I(arraycopy.I(0, 0), f2, i4, dy, this);
 				else
 					surf_dest.I(arraycopy.I(0, 0), i4, dy, this);
-				surf_dest.I("-", Constant.c_white_int, super.eC, k4, dy + super.eC.C + 2);
+				surf_dest.draw_string("-", Constant.c_white_int, super.eC, k4, dy + super.eC.C + 2);
 				dy += k3;
 				obj1 = String.valueOf(kZ);
 				if (hZ == 2)
 					surf_dest.I(arraycopy.I(1, 0), f2, i4, dy, this);
 				else
 					surf_dest.I(arraycopy.I(1, 0), i4, dy, this);
-				surf_dest.I(((String) (obj1)), Constant.c_white_int, super.eC, k4, dy + super.eC.C + 2);
+				surf_dest.draw_string(((String) (obj1)), Constant.c_white_int, super.eC, k4, dy + super.eC.C + 2);
 				dy += k3;
 				obj1 = String.valueOf(lZ);
 				if (hZ == 3)
 					surf_dest.I(arraycopy.I(2, 0), f2, i4, dy, this);
 				else
 					surf_dest.I(arraycopy.I(2, 0), i4, dy, this);
-				surf_dest.I(((String) (obj1)), Constant.c_white_int, super.eC, k4, dy + super.eC.C + 2);
+				surf_dest.draw_string(((String) (obj1)), Constant.c_white_int, super.eC, k4, dy + super.eC.C + 2);
 				dy += k3;
 				obj1 = String.valueOf(mZ);
 				if (hZ == 4)
 					surf_dest.I(arraycopy.I(3, 0), f2, i4, dy, this);
 				else
 					surf_dest.I(arraycopy.I(3, 0), i4, dy, this);
-				surf_dest.I(((String) (obj1)), Constant.c_white_int, super.eC, k4, dy + super.eC.C + 2);
+				surf_dest.draw_string(((String) (obj1)), Constant.c_white_int, super.eC, k4, dy + super.eC.C + 2);
 			}
 			surf_dest.I(keyUp, length, lightGray, min, getBackground().getRGB());
 		}
@@ -533,10 +533,10 @@ public final class gameapp extends gamebase {
 		ZC.I(surf_dest);
 		BC.I(surf_dest);
 		if (super.pC) {
-			surf_dest.I("Click Anywhere Or Press Any Key To Start", Color.red.getRGB(), super.hFontSmall,
+			surf_dest.draw_string("Click Anywhere Or Press Any Key To Start", Color.red.getRGB(), super.hFontSmall,
 					super.view_width / 2 - super.hFontSmall.I("Click Anywhere Or Press Any Key To Start") / 2 - 1,
 					super.view_height / 8 + 1);
-			surf_dest.I("Click Anywhere Or Press Any Key To Start", Color.yellow.getRGB(), super.hFontSmall,
+			surf_dest.draw_string("Click Anywhere Or Press Any Key To Start", Color.yellow.getRGB(), super.hFontSmall,
 					super.view_width / 2 - super.hFontSmall.I("Click Anywhere Or Press Any Key To Start") / 2,
 					super.view_height / 8);
 		} else if (NC) {
@@ -1028,16 +1028,16 @@ public final class gameapp extends gamebase {
 		super.GB = 112;
 		repaint();
 		imagepixels1 = I("images/spacefont.gif");
-		super.eC = new gamefont(this, (int) (17.6F * super.view_scale), (int) (2.2F * super.view_scale),
+		super.eC = new font(this, (int) (17.6F * super.view_scale), (int) (2.2F * super.view_scale),
 				(int) (2.2F * super.view_scale));
 		black(super.eC, imagepixels1, 0.55F * super.view_scale);
-		super.hFontSmall = new gamefont(this, (int) (22.4F * super.view_scale), (int) (2.8F * super.view_scale),
+		super.hFontSmall = new font(this, (int) (22.4F * super.view_scale), (int) (2.8F * super.view_scale),
 				(int) (2.8F * super.view_scale));
 		black(super.hFontSmall, imagepixels1, 0.7F * super.view_scale);
-		super.hFontNormal = new gamefont(this, (int) (27.2F * super.view_scale), (int) (3.4F * super.view_scale),
+		super.hFontNormal = new font(this, (int) (27.2F * super.view_scale), (int) (3.4F * super.view_scale),
 				(int) (3.4F * super.view_scale));
 		black(super.hFontNormal, imagepixels1, 0.85F * super.view_scale);
-		super.hFontLarge = new gamefont(this, (int) (32F * super.view_scale), (int) (4F * super.view_scale),
+		super.hFontLarge = new font(this, (int) (32F * super.view_scale), (int) (4F * super.view_scale),
 				(int) (4F * super.view_scale));
 		black(super.hFontLarge, imagepixels1, super.view_scale);
 		l2 = k2++;
@@ -2639,7 +2639,7 @@ public final class gameapp extends gamebase {
 		sprite_group1.I(f2, i1, l2, i3, j3, k3, 0, 0, imagepixels1, i2, j2, k2, surface1);
 	}
 
-	public final void black(gamefont gamefont1, imagepixels imagepixels1, float f1) {
+	public final void black(font gamefont1, imagepixels imagepixels1, float f1) {
 		blue("0123456789", gamefont1, imagepixels1, f1, 2, 1, 27, 27);
 		blue("ABCDEFGHIJKLM", gamefont1, imagepixels1, f1, 1, 30, 24, 24);
 		blue("NOPQRSTUVWXYZ", gamefont1, imagepixels1, f1, 2, 58, 24, 24);
@@ -2654,7 +2654,7 @@ public final class gameapp extends gamebase {
 		gamefont1.Z[34] = i1;
 	}
 
-	public final void blue(String s1, gamefont gamefont1, imagepixels imagepixels1, float f1, int i1, int j1, int k1,
+	public final void blue(String s1, font gamefont1, imagepixels imagepixels1, float f1, int i1, int j1, int k1,
 			int l1) {
 		int j2 = s1.length();
 		for (int k2 = 0; k2 < j2; k2++) {

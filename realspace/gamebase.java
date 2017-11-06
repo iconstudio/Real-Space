@@ -329,16 +329,16 @@ public abstract class gamebase extends Applet implements Runnable {
 			i += (int) (20F * view_scale);
 			j += (int) (30F * view_scale);
 			if (AB != null && hFontNormal != null) {
-				surface1.I(DB, Color.red.getRGB(), hFontSmall, i - 1, j + 1);
-				surface1.I(DB, Color.yellow.getRGB(), hFontSmall, i, j);
-				gamefont gamefont3 = hFontSmall;
+				surface1.draw_string(DB, Color.red.getRGB(), hFontSmall, i - 1, j + 1);
+				surface1.draw_string(DB, Color.yellow.getRGB(), hFontSmall, i, j);
+				font gamefont3 = hFontSmall;
 				j += gamefont3.C;
-				surface1.I(BB, Color.red.getRGB(), hFontSmall, i - 1, j + 1);
-				surface1.I(BB, Color.yellow.getRGB(), hFontSmall, i, j);
+				surface1.draw_string(BB, Color.red.getRGB(), hFontSmall, i - 1, j + 1);
+				surface1.draw_string(BB, Color.yellow.getRGB(), hFontSmall, i, j);
 				gamefont3 = hFontSmall;
 				j += gamefont3.C + (int) (25F * view_scale);
-				surface1.I(AB, Color.blue.getRGB(), hFontSmall, i - 1, j + 1);
-				surface1.I(AB, Color.white.getRGB(), hFontSmall, i, j);
+				surface1.draw_string(AB, Color.blue.getRGB(), hFontSmall, i - 1, j + 1);
+				surface1.draw_string(AB, Color.white.getRGB(), hFontSmall, i, j);
 				gamefont3 = hFontSmall;
 				j += gamefont3.C + (int) (10F * view_scale);
 			}
@@ -354,17 +354,17 @@ public abstract class gamebase extends Applet implements Runnable {
 		floatValue.I(surface1);
 		if (oC) {
 			String s = print;
-			gamefont gamefont1 = hFontNormal;
+			font gamefont1 = hFontNormal;
 			int i1 = view_width / 2 - hFontNormal.I(print) / 2;
-			gamefont gamefont4 = hFontNormal;
+			font gamefont4 = hFontNormal;
 			int j1 = view_height / 2 - gamefont4.C / 2;
-			surface1.I(s, -1, gamefont1, i1, j1);
+			surface1.draw_string(s, -1, gamefont1, i1, j1);
 		}
 		if (getGraphics) {
 			String s1 = " FPS:" + String.valueOf(isAlive) + " Sleep:" + String.valueOf(getDefaultToolkit) + ", "
 					+ String.valueOf(getDocumentBase);
-			gamefont gamefont2 = hFontSmall;
-			surface1.I(s1, -1, gamefont2, 200, 50);
+			font gamefont2 = hFontSmall;
+			surface1.draw_string(s1, -1, gamefont2, 200, 50);
 		}
 	}
 
@@ -573,10 +573,10 @@ public abstract class gamebase extends Applet implements Runnable {
 	float jC;
 	float sC;
 	float aC;
-	gamefont eC;
-	gamefont hFontSmall;
-	gamefont hFontNormal;
-	gamefont hFontLarge;
+	font eC;
+	font hFontSmall;
+	font hFontNormal;
+	font hFontLarge;
 	surface lC;
 	surface mC;
 	int currentTimeMillis;
