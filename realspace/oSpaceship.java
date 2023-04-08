@@ -5,8 +5,8 @@ package realspace;
 // Decompiler options: packimports(3) 
 // Source File Name:   star_y
 
-final class oSpaceship extends oGameObject {
-	oSpaceship(gameapp gameapp1) {
+final class oSpaceship extends GameObject {
+	oSpaceship(GameApp gameapp1) {
 		super(gameapp1);
 		YI = 100000F;
 		thrustors = new oShipthrustor(gameapp1);
@@ -46,15 +46,15 @@ final class oSpaceship extends oGameObject {
 	}
 
 	final void I(int i, int j, float f) {
-		float f2 = 400F * ((gamebase) (super.owner)).view_scale;
+		float f2 = 400F * ((AppletImplements) (GameApp.Instance)).viewScale;
 		byte byte0 = 80;
-		float f4 = 400F * ((gamebase) (super.owner)).view_scale;
+		float f4 = 400F * ((AppletImplements) (GameApp.Instance)).viewScale;
 		byte byte1 = 100;
 		// float f7 = 400F * ((gamebase) (super.KI)).ZB;
 		// byte byte2 = 80;
-		float f9 = 400F * ((gamebase) (super.owner)).view_scale;
+		float f9 = 400F * ((AppletImplements) (GameApp.Instance)).viewScale;
 		char c = '\240';
-		float f10 = 800F * ((gamebase) (super.owner)).view_scale;
+		float f10 = 800F * ((AppletImplements) (GameApp.Instance)).viewScale;
 		float f1;
 		float f3;
 		float f8;
@@ -72,141 +72,141 @@ final class oSpaceship extends oGameObject {
 
 		switch (i) {
 		case 100: // 'd'
-			initialize(super.owner.U, 1, i, j, 0, 30, 45, 95, false, 0);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 5, 12, 16F, super.owner.Q);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 10, 12, 16F, super.owner.Q);
+			initialize(GameApp.Instance.U, 1, i, j, 0, 30, 45, 95, false, 0);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
 			thrustors.I(-14F, 0F);
 			return;
 
 		case 101: // 'e'
-			initialize(super.owner.V, 1, i, j, 0, 30, 50, 0, false, 0);
-			sprite_group sprite_group1 = super.owner.LI;
-			int k = super.owner.OZ;
+			initialize(GameApp.Instance.V, 1, i, j, 0, 30, 50, 0, false, 0);
+			sprite_group sprite_group1 = GameApp.Instance.LI;
+			int k = GameApp.Instance.OZ;
 			weaponize(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, sprite_group1, null, k, 50, 40, true, 2,
 					30, f3, f4, byte1);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 5, 12, 16F, super.owner.Q);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 10, 12, 16F, super.owner.Q);
-			thrustors.I(-10F * ((gamebase) (super.owner)).view_scale, 0F * ((gamebase) (super.owner)).view_scale);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
+			thrustors.I(-10F * ((AppletImplements) (GameApp.Instance)).viewScale, 0F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			return;
 
 		case 102: // 'f'
-			initialize(super.owner.W, 1, i, j, 0, 30, 35, 55, false, 0);
-			weaponize(16F * ((gamebase) (super.owner)).view_scale, -10F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, super.owner.RI, super.owner.Q, super.owner.RZ, 70, 40, true,
+			initialize(GameApp.Instance.W, 1, i, j, 0, 30, 35, 55, false, 0);
+			weaponize(16F * ((AppletImplements) (GameApp.Instance)).viewScale, -10F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.RI, GameApp.Instance.Q, GameApp.Instance.RZ, 70, 40, true,
 					4, 30, f8, f9, c);
-			weaponize(16F * ((gamebase) (super.owner)).view_scale, 10F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, super.owner.RI, super.owner.Q, super.owner.RZ, 70, 40, true,
+			weaponize(16F * ((AppletImplements) (GameApp.Instance)).viewScale, 10F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.RI, GameApp.Instance.Q, GameApp.Instance.RZ, 70, 40, true,
 					4, 30, f8, f9, c);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 5, 12, 16F, super.owner.Q);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 10, 12, 16F, super.owner.Q);
-			thrustors.I(-15F * ((gamebase) (super.owner)).view_scale, -7F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-15F * ((gamebase) (super.owner)).view_scale, 7F * ((gamebase) (super.owner)).view_scale);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
+			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, -7F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, 7F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			return;
 
 		case 103: // 'g'
-			initialize(super.owner.X, 1, i, j, 0, 200, 45, 0, false, 0);
+			initialize(GameApp.Instance.X, 1, i, j, 0, 200, 45, 0, false, 0);
 			abs();
-			if (super.owner.QC == 1)
-				thrustors.I(1, 5, 12, 16F, super.owner.Q);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 10, 12, 16F, super.owner.Q);
-			thrustors.I(-15F * ((gamebase) (super.owner)).view_scale, 0F * ((gamebase) (super.owner)).view_scale);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
+			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, 0F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			return;
 
 		case 111: // 'o'
-			initialize(super.owner.i, 2, i, j, 0, 50, 80, 95, false, 0);
-			sprite_group sprite_group2 = super.owner.LI;
-			int l = super.owner.OZ;
+			initialize(GameApp.Instance.i, 2, i, j, 0, 50, 80, 95, false, 0);
+			sprite_group sprite_group2 = GameApp.Instance.LI;
+			int l = GameApp.Instance.OZ;
 			weaponize(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, sprite_group2, null, l, 30, 20, true, 2,
 					45, f3, f4, byte1);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 5, 12, 16F, super.owner.R);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 10, 12, 16F, super.owner.R);
-			thrustors.I(-20F * ((gamebase) (super.owner)).view_scale, 0F * ((gamebase) (super.owner)).view_scale);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 5, 12, 16F, GameApp.Instance.R);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 10, 12, 16F, GameApp.Instance.R);
+			thrustors.I(-20F * ((AppletImplements) (GameApp.Instance)).viewScale, 0F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			return;
 
 		case 112: // 'p'
-			initialize(super.owner.z, 2, i, j, 0, 50, 90, 110, false, 0);
-			weaponize(2.0F * ((gamebase) (super.owner)).view_scale, -15F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, super.owner.QI, super.owner.Q, super.owner.RZ, 40, 30, true,
+			initialize(GameApp.Instance.z, 2, i, j, 0, 50, 90, 110, false, 0);
+			weaponize(2.0F * ((AppletImplements) (GameApp.Instance)).viewScale, -15F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.QI, GameApp.Instance.Q, GameApp.Instance.RZ, 40, 30, true,
 					4, 40, f8, f9, c);
-			weaponize(2.0F * ((gamebase) (super.owner)).view_scale, 15F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, super.owner.QI, super.owner.Q, super.owner.RZ, 40, 30, true,
+			weaponize(2.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 15F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.QI, GameApp.Instance.Q, GameApp.Instance.RZ, 40, 30, true,
 					4, 40, f8, f9, c);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 4, 12, 16F, super.owner.R);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 8, 12, 16F, super.owner.R);
-			thrustors.I(-15F * ((gamebase) (super.owner)).view_scale, -12F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-15F * ((gamebase) (super.owner)).view_scale, 12F * ((gamebase) (super.owner)).view_scale);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 4, 12, 16F, GameApp.Instance.R);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 8, 12, 16F, GameApp.Instance.R);
+			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, -12F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, 12F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			return;
 
 		case 120: // 'x'
-			initialize(super.owner.c, 3, i, j, 0, 70, 120, 250, false, 0);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 2, 12, 16F, super.owner.T);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 4, 12, 16F, super.owner.T);
-			thrustors.I(-41F * ((gamebase) (super.owner)).view_scale, -28F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-41F * ((gamebase) (super.owner)).view_scale, 28F * ((gamebase) (super.owner)).view_scale);
-			weaponize(30F * ((gamebase) (super.owner)).view_scale, -21F * ((gamebase) (super.owner)).view_scale,
-					2.0F * ((gamebase) (super.owner)).view_scale, 0.0F, 0.0F, 0.0F, true, super.owner.KI, false,
-					super.owner.MI, null, super.owner.PZ, 20, 12, true, 3, 50, super.owner.nZ, f2, 30);
-			weaponize(30F * ((gamebase) (super.owner)).view_scale, 21F * ((gamebase) (super.owner)).view_scale,
-					2.0F * ((gamebase) (super.owner)).view_scale, 0.0F, 0.0F, 0.0F, true, super.owner.KI, false,
-					super.owner.MI, null, super.owner.PZ, 20, 12, true, 3, 50, super.owner.nZ, f2, 30);
-			weaponize(-2F * ((gamebase) (super.owner)).view_scale, -45F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, super.owner.RI, super.owner.Q, super.owner.RZ, 22, 12, true,
+			initialize(GameApp.Instance.c, 3, i, j, 0, 70, 120, 250, false, 0);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 2, 12, 16F, GameApp.Instance.T);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
+			thrustors.I(-41F * ((AppletImplements) (GameApp.Instance)).viewScale, -28F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-41F * ((AppletImplements) (GameApp.Instance)).viewScale, 28F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			weaponize(30F * ((AppletImplements) (GameApp.Instance)).viewScale, -21F * ((AppletImplements) (GameApp.Instance)).viewScale,
+					2.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
+					GameApp.Instance.MI, null, GameApp.Instance.PZ, 20, 12, true, 3, 50, GameApp.Instance.nZ, f2, 30);
+			weaponize(30F * ((AppletImplements) (GameApp.Instance)).viewScale, 21F * ((AppletImplements) (GameApp.Instance)).viewScale,
+					2.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
+					GameApp.Instance.MI, null, GameApp.Instance.PZ, 20, 12, true, 3, 50, GameApp.Instance.nZ, f2, 30);
+			weaponize(-2F * ((AppletImplements) (GameApp.Instance)).viewScale, -45F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.RI, GameApp.Instance.Q, GameApp.Instance.RZ, 22, 12, true,
 					4, 45, f8, f9, c);
-			weaponize(-2F * ((gamebase) (super.owner)).view_scale, 45F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, super.owner.RI, super.owner.Q, super.owner.RZ, 22, 12, true,
+			weaponize(-2F * ((AppletImplements) (GameApp.Instance)).viewScale, 45F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.RI, GameApp.Instance.Q, GameApp.Instance.RZ, 22, 12, true,
 					4, 45, f8, f9, c);
 			return;
 
 		case 121: // 'y'
-			initialize(super.owner.b, 3, i, j, 0, 70, 110, 250, false, 0);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 2, 12, 16F, super.owner.T);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 4, 12, 16F, super.owner.T);
-			thrustors.I(-50F * ((gamebase) (super.owner)).view_scale, -18F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-50F * ((gamebase) (super.owner)).view_scale, 18F * ((gamebase) (super.owner)).view_scale);
-			weaponize(-2F * ((gamebase) (super.owner)).view_scale, -16F * ((gamebase) (super.owner)).view_scale,
-					2.0F * ((gamebase) (super.owner)).view_scale, 0.0F, 0.0F, 0.0F, true, super.owner.KI, false,
-					super.owner.MI, null, super.owner.PZ, 20, 12, true, 3, 50, super.owner.nZ, f2, 30);
-			weaponize(-2F * ((gamebase) (super.owner)).view_scale, 16F * ((gamebase) (super.owner)).view_scale,
-					2.0F * ((gamebase) (super.owner)).view_scale, 0.0F, 0.0F, 0.0F, true, super.owner.KI, false,
-					super.owner.MI, null, super.owner.PZ, 20, 12, true, 3, 50, super.owner.nZ, f2, 30);
+			initialize(GameApp.Instance.b, 3, i, j, 0, 70, 110, 250, false, 0);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 2, 12, 16F, GameApp.Instance.T);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
+			thrustors.I(-50F * ((AppletImplements) (GameApp.Instance)).viewScale, -18F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-50F * ((AppletImplements) (GameApp.Instance)).viewScale, 18F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			weaponize(-2F * ((AppletImplements) (GameApp.Instance)).viewScale, -16F * ((AppletImplements) (GameApp.Instance)).viewScale,
+					2.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
+					GameApp.Instance.MI, null, GameApp.Instance.PZ, 20, 12, true, 3, 50, GameApp.Instance.nZ, f2, 30);
+			weaponize(-2F * ((AppletImplements) (GameApp.Instance)).viewScale, 16F * ((AppletImplements) (GameApp.Instance)).viewScale,
+					2.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
+					GameApp.Instance.MI, null, GameApp.Instance.PZ, 20, 12, true, 3, 50, GameApp.Instance.nZ, f2, 30);
 			return;
 
 		case 122: // 'z'
-			initialize(super.owner.d, 3, i, j, 0, 70, 100, 160, false, 0);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 2, 12, 16F, super.owner.T);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 4, 12, 16F, super.owner.T);
-			thrustors.I(-32F * ((gamebase) (super.owner)).view_scale, -6F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-32F * ((gamebase) (super.owner)).view_scale, 6F * ((gamebase) (super.owner)).view_scale);
+			initialize(GameApp.Instance.d, 3, i, j, 0, 70, 100, 160, false, 0);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 2, 12, 16F, GameApp.Instance.T);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
+			thrustors.I(-32F * ((AppletImplements) (GameApp.Instance)).viewScale, -6F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-32F * ((AppletImplements) (GameApp.Instance)).viewScale, 6F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			thruster_add(-5F, -40F, null, false, 40, 10, f10, 4.712389F, 1, 4, 101);
 			thruster_add(-5F, 40F, null, false, 40, 10, f10, 1.570796F, 1, 4, 101);
 			return;
 
 		case 123: // '{'
-			initialize(super.owner.f, 3, i, j, 0, 70, 160, 250, false, 0);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 2, 12, 16F, super.owner.T);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 4, 12, 16F, super.owner.T);
-			thrustors.I(-71F * ((gamebase) (super.owner)).view_scale, -11F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-74F * ((gamebase) (super.owner)).view_scale, 0.0F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-71F * ((gamebase) (super.owner)).view_scale, 11F * ((gamebase) (super.owner)).view_scale);
+			initialize(GameApp.Instance.f, 3, i, j, 0, 70, 160, 250, false, 0);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 2, 12, 16F, GameApp.Instance.T);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
+			thrustors.I(-71F * ((AppletImplements) (GameApp.Instance)).viewScale, -11F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-74F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-71F * ((AppletImplements) (GameApp.Instance)).viewScale, 11F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			thruster_add(-32F, -40F, null, false, 40, 10, f10, 4.712389F, 1, 5, 101);
 			thruster_add(-32F, 40F, null, false, 40, 10, f10, 1.570796F, 1, 5, 101);
 			thruster_add(34F, -32F, null, false, 40, 10, f10, 4.712389F, 1, 5, 101);
@@ -214,258 +214,258 @@ final class oSpaceship extends oGameObject {
 			return;
 
 		case 130:
-			initialize(super.owner.j, 4, i, j, 0, 100, 300, 500, false, 0);
-			weaponize(18F * ((gamebase) (super.owner)).view_scale, -35F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, super.owner.KI, false, super.owner.MI, null, super.owner.PZ, 12, 5, true, 3,
-					50, super.owner.nZ, f2, 30);
-			weaponize(18F * ((gamebase) (super.owner)).view_scale, -18F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, super.owner.KI, false, super.owner.MI, null, super.owner.PZ, 12, 5, true, 3,
-					50, super.owner.nZ, f2, 30);
-			weaponize(-58F * ((gamebase) (super.owner)).view_scale, -18F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 3.926991F, false, super.owner.s, true, super.owner.PI, super.owner.Q, super.owner.RZ,
+			initialize(GameApp.Instance.j, 4, i, j, 0, 100, 300, 500, false, 0);
+			weaponize(18F * ((AppletImplements) (GameApp.Instance)).viewScale, -35F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false, GameApp.Instance.MI, null, GameApp.Instance.PZ, 12, 5, true, 3,
+					50, GameApp.Instance.nZ, f2, 30);
+			weaponize(18F * ((AppletImplements) (GameApp.Instance)).viewScale, -18F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false, GameApp.Instance.MI, null, GameApp.Instance.PZ, 12, 5, true, 3,
+					50, GameApp.Instance.nZ, f2, 30);
+			weaponize(-58F * ((AppletImplements) (GameApp.Instance)).viewScale, -18F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 3.926991F, false, GameApp.Instance.s, true, GameApp.Instance.PI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(58F * ((gamebase) (super.owner)).view_scale, -18F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 5.497787F, false, super.owner.a, true, super.owner.PI, super.owner.Q, super.owner.RZ,
+			weaponize(58F * ((AppletImplements) (GameApp.Instance)).viewScale, -18F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 5.497787F, false, GameApp.Instance.a, true, GameApp.Instance.PI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(-62F * ((gamebase) (super.owner)).view_scale, 33F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 2.356194F, false, super.owner.e, true, super.owner.PI, super.owner.Q, super.owner.RZ,
+			weaponize(-62F * ((AppletImplements) (GameApp.Instance)).viewScale, 33F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 2.356194F, false, GameApp.Instance.e, true, GameApp.Instance.PI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(62F * ((gamebase) (super.owner)).view_scale, 32F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.7853982F, false, super.owner.g, true, super.owner.PI, super.owner.Q, super.owner.RZ,
+			weaponize(62F * ((AppletImplements) (GameApp.Instance)).viewScale, 32F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.7853982F, false, GameApp.Instance.g, true, GameApp.Instance.PI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
 			return;
 
 		case 131:
-			initialize(super.owner.h, 4, i, j, 0, 100, 300, 800, false, 0);
+			initialize(GameApp.Instance.h, 4, i, j, 0, 100, 300, 800, false, 0);
 			return;
 
 		case 200:
-			initialize(super.owner.k, 1, i, j, 200, 30, 20, 50, false, 0);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 5, 12, 16F, super.owner.Q);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 10, 12, 16F, super.owner.Q);
-			thrustors.I(-14F * ((gamebase) (super.owner)).view_scale, 0F * ((gamebase) (super.owner)).view_scale);
+			initialize(GameApp.Instance.k, 1, i, j, 200, 30, 20, 50, false, 0);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
+			thrustors.I(-14F * ((AppletImplements) (GameApp.Instance)).viewScale, 0F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			return;
 
 		case 201:
-			initialize(super.owner.l, 1, i, j, 200, 20, 30, 0, false, 0);
-			sprite_group sprite_group3 = super.owner.WI;
-			int i1 = super.owner.OZ;
+			initialize(GameApp.Instance.l, 1, i, j, 200, 20, 30, 0, false, 0);
+			sprite_group sprite_group3 = GameApp.Instance.WI;
+			int i1 = GameApp.Instance.OZ;
 			weaponize(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, sprite_group3, null, i1, 45, 30, true, 1,
 					30, f1, f2, byte0);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 5, 12, 16F, super.owner.Q);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 10, 12, 16F, super.owner.Q);
-			thrustors.I(-14F * ((gamebase) (super.owner)).view_scale, 0F * ((gamebase) (super.owner)).view_scale);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
+			thrustors.I(-14F * ((AppletImplements) (GameApp.Instance)).viewScale, 0F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			return;
 
 		case 202:
-			initialize(super.owner.m, 1, i, j, 200, 20, 20, 40, false, 0);
-			sprite_group sprite_group4 = super.owner.WI;
-			int j1 = super.owner.OZ;
+			initialize(GameApp.Instance.m, 1, i, j, 200, 20, 20, 40, false, 0);
+			sprite_group sprite_group4 = GameApp.Instance.WI;
+			int j1 = GameApp.Instance.OZ;
 			weaponize(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, sprite_group4, null, j1, 40, 30, true, 1,
 					30, f1, f2, byte0);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 5, 12, 16F, super.owner.Q);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 10, 12, 16F, super.owner.Q);
-			thrustors.I(-14F * ((gamebase) (super.owner)).view_scale, 0F * ((gamebase) (super.owner)).view_scale);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
+			thrustors.I(-14F * ((AppletImplements) (GameApp.Instance)).viewScale, 0F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			return;
 
 		case 203:
-			initialize(super.owner.n, 1, i, j, 300, 25, 20, 40, false, 0);
-			sprite_group sprite_group5 = super.owner.OI;
-			int k1 = super.owner.OZ;
+			initialize(GameApp.Instance.n, 1, i, j, 300, 25, 20, 40, false, 0);
+			sprite_group sprite_group5 = GameApp.Instance.OI;
+			int k1 = GameApp.Instance.OZ;
 			weaponize(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, sprite_group5, null, k1, 40, 30, true, 2,
 					40, f3, f4, byte1);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 5, 12, 16F, super.owner.Q);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 10, 12, 16F, super.owner.Q);
-			thrustors.I(-12F * ((gamebase) (super.owner)).view_scale, -4F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-12F * ((gamebase) (super.owner)).view_scale, 4F * ((gamebase) (super.owner)).view_scale);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
+			thrustors.I(-12F * ((AppletImplements) (GameApp.Instance)).viewScale, -4F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-12F * ((AppletImplements) (GameApp.Instance)).viewScale, 4F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			return;
 
 		case 210:
-			initialize(super.owner.o, 2, i, j, 400, 50, 60, 90, false, 0);
-			if (super.owner.QC == 1)
-				thrustors.I(1, 5, 12, 16F, super.owner.R);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 10, 12, 16F, super.owner.R);
-			thrustors.I(-18F * ((gamebase) (super.owner)).view_scale, -5F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-18F * ((gamebase) (super.owner)).view_scale, 5F * ((gamebase) (super.owner)).view_scale);
+			initialize(GameApp.Instance.o, 2, i, j, 400, 50, 60, 90, false, 0);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(1, 5, 12, 16F, GameApp.Instance.R);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 10, 12, 16F, GameApp.Instance.R);
+			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, -5F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, 5F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			return;
 
 		case 211:
-			initialize(super.owner.p, 2, i, j, 500, 40, 60, 80, false, 0);
-			weaponize(13F * ((gamebase) (super.owner)).view_scale, -17F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, super.owner.LI, null, super.owner.OZ, 50, 40, true, 1, 45, f1,
+			initialize(GameApp.Instance.p, 2, i, j, 500, 40, 60, 80, false, 0);
+			weaponize(13F * ((AppletImplements) (GameApp.Instance)).viewScale, -17F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.LI, null, GameApp.Instance.OZ, 50, 40, true, 1, 45, f1,
 					f2, byte0);
-			weaponize(13F * ((gamebase) (super.owner)).view_scale, 17F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, super.owner.LI, null, super.owner.OZ, 50, 40, true, 1, 45, f1,
+			weaponize(13F * ((AppletImplements) (GameApp.Instance)).viewScale, 17F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.LI, null, GameApp.Instance.OZ, 50, 40, true, 1, 45, f1,
 					f2, byte0);
-			if (super.owner.QC == 1)
-				thrustors.I(2, 5, 12, 16F, super.owner.Q);
-			else if (super.owner.QC == 2)
-				thrustors.I(2, 10, 12, 16F, super.owner.Q);
-			thrustors.I(-18F * ((gamebase) (super.owner)).view_scale, -8F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-18F * ((gamebase) (super.owner)).view_scale, 0.0F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-18F * ((gamebase) (super.owner)).view_scale, 8F * ((gamebase) (super.owner)).view_scale);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(2, 5, 12, 16F, GameApp.Instance.Q);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(2, 10, 12, 16F, GameApp.Instance.Q);
+			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, -8F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, 8F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			return;
 
 		case 212:
-			initialize(super.owner.q, 2, i, j, 600, 40, 70, 30, false, 0);
-			sprite_group sprite_group6 = super.owner.WI;
-			int l1 = super.owner.OZ;
+			initialize(GameApp.Instance.q, 2, i, j, 600, 40, 70, 30, false, 0);
+			sprite_group sprite_group6 = GameApp.Instance.WI;
+			int l1 = GameApp.Instance.OZ;
 			weaponize(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, sprite_group6, null, l1, 35, 30, true, 2,
 					45, f3, f4, byte1);
-			if (super.owner.QC == 1)
-				thrustors.I(2, 5, 12, 16F, super.owner.Q);
-			else if (super.owner.QC == 2)
-				thrustors.I(2, 10, 12, 16F, super.owner.Q);
-			thrustors.I(-14F * ((gamebase) (super.owner)).view_scale, -10F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-15F * ((gamebase) (super.owner)).view_scale, 2.0F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-15F * ((gamebase) (super.owner)).view_scale, -2F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-14F * ((gamebase) (super.owner)).view_scale, 10F * ((gamebase) (super.owner)).view_scale);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(2, 5, 12, 16F, GameApp.Instance.Q);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(2, 10, 12, 16F, GameApp.Instance.Q);
+			thrustors.I(-14F * ((AppletImplements) (GameApp.Instance)).viewScale, -10F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, 2.0F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, -2F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-14F * ((AppletImplements) (GameApp.Instance)).viewScale, 10F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			return;
 
 		case 213:
-			initialize(super.owner.r, 2, i, j, 700, 50, 70, 100, false, 0);
-			weaponize(0.0F * ((gamebase) (super.owner)).view_scale, -20F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, super.owner.XI, super.owner.Q, super.owner.RZ, 35, 25, true,
+			initialize(GameApp.Instance.r, 2, i, j, 700, 50, 70, 100, false, 0);
+			weaponize(0.0F * ((AppletImplements) (GameApp.Instance)).viewScale, -20F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ, 35, 25, true,
 					4, 45, f8, f9, c);
-			weaponize(0.0F * ((gamebase) (super.owner)).view_scale, 20F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, super.owner.XI, super.owner.Q, super.owner.RZ, 35, 25, true,
+			weaponize(0.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 20F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ, 35, 25, true,
 					4, 45, f8, f9, c);
-			if (super.owner.QC == 1)
-				thrustors.I(2, 5, 12, 16F, super.owner.R);
-			else if (super.owner.QC == 2)
-				thrustors.I(2, 10, 12, 16F, super.owner.R);
-			thrustors.I(-22F * ((gamebase) (super.owner)).view_scale, -7F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-22F * ((gamebase) (super.owner)).view_scale, 7F * ((gamebase) (super.owner)).view_scale);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(2, 5, 12, 16F, GameApp.Instance.R);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(2, 10, 12, 16F, GameApp.Instance.R);
+			thrustors.I(-22F * ((AppletImplements) (GameApp.Instance)).viewScale, -7F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-22F * ((AppletImplements) (GameApp.Instance)).viewScale, 7F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			return;
 
 		case 220:
-			initialize(super.owner.t, 3, i, j, 900, 70, 80, 150, false, 0);
-			if (super.owner.QC == 1)
-				thrustors.I(2, 3, 12, 16F, super.owner.T);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 3, 12, 16F, super.owner.T);
-			thrustors.I(-40F * ((gamebase) (super.owner)).view_scale, -18F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-45F * ((gamebase) (super.owner)).view_scale, 0.0F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-40F * ((gamebase) (super.owner)).view_scale, 18F * ((gamebase) (super.owner)).view_scale);
-			weaponize(-11F * ((gamebase) (super.owner)).view_scale, -14F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, super.owner.HI, false, super.owner.NI, null, super.owner.PZ, 22, 12, true,
-					3, 60, super.owner.nZ, f2, 30);
-			weaponize(-11F * ((gamebase) (super.owner)).view_scale, 14F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, super.owner.HI, false, super.owner.NI, null, super.owner.PZ, 22, 12, true,
-					3, 60, super.owner.nZ, f2, 30);
+			initialize(GameApp.Instance.t, 3, i, j, 900, 70, 80, 150, false, 0);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(2, 3, 12, 16F, GameApp.Instance.T);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 3, 12, 16F, GameApp.Instance.T);
+			thrustors.I(-40F * ((AppletImplements) (GameApp.Instance)).viewScale, -18F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-45F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-40F * ((AppletImplements) (GameApp.Instance)).viewScale, 18F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			weaponize(-11F * ((AppletImplements) (GameApp.Instance)).viewScale, -14F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 22, 12, true,
+					3, 60, GameApp.Instance.nZ, f2, 30);
+			weaponize(-11F * ((AppletImplements) (GameApp.Instance)).viewScale, 14F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 22, 12, true,
+					3, 60, GameApp.Instance.nZ, f2, 30);
 			return;
 
 		case 221:
-			initialize(super.owner.u, 3, i, j, 800, 60, 60, 120, false, 0);
-			if (super.owner.QC == 1)
-				thrustors.I(2, 3, 12, 16F, super.owner.T);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 4, 12, 16F, super.owner.T);
-			thrustors.I(-23F * ((gamebase) (super.owner)).view_scale, -16F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-28F * ((gamebase) (super.owner)).view_scale, 0.0F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-23F * ((gamebase) (super.owner)).view_scale, 16F * ((gamebase) (super.owner)).view_scale);
-			weaponize(12F * ((gamebase) (super.owner)).view_scale, -12F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, super.owner.XI, super.owner.Q, super.owner.RZ, 25, 12, true,
+			initialize(GameApp.Instance.u, 3, i, j, 800, 60, 60, 120, false, 0);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(2, 3, 12, 16F, GameApp.Instance.T);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
+			thrustors.I(-23F * ((AppletImplements) (GameApp.Instance)).viewScale, -16F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-28F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-23F * ((AppletImplements) (GameApp.Instance)).viewScale, 16F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			weaponize(12F * ((AppletImplements) (GameApp.Instance)).viewScale, -12F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ, 25, 12, true,
 					4, 45, f8, f9, c);
-			weaponize(12F * ((gamebase) (super.owner)).view_scale, 12F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, super.owner.XI, super.owner.Q, super.owner.RZ, 25, 12, true,
+			weaponize(12F * ((AppletImplements) (GameApp.Instance)).viewScale, 12F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ, 25, 12, true,
 					4, 45, f8, f9, c);
 			return;
 
 		case 222:
-			initialize(super.owner.v, 3, i, j, 1000, 80, 100, 220, false, 0);
-			if (super.owner.QC == 1)
-				thrustors.I(2, 3, 12, 16F, super.owner.T);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 3, 12, 16F, super.owner.T);
-			thrustors.I(-42F * ((gamebase) (super.owner)).view_scale, -15F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-50F * ((gamebase) (super.owner)).view_scale, 9F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-50F * ((gamebase) (super.owner)).view_scale, -9F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-42F * ((gamebase) (super.owner)).view_scale, 15F * ((gamebase) (super.owner)).view_scale);
-			weaponize(17F * ((gamebase) (super.owner)).view_scale, -10F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, super.owner.HI, false, super.owner.NI, null, super.owner.PZ, 25, 15, true,
-					3, 50, super.owner.nZ, f2, 30);
-			weaponize(17F * ((gamebase) (super.owner)).view_scale, 10F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, super.owner.HI, false, super.owner.NI, null, super.owner.PZ, 25, 15, true,
-					3, 50, super.owner.nZ, f2, 30);
-			weaponize(5F * ((gamebase) (super.owner)).view_scale, -15F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, super.owner.HI, false, super.owner.NI, null, super.owner.PZ, 25, 15, true,
-					3, 50, super.owner.nZ, f2, 30);
-			weaponize(5F * ((gamebase) (super.owner)).view_scale, 15F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, super.owner.HI, false, super.owner.NI, null, super.owner.PZ, 25, 15, true,
-					3, 50, super.owner.nZ, f2, 30);
+			initialize(GameApp.Instance.v, 3, i, j, 1000, 80, 100, 220, false, 0);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(2, 3, 12, 16F, GameApp.Instance.T);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 3, 12, 16F, GameApp.Instance.T);
+			thrustors.I(-42F * ((AppletImplements) (GameApp.Instance)).viewScale, -15F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-50F * ((AppletImplements) (GameApp.Instance)).viewScale, 9F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-50F * ((AppletImplements) (GameApp.Instance)).viewScale, -9F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-42F * ((AppletImplements) (GameApp.Instance)).viewScale, 15F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			weaponize(17F * ((AppletImplements) (GameApp.Instance)).viewScale, -10F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 25, 15, true,
+					3, 50, GameApp.Instance.nZ, f2, 30);
+			weaponize(17F * ((AppletImplements) (GameApp.Instance)).viewScale, 10F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 25, 15, true,
+					3, 50, GameApp.Instance.nZ, f2, 30);
+			weaponize(5F * ((AppletImplements) (GameApp.Instance)).viewScale, -15F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 25, 15, true,
+					3, 50, GameApp.Instance.nZ, f2, 30);
+			weaponize(5F * ((AppletImplements) (GameApp.Instance)).viewScale, 15F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 25, 15, true,
+					3, 50, GameApp.Instance.nZ, f2, 30);
 			return;
 
 		case 223:
-			initialize(super.owner.w, 3, i, j, 1500, 70, 70, 150, false, 0);
-			if (super.owner.QC == 1)
-				thrustors.I(2, 3, 12, 16F, super.owner.T);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 3, 12, 16F, super.owner.T);
-			thrustors.I(-18F * ((gamebase) (super.owner)).view_scale, -39F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-26F * ((gamebase) (super.owner)).view_scale, -34F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-26F * ((gamebase) (super.owner)).view_scale, 34F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-18F * ((gamebase) (super.owner)).view_scale, 39F * ((gamebase) (super.owner)).view_scale);
+			initialize(GameApp.Instance.w, 3, i, j, 1500, 70, 70, 150, false, 0);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(2, 3, 12, 16F, GameApp.Instance.T);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 3, 12, 16F, GameApp.Instance.T);
+			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, -39F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-26F * ((AppletImplements) (GameApp.Instance)).viewScale, -34F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-26F * ((AppletImplements) (GameApp.Instance)).viewScale, 34F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, 39F * ((AppletImplements) (GameApp.Instance)).viewScale);
 			thruster_add(-27F, 0.0F, null, false, 35, 15, f10, 3.141593F, 1, 5, 202);
 			return;
 
 		case 230:
-			initialize(super.owner.II, 4, i, j, 5000, 100, 400, 600, false, 0);
-			weaponize(0.0F * ((gamebase) (super.owner)).view_scale, 18F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 10F, 0.0F, true, super.owner.FI, false, super.owner.NI, null, super.owner.PZ, 12, 5, true, 3,
-					50, super.owner.nZ, f2, 30);
-			weaponize(-52F * ((gamebase) (super.owner)).view_scale, -12F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 3.926991F, false, super.owner.ZI, true, super.owner.YI, super.owner.Q, super.owner.RZ,
+			initialize(GameApp.Instance.II, 4, i, j, 5000, 100, 400, 600, false, 0);
+			weaponize(0.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 18F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 10F, 0.0F, true, GameApp.Instance.FI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 12, 5, true, 3,
+					50, GameApp.Instance.nZ, f2, 30);
+			weaponize(-52F * ((AppletImplements) (GameApp.Instance)).viewScale, -12F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 3.926991F, false, GameApp.Instance.ZI, true, GameApp.Instance.YI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(51F * ((gamebase) (super.owner)).view_scale, -13F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 5.497787F, false, super.owner.CI, true, super.owner.YI, super.owner.Q, super.owner.RZ,
+			weaponize(51F * ((AppletImplements) (GameApp.Instance)).viewScale, -13F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 5.497787F, false, GameApp.Instance.CI, true, GameApp.Instance.YI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(-70F * ((gamebase) (super.owner)).view_scale, 33F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 2.356194F, false, super.owner.BI, true, super.owner.YI, super.owner.Q, super.owner.RZ,
+			weaponize(-70F * ((AppletImplements) (GameApp.Instance)).viewScale, 33F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 2.356194F, false, GameApp.Instance.BI, true, GameApp.Instance.YI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(70F * ((gamebase) (super.owner)).view_scale, 30F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 0.7853982F, false, super.owner.DI, true, super.owner.YI, super.owner.Q, super.owner.RZ,
+			weaponize(70F * ((AppletImplements) (GameApp.Instance)).viewScale, 30F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 0.7853982F, false, GameApp.Instance.DI, true, GameApp.Instance.YI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
 			return;
 
 		case 231:
-			initialize(super.owner.JI, 4, i, j, 10000, 100, 600, 1000, false, 0);
-			weaponize(-101F * ((gamebase) (super.owner)).view_scale, 85F * ((gamebase) (super.owner)).view_scale, 4F,
-					0.0F, 0.0F, 2.199115F, false, super.owner.SI, true, super.owner.XI, super.owner.Q, super.owner.RZ,
+			initialize(GameApp.Instance.JI, 4, i, j, 10000, 100, 600, 1000, false, 0);
+			weaponize(-101F * ((AppletImplements) (GameApp.Instance)).viewScale, 85F * ((AppletImplements) (GameApp.Instance)).viewScale, 4F,
+					0.0F, 0.0F, 2.199115F, false, GameApp.Instance.SI, true, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					15, 5, true, 4, 50, f8, f9, c);
-			weaponize(-40F * ((gamebase) (super.owner)).view_scale, 125F * ((gamebase) (super.owner)).view_scale, 0.0F,
-					0.0F, 0.0F, 2.199115F, false, super.owner.AI, true, super.owner.XI, super.owner.Q, super.owner.RZ,
+			weaponize(-40F * ((AppletImplements) (GameApp.Instance)).viewScale, 125F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+					0.0F, 0.0F, 2.199115F, false, GameApp.Instance.AI, true, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					15, 5, true, 4, 50, f8, f9, c);
-			thruster_add(61F * ((gamebase) (super.owner)).view_scale, 108F * ((gamebase) (super.owner)).view_scale,
-					super.owner.EI, true, 40, 20, f10, 1.256637F, 1, 18, 203);
-			thruster_add(103F * ((gamebase) (super.owner)).view_scale, 40F * ((gamebase) (super.owner)).view_scale,
-					super.owner.GI, true, 40, 20, f10, 1.256637F, 1, 18, 212);
+			thruster_add(61F * ((AppletImplements) (GameApp.Instance)).viewScale, 108F * ((AppletImplements) (GameApp.Instance)).viewScale,
+					GameApp.Instance.EI, true, 40, 20, f10, 1.256637F, 1, 18, 203);
+			thruster_add(103F * ((AppletImplements) (GameApp.Instance)).viewScale, 40F * ((AppletImplements) (GameApp.Instance)).viewScale,
+					GameApp.Instance.GI, true, 40, 20, f10, 1.256637F, 1, 18, 212);
 			return;
 
 		case 150:
-			initialize(super.owner.Y, 4, i, j, 0, 70, 200, 350, false, 0);
-			if (super.owner.QC == 1)
-				thrustors.I(2, 2, 10, 16F, super.owner.R);
-			else if (super.owner.QC == 2)
-				thrustors.I(1, 3, 10, 16F, super.owner.R);
+			initialize(GameApp.Instance.Y, 4, i, j, 0, 70, 200, 350, false, 0);
+			if (GameApp.Instance.QC == 1)
+				thrustors.I(2, 2, 10, 16F, GameApp.Instance.R);
+			else if (GameApp.Instance.QC == 2)
+				thrustors.I(1, 3, 10, 16F, GameApp.Instance.R);
 			else
-				thrustors.I(1, 5, 10, 16F, super.owner.R);
-			thrustors.I(-16F * ((gamebase) (super.owner)).view_scale, -16F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-20F * ((gamebase) (super.owner)).view_scale, 0.0F * ((gamebase) (super.owner)).view_scale);
-			thrustors.I(-16F * ((gamebase) (super.owner)).view_scale, 16F * ((gamebase) (super.owner)).view_scale);
-			weaponize(10F, -6F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, super.owner.UI, null, super.owner.QZ, 10, 0,
-					false, 1, 70, super.owner.nZ, f2, 30);
-			weaponize(10F, 6F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, super.owner.VI, null, super.owner.QZ, 10, 0,
-					false, 1, 70, super.owner.nZ, f2, 30);
+				thrustors.I(1, 5, 10, 16F, GameApp.Instance.R);
+			thrustors.I(-16F * ((AppletImplements) (GameApp.Instance)).viewScale, -16F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-20F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-16F * ((AppletImplements) (GameApp.Instance)).viewScale, 16F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			weaponize(10F, -6F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.UI, null, GameApp.Instance.QZ, 10, 0,
+					false, 1, 70, GameApp.Instance.nZ, f2, 30);
+			weaponize(10F, 6F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.VI, null, GameApp.Instance.QZ, 10, 0,
+					false, 1, 70, GameApp.Instance.nZ, f2, 30);
 			return;
 		}
 		System.out.println("initStandardShip - undefined ship type");
@@ -483,18 +483,18 @@ final class oSpaceship extends oGameObject {
 				sprite_group sprite_group1 = null;
 				switch ((int) (Math.random() * 3D)) {
 				case 0: // '\0'
-					sprite_group1 = super.owner.S;
+					sprite_group1 = GameApp.Instance.S;
 					break;
 
 				case 1: // '\001'
-					sprite_group1 = super.owner.A;
+					sprite_group1 = GameApp.Instance.A;
 					break;
 
 				default:
-					sprite_group1 = super.owner.E;
+					sprite_group1 = GameApp.Instance.E;
 					break;
 				}
-				explosion explosion1 = (explosion) super.owner.rZ.I(super.owner.qZ);
+				Explosion explosion1 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.qZ);
 				if (explosion1 != null)
 					explosion1.I(sprite_group1, 1,
 							super.J + (float) ((Math.random() - 0.5D) * super.x.C * 0.66000000000000003D),
@@ -504,21 +504,21 @@ final class oSpaceship extends oGameObject {
 			}
 		}
 		super.I();
-		if (super.J < ((gamebase) (super.owner)).bC) {
-			super.J = ((gamebase) (super.owner)).bC;
+		if (super.J < ((AppletImplements) (GameApp.Instance)).worldBorderLeft) {
+			super.J = ((AppletImplements) (GameApp.Instance)).worldBorderLeft;
 			super.K = 0.0F;
 			F();
-		} else if (super.J > ((gamebase) (super.owner)).dC) {
-			super.J = ((gamebase) (super.owner)).dC;
+		} else if (super.J > ((AppletImplements) (GameApp.Instance)).worldBorderRight) {
+			super.J = ((AppletImplements) (GameApp.Instance)).worldBorderRight;
 			super.K = 0.0F;
 			F();
 		}
-		if (super.S < ((gamebase) (super.owner)).fC) {
-			super.S = ((gamebase) (super.owner)).fC;
+		if (super.S < ((AppletImplements) (GameApp.Instance)).worldBorderTop) {
+			super.S = ((AppletImplements) (GameApp.Instance)).worldBorderTop;
 			super.L = 0.0F;
 			F();
-		} else if (super.S > ((gamebase) (super.owner)).jC) {
-			super.S = ((gamebase) (super.owner)).jC;
+		} else if (super.S > ((AppletImplements) (GameApp.Instance)).worldBorderBottom) {
+			super.S = ((AppletImplements) (GameApp.Instance)).worldBorderBottom;
 			super.L = 0.0F;
 			F();
 		}
@@ -538,7 +538,7 @@ final class oSpaceship extends oGameObject {
 					case 2: // '\002'
 						if (UI == 20)
 							I(super.J, super.S, super.K, super.L, 0.0F, 0.05F, true);
-						else if (super.S > ((gamebase) (super.owner)).screen_height + super.y.J)
+						else if (super.S > ((AppletImplements) (GameApp.Instance)).screen_height + super.y.J)
 							equip(true, null);
 						break;
 					}
@@ -583,10 +583,10 @@ final class oSpaceship extends oGameObject {
 					float f = (super.R + super.U) - super.J;
 					float f2 = (super.T + super.V) - super.S;
 					if (f * f + f2 * f2 < 10000F) {
-						super.R = ((gamebase) (super.owner)).YC + ((gamebase) (super.owner)).sC * 0.1F
-								+ (float) Math.random() * 0.8F * ((gamebase) (super.owner)).sC;
-						super.T = ((gamebase) (super.owner)).zC + ((gamebase) (super.owner)).aC * 0.1F
-								+ (float) Math.random() * 0.8F * ((gamebase) (super.owner)).aC;
+						super.R = ((AppletImplements) (GameApp.Instance)).YC + ((AppletImplements) (GameApp.Instance)).worldHrz * 0.1F
+								+ (float) Math.random() * 0.8F * ((AppletImplements) (GameApp.Instance)).worldHrz;
+						super.T = ((AppletImplements) (GameApp.Instance)).zC + ((AppletImplements) (GameApp.Instance)).worldVrt * 0.1F
+								+ (float) Math.random() * 0.8F * ((AppletImplements) (GameApp.Instance)).worldVrt;
 						super.U = 0.0F;
 						super.V = 0.0F;
 					}
@@ -603,9 +603,9 @@ final class oSpaceship extends oGameObject {
 				super.Q = null;
 				if (oWaypoint1.I == 1) {
 					MI = 25;
-					explosion explosion2 = (explosion) super.owner.rZ.I(super.owner.qZ);
+					Explosion explosion2 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.qZ);
 					if (explosion2 != null)
-						explosion2.I(super.owner.sprite_group_ship, 1, (int) (super.J + super.K * 25F),
+						explosion2.I(GameApp.Instance.sprite_group_ship, 1, (int) (super.J + super.K * 25F),
 								(int) (super.S + super.L * 25F), 0.0F, 0.0F, 1, 2, 0, false);
 					I(super.J, super.S, super.K, super.L, super.f);
 					break;
@@ -636,9 +636,9 @@ final class oSpaceship extends oGameObject {
 	}
 
 	@Override
-	final void I(surface surface) {
+	final void Draw(surface surface) {
 		thrustors.I(surface);
-		super.I(surface);
+		super.Draw(surface);
 	}
 
 	final void abs() {
@@ -651,7 +651,7 @@ final class oSpaceship extends oGameObject {
 	final void weaponize(float f, float f1, float f2, float f3, float f4, float f5, boolean flag,
 			sprite_group sprite_group1, boolean flag1, sprite_group sprite_group2, sprite_group sprite_group3, int i,
 			int j, int k, boolean flag2, int l, int i1, float f6, float f7, int j1) {
-		oWeapon oWeapon1 = (oWeapon) super.owner.FC.I(super.k);
+		oWeapon oWeapon1 = (oWeapon) GameApp.Instance.FC.I(super.k);
 		if (oWeapon1 != null) {
 			oWeapon1.I(this, flag1, f, f1, f2, f3, f4, f5, flag, sprite_group1, 0, 0, 1, 0, false);
 			oWeapon1.I(sprite_group2, sprite_group3, i, j, k, flag2, l, i1, f6, f7, j1);
@@ -663,7 +663,7 @@ final class oSpaceship extends oGameObject {
 
 	final void thruster_add(float f, float f1, sprite_group sprite_group1, boolean flag, int i, int j, float f2,
 			float f3, int k, int l, int i1) {
-		oWeapon oWeapon1 = (oWeapon) super.owner.FC.I(super.k);
+		oWeapon oWeapon1 = (oWeapon) GameApp.Instance.FC.I(super.k);
 		if (oWeapon1 != null) {
 			oWeapon1.I(this, flag, f, f1, 0.0F, 0.0F, 0.0F, f3, false, sprite_group1, 0, 0, 1, 0, false);
 			oWeapon1.I(i, j, f2, k, i1);
@@ -695,15 +695,15 @@ final class oSpaceship extends oGameObject {
 
 	}
 
-	protected final oGameObject A() {
+	protected final GameObject A() {
 		WI = null;
 		if (super.EI == 2) {
-			out(super.owner.vZ, HNSM);
-			out(super.owner.dZ, HNSM);
-			out(super.owner.EC, HNSM);
+			out(GameApp.Instance.vZ, HNSM);
+			out(GameApp.Instance.dZ, HNSM);
+			out(GameApp.Instance.EC, HNSM);
 		} else if (super.EI == 1) {
-			out(super.owner.wZ, HNSM);
-			out(super.owner.GC, HNSM);
+			out(GameApp.Instance.wZ, HNSM);
+			out(GameApp.Instance.GC, HNSM);
 		}
 		return WI;
 	}
@@ -713,7 +713,7 @@ final class oSpaceship extends oGameObject {
 		float f3 = F;
 		int j = oGameObjectlist1.C;
 		for (int k = 0; k < j; k++) {
-			oGameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.C ? null : oGameObjectlist1.Z[k];
+			GameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.C ? null : oGameObjectlist1.Z[k];
 			if (oGameObject1.e == 1 && oGameObject1.v && oGameObject1.h && oGameObject1.BI > 0.0001F) {
 				if (oGameObject1.l)
 					out(oGameObject1.k, f);
@@ -727,17 +727,17 @@ final class oSpaceship extends oGameObject {
 						f1 = oSpaceship1.F;
 					} else if (oGameObject1.JI == 7) {
 						oMeteor oMeteor1 = (oMeteor) oGameObject1;
-						if (((oGameObject) (oMeteor1)).L != 0.0F) {
-							float f6 = (((oGameObject) (oMeteor1)).S - super.S) / ((oGameObject) (oMeteor1)).L;
+						if (((GameObject) (oMeteor1)).L != 0.0F) {
+							float f6 = (((GameObject) (oMeteor1)).S - super.S) / ((GameObject) (oMeteor1)).L;
 							if (f6 > 7F && f6 < 50F) {
-								float f7 = ((oGameObject) (oMeteor1)).J + ((oGameObject) (oMeteor1)).K * f6;
+								float f7 = ((GameObject) (oMeteor1)).J + ((GameObject) (oMeteor1)).K * f6;
 								int i;
-								if (((oGameObject) (oMeteor1)).ship_grade == 3)
-									i = ((oGameObject) (oMeteor1)).m / 2;
+								if (((GameObject) (oMeteor1)).ship_grade == 3)
+									i = ((GameObject) (oMeteor1)).m / 2;
 								else
-									i = ((oGameObject) (oMeteor1)).x.C / 2;
+									i = ((GameObject) (oMeteor1)).x.C / 2;
 								if (super.A < f7 + i && super.G > f7 - i)
-									f1 = ((oGameObject) (oMeteor1)).m;
+									f1 = ((GameObject) (oMeteor1)).m;
 							}
 						}
 					}
@@ -771,9 +771,9 @@ final class oSpaceship extends oGameObject {
 		Object obj = null;
 		gameobjectivelist gameobjectivelist1;
 		if (super.EI == 2)
-			gameobjectivelist1 = super.owner.Mission.C;
+			gameobjectivelist1 = GameApp.Instance.Mission.C;
 		else
-			gameobjectivelist1 = super.owner.Mission.I;
+			gameobjectivelist1 = GameApp.Instance.Mission.I;
 		oGameObjectlist oGameObjectlist2;
 		while (obj == null && LI < (oGameObjectlist2 = gameobjectivelist1.D).C) {
 			oGameObjectlist oGameObjectlist1 = gameobjectivelist1.D;
@@ -788,9 +788,9 @@ final class oSpaceship extends oGameObject {
 			obj = I(-1F);
 		if (obj != null) {
 			if (super.DI != 8) {
-				I(super.J, super.S, ((oGameObject) (obj)), 0.0F, 0.0F, super.M, super.c, super.O, super.f);
+				I(super.J, super.S, ((GameObject) (obj)), 0.0F, 0.0F, super.M, super.c, super.O, super.f);
 			} else {
-				super.Q = ((oGameObject) (obj));
+				super.Q = ((GameObject) (obj));
 				super.P = true;
 			}
 			if (PI) {
@@ -800,16 +800,16 @@ final class oSpaceship extends oGameObject {
 		}
 	}
 
-	protected final oGameObject I(float f) {
+	protected final GameObject I(float f) {
 		WI = null;
 		if (super.EI == 2) {
-			println(super.owner.vZ, f);
-			println(super.owner.EC, f);
+			println(GameApp.Instance.vZ, f);
+			println(GameApp.Instance.EC, f);
 			if (WI == null)
-				println(super.owner.dZ, f);
+				println(GameApp.Instance.dZ, f);
 		} else if (super.EI == 1) {
-			println(super.owner.wZ, f);
-			println(super.owner.GC, f);
+			println(GameApp.Instance.wZ, f);
+			println(GameApp.Instance.GC, f);
 		}
 		return WI;
 	}
@@ -819,7 +819,7 @@ final class oSpaceship extends oGameObject {
 		float f3 = F;
 		int j = oGameObjectlist1.C;
 		for (int k = 0; k < j; k++) {
-			oGameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.C ? null : oGameObjectlist1.Z[k];
+			GameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.C ? null : oGameObjectlist1.Z[k];
 			if (oGameObject1.e == 1 && oGameObject1.v && oGameObject1.h && oGameObject1.BI > 0.0001F) {
 				float f10 = oGameObject1.J - super.J;
 				float f11 = oGameObject1.S - super.S;
@@ -832,17 +832,17 @@ final class oSpaceship extends oGameObject {
 						f1 = oSpaceship1.F;
 					} else if (oGameObject1.JI == 7) {
 						oMeteor oMeteor1 = (oMeteor) oGameObject1;
-						if (((oGameObject) (oMeteor1)).L != 0.0F) {
-							float f6 = (((oGameObject) (oMeteor1)).S - super.S) / ((oGameObject) (oMeteor1)).L;
+						if (((GameObject) (oMeteor1)).L != 0.0F) {
+							float f6 = (((GameObject) (oMeteor1)).S - super.S) / ((GameObject) (oMeteor1)).L;
 							if (f6 > 7F && f6 < 50F) {
-								float f7 = ((oGameObject) (oMeteor1)).J + ((oGameObject) (oMeteor1)).K * f6;
+								float f7 = ((GameObject) (oMeteor1)).J + ((GameObject) (oMeteor1)).K * f6;
 								int i;
-								if (((oGameObject) (oMeteor1)).ship_grade == 3)
-									i = ((oGameObject) (oMeteor1)).m / 2;
+								if (((GameObject) (oMeteor1)).ship_grade == 3)
+									i = ((GameObject) (oMeteor1)).m / 2;
 								else
-									i = ((oGameObject) (oMeteor1)).x.C / 2;
+									i = ((GameObject) (oMeteor1)).x.C / 2;
 								if (super.A < f7 + i && super.G > f7 - i)
-									f1 = ((oGameObject) (oMeteor1)).m;
+									f1 = ((GameObject) (oMeteor1)).m;
 							}
 						}
 					}
@@ -877,51 +877,51 @@ final class oSpaceship extends oGameObject {
 	}
 
 	@Override
-	final void equip(boolean flag, oGameObject oGameObject1) {
+	final void equip(boolean flag, GameObject oGameObject1) {
 		if (flag)
 			super.ascore = 0;
 		else if (super.EI == 2 && oGameObject1 != null
 				&& (oGameObject1.JI == 8 && oGameObject1.AI == 150 || oGameObject1.JI == 6 && oGameObject1.g != null
 						&& oGameObject1.g.g != null && oGameObject1.g.g.AI == 150)) {
 			boolean flag1 = false;
-			if (super.owner.Mission.J > 0 && Math.random() < super.owner.Mission.D) {
+			if (GameApp.Instance.Mission.J > 0 && Math.random() < GameApp.Instance.Mission.D) {
 				flag1 = true;
 			} else {
-				super.owner.Mission.G++;
-				int i = Math.round((1.0F / super.owner.Mission.D) * 1.5F);
-				if (super.owner.Mission.G >= i)
+				GameApp.Instance.Mission.G++;
+				int i = Math.round((1.0F / GameApp.Instance.Mission.D) * 1.5F);
+				if (GameApp.Instance.Mission.G >= i)
 					flag1 = true;
 			}
 			if (flag1) {
-				super.owner.Mission.G = 0;
-				int k = super.owner.Mission.J;
+				GameApp.Instance.Mission.G = 0;
+				int k = GameApp.Instance.Mission.J;
 				int l = -1;
-				int i1 = (int) (Math.random() * super.owner.Mission.E);
+				int i1 = (int) (Math.random() * GameApp.Instance.Mission.E);
 				for (int j1 = 0; j1 < k && l == -1; j1++) {
-					int j = super.owner.Mission.A[j1];
+					int j = GameApp.Instance.Mission.A[j1];
 					if (i1 > j)
 						i1 -= j;
 					else
-						l = super.owner.Mission.S[j1];
+						l = GameApp.Instance.Mission.S[j1];
 				}
 
 				if (l != -1) {
-					oPowerup oPowerup1 = (oPowerup) super.owner.DC.I(super.owner.BC);
+					oPowerup oPowerup1 = (oPowerup) GameApp.Instance.DC.I(GameApp.Instance.BC);
 					if (oPowerup1 != null) {
 						oPowerup1.Z(l);
 						float f3 = super.K * 0.3F;
 						float f4 = super.L * 0.3F;
-						if (super.J < ((gamebase) (super.owner)).YC
-								+ ((gamebase) (super.owner)).screen_width * 2.0F && super.K < 0.0F)
+						if (super.J < ((AppletImplements) (GameApp.Instance)).YC
+								+ ((AppletImplements) (GameApp.Instance)).screen_width * 2.0F && super.K < 0.0F)
 							super.K = -super.K;
-						if (super.J > ((gamebase) (super.owner)).iC
-								- ((gamebase) (super.owner)).screen_width * 2.0F && super.K > 0.0F)
+						if (super.J > ((AppletImplements) (GameApp.Instance)).iC
+								- ((AppletImplements) (GameApp.Instance)).screen_width * 2.0F && super.K > 0.0F)
 							super.K = -super.K;
-						if (super.S < ((gamebase) (super.owner)).zC
-								+ ((gamebase) (super.owner)).screen_height * 2.0F && super.L < 0.0F)
+						if (super.S < ((AppletImplements) (GameApp.Instance)).zC
+								+ ((AppletImplements) (GameApp.Instance)).screen_height * 2.0F && super.L < 0.0F)
 							super.L = -super.L;
-						if (super.S > ((gamebase) (super.owner)).cC
-								- ((gamebase) (super.owner)).screen_height * 2.0F && super.L > 0.0F)
+						if (super.S > ((AppletImplements) (GameApp.Instance)).cC
+								- ((AppletImplements) (GameApp.Instance)).screen_height * 2.0F && super.L > 0.0F)
 							super.L = -super.L;
 						oPowerup1.I(super.J, super.S, f3, f4, true);
 					}
@@ -938,80 +938,80 @@ final class oSpaceship extends oGameObject {
 			palette palette = null;
 			float f = (float) Math.random();
 			if (f > 0.67000000000000004D)
-				sprite_group1 = super.owner.D;
+				sprite_group1 = GameApp.Instance.D;
 			else if (f > 0.33000000000000002D)
-				sprite_group1 = super.owner.B;
+				sprite_group1 = GameApp.Instance.B;
 			else
-				sprite_group1 = super.owner.C;
+				sprite_group1 = GameApp.Instance.C;
 			switch (super.ship_grade) {
 			default:
 				break;
 
 			case 1: // '\001'
-				if (super.owner.QC == 1)
+				if (GameApp.Instance.QC == 1)
 					byte1 = 2;
-				else if (super.owner.QC == 2)
+				else if (GameApp.Instance.QC == 2)
 					byte1 = 1;
 				if (super.EI == 2) {
 					if (super.AI == 102)
-						super.owner.NZ.I(super.owner.XZ, true, false);
+						GameApp.Instance.NZ.I(GameApp.Instance.XZ, true, false);
 					else
-						super.owner.NZ.I(super.owner.TZ, true, false);
-					palette = super.owner.DZ;
+						GameApp.Instance.NZ.I(GameApp.Instance.TZ, true, false);
+					palette = GameApp.Instance.DZ;
 				} else if (super.EI == 1) {
-					super.owner.NZ.I(super.owner.TZ, true, false);
-					palette = super.owner.FZ;
+					GameApp.Instance.NZ.I(GameApp.Instance.TZ, true, false);
+					palette = GameApp.Instance.FZ;
 				}
 				break;
 
 			case 2: // '\002'
-				if (super.owner.QC == 1)
+				if (GameApp.Instance.QC == 1)
 					byte1 = 3;
-				else if (super.owner.QC == 2)
+				else if (GameApp.Instance.QC == 2)
 					byte1 = 1;
-				super.owner.NZ.I(super.owner.WZ, true, false);
+				GameApp.Instance.NZ.I(GameApp.Instance.WZ, true, false);
 				if (super.EI == 2) {
-					palette = super.owner.DZ;
+					palette = GameApp.Instance.DZ;
 					break;
 				}
 				if (super.EI == 1)
-					palette = super.owner.FZ;
+					palette = GameApp.Instance.FZ;
 				break;
 
 			case 3: // '\003'
-				if (super.owner.QC == 1)
+				if (GameApp.Instance.QC == 1)
 					byte1 = 4;
-				else if (super.owner.QC == 2)
+				else if (GameApp.Instance.QC == 2)
 					byte1 = 2;
 				if (super.EI == 2) {
-					super.owner.NZ.I(super.owner.XZ, true, false);
-					palette = super.owner.DZ;
+					GameApp.Instance.NZ.I(GameApp.Instance.XZ, true, false);
+					palette = GameApp.Instance.DZ;
 					break;
 				}
 				if (super.EI == 1) {
-					super.owner.NZ.I(super.owner.YZ, true, false);
-					palette = super.owner.FZ;
+					GameApp.Instance.NZ.I(GameApp.Instance.YZ, true, false);
+					palette = GameApp.Instance.FZ;
 				}
 				break;
 
 			case 4: // '\004'
-				if (super.owner.QC == 1)
+				if (GameApp.Instance.QC == 1)
 					byte1 = 7;
-				else if (super.owner.QC == 2)
+				else if (GameApp.Instance.QC == 2)
 					byte1 = 3;
 				byte0 = 5;
 				if (super.EI == 2) {
-					super.owner.NZ.I(super.owner.YZ, true, false);
-					palette = super.owner.DZ;
+					GameApp.Instance.NZ.I(GameApp.Instance.YZ, true, false);
+					palette = GameApp.Instance.DZ;
 					break;
 				}
 				if (super.EI == 1) {
-					super.owner.NZ.I(super.owner.YZ, true, false);
-					palette = super.owner.FZ;
+					GameApp.Instance.NZ.I(GameApp.Instance.YZ, true, false);
+					palette = GameApp.Instance.FZ;
 				}
 				break;
 			}
-			explosion explosion1 = (explosion) super.owner.rZ.I(super.owner.oZ);
+			Explosion explosion1 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.oZ);
 			if (explosion1 != null) {
 				explosion1.I(sprite_group1, 3, super.J, super.S, super.K, super.L, 1, 2, super.m + super.n, out);
 				if (palette != null)
@@ -1022,31 +1022,31 @@ final class oSpaceship extends oGameObject {
 				if (super.AI >= 200 && super.AI < 300) {
 					float f1 = (float) Math.random();
 					if (f1 > 0.75D)
-						sprite_group2 = super.owner.G;
+						sprite_group2 = GameApp.Instance.G;
 					else if (f1 > 0.5D)
-						sprite_group2 = super.owner.H;
+						sprite_group2 = GameApp.Instance.H;
 					else if (f1 > 0.25D)
-						sprite_group2 = super.owner.K;
+						sprite_group2 = GameApp.Instance.K;
 					else
-						sprite_group2 = super.owner.L;
+						sprite_group2 = GameApp.Instance.L;
 				} else {
 					float f2 = (float) Math.random();
 					if (f2 > 0.75D)
-						sprite_group2 = super.owner.M;
+						sprite_group2 = GameApp.Instance.M;
 					else if (f2 > 0.5D)
-						sprite_group2 = super.owner.N;
+						sprite_group2 = GameApp.Instance.N;
 					else if (f2 > 0.25D)
-						sprite_group2 = super.owner.O;
+						sprite_group2 = GameApp.Instance.O;
 					else
-						sprite_group2 = super.owner.P;
+						sprite_group2 = GameApp.Instance.P;
 				}
-				explosionbit explosionbit1 = (explosionbit) super.owner.uZ.I(super.owner.tZ);
+				explosionbit explosionbit1 = (explosionbit) GameApp.Instance.uZ.I(GameApp.Instance.tZ);
 				if (explosionbit1 != null)
-					explosionbit1.I(sprite_group2, super.owner.J, this, super.m + super.n);
+					explosionbit1.I(sprite_group2, GameApp.Instance.J, this, super.m + super.n);
 			}
 
 			for (int l1 = 0; l1 < byte0; l1++) {
-				explosion explosion2 = (explosion) super.owner.rZ.I(super.owner.qZ);
+				Explosion explosion2 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.qZ);
 				if (explosion2 != null) {
 					explosion2.I(sprite_group1, 3,
 							super.J + (float) (Math.random() * super.y.C - super.y.D),
@@ -1060,7 +1060,7 @@ final class oSpaceship extends oGameObject {
 	}
 
 	@Override
-	final boolean Z(oGameObject oGameObject1) {
+	final boolean Z(GameObject oGameObject1) {
 		if (oGameObject1.JI != 10 && super.Z(oGameObject1))
 			return true;
 		if (oGameObject1.JI == 8 || oGameObject1.JI == 10) {
@@ -1115,7 +1115,7 @@ final class oSpaceship extends oGameObject {
 	}
 
 	@Override
-	final void I(oGameObject oGameObject1, int i, int j) {
+	final void I(GameObject oGameObject1, int i, int j) {
 		if (i > 0 && super.q > 0) {
 			println = 5 + (int) (Math.sin((float) super.o / (float) super.q * 1.5707963267948966D) * 20D);
 			random = 0;
@@ -1126,7 +1126,7 @@ final class oSpaceship extends oGameObject {
 	}
 
 	float F;
-	oGameObject I;
+	GameObject I;
 	float HNSM;
 	int abs;
 	boolean Z;
@@ -1148,7 +1148,7 @@ final class oSpaceship extends oGameObject {
 	boolean TI;
 	int UI;
 	int VI;
-	oGameObject WI;
+	GameObject WI;
 	float XI;
 	float YI;
 }

@@ -12,7 +12,7 @@ import sun.audio.AudioStream;
 
 class gamemusicpiece {
 
-	gamemusicpiece(gameapp gameapp, String s) {
+	gamemusicpiece(GameApp gameapp, String s) {
 		URL url;
 		try {
 			url = new URL(gameapp.getCodeBase(), s);

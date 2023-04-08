@@ -5,8 +5,8 @@ package realspace;
 // Decompiler options: packimports(3) 
 // Source File Name:   star_y
 
-final class oWeaponfire extends oGameObject {
-	oWeaponfire(gameapp gameapp1) {
+final class oWeaponfire extends GameObject {
+	oWeaponfire(GameApp gameapp1) {
 		super(gameapp1);
 		F = new int[4];
 		HNSM = new int[4];
@@ -15,35 +15,35 @@ final class oWeaponfire extends oGameObject {
 		random = new int[5];
 	}
 
-	final void I(sprite_group sprite_group1, sprite_group sprite_group2, oWeapon oWeapon1, oGameObject oGameObject1,
+	final void I(sprite_group sprite_group1, sprite_group sprite_group2, oWeapon oWeapon1, GameObject oGameObject1,
 			int i, int j, int k, int l, float f) {
-		oSpaceship oSpaceship1 = (oSpaceship) ((oGameObject) (oWeapon1)).g;
-		float f1 = (float) Math.cos(((oGameObject) (oSpaceship1)).Y);
-		float f4 = (float) Math.sin(((oGameObject) (oSpaceship1)).Y);
-		super.J = (((oGameObject) (oSpaceship1)).J + ((oGameObject) (oSpaceship1)).y.E + oWeapon1.I * f1)
+		oSpaceship oSpaceship1 = (oSpaceship) ((GameObject) (oWeapon1)).g;
+		float f1 = (float) Math.cos(((GameObject) (oSpaceship1)).Y);
+		float f4 = (float) Math.sin(((GameObject) (oSpaceship1)).Y);
+		super.J = (((GameObject) (oSpaceship1)).J + ((GameObject) (oSpaceship1)).y.E + oWeapon1.I * f1)
 				- oWeapon1.Z * f4;
-		super.S = ((oGameObject) (oSpaceship1)).S + ((oGameObject) (oSpaceship1)).y.G + oWeapon1.I * f4
+		super.S = ((GameObject) (oSpaceship1)).S + ((GameObject) (oSpaceship1)).y.G + oWeapon1.I * f4
 				+ oWeapon1.Z * f1;
-		if (((oGameObject) (oWeapon1)).y != null)
+		if (((GameObject) (oWeapon1)).y != null)
 			if (oWeapon1.F) {
-				float f2 = (float) Math.cos(((oGameObject) (oWeapon1)).Y);
-				float f5 = (float) Math.sin(((oGameObject) (oWeapon1)).Y);
+				float f2 = (float) Math.cos(((GameObject) (oWeapon1)).Y);
+				float f5 = (float) Math.sin(((GameObject) (oWeapon1)).Y);
 				float f7 = 1.0F;
 				if ((oWeapon1.NI & 1) == 0)
 					f7 = -1F;
-				super.J += (((oGameObject) (oWeapon1)).y.E + oWeapon1.C * f2)
+				super.J += (((GameObject) (oWeapon1)).y.E + oWeapon1.C * f2)
 						- (oWeapon1.B + oWeapon1.D * f7) * f5;
-				super.S += ((oGameObject) (oWeapon1)).y.G + oWeapon1.C * f5
+				super.S += ((GameObject) (oWeapon1)).y.G + oWeapon1.C * f5
 						+ (oWeapon1.B + oWeapon1.D * f7) * f2;
 			} else {
-				super.J += ((oGameObject) (oWeapon1)).y.E + oWeapon1.C;
-				super.S += ((oGameObject) (oWeapon1)).y.G + oWeapon1.B;
+				super.J += ((GameObject) (oWeapon1)).y.E + oWeapon1.C;
+				super.S += ((GameObject) (oWeapon1)).y.G + oWeapon1.B;
 			}
 		int i1 = 0;
 		int j1 = 0;
 		if (i == 4) {
-			float f3 = (float) Math.cos(((oGameObject) (oSpaceship1)).Y + oWeapon1.zI);
-			float f6 = (float) Math.sin(((oGameObject) (oSpaceship1)).Y + oWeapon1.zI);
+			float f3 = (float) Math.cos(((GameObject) (oSpaceship1)).Y + oWeapon1.zI);
+			float f6 = (float) Math.sin(((GameObject) (oSpaceship1)).Y + oWeapon1.zI);
 			i1 = (int) (super.J + f3 * 50F);
 			j1 = (int) (super.S + f6 * 50F);
 		} else if (oGameObject1 != null) {
@@ -55,7 +55,7 @@ final class oWeaponfire extends oGameObject {
 	}
 
 	@SuppressWarnings("unused")
-	final void F(sprite_group sprite_group1, sprite_group sprite_group2, oGameObject oGameObject1, int i, int j, int k,
+	final void F(sprite_group sprite_group1, sprite_group sprite_group2, GameObject oGameObject1, int i, int j, int k,
 			int l, int i1, int j1, int k1, int l1, float f) {
 		super.initialize(sprite_group1, 6, k, 1, 0, false);
 		D = sprite_group2;
@@ -93,9 +93,9 @@ final class oWeaponfire extends oGameObject {
 
 		case 5: // '\005'
 			if (j == 2)
-				LI = super.owner.MZ;
+				LI = GameApp.Instance.MZ;
 			else
-				LI = super.owner.LZ;
+				LI = GameApp.Instance.LZ;
 			super.a = (int) (f + 0.5F);
 			float f2 = j1 - l;
 			float f4 = k1 - i1;
@@ -107,23 +107,23 @@ final class oWeaponfire extends oGameObject {
 				I = 1.0F;
 				Z = 1.0F;
 			}
-			F[0] = (l - (int) I) + ((gamebase) (super.owner)).WC;
-			HNSM[0] = (i1 - (int) Z) + ((gamebase) (super.owner)).XC;
-			F[1] = l + (int) I + ((gamebase) (super.owner)).WC;
-			HNSM[1] = i1 + (int) Z + ((gamebase) (super.owner)).XC;
-			F[2] = j1 + (int) I + ((gamebase) (super.owner)).WC;
-			HNSM[2] = k1 + (int) Z + ((gamebase) (super.owner)).XC;
-			F[3] = (j1 - (int) I) + ((gamebase) (super.owner)).WC;
-			HNSM[3] = (k1 - (int) Z) + ((gamebase) (super.owner)).XC;
+			F[0] = (l - (int) I) + ((AppletImplements) (GameApp.Instance)).WC;
+			HNSM[0] = (i1 - (int) Z) + ((AppletImplements) (GameApp.Instance)).XC;
+			F[1] = l + (int) I + ((AppletImplements) (GameApp.Instance)).WC;
+			HNSM[1] = i1 + (int) Z + ((AppletImplements) (GameApp.Instance)).XC;
+			F[2] = j1 + (int) I + ((AppletImplements) (GameApp.Instance)).WC;
+			HNSM[2] = k1 + (int) Z + ((AppletImplements) (GameApp.Instance)).XC;
+			F[3] = (j1 - (int) I) + ((AppletImplements) (GameApp.Instance)).WC;
+			HNSM[3] = (k1 - (int) Z) + ((AppletImplements) (GameApp.Instance)).XC;
 			return;
 
 		case 6: // '\006'
 			super.J = l;
 			super.S = i1;
 			if (j == 2)
-				LI = super.owner.MZ;
+				LI = GameApp.Instance.MZ;
 			else
-				LI = super.owner.LZ;
+				LI = GameApp.Instance.LZ;
 			palette palette1;
 			super.a = 40 + (palette1 = LI).C + 1;
 			C = 5;
@@ -221,16 +221,16 @@ final class oWeaponfire extends oGameObject {
 				equip(true, null);
 			} else {
 				if (super.g != null) {
-					F[0] = (int) (super.g.J - I) + ((gamebase) (super.owner)).WC;
-					HNSM[0] = (int) (super.g.S - Z) + ((gamebase) (super.owner)).XC;
-					F[1] = (int) (super.g.J + I) + ((gamebase) (super.owner)).WC;
-					HNSM[1] = (int) (super.g.S + Z) + ((gamebase) (super.owner)).XC;
+					F[0] = (int) (super.g.J - I) + ((AppletImplements) (GameApp.Instance)).WC;
+					HNSM[0] = (int) (super.g.S - Z) + ((AppletImplements) (GameApp.Instance)).XC;
+					F[1] = (int) (super.g.J + I) + ((AppletImplements) (GameApp.Instance)).WC;
+					HNSM[1] = (int) (super.g.S + Z) + ((AppletImplements) (GameApp.Instance)).XC;
 				}
 				if (super.Q != null) {
-					F[2] = (int) (super.Q.J + I) + ((gamebase) (super.owner)).WC;
-					HNSM[2] = (int) (super.Q.S + Z) + ((gamebase) (super.owner)).XC;
-					F[3] = (int) (super.Q.J - I) + ((gamebase) (super.owner)).WC;
-					HNSM[3] = (int) (super.Q.S - Z) + ((gamebase) (super.owner)).XC;
+					F[2] = (int) (super.Q.J + I) + ((AppletImplements) (GameApp.Instance)).WC;
+					HNSM[2] = (int) (super.Q.S + Z) + ((AppletImplements) (GameApp.Instance)).XC;
+					F[3] = (int) (super.Q.J - I) + ((AppletImplements) (GameApp.Instance)).WC;
+					HNSM[3] = (int) (super.Q.S - Z) + ((AppletImplements) (GameApp.Instance)).XC;
 				}
 			}
 			break;
@@ -242,7 +242,7 @@ final class oWeaponfire extends oGameObject {
 			break;
 		}
 		if (D != null && super.e == 1 && super.s % 3 == 0) {
-			explosion explosion1 = (explosion) super.owner.rZ.I(super.owner.pZ);
+			Explosion explosion1 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.pZ);
 			if (explosion1 != null)
 				explosion1.I(D, 1, super.J, super.S, super.K * 0.4F, super.L * 0.4F, 0, 1, 0, false);
 		}
@@ -250,7 +250,7 @@ final class oWeaponfire extends oGameObject {
 
 	@Override
 	@SuppressWarnings("unused")
-	final void I(surface surface) {
+	final void Draw(surface surface) {
 		switch (super.ship_grade) {
 		case 6: // '\006'
 			palette palette1 = LI;
@@ -268,7 +268,7 @@ final class oWeaponfire extends oGameObject {
 			return;
 
 		default:
-			super.I(surface);
+			super.Draw(surface);
 			// fall through
 
 		case 5: // '\005'
@@ -277,7 +277,7 @@ final class oWeaponfire extends oGameObject {
 	}
 
 	@Override
-	final boolean Z(oGameObject oGameObject1) {
+	final boolean Z(GameObject oGameObject1) {
 		switch (super.ship_grade) {
 		case 5: // '\005'
 			break;
@@ -299,12 +299,12 @@ final class oWeaponfire extends oGameObject {
 							if (!B) {
 								B = true;
 								if (oGameObject1.JI == 9 || oGameObject1.JI == 8 && oGameObject1.AI == 130)
-									super.owner.NZ.I(super.owner.UZ, true, false);
+									GameApp.Instance.NZ.I(GameApp.Instance.UZ, true, false);
 								else
-									super.owner.NZ.I(super.owner.VZ, true, false);
-								explosion explosion1 = (explosion) super.owner.rZ.I(super.owner.qZ);
+									GameApp.Instance.NZ.I(GameApp.Instance.VZ, true, false);
+								Explosion explosion1 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.qZ);
 								if (explosion1 != null)
-									explosion1.I(super.owner.I, 1, max[j][1], min[j][1], max[j][1] - max[j][0],
+									explosion1.I(GameApp.Instance.I, 1, max[j][1], min[j][1], max[j][1] - max[j][0],
 											min[j][1] - min[j][0], 1, 2, super.m + super.n, true);
 							}
 							oGameObject1.I(super.m, this);
@@ -322,47 +322,47 @@ final class oWeaponfire extends oGameObject {
 	}
 
 	@Override
-	final void equip(boolean flag, oGameObject oGameObject1) {
+	final void equip(boolean flag, GameObject oGameObject1) {
 		if (!flag) {
 			sprite_group sprite_group1;
 			if (super.EI == 2)
-				sprite_group1 = super.owner.I;
+				sprite_group1 = GameApp.Instance.I;
 			else
-				sprite_group1 = super.owner.Z;
+				sprite_group1 = GameApp.Instance.Z;
 			switch (super.ship_grade) {
 			default:
 				break;
 
 			case 1: // '\001'
 			case 2: // '\002'
-				explosion explosion1 = (explosion) super.owner.rZ.I(super.owner.qZ);
+				Explosion explosion1 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.qZ);
 				if (explosion1 != null) {
 					explosion1.I(sprite_group1, 1, super.J, super.S, super.K, super.L, 1, 2, super.m + super.n, true);
 					if (oGameObject1 != null
 							&& (oGameObject1.JI == 9 || oGameObject1.JI == 8 && oGameObject1.AI == 130))
-						super.owner.NZ.I(super.owner.UZ, true, false);
+						GameApp.Instance.NZ.I(GameApp.Instance.UZ, true, false);
 					else
-						super.owner.NZ.I(super.owner.VZ, true, false);
+						GameApp.Instance.NZ.I(GameApp.Instance.VZ, true, false);
 				}
 				break;
 
 			case 3: // '\003'
 			case 4: // '\004'
-				explosion explosion2 = (explosion) super.owner.rZ.I(super.owner.qZ);
+				Explosion explosion2 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.qZ);
 				if (explosion2 == null)
 					break;
 				explosion2.I(sprite_group1, 1, super.J, super.S, super.K, super.L, 1, 2, super.m + super.n, true);
 				if (oGameObject1 != null && (oGameObject1.JI == 9 || oGameObject1.JI == 8 && oGameObject1.AI == 130))
-					super.owner.NZ.I(super.owner.UZ, true, false);
+					GameApp.Instance.NZ.I(GameApp.Instance.UZ, true, false);
 				else
-					super.owner.NZ.I(super.owner.VZ, true, false);
+					GameApp.Instance.NZ.I(GameApp.Instance.VZ, true, false);
 				break;
 
 			case 5: // '\005'
 				if (super.Q == null || super.Q.e != 1)
 					break;
 				super.Q.I(super.m, this);
-				explosion explosion3 = (explosion) super.owner.rZ.I(super.owner.qZ);
+				Explosion explosion3 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.qZ);
 				if (explosion3 != null)
 					explosion3.I(sprite_group1, 1, super.Q.J, super.Q.S, Z, -I, 1, 2, 0, true);
 				break;

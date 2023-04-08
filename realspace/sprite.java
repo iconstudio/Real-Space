@@ -7,17 +7,17 @@ package realspace;
 
 final class sprite {
 	sprite(int i, int j, int k, int l, int i1, int j1, surface surface1, boolean flag, int k1, int ai[], int l1,
-			gameapp gameapp) {
+			GameApp gameapp) {
 		HNSM(i, j, k, l, i1, j1, surface1, flag, k1, ai, l1, gameapp);
 	}
 
 	sprite(int i, int j, int k, int l, int i1, int j1, surface surface1, boolean flag, imagepixels imagepixels1,
-			gameapp gameapp) {
+			GameApp gameapp) {
 		HNSM(i, j, k, l, i1, j1, surface1, flag, imagepixels1.Z[0], imagepixels1.Z, imagepixels1.I, gameapp);
 	}
 
 	private void HNSM(int i, int j, int k, int l, int i1, int j1, surface surface1, boolean flag, int k1, int ai[],
-			int l1, gameapp gameapp) {
+			int l1, GameApp gameapp) {
 		C = i;
 		B = j;
 		arraycopy = i;
@@ -127,7 +127,7 @@ final class sprite {
 	}
 
 	public static final sprite I(float f, float f1, int i, int j, int k, int l, int i1, int j1, int k1,
-			imagepixels imagepixels1, surface surface1, gameapp gameapp) {
+			imagepixels imagepixels1, surface surface1, GameApp gameapp) {
 		int l1 = j;
 		int i2 = k;
 		int j2 = l1 / 2;

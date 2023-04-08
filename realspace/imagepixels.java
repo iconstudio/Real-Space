@@ -11,7 +11,7 @@ import java.awt.image.PixelGrabber;
 
 public final class imagepixels {
 
-	public imagepixels(Image image, gamebase gamebase) {
+	public imagepixels(Image image, AppletImplements gamebase) {
 		I = image.getWidth(gamebase);
 		HNSM = image.getHeight(gamebase);
 		Z = new int[I * HNSM];

@@ -5,9 +5,9 @@ package realspace;
 // Decompiler options: packimports(3) 
 // Source File Name:   star_y
 
-final class gamecamera extends oGameObject {
+final class gamecamera extends GameObject {
 
-	gamecamera(gameapp gameapp1) {
+	gamecamera(GameApp gameapp1) {
 		super(gameapp1);
 	}
 
@@ -19,7 +19,7 @@ final class gamecamera extends oGameObject {
 
 	@Override
 	final void I() {
-		if (super.owner.Mission.O == 1001 && super.Q == null)
+		if (GameApp.Instance.Mission.O == 1001 && super.Q == null)
 			if (HNSM == -1)
 				HNSM = 50;
 			else if (HNSM > 0) {
@@ -27,9 +27,9 @@ final class gamecamera extends oGameObject {
 			} else {
 				oGameObjectlist oGameObjectlist1;
 				if (Math.random() < 0.5D)
-					oGameObjectlist1 = super.owner.vZ;
+					oGameObjectlist1 = GameApp.Instance.vZ;
 				else
-					oGameObjectlist1 = super.owner.wZ;
+					oGameObjectlist1 = GameApp.Instance.wZ;
 				int i = oGameObjectlist1.C;
 				if (i > 0) {
 					int j = (int) (Math.random() * 0.99900000000000011D * i);
@@ -55,8 +55,8 @@ final class gamecamera extends oGameObject {
 		} else {
 			super.I();
 		}
-		super.owner.WC = (int) (-super.J) + ((gamebase) (super.owner)).view_width / 2;
-		super.owner.XC = (int) (-super.S) + ((gamebase) (super.owner)).view_height / 2;
+		GameApp.Instance.WC = (int) (-super.J) + ((AppletImplements) (GameApp.Instance)).viewWidth / 2;
+		GameApp.Instance.XC = (int) (-super.S) + ((AppletImplements) (GameApp.Instance)).viewHeight / 2;
 	}
 
 	final void I(float f, float f1, boolean flag, float f2, float f3) {
@@ -64,16 +64,16 @@ final class gamecamera extends oGameObject {
 		super.Q = null;
 		if (flag) {
 			I(f, f1, false);
-			if (super.owner.Starfield != null)
-				super.owner.Starfield.initialize();
+			if (GameApp.Instance.Starfield != null)
+				GameApp.Instance.Starfield.initialize();
 		} else {
 			I(super.J, super.S, null, f, f1, f2, f3, true, false);
 		}
-		super.owner.WC = (int) (-super.J) + ((gamebase) (super.owner)).view_width / 2;
-		super.owner.XC = (int) (-super.S) + ((gamebase) (super.owner)).view_height / 2;
+		GameApp.Instance.WC = (int) (-super.J) + ((AppletImplements) (GameApp.Instance)).viewWidth / 2;
+		GameApp.Instance.XC = (int) (-super.S) + ((AppletImplements) (GameApp.Instance)).viewHeight / 2;
 	}
 
-	final void I(oGameObject oGameObject1, boolean flag, float f, float f1) {
+	final void I(GameObject oGameObject1, boolean flag, float f, float f1) {
 		F = flag;
 		super.Q = oGameObject1;
 		if (F) {
@@ -83,13 +83,13 @@ final class gamecamera extends oGameObject {
 			super.S = super.Q.S;
 			super.K = 0.0F;
 			super.L = 0.0F;
-			if (f2 * f2 + f3 * f3 > 16F && super.owner.Starfield != null)
-				super.owner.Starfield.initialize();
+			if (f2 * f2 + f3 * f3 > 16F && GameApp.Instance.Starfield != null)
+				GameApp.Instance.Starfield.initialize();
 		} else {
 			I(super.J, super.S, oGameObject1, 0.0F, 0.0F, f, f1, true, false);
 		}
-		super.owner.WC = (int) (-super.J) + ((gamebase) (super.owner)).view_width / 2;
-		super.owner.XC = (int) (-super.S) + ((gamebase) (super.owner)).view_height / 2;
+		GameApp.Instance.WC = (int) (-super.J) + ((AppletImplements) (GameApp.Instance)).viewWidth / 2;
+		GameApp.Instance.XC = (int) (-super.S) + ((AppletImplements) (GameApp.Instance)).viewHeight / 2;
 	}
 
 	final boolean A() {

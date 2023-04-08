@@ -5,9 +5,73 @@ package realspace;
 // Decompiler options: packimports(3) 
 // Source File Name:   star_y
 
-class oGameObject {
-	oGameObject(gameapp gameapp1) {
-		owner = gameapp1;
+class GameObject {
+	float J;
+	float S;
+	int A;
+	int E;
+	int G;
+	int H;
+	float K;
+	float L;
+	float M;
+	float N;
+	float O;
+	boolean P;
+	GameObject Q;
+	float R;
+	float T;
+	float U;
+	float V;
+	float W;
+	float X;
+	float Y;
+	float i;
+	boolean atan;
+	float z;
+	float c;
+	boolean cos;
+	int b;
+	int d;
+	boolean f;
+	int j;
+	int round;
+	int s;
+	int a;
+	int e;
+	GameObject g;
+	boolean h;
+	oGameObjectlist k;
+	boolean l;
+	int m;
+	int n;
+	int o;
+	int sin;
+	int p;
+	int q;
+	boolean r;
+	int sqrt;
+	int t;
+	boolean u;
+	boolean v;
+	boolean w;
+	sprite_group x;
+	sprite y;
+	boolean II;
+	String ZI;
+	boolean CI;
+	float BI;
+	int DI;
+	oGameObjectlist FI;
+	int JI;
+	int ship_grade;
+	int AI;
+	int EI;
+	int ascore;
+	int HI;
+
+	public GameObject(GameApp gameapp1) {
+		GameApp.Instance = gameapp1;
 		k = null;
 		FI = null;
 		e = 2;
@@ -18,7 +82,7 @@ class oGameObject {
 	}
 
 	protected final void initialize(sprite_group spr, int i1, int j1, int k1, int l1, boolean flag,
-			oGameObject oGameObject1, boolean flag1) {
+			GameObject oGameObject1, boolean flag1) {
 		x = spr;
 		m = j1;
 		o = k1;
@@ -74,29 +138,35 @@ class oGameObject {
 			g.l = true;
 	}
 
-	void I(surface surface1) {
+	void Draw(surface surface1) {
 		if (y != null && w) {
 			if (t > 0) {
 				if (n <= 0)
-					surface1.Z((int) J + ((gamebase) (owner)).WC, (int) S + ((gamebase) (owner)).XC,
-							(y.D + 10) - sqrt * 3, (y.F + 10) - sqrt * 3, ((gamebase) (owner)).MB.I(sqrt, t));
+					surface1.Z((int) J + ((AppletImplements) (GameApp.Instance)).WC, (int) S + ((AppletImplements) (GameApp.Instance)).XC,
+							(y.D + 10) - sqrt * 3, (y.F + 10) - sqrt * 3, ((AppletImplements) (GameApp.Instance)).MB.I(sqrt, t));
 				else
-					surface1.Z((int) J + ((gamebase) (owner)).WC, (int) S + ((gamebase) (owner)).XC, y.D + 10, y.F + 10,
-							((gamebase) (owner)).LB.I(sqrt, t));
+					surface1.Z((int) J + ((AppletImplements) (GameApp.Instance)).WC, (int) S + ((AppletImplements) (GameApp.Instance)).XC, y.D + 10, y.F + 10,
+							((AppletImplements) (GameApp.Instance)).LB.I(sqrt, t));
 				sqrt++;
 				if (sqrt >= t)
 					t = 0;
 			}
-			surface1.I(y, A + ((gamebase) (owner)).WC, E + ((gamebase) (owner)).XC, owner);
+
+			surface1.I(y, A + ((AppletImplements) (GameApp.Instance)).WC, E + ((AppletImplements) (GameApp.Instance)).XC, GameApp.Instance);
+
 			if (u) {
-				int i1 = (Math.round(J) - 15) + ((gamebase) (owner)).WC;
-				int j1 = Math.round(S) + y.F + 5 + ((gamebase) (owner)).XC;
+				int i1 = (Math.round(J) - 15) + ((AppletImplements) (GameApp.Instance)).WC;
+				int j1 = Math.round(S) + y.F + 5 + ((AppletImplements) (GameApp.Instance)).XC;
 				float f1 = (float) (o + n) / (float) (p + q);
-				gameutil.I(surface1, i1, j1, 30, 10, f1, Constant.c_red_int, Constant.c_green_int);
+
+				gameutil.I(surface1, i1, j1, 30, 10, f1, Colours.Red, Colours.Green);
 			}
 		}
+		
 		if (k != null)
+		{
 			k.I(surface1);
+		}
 	}
 
 	final void Z() {
@@ -119,41 +189,41 @@ class oGameObject {
 
 	void I() {
 		switch (DI) {
-		case 5: // '\005'
-			S();
-			s++;
-			return;
+			case 5: // '\005'
+				S();
+				s++;
+				return;
 
-		case 8: // '\b'
-			D();
-			return;
+			case 8: // '\b'
+				D();
+				return;
 
-		case 6: // '\006'
-			B();
-			s++;
-			return;
+			case 6: // '\006'
+				B();
+				s++;
+				return;
 
-		case 3: // '\003'
-			C();
-			s++;
-			return;
+			case 3: // '\003'
+				C();
+				s++;
+				return;
 
-		case 4: // '\004'
-			HNSM();
-			s++;
-			return;
+			case 4: // '\004'
+				HNSM();
+				s++;
+				return;
 
-		case 2: // '\002'
-			F();
-			if (f)
-				b++;
-			s++;
-			return;
+			case 2: // '\002'
+				F();
+				if (f)
+					b++;
+				s++;
+				return;
 
-		case 7: // '\007'
-		default:
-			F();
-			break;
+			case 7: // '\007'
+			default:
+				F();
+				break;
 		}
 		if (f)
 			b++;
@@ -293,7 +363,7 @@ class oGameObject {
 		s++;
 	}
 
-	final void I(oGameObject oGameObject1) {
+	final void I(GameObject oGameObject1) {
 		if (oGameObject1 != null && oGameObject1.e == 1) {
 			float f1 = oGameObject1.J - J;
 			float f3 = oGameObject1.S - S;
@@ -413,7 +483,7 @@ class oGameObject {
 		DI = 3;
 	}
 
-	final void I(float f1, float f2, oGameObject oGameObject1, float f3, float f4, float f5, float f6, boolean flag,
+	final void I(float f1, float f2, GameObject oGameObject1, float f3, float f4, float f5, float f6, boolean flag,
 			boolean flag1) {
 		J = f1;
 		S = f2;
@@ -447,7 +517,7 @@ class oGameObject {
 		DI = 6;
 	}
 
-	final void I(float f1, float f2, oGameObject oGameObject1, float f3, float f4, float f5, float f6, float f7,
+	final void I(float f1, float f2, GameObject oGameObject1, float f3, float f4, float f5, float f6, float f7,
 			boolean flag) {
 		J = f1;
 		S = f2;
@@ -499,10 +569,10 @@ class oGameObject {
 		DI = 8;
 	}
 
-	void equip(boolean flag, oGameObject oGameObject1) {
+	void equip(boolean flag, GameObject oGameObject1) {
 		e = 2;
 		if (EI == 2 && !flag && ascore > 0)
-			owner.Z(ascore);
+			GameApp.Instance.Z(ascore);
 		if (k != null) {
 			oGameObjectlist oGameObjectlist1 = k;
 			oGameObjectlist1.I(flag, oGameObject1, -1, -1, -1, -1);
@@ -510,9 +580,9 @@ class oGameObject {
 		if (II) {
 			gameobjectivelist gameobjectivelist1;
 			if (EI == 2)
-				gameobjectivelist1 = owner.Mission.C;
+				gameobjectivelist1 = GameApp.Instance.Mission.C;
 			else
-				gameobjectivelist1 = owner.Mission.I;
+				gameobjectivelist1 = GameApp.Instance.Mission.I;
 			if (flag)
 				gameobjectivelist1.E++;
 			else
@@ -529,14 +599,14 @@ class oGameObject {
 					i1 += gameobjectivelist1.A;
 				}
 				if (j1 >= i1) {
-					owner.Mission.B = ZI;
-					owner.Mission.I(gameobjectivelist1.F);
+					GameApp.Instance.Mission.B = ZI;
+					GameApp.Instance.Mission.I(gameobjectivelist1.F);
 				}
 			}
 		}
 	}
 
-	boolean Z(oGameObject oGameObject1) {
+	boolean Z(GameObject oGameObject1) {
 		if (A < oGameObject1.G && G > oGameObject1.A && E < oGameObject1.H && H > oGameObject1.E
 				&& atan(oGameObject1)) {
 			int i1 = oGameObject1.m + oGameObject1.n;
@@ -549,7 +619,7 @@ class oGameObject {
 		}
 	}
 
-	final boolean atan(oGameObject oGameObject1) {
+	final boolean atan(GameObject oGameObject1) {
 		if (y == null || oGameObject1.y == null)
 			return false;
 		sprite sprite1 = y;
@@ -591,7 +661,7 @@ class oGameObject {
 		return false;
 	}
 
-	void I(int i1, oGameObject oGameObject1) {
+	void I(int i1, GameObject oGameObject1) {
 		if (e != 1)
 			return;
 		int j1 = 0;
@@ -626,7 +696,7 @@ class oGameObject {
 			I(oGameObject1, k1, j1);
 	}
 
-	void I(oGameObject oGameObject1, int i1, int j1) {
+	void I(GameObject oGameObject1, int i1, int j1) {
 		if (j1 > 0 && p > 0) {
 			sqrt = 0;
 			t = 5 + (j1 / p) * 8;
@@ -649,7 +719,7 @@ class oGameObject {
 			if (o > q)
 				o = q;
 		}
-		I(((oGameObject) (null)), 0, 0);
+		I(((GameObject) (null)), 0, 0);
 	}
 
 	final void I(int i1) {
@@ -660,69 +730,4 @@ class oGameObject {
 		II = true;
 		ZI = s1;
 	}
-
-	float J;
-	float S;
-	int A;
-	int E;
-	int G;
-	int H;
-	float K;
-	float L;
-	float M;
-	float N;
-	float O;
-	boolean P;
-	oGameObject Q;
-	float R;
-	float T;
-	float U;
-	float V;
-	float W;
-	float X;
-	float Y;
-	float i;
-	boolean atan;
-	float z;
-	float c;
-	boolean cos;
-	int b;
-	int d;
-	boolean f;
-	int j;
-	int round;
-	int s;
-	int a;
-	int e;
-	oGameObject g;
-	boolean h;
-	oGameObjectlist k;
-	boolean l;
-	int m;
-	int n;
-	int o;
-	int sin;
-	int p;
-	int q;
-	boolean r;
-	int sqrt;
-	int t;
-	boolean u;
-	boolean v;
-	boolean w;
-	sprite_group x;
-	sprite y;
-	boolean II;
-	String ZI;
-	boolean CI;
-	float BI;
-	int DI;
-	oGameObjectlist FI;
-	int JI;
-	int ship_grade;
-	int AI;
-	int EI;
-	int ascore;
-	int HI;
-	gameapp owner;
 }

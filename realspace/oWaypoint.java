@@ -5,8 +5,8 @@ package realspace;
 // Decompiler options: packimports(3) 
 // Source File Name:   star_y
 
-final class oWaypoint extends oGameObject {
-	oWaypoint(gameapp gameapp) {
+final class oWaypoint extends GameObject {
+	oWaypoint(GameApp gameapp) {
 		super(gameapp);
 	}
 

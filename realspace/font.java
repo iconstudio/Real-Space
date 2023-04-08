@@ -5,8 +5,8 @@ package realspace;
 // Decompiler options: packimports(3) 
 // Source File Name:   star_y
 
-final class font {
-	font(gameapp gameapp, int i, int j, int k) {
+final class Font {
+	Font(GameApp gameapp, int i, int j, int k) {
 		HNSM = gameapp;
 		C = i;
 		B = j;
@@ -63,7 +63,7 @@ final class font {
 		return i;
 	}
 
-	gameapp HNSM;
+	GameApp HNSM;
 	sprite I[];
 	int Z[];
 	int C;

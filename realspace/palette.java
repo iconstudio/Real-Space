@@ -7,7 +7,7 @@ package realspace;
 
 final class palette {
 
-	palette(gameapp gameapp, int i) {
+	palette(GameApp gameapp, int i) {
 		HNSM = gameapp;
 		I = new int[i];
 		C = i;
@@ -58,7 +58,7 @@ final class palette {
 			return I[Z - 1];
 	}
 
-	gameapp HNSM;
+	GameApp HNSM;
 	int I[];
 	int Z;
 	int C;

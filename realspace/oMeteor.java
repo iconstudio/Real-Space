@@ -5,8 +5,8 @@ package realspace;
 // Decompiler options: packimports(3) 
 // Source File Name:   star_y
 
-final class oMeteor extends oGameObject {
-	oMeteor(gameapp gameapp1) {
+final class oMeteor extends GameObject {
+	oMeteor(GameApp gameapp1) {
 		super(gameapp1);
 	}
 
@@ -18,42 +18,42 @@ final class oMeteor extends oGameObject {
 			super.y = super.x.I(super.d, super.b);
 		C();
 		super.s++;
-		if (super.K > 0.0F && super.J > ((gamebase) (super.owner)).dC
-				|| super.K < 0.0F && super.J < ((gamebase) (super.owner)).bC
-				|| super.L > 0.0F && super.S > ((gamebase) (super.owner)).jC
-				|| super.L < 0.0F && super.S < ((gamebase) (super.owner)).fC)
+		if (super.K > 0.0F && super.J > ((AppletImplements) (GameApp.Instance)).worldBorderRight
+				|| super.K < 0.0F && super.J < ((AppletImplements) (GameApp.Instance)).worldBorderLeft
+				|| super.L > 0.0F && super.S > ((AppletImplements) (GameApp.Instance)).worldBorderBottom
+				|| super.L < 0.0F && super.S < ((AppletImplements) (GameApp.Instance)).worldBorderTop)
 			equip(true, null);
 	}
 
 	@Override
-	final void equip(boolean flag, oGameObject oGameObject1) {
+	final void equip(boolean flag, GameObject oGameObject1) {
 		if (oGameObject1 != null && oGameObject1.JI == 8)
 			super.ascore = 0;
 		super.equip(flag, oGameObject1);
 		int i = super.m + super.n / 3;
 		byte byte0 = 1;
 		boolean flag1 = false;
-		sprite_group sprite_group1 = super.owner.C;
+		sprite_group sprite_group1 = GameApp.Instance.C;
 		palette palette = null;
 		if (!flag) {
 			switch (super.ship_grade) {
 			case 1: // '\001'
-				super.owner.NZ.I(super.owner.WZ, true, false);
+				GameApp.Instance.NZ.I(GameApp.Instance.WZ, true, false);
 				break;
 
 			case 2: // '\002'
-				super.owner.NZ.I(super.owner.WZ, true, false);
+				GameApp.Instance.NZ.I(GameApp.Instance.WZ, true, false);
 				break;
 
 			case 3: // '\003'
-				super.owner.NZ.I(super.owner.iZ, true, false);
-				sprite_group1 = super.owner.C;
-				palette = super.owner.FZ;
+				GameApp.Instance.NZ.I(GameApp.Instance.iZ, true, false);
+				sprite_group1 = GameApp.Instance.C;
+				palette = GameApp.Instance.FZ;
 				byte0 = 3;
 				flag1 = true;
 				break;
 			}
-			explosion explosion1 = (explosion) super.owner.rZ.I(super.owner.oZ);
+			Explosion explosion1 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.oZ);
 			if (explosion1 != null) {
 				explosion1.I(sprite_group1, byte0, super.J, super.S, super.K, super.L, 1, 2, i, flag1);
 				if (palette != null)

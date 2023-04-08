@@ -1,23 +1,32 @@
 package realspace;
-// Decompiled by Jad v1.5.8f. Copyright 2001 Pavel Kouznetsov.
-
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) 
-// Source File Name:   star_y
 
 import java.awt.Color;
 
-final class explosion extends oGameObject {
+final class Explosion extends GameObject {
+	int HNSM;
+	int I;
+	int Z;
+	boolean hashCode;
+	float C;
+	float B;
+	int D;
+	palette F;
 
-	explosion(gameapp gameapp1) {
+	float explosion_property_0[];
+	float explosion_property_1[];
+	float explosion_property_2[];
+	float explosion_property_3[];
+
+	public Explosion(GameApp gameapp1) {
 		super(gameapp1);
-		lightGray = new float[40];
-		max = new float[40];
-		min = new float[40];
-		random = new float[40];
+
+		explosion_property_0 = new float[40];
+		explosion_property_1 = new float[40];
+		explosion_property_2 = new float[40];
+		explosion_property_3 = new float[40];
 	}
 
-	final void I(sprite_group sprite_group1, int i, float f, float f1, float f2, float f3, int j, int k, int l,
+	public final void I(sprite_group sprite_group1, int i, float f, float f1, float f2, float f3, int j, int k, int l,
 			boolean flag) {
 		super.initialize(sprite_group1, 3, l, 0, 0, true);
 		I(f, f1, f2 * 0.66F, f3 * 0.66F, true);
@@ -33,27 +42,28 @@ final class explosion extends oGameObject {
 		if (i == 2 || i == 3) {
 			Z = 10 + l / 5;
 			D = Math.min(D + 15 + (int) (l * 0.20000000000000001D), 40);
-			if (super.owner.QC == 2)
+			if (GameApp.Instance.QC == 2)
 				D = D / 2;
-			else if (super.owner.QC == 3)
+			else if (GameApp.Instance.QC == 3)
 				D = 0;
 			for (int i1 = 0; i1 < D; i1++) {
-				min[i1] = (float) ((Math.random() - 0.5D) * (l * 0.050000000000000003D + 8D));
-				random[i1] = (float) ((Math.random() - 0.5D) * (l * 0.050000000000000003D + 8D));
-				lightGray[i1] = f + min[i1] * 5F;
-				max[i1] = f1 + random[i1] * 5F;
+				explosion_property_2[i1] = (float) ((Math.random() - 0.5D) * (l * 0.050000000000000003D + 8D));
+				explosion_property_3[i1] = (float) ((Math.random() - 0.5D) * (l * 0.050000000000000003D + 8D));
+				explosion_property_0[i1] = f + explosion_property_2[i1] * 5F;
+				explosion_property_1[i1] = f1 + explosion_property_3[i1] * 5F;
 			}
 
 			C = (float) (l * 0.20000000000000001D + 10D);
 			B = C;
 			if (flag) {
 				int j1 = super.m / 2;
-				HNSM(j1, super.owner.vZ);
-				HNSM(j1, super.owner.wZ);
-				HNSM(j1, super.owner.yZ);
+				HNSM(j1, GameApp.Instance.vZ);
+				HNSM(j1, GameApp.Instance.wZ);
+				HNSM(j1, GameApp.Instance.yZ);
 				super.m = 0;
 			}
 		}
+
 		if (i == 3 || i == 1) {
 			hashCode = true;
 			HNSM = k;
@@ -73,8 +83,8 @@ final class explosion extends oGameObject {
 		}
 		if (super.s < Z) {
 			for (int i = 0; i < D; i++) {
-				lightGray[i] += min[i] + super.K;
-				max[i] += random[i] + super.L;
+				explosion_property_0[i] += explosion_property_2[i] + super.K;
+				explosion_property_1[i] += explosion_property_3[i] + super.L;
 			}
 
 		}
@@ -84,10 +94,10 @@ final class explosion extends oGameObject {
 	}
 
 	@Override
-	final void I(surface surface1) {
+	final void Draw(surface surface1) {
 		if (super.w) {
 			if (hashCode && super.s < I)
-				super.I(surface1);
+				super.Draw(surface1);
 			if (super.s < Z && D > 0) {
 				int i;
 				if (F != null)
@@ -95,15 +105,15 @@ final class explosion extends oGameObject {
 				else
 					i = Color.lightGray.hashCode();
 				for (int j = 0; j < D; j++)
-					surface1.I((int) lightGray[j] + ((gamebase) (super.owner)).WC,
-							(int) max[j] + ((gamebase) (super.owner)).XC, 3, 3, i);
+					surface1.I((int) explosion_property_0[j] + ((AppletImplements) (GameApp.Instance)).WC,
+							(int) explosion_property_1[j] + ((AppletImplements) (GameApp.Instance)).XC, 3, 3, i);
 
 			}
 		}
 	}
 
 	@Override
-	final void I(int i, oGameObject oGameObject1) {
+	final void I(int i, GameObject oGameObject1) {
 		if (super.m > 0) {
 			if (i > super.m) {
 				super.m = 0;
@@ -118,7 +128,7 @@ final class explosion extends oGameObject {
 		if (i <= 0)
 			return;
 		for (int k1 = 0; k1 < oGameObjectlist1.C; k1++) {
-			oGameObject oGameObject1 = oGameObjectlist1.Z[k1];
+			GameObject oGameObject1 = oGameObjectlist1.Z[k1];
 			if (oGameObject1.e == 1 && oGameObject1.v && oGameObject1.h && oGameObject1.BI >= 0.0001F) {
 				if (oGameObject1.l)
 					HNSM(i, oGameObject1.k);
@@ -134,17 +144,4 @@ final class explosion extends oGameObject {
 		}
 
 	}
-
-	int HNSM;
-	int I;
-	int Z;
-	boolean hashCode;
-	float lightGray[];
-	float max[];
-	float min[];
-	float random[];
-	float C;
-	float B;
-	int D;
-	palette F;
 }

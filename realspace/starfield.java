@@ -7,7 +7,7 @@ package realspace;
 
 final class starfield {
 
-	starfield(gameapp gameapp1, int number, int j, palette agamecolorlist[]) {
+	starfield(GameApp gameapp1, int number, int j, palette agamecolorlist[]) {
 		owner = gameapp1;
 		star_number = number;
 		star_number_start = number;
@@ -38,9 +38,9 @@ final class starfield {
 				star_sprite_groups[i] = owner.sStarBlue;
 			else
 				star_sprite_groups[i] = null;
-			star_x[i] = (int) (Math.random() * ((gamebase) (owner)).view_width);
-			star_y[i] = (int) (Math.random() * ((gamebase) (owner)).view_height);
-			star_z[i] = (-0.55F + (float) Math.random() * 0.35F) * ((gamebase) (owner)).view_scale;
+			star_x[i] = (int) (Math.random() * ((AppletImplements) (owner)).viewWidth);
+			star_y[i] = (int) (Math.random() * ((AppletImplements) (owner)).viewHeight);
+			star_z[i] = (-0.55F + (float) Math.random() * 0.35F) * ((AppletImplements) (owner)).viewScale;
 			star_fade[i] = false;
 			star_blinkcounter[i] = 0;
 			if (star_sprite_groups[i] == null)
@@ -61,22 +61,22 @@ final class starfield {
 		for (int i = 0; i < star_number; i++) {
 			star_x[i] += hspeed * star_z[i];
 			star_y[i] += vspeed * star_z[i];
-			if (star_x[i] < 0.0F || star_y[i] < 0.0F || star_x[i] > ((gamebase) (owner)).view_width
-					|| star_y[i] > ((gamebase) (owner)).view_height) {
+			if (star_x[i] < 0.0F || star_y[i] < 0.0F || star_x[i] > ((AppletImplements) (owner)).viewWidth
+					|| star_y[i] > ((AppletImplements) (owner)).viewHeight) {
 				if (Math.random() < 0.5D) {
-					star_y[i] = (int) (Math.random() * ((gamebase) (owner)).view_height);
+					star_y[i] = (int) (Math.random() * ((AppletImplements) (owner)).viewHeight);
 					if (hspeed > 0.0F)
-						star_x[i] = ((gamebase) (owner)).screen_width;
+						star_x[i] = ((AppletImplements) (owner)).screen_width;
 					else
 						star_x[i] = 0.0F;
 				} else {
-					star_x[i] = (int) (Math.random() * ((gamebase) (owner)).view_width);
+					star_x[i] = (int) (Math.random() * ((AppletImplements) (owner)).viewWidth);
 					if (vspeed > 0.0F)
-						star_y[i] = ((gamebase) (owner)).screen_height;
+						star_y[i] = ((AppletImplements) (owner)).screen_height;
 					else
 						star_y[i] = 0.0F;
 				}
-				star_z[i] = (-0.55F + (float) Math.random() * 0.35F) * ((gamebase) (owner)).view_scale;
+				star_z[i] = (-0.55F + (float) Math.random() * 0.35F) * ((AppletImplements) (owner)).viewScale;
 			}
 			if (star_fade[i]) {
 				if (star_blinking[i]) {
@@ -146,5 +146,5 @@ final class starfield {
 	int star_blink[];
 	float star_z[];
 	sprite_group star_sprite_groups[];
-	gameapp owner;
+	GameApp owner;
 }

@@ -6,7 +6,7 @@ package realspace;
 // Source File Name:   star_y
 
 final class oShipthrustor {
-	oShipthrustor(gameapp gameapp) {
+	oShipthrustor(GameApp gameapp) {
 		F = gameapp;
 		HNSM = new float[25];
 		cos = new float[25];
@@ -70,10 +70,10 @@ final class oShipthrustor {
 			if (owner.QI == 3 || owner.QI == 4) {
 				L++;
 				if (L % K == 0 && Z < 25) {
-					float f = (((oGameObject) (owner)).W * ((oGameObject) (owner)).W
-							+ ((oGameObject) (owner)).X * ((oGameObject) (owner)).X) * M;
+					float f = (((GameObject) (owner)).W * ((GameObject) (owner)).W
+							+ ((GameObject) (owner)).X * ((GameObject) (owner)).X) * M;
 					if (f > 0.01F) {
-						float f1 = ((float) ((oGameObject) (owner)).d / (float) ((oGameObject) (owner)).x.Z)
+						float f1 = ((float) ((GameObject) (owner)).d / (float) ((GameObject) (owner)).x.Z)
 								* 6.283185F;
 						float f2 = (float) Math.cos(f1);
 						float f3 = (float) Math.sin(f1);
@@ -81,12 +81,12 @@ final class oShipthrustor {
 							f = (float) Math.sqrt(f);
 							float f4 = D[A];
 							float f5 = J[A];
-							HNSM[Z] = (((oGameObject) (owner)).J + ((oGameObject) (owner)).y.E + f4 * f2)
+							HNSM[Z] = (((GameObject) (owner)).J + ((GameObject) (owner)).y.E + f4 * f2)
 									- f5 * f3;
-							cos[Z] = ((oGameObject) (owner)).S + ((oGameObject) (owner)).y.G + f4 * f3
+							cos[Z] = ((GameObject) (owner)).S + ((GameObject) (owner)).y.G + f4 * f3
 									+ f5 * f2;
-							sin[Z] = ((oGameObject) (owner)).K - f2 * f;
-							sqrt[Z] = ((oGameObject) (owner)).L - f3 * f;
+							sin[Z] = ((GameObject) (owner)).K - f2 * f;
+							sqrt[Z] = ((GameObject) (owner)).L - f3 * f;
 							I[Z] = 0;
 							Z++;
 							A = (A + 1) % S;
@@ -103,7 +103,7 @@ final class oShipthrustor {
 			if (E == null) {
 				for (int k = 0; k < Z; k++) {
 					int i = mask.I(I[k], B);
-					surface1.I((int) HNSM[k] + ((gamebase) (F)).WC, (int) cos[k] + ((gamebase) (F)).XC, 3, 3, i);
+					surface1.I((int) HNSM[k] + ((AppletImplements) (F)).WC, (int) cos[k] + ((AppletImplements) (F)).XC, 3, 3, i);
 				}
 
 				return;
@@ -112,15 +112,15 @@ final class oShipthrustor {
 				int j = (E.I[0] * I[l]) / B;
 				if (j < E.I[0]) {
 					sprite sprite1 = E.I(0, j);
-					surface1.I(sprite1, ((int) HNSM[l] - sprite1.D) + ((gamebase) (F)).WC,
-							((int) cos[l] - sprite1.F) + ((gamebase) (F)).XC, F);
+					surface1.I(sprite1, ((int) HNSM[l] - sprite1.D) + ((AppletImplements) (F)).WC,
+							((int) cos[l] - sprite1.F) + ((AppletImplements) (F)).XC, F);
 				}
 			}
 
 		}
 	}
 
-	gameapp F;
+	GameApp F;
 	float HNSM[];
 	float cos[];
 	float sin[];

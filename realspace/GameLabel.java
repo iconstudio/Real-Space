@@ -7,22 +7,27 @@ package realspace;
 
 import java.awt.Color;
 
-final class gametext extends oGameObject {
-
-	gametext(gameapp gameapp) {
+final class GameLabel extends GameObject 
+{
+	public GameLabel(GameApp gameapp) 
+	{
 		super(gameapp);
 		XI = new int[51];
 		YI = new int[51];
 		iI = new int[51];
 	}
 
-	final void I(String s, Color color, font gamefont1, boolean flag, int i, int j, int k, int l, int i1,
-			boolean flag1) {
-		if (gamefont1 == null)
+	public final void Draw(String caption, Color color, Font font, boolean flag, final int x, final int y, int k, int l, int i1,
+			boolean flag1){
+		if (font == null)
+		{
 			return;
+		}
+
 		super.initialize(null, 4, 0, 0, 0, true);
-		F = s.toCharArray();
-		HNSM = s.length();
+
+		F = caption.toCharArray();
+		HNSM = caption.length();
 		super.j = 0;
 		I = l;
 		toCharArray = 0;
@@ -33,7 +38,7 @@ final class gametext extends oGameObject {
 		LI = null;
 		MI = null;
 		NI = null;
-		RI = gamefont1;
+		RI = font;
 		TI = flag;
 		UI = null;
 		super.HI = -1;
@@ -47,7 +52,9 @@ final class gametext extends oGameObject {
 		zI = 0;
 		WI = 0;
 		int j1 = 0;
-		for (int k1 = 0; k1 < HNSM && zI < 51; k1++) {
+
+		for (int k1 = 0; k1 < HNSM && zI < 51; k1++) 
+		{
 			j1 = RI.I(F, XI[zI], (k1 - XI[zI]) + 1);
 			if (j1 > WI)
 				WI = j1;
@@ -76,23 +83,26 @@ final class gametext extends oGameObject {
 			zI++;
 		}
 		cI = zI;
-		super.J = i;
-		super.S = j;
+		super.J = x;
+		super.S = y;
 		Z = flag1;
 	}
 
-	final void I(float f, float f1, float f2, float f3) {
+	final void I(float f, float f1, float f2, float f3) 
+	{
 		super.I(f, f1, f2, f3, false);
 	}
 
-	final void I(palette palette1, palette palette2) {
+	final void I(palette palette1, palette palette2) 
+	{
 		D = palette1;
 		MI = palette1;
 		LI = palette2;
 		NI = palette2;
 	}
 
-	final void Z(int i) {
+	final void Z(int i) 
+	{
 		getRGB = true;
 		length = 0;
 		max = i;
@@ -101,40 +111,57 @@ final class gametext extends oGameObject {
 	}
 
 	@Override
-	final void I() {
-		if (UI != null) {
+	final void I() 
+	{
+		if (UI != null) 
+		{
 			if (UI.e != 1)
+			{
 				UI = null;
-			else if (UI.v) {
+			} 
+			else if (UI.v)
+			{
 				super.J = UI.J;
-				if (VI == 1) {
-					font gamefont1 = RI;
+
+				if (VI == 1) 
+				{
+					Font gamefont1 = RI;
 					super.S = UI.E - gamefont1.C;
 					if (Z && super.DI == 1) {
-						font gamefont2 = RI;
+						Font gamefont2 = RI;
 						super.S -= (gamefont2.C * (zI - 1)) / 2;
 					}
-				} else {
-					font gamefont3 = RI;
+				} 
+				else 
+				{
+					Font gamefont3 = RI;
 					super.S = UI.H + gamefont3.C;
 					if (Z && super.DI == 1) {
-						font gamefont4 = RI;
+						Font gamefont4 = RI;
 						super.S += (gamefont4.C * (zI - 1)) / 2;
 					}
 				}
+				
 				F();
 			}
-		} else {
+		} else 
+		{
 			super.I();
 		}
-		if (I != 0) {
+
+		if (I != 0) 
+		{
 			toCharArray++;
 			if (toCharArray >= I)
 				equip(true, null);
 		}
-		if (getRGB) {
+
+		if (getRGB) 
+		{
 			length--;
-			if (length <= 0) {
+
+			if (length <= 0) 
+			{
 				min++;
 				length = max;
 				if (cI < zI && min >= XI[cI] + YI[cI])
@@ -144,29 +171,36 @@ final class gametext extends oGameObject {
 	}
 
 	@Override
-	final void I(surface surface1) {
+	final void Draw(surface surface1)
+	{
 		int i = 0;
 		int j;
 		int k;
-		if (TI) {
+
+		if (TI) 
+		{
 			j = (int) super.J;
 			k = (int) super.S;
-		} else {
-			j = (int) super.J + ((gamebase) (super.owner)).WC;
-			k = (int) super.S + ((gamebase) (super.owner)).XC;
+		} 
+		else 
+		{
+			j = (int) super.J + ((AppletImplements) (GameApp.Instance)).WC;
+			k = (int) super.S + ((AppletImplements) (GameApp.Instance)).XC;
 		}
-		if (Z && super.DI == 1) {
-			font gamefont1 = RI;
+
+		if (Z && super.DI == 1) 
+	{
+			Font gamefont1 = RI;
 			k -= (gamefont1.C * (zI - 1)) / 2;
 		}
 		super.A = j;
 		super.G = j;
-		font gamefont2 = RI;
+		Font gamefont2 = RI;
 		super.E = k - gamefont2.C;
 		super.H = k;
 		if (OI != null) {
 			int l = WI;
-			font gamefont3 = RI;
+			Font gamefont3 = RI;
 			int j1 = gamefont3.C * zI;
 			int l1 = QI.I(0, 0).C;
 			int j2 = QI.I(0, 0).B;
@@ -176,7 +210,7 @@ final class gametext extends oGameObject {
 			int i4 = j3 / j2 + 1;
 			l2 = l3 * l1;
 			j3 = i4 * j2;
-			font gamefont8 = RI;
+			Font gamefont8 = RI;
 			int k4 = k - gamefont8.C - PI;
 			int j4;
 			if (Z)
@@ -187,20 +221,21 @@ final class gametext extends oGameObject {
 			int i5 = k4 + i4 * j2;
 			surface1.I(j4, k4, l2, j3, OI.getRGB());
 			for (int j5 = 0; j5 < l3; j5++) {
-				surface1.I(QI.I(0, 1), j4 + j5 * l1, k4 - j2, super.owner);
-				surface1.I(QI.I(0, 7), j4 + j5 * l1, i5, super.owner);
+				surface1.I(QI.I(0, 1), j4 + j5 * l1, k4 - j2, GameApp.Instance);
+				surface1.I(QI.I(0, 7), j4 + j5 * l1, i5, GameApp.Instance);
 			}
 
 			for (int k5 = 0; k5 < i4; k5++) {
-				surface1.I(QI.I(0, 3), j4 - l1, k4 + k5 * j2, super.owner);
-				surface1.I(QI.I(0, 5), l4, k4 + k5 * j2, super.owner);
+				surface1.I(QI.I(0, 3), j4 - l1, k4 + k5 * j2, GameApp.Instance);
+				surface1.I(QI.I(0, 5), l4, k4 + k5 * j2, GameApp.Instance);
 			}
 
-			surface1.I(QI.I(0, 0), j4 - l1, k4 - j2, super.owner);
-			surface1.I(QI.I(0, 2), l4, k4 - j2, super.owner);
-			surface1.I(QI.I(0, 6), j4 - l1, i5, super.owner);
-			surface1.I(QI.I(0, 8), l4, i5, super.owner);
+			surface1.I(QI.I(0, 0), j4 - l1, k4 - j2, GameApp.Instance);
+			surface1.I(QI.I(0, 2), l4, k4 - j2, GameApp.Instance);
+			surface1.I(QI.I(0, 6), j4 - l1, i5, GameApp.Instance);
+			surface1.I(QI.I(0, 8), l4, i5, GameApp.Instance);
 		}
+
 		int k2 = 0;
 		// boolean flag = false;
 		if (LI != null)
@@ -225,8 +260,8 @@ final class gametext extends oGameObject {
 			int i3 = 0;
 			for (int i1 = XI[i]; i3 < k1 && i1 < min && i1 < HNSM; i3++) {
 				char c = F[i1];
-				font gamefont4 = RI;
-				sprite sprite1 = c <= 0 || c >= font.D ? null : gamefont4.I[c];
+				Font gamefont4 = RI;
+				sprite sprite1 = c <= 0 || c >= Font.D ? null : gamefont4.I[c];
 				if (sprite1 != null) {
 					if (B != null || LI != null) {
 						if (getRGB && LI != null)
@@ -234,18 +269,18 @@ final class gametext extends oGameObject {
 								k2 = LI.I(toCharArray, I);
 							else
 								k2 = LI.I(min - i1);
-						font gamefont5 = RI;
+						Font gamefont5 = RI;
 						surface1.I(sprite1, k2, k3 - 1,
-								(k - sprite1.B) + (c <= 0 || c >= font.D ? 0 : gamefont5.Z[c]) + 1, super.owner);
+								(k - sprite1.B) + (c <= 0 || c >= Font.D ? 0 : gamefont5.Z[c]) + 1, GameApp.Instance);
 					}
 					if (getRGB && D != null)
 						if (min > HNSM + D.C)
 							i2 = D.I(toCharArray, I);
 						else
 							i2 = D.I(min - i1);
-					font gamefont6 = RI;
-					surface1.I(sprite1, i2, k3, (k - sprite1.B) + (c <= 0 || c >= font.D ? 0 : gamefont6.Z[c]),
-							super.owner);
+					Font gamefont6 = RI;
+					surface1.I(sprite1, i2, k3, (k - sprite1.B) + (c <= 0 || c >= Font.D ? 0 : gamefont6.Z[c]),
+							GameApp.Instance);
 					k3 += sprite1.C + RI.B;
 				} else if (c == ' ')
 					k3 += RI.B * 2;
@@ -254,7 +289,7 @@ final class gametext extends oGameObject {
 				i1++;
 			}
 
-			font gamefont7 = RI;
+			Font gamefont7 = RI;
 			k += gamefont7.C;
 		}
 
@@ -278,9 +313,9 @@ final class gametext extends oGameObject {
 	Color OI;
 	int PI;
 	sprite_group QI;
-	font RI;
+	Font RI;
 	boolean TI;
-	oGameObject UI;
+	GameObject UI;
 	int VI;
 	int WI;
 	int XI[];

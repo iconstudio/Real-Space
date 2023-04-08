@@ -1,9 +1,5 @@
 package realspace;
-// Decompiled by Jad v1.5.8f. Copyright 2001 Pavel Kouznetsov.
 
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) 
-// Source File Name:   star_y
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dialog;
@@ -14,17 +10,13 @@ import java.awt.Frame;
 import java.awt.Label;
 import java.awt.TextField;
 
-public class hiscoredialog extends Dialog {
-
-	/**
-	 * 
-	 */
+public class HighscoreDialogue extends Dialog {
 	private static final long serialVersionUID = 6942179738292203675L;
 
-	@SuppressWarnings("deprecation")
-	public hiscoredialog(gameapp gameapp, Frame frame) {
+	public HighscoreDialogue(GameApp gameapp, Frame frame) {
 		super(frame, "Enter your name", true);
 		hide = gameapp;
+
 		setLayout(new FlowLayout());
 		setBackground(Color.white);
 		setFont(new Font("Helvetica", 0, 12));
@@ -38,9 +30,10 @@ public class hiscoredialog extends Dialog {
 		add(button1);
 		add = new Label("Qualifying scores will show on the high score list", 1);
 		add(add);
-		resize(350, 160);
+
+		setSize(350, 160);
+		setLocation(250, 200);
 		setResizable(false);
-		move(250, 200);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -82,5 +75,5 @@ public class hiscoredialog extends Dialog {
 	TextField HNSM;
 	Label add;
 	boolean getText;
-	gameapp hide;
+	GameApp hide;
 }

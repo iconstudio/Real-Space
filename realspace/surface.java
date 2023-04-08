@@ -44,7 +44,7 @@ final class surface implements ImageProducer {
 		System.out.println("TDLR");
 	}
 
-	surface(gameapp gameapp1, int i, int j) {
+	surface(GameApp gameapp1, int i, int j) {
 		addConsumer = gameapp1;
 		HNSM = 0;
 		S = 0;
@@ -107,7 +107,7 @@ final class surface implements ImageProducer {
 		I((i + k) - j1, k1, j1, l1, i1);
 	}
 
-	final void I(sprite sprite1, int i, int j, gameapp gameapp1) {
+	final void I(sprite sprite1, int i, int j, GameApp gameapp1) {
 		if (sprite1.H && addConsumer.QC != 3) {
 			HNSM(sprite1, i, j, gameapp1);
 			return;
@@ -154,7 +154,7 @@ final class surface implements ImageProducer {
 		}
 	}
 
-	final void I(sprite sprite1, int i, int j, int k, gameapp gameapp1) {
+	final void I(sprite sprite1, int i, int j, int k, GameApp gameapp1) {
 		if (j < I && j + sprite1.C >= 0 && k < Z && k + sprite1.B >= 0) {
 			int l3 = sprite1.Z;
 			if (j >= 0 && j + sprite1.C < I && k >= 0 && k + sprite1.B < Z) {
@@ -205,7 +205,7 @@ final class surface implements ImageProducer {
 		}
 	}
 
-	final void I(sprite sprite1, float f, int i, int j, gameapp gameapp1) {
+	final void I(sprite sprite1, float f, int i, int j, GameApp gameapp1) {
 		if (f >= 0.99F) {
 			I(sprite1, i, j, gameapp1);
 			return;
@@ -283,7 +283,7 @@ final class surface implements ImageProducer {
 		}
 	}
 
-	final void HNSM(sprite sprite1, int i, int j, gameapp gameapp1) {
+	final void HNSM(sprite sprite1, int i, int j, GameApp gameapp1) {
 		if (i < I && i + sprite1.C >= 0 && j < Z && j + sprite1.B >= 0) {
 			int i8 = sprite1.Z;
 			if (i >= 0 && i + sprite1.C < I && j >= 0 && j + sprite1.B < Z) {
@@ -364,23 +364,23 @@ final class surface implements ImageProducer {
 		}
 	}
 
-	final void draw_string(String str, int i, font hfont, int j, int k) {
-		if (hfont == null)
+	final void draw_string(String caption, int color, Font font, int j, int k) {
+		if (font == null)
 			return;
-		int l = str.length();
+		int l = caption.length();
 		for (int i1 = 0; i1 < l; i1++) {
-			char char_current = str.charAt(i1);
-			sprite curr = char_current <= 0 || char_current >= font.D ? null : hfont.I[char_current];
+			char char_current = caption.charAt(i1);
+			sprite curr = char_current <= 0 || char_current >= Font.D ? null : font.I[char_current];
 			if (curr != null) {
-				if (i != 0xffffff)
-					I(curr, i, j, (k - curr.B) + (char_current <= 0 || char_current >= font.D ? 0 : hfont.Z[char_current]), addConsumer);
+				if (color != 0xffffff)
+					I(curr, color, j, (k - curr.B) + (char_current <= 0 || char_current >= Font.D ? 0 : font.Z[char_current]), addConsumer);
 				else
-					I(curr, j, (k - curr.B) + (char_current <= 0 || char_current >= font.D ? 0 : hfont.Z[char_current]), addConsumer);
-				j += curr.C + hfont.B;
+					I(curr, j, (k - curr.B) + (char_current <= 0 || char_current >= Font.D ? 0 : font.Z[char_current]), addConsumer);
+				j += curr.C + font.B;
 			} else if (char_current == ' ')
-				j += hfont.B * 2;
+				j += font.B * 2;
 			else
-				j += hfont.B;
+				j += font.B;
 		}
 
 	}
@@ -456,7 +456,7 @@ final class surface implements ImageProducer {
 	int Z;
 	int C;
 	int B[];
-	gameapp addConsumer;
+	GameApp addConsumer;
 	ColorModel arraycopy;
 	ImageConsumer charAt;
 	Image D;

@@ -6,15 +6,15 @@ package realspace;
 // Source File Name:   star_y
 
 final class sprite_group {
-	sprite_group(gameapp gameapp, int i) {
+	sprite_group(GameApp gameapp, int i) {
 		HNSM(gameapp, 1, i);
 	}
 
-	sprite_group(gameapp gameapp, int i, int j) {
+	sprite_group(GameApp gameapp, int i, int j) {
 		HNSM(gameapp, i, j);
 	}
 
-	private void HNSM(gameapp gameapp, int i, int j) {
+	private void HNSM(GameApp gameapp, int i, int j) {
 		HNSM = gameapp;
 		max = new sprite[i][j];
 		I = new int[i];
@@ -97,7 +97,7 @@ final class sprite_group {
 
 	}
 
-	gameapp HNSM;
+	GameApp HNSM;
 	private sprite max[][];
 	int I[];
 	int round;

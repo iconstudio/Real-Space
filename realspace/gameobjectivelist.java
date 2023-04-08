@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 
 final class gameobjectivelist {
 
-	gameobjectivelist(gameapp gameapp1, int i, int j) {
+	gameobjectivelist(GameApp gameapp1, int i, int j) {
 		HNSM = gameapp1;
 		I = new gameobjective[j];
 		for (int k = 0; k < j; k++)
@@ -71,7 +71,7 @@ final class gameobjectivelist {
 						oGameObjectlist oGameObjectlist2 = HNSM.wZ;
 						oSpaceship oSpaceship1 = (oSpaceship) (j < 0 || j >= oGameObjectlist2.C ? null
 								: oGameObjectlist2.Z[j]);
-						if (((oGameObject) (oSpaceship1)).e == 1 && oSpaceship1.QI != round && oSpaceship1.QI != 1) {
+						if (((GameObject) (oSpaceship1)).e == 1 && oSpaceship1.QI != round && oSpaceship1.QI != 1) {
 							i++;
 							oSpaceship1.QI = round;
 						}
@@ -84,7 +84,7 @@ final class gameobjectivelist {
 						oGameObjectlist oGameObjectlist4 = HNSM.vZ;
 						oSpaceship oSpaceship2 = (oSpaceship) (k < 0 || k >= oGameObjectlist4.C ? null
 								: oGameObjectlist4.Z[k]);
-						if (((oGameObject) (oSpaceship2)).e == 1 && oSpaceship2.QI != round && oSpaceship2.QI != 1) {
+						if (((GameObject) (oSpaceship2)).e == 1 && oSpaceship2.QI != round && oSpaceship2.QI != 1) {
 							i++;
 							oSpaceship2.QI = round;
 						}
@@ -224,23 +224,23 @@ final class gameobjectivelist {
 					int i1 = (int) (Math.random() * 4D);
 					switch (i1) {
 					case 0: // '\0'
-						f = ((gamebase) (HNSM)).YC;
-						f1 = ((gamebase) (HNSM)).zC + (int) (Math.random() * ((gamebase) (HNSM)).aC);
+						f = ((AppletImplements) (HNSM)).YC;
+						f1 = ((AppletImplements) (HNSM)).zC + (int) (Math.random() * ((AppletImplements) (HNSM)).worldVrt);
 						break;
 
 					case 1: // '\001'
-						f = ((gamebase) (HNSM)).iC;
-						f1 = ((gamebase) (HNSM)).zC + (int) (Math.random() * ((gamebase) (HNSM)).aC);
+						f = ((AppletImplements) (HNSM)).iC;
+						f1 = ((AppletImplements) (HNSM)).zC + (int) (Math.random() * ((AppletImplements) (HNSM)).worldVrt);
 						break;
 
 					case 2: // '\002'
-						f = ((gamebase) (HNSM)).YC + (int) (Math.random() * ((gamebase) (HNSM)).sC);
-						f1 = ((gamebase) (HNSM)).cC;
+						f = ((AppletImplements) (HNSM)).YC + (int) (Math.random() * ((AppletImplements) (HNSM)).worldHrz);
+						f1 = ((AppletImplements) (HNSM)).cC;
 						break;
 
 					default:
-						f = ((gamebase) (HNSM)).YC + (int) (Math.random() * ((gamebase) (HNSM)).sC);
-						f1 = ((gamebase) (HNSM)).zC;
+						f = ((AppletImplements) (HNSM)).YC + (int) (Math.random() * ((AppletImplements) (HNSM)).worldHrz);
+						f1 = ((AppletImplements) (HNSM)).zC;
 						break;
 					}
 				} else {
@@ -256,7 +256,7 @@ final class gameobjectivelist {
 					oSpaceship1 = (oSpaceship) HNSM.xZ.I(HNSM.vZ);
 				if (oSpaceship1 == null)
 					return;
-				oSpaceship1.I(V[l], height, HNSM.Mission.I(1.0F, 0.05F) * ((gamebase) (HNSM)).view_scale);
+				oSpaceship1.I(V[l], height, HNSM.Mission.I(1.0F, 0.05F) * ((AppletImplements) (HNSM)).viewScale);
 				oSpaceship1.QI = 3;
 				if (G) {
 					oSpaceship1.II = true;
@@ -265,15 +265,15 @@ final class gameobjectivelist {
 				oSpaceship1.CI = H;
 				if (K >= 0.0F)
 					oSpaceship1.BI = K;
-				oSpaceship1.I(f, f1, null, f + 1.0F, f1 + 1.0F, W[l] * ((gamebase) (HNSM)).view_scale, 1.0F, 0.15F,
+				oSpaceship1.I(f, f1, null, f + 1.0F, f1 + 1.0F, W[l] * ((AppletImplements) (HNSM)).viewScale, 1.0F, 0.15F,
 						true);
 				oSpaceship1.E();
-				explosion explosion1 = (explosion) HNSM.rZ.I(HNSM.qZ);
+				Explosion explosion1 = (Explosion) HNSM.rZ.I(HNSM.qZ);
 				if (explosion1 != null)
 					explosion1.I(HNSM.sprite_group_ship, 1, (int) f, (int) f1, 0.0F, 0.0F, 1, 2, 0, false);
 				oSpaceship1.s = -20;
-				float f2 = ((oGameObject) (oSpaceship1)).R;
-				float f3 = ((oGameObject) (oSpaceship1)).T;
+				float f2 = ((GameObject) (oSpaceship1)).R;
+				float f3 = ((GameObject) (oSpaceship1)).T;
 				for (int k1 = 1; k1 < i; k1++) {
 					oSpaceship oSpaceship2;
 					if (height == 2)
@@ -281,7 +281,7 @@ final class gameobjectivelist {
 					else
 						oSpaceship2 = (oSpaceship) HNSM.xZ.I(HNSM.vZ);
 					if (oSpaceship2 != null) {
-						oSpaceship2.I(V[l], height, HNSM.Mission.I(1.0F, 0.2F) * ((gamebase) (HNSM)).view_scale);
+						oSpaceship2.I(V[l], height, HNSM.Mission.I(1.0F, 0.2F) * ((AppletImplements) (HNSM)).viewScale);
 						oSpaceship2.QI = 3;
 						if (G) {
 							oSpaceship2.II = true;
@@ -290,9 +290,9 @@ final class gameobjectivelist {
 						oSpaceship2.CI = H;
 						if (K >= 0.0F)
 							oSpaceship2.BI = K;
-						oSpaceship2.I(f, f1, null, f2, f3, W[l] * ((gamebase) (HNSM)).view_scale, 1.0F, 0.15F, true);
+						oSpaceship2.I(f, f1, null, f2, f3, W[l] * ((AppletImplements) (HNSM)).viewScale, 1.0F, 0.15F, true);
 						int k = oSpaceship2.s = -k1 * 20;
-						explosion explosion2 = (explosion) HNSM.rZ.I(HNSM.qZ);
+						Explosion explosion2 = (Explosion) HNSM.rZ.I(HNSM.qZ);
 						if (explosion2 != null) {
 							explosion2.I(HNSM.sprite_group_ship, 1, (int) f, (int) f1, 0.0F, 0.0F, 1, 2, 0, false);
 							explosion2.s = -k;
@@ -308,7 +308,7 @@ final class gameobjectivelist {
 
 	}
 
-	gameapp HNSM;
+	GameApp HNSM;
 	gameobjective I[];
 	int Z;
 	int C;

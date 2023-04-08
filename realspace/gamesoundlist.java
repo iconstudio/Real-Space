@@ -9,7 +9,7 @@ import java.applet.AudioClip;
 
 final class gamesoundlist {
 
-	gamesoundlist(gameapp gameapp, int i) {
+	gamesoundlist(GameApp gameapp, int i) {
 		HNSM = gameapp;
 		abs = new AudioClip[i];
 		append = new boolean[i];
@@ -78,7 +78,7 @@ final class gamesoundlist {
 		abs[index].stop();
 	}
 
-	gameapp HNSM;
+	GameApp HNSM;
 	AudioClip abs[];
 	boolean append[];
 	boolean currentTimeMillis[];
