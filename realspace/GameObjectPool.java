@@ -5,27 +5,27 @@ package realspace;
 // Decompiler options: packimports(3) 
 // Source File Name:   star_y
 
-final class oGameObjectlist {
+final class GameObjectPool {
 
-	oGameObjectlist(GameApp gameapp, int i) {
+	GameObjectPool(GameApp gameapp, int i) {
 		F = gameapp;
-		Z = new GameObject[i];
+		internalList = new GameObject[i];
 		I = i;
-		C = 0;
+		mySize = 0;
 	}
 
-	final GameObject I(oGameObjectlist oGameObjectlist1) {
-		if (C <= 0 || oGameObjectlist1.C >= oGameObjectlist1.I)
+	final GameObject I(GameObjectPool oGameObjectlist1) {
+		if (mySize <= 0 || oGameObjectlist1.mySize >= oGameObjectlist1.I)
 			return null;
-		C--;
-		GameObject oGameObject1 = Z[C];
+		mySize--;
+		GameObject oGameObject1 = internalList[mySize];
 		oGameObject1.v = false;
 		oGameObject1.e = 2;
 		oGameObject1.FI = this;
-		Z[C] = null;
-		if (oGameObjectlist1.C < oGameObjectlist1.I) {
-			oGameObjectlist1.Z[oGameObjectlist1.C] = oGameObject1;
-			oGameObjectlist1.C++;
+		internalList[mySize] = null;
+		if (oGameObjectlist1.mySize < oGameObjectlist1.I) {
+			oGameObjectlist1.internalList[oGameObjectlist1.mySize] = oGameObject1;
+			oGameObjectlist1.mySize++;
 		}
 		return oGameObject1;
 	}
@@ -38,83 +38,83 @@ final class oGameObjectlist {
 			oGameObject1.Q = null;
 		if (oGameObject1.k != null)
 			oGameObject1.k.I();
-		for (int i = 0; i < C; i++)
-			if (oGameObject1 == Z[i]) {
+		for (int i = 0; i < mySize; i++)
+			if (oGameObject1 == internalList[i]) {
 				if (oGameObject1.FI != null) {
-					oGameObjectlist oGameObjectlist1 = oGameObject1.FI;
-					if (oGameObjectlist1.C < oGameObjectlist1.I) {
-						oGameObjectlist1.Z[oGameObjectlist1.C] = oGameObject1;
-						oGameObjectlist1.C++;
+					GameObjectPool oGameObjectlist1 = oGameObject1.FI;
+					if (oGameObjectlist1.mySize < oGameObjectlist1.I) {
+						oGameObjectlist1.internalList[oGameObjectlist1.mySize] = oGameObject1;
+						oGameObjectlist1.mySize++;
 					}
 					oGameObject1.FI = null;
 				}
-				C--;
-				for (int j = i; j < C; j++)
-					Z[j] = Z[j + 1];
+				mySize--;
+				for (int j = i; j < mySize; j++)
+					internalList[j] = internalList[j + 1];
 
-				Z[C] = null;
+				internalList[mySize] = null;
 				return;
 			}
 
 	}
 
 	final void I() {
-		while (C > 0) {
-			C--;
-			GameObject oGameObject1 = Z[C];
+		while (mySize > 0) {
+			mySize--;
+			GameObject oGameObject1 = internalList[mySize];
 			if (oGameObject1.k != null)
 				oGameObject1.k.I();
 			if (oGameObject1.FI != null) {
-				oGameObjectlist oGameObjectlist1 = oGameObject1.FI;
-				if (oGameObjectlist1.C < oGameObjectlist1.I) {
-					oGameObjectlist1.Z[oGameObjectlist1.C] = oGameObject1;
-					oGameObjectlist1.C++;
+				GameObjectPool oGameObjectlist1 = oGameObject1.FI;
+				if (oGameObjectlist1.mySize < oGameObjectlist1.I) {
+					oGameObjectlist1.internalList[oGameObjectlist1.mySize] = oGameObject1;
+					oGameObjectlist1.mySize++;
 				}
 				oGameObject1.FI = null;
 			}
-			Z[C] = null;
+			internalList[mySize] = null;
 		}
 	}
 
 	final boolean I(boolean flag, GameObject oGameObject1, int i, int j, int k, int l) {
-		if (C <= 0)
+		if (mySize <= 0)
 			return false;
-		for (int i1 = 0; i1 < C; i1++) {
-			GameObject oGameObject2 = Z[i1];
+		for (int i1 = 0; i1 < mySize; i1++) {
+			GameObject oGameObject2 = internalList[i1];
 			if (oGameObject2.e != 2 && (i == -1 || oGameObject2.JI == i) && (j == -1 || oGameObject2.ship_grade == j)
 					&& (k == -1 || oGameObject2.AI == k) && (l == -1 || oGameObject2.HI == l))
-				oGameObject2.equip(flag, oGameObject1);
+				oGameObject2.Equip(flag, oGameObject1);
 		}
 
 		return true;
 	}
 
 	final void Z() {
-		for (int i = 0; i < C; i++) {
-			GameObject oGameObject1 = Z[i];
+		for (int i = 0; i < mySize; i++) {
+			GameObject oGameObject1 = internalList[i];
 			if (oGameObject1.e == 1)
 				oGameObject1.Z();
 		}
 
 	}
 
-	final void I(surface surface) {
-		for (int i = 0; i < C; i++) {
-			GameObject oGameObject1 = Z[i];
+	final void I(Canvas surface) {
+		for (int i = 0; i < mySize; i++) {
+			GameObject oGameObject1 = internalList[i];
 			if (oGameObject1.e == 1 && oGameObject1.v)
 				oGameObject1.Draw(surface);
 		}
 
 	}
 
-	final boolean Z(oGameObjectlist oGameObjectlist1) {
-		for (int i = 0; i < C; i++) {
-			GameObject oGameObject1 = Z[i];
+	final boolean Z(GameObjectPool oGameObjectlist1) {
+		for (int i = 0; i < mySize; i++) {
+			GameObject oGameObject1 = internalList[i];
 			if (oGameObject1.e == 1 && oGameObject1.v && oGameObject1.h && oGameObject1.BI >= 0.0001F) {
 				if (oGameObject1.l && oGameObject1.k.Z(oGameObjectlist1))
 					return true;
-				for (int j = 0; j < oGameObjectlist1.C; j++) {
-					GameObject oGameObject2 = oGameObjectlist1.Z[j];
+				for (int j = 0; j < oGameObjectlist1.mySize; j++) {
+					GameObject oGameObject2 = oGameObjectlist1.internalList[j];
 					if (oGameObject2.e == 1 && oGameObject2.v && oGameObject2.h && oGameObject2.BI >= 0.0001F) {
 						if (oGameObject2.l && oGameObject2.k.HNSM(oGameObject1))
 							return true;
@@ -130,8 +130,8 @@ final class oGameObjectlist {
 	}
 
 	final boolean HNSM(GameObject oGameObject1) {
-		for (int i = 0; i < C; i++) {
-			GameObject oGameObject2 = Z[i];
+		for (int i = 0; i < mySize; i++) {
+			GameObject oGameObject2 = internalList[i];
 			if (oGameObject2.e == 1 && oGameObject2.v && oGameObject2.h) {
 				if (oGameObject2.l && oGameObject2.k.HNSM(oGameObject1))
 					return true;
@@ -148,8 +148,8 @@ final class oGameObjectlist {
 	}
 
 	final GameObject I(int i, int j) {
-		for (int k = 0; k < C; k++) {
-			GameObject oGameObject1 = Z[k];
+		for (int k = 0; k < mySize; k++) {
+			GameObject oGameObject1 = internalList[k];
 			if (oGameObject1.e == 1 && oGameObject1.w && i < oGameObject1.G && i > oGameObject1.A && j < oGameObject1.H
 					&& j > oGameObject1.E)
 				return oGameObject1;
@@ -159,9 +159,9 @@ final class oGameObjectlist {
 	}
 
 	final void I(float f, float f1, boolean flag, int i, int j, int k, int l) {
-		int i1 = C;
+		int i1 = mySize;
 		for (int j1 = 0; j1 < i1; j1++) {
-			GameObject oGameObject1 = Z[j1];
+			GameObject oGameObject1 = internalList[j1];
 			if ((oGameObject1.e == 1 || oGameObject1.e == 3) && (i == -1 || oGameObject1.JI == i)
 					&& (j == -1 || oGameObject1.ship_grade == j) && (k == -1 || oGameObject1.AI == k)
 					&& (l == -1 || oGameObject1.HI == l))
@@ -171,9 +171,9 @@ final class oGameObjectlist {
 	}
 
 	final GameObject I(int i, int j, int k, int l, int i1, float f) {
-		int j1 = C;
+		int j1 = mySize;
 		for (int k1 = 0; k1 < j1; k1++) {
-			GameObject oGameObject1 = Z[k1];
+			GameObject oGameObject1 = internalList[k1];
 			if (i == -1 || oGameObject1.e == i && (j == -1 || oGameObject1.JI == j)
 					&& (k == -1 || oGameObject1.ship_grade == k) && (l == -1 || oGameObject1.AI == l)
 					&& (i1 == -1 || oGameObject1.HI == i1) && (f <= -1F || oGameObject1.BI >= f))
@@ -184,8 +184,8 @@ final class oGameObjectlist {
 	}
 
 	final void C() {
-		for (int i = 0; i < C;) {
-			GameObject oGameObject1 = Z[i];
+		for (int i = 0; i < mySize;) {
+			GameObject oGameObject1 = internalList[i];
 			if (oGameObject1.e == 2) {
 				F(oGameObject1);
 			} else {
@@ -204,9 +204,9 @@ final class oGameObjectlist {
 	}
 
 	final void I(float f, int i, int j, int k, int l) {
-		int i1 = C;
+		int i1 = mySize;
 		for (int j1 = 0; j1 < i1; j1++) {
-			GameObject oGameObject1 = Z[j1];
+			GameObject oGameObject1 = internalList[j1];
 			if (oGameObject1.e == 1 && (i == -1 || oGameObject1.JI == i) && (j == -1 || oGameObject1.ship_grade == j)
 					&& (k == -1 || oGameObject1.AI == k) && (l == -1 || oGameObject1.HI == l))
 				oGameObject1.BI = f;
@@ -214,8 +214,13 @@ final class oGameObjectlist {
 
 	}
 
+	public int GetSize()
+	{
+		return mySize;
+	}
+
 	GameApp F;
 	int I;
-	GameObject Z[];
-	int C;
+	GameObject internalList[];
+	int mySize;
 }

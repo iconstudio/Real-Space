@@ -44,37 +44,37 @@ final class gamemission {
 		I.I();
 		C.I();
 		append = false;
-		oGameObjectlist oGameObjectlist1 = owner.vZ;
-		int i1 = oGameObjectlist1.C;
+		GameObjectPool oGameObjectlist1 = owner.vZ;
+		int i1 = oGameObjectlist1.mySize;
 		for (int k = 0; k < i1; k++) {
 			oGameObjectlist1 = owner.vZ;
-			oSpaceship oSpaceship1 = (oSpaceship) (k < 0 || k >= oGameObjectlist1.C ? null : oGameObjectlist1.Z[k]);
+			oSpaceship oSpaceship1 = (oSpaceship) (k < 0 || k >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[k]);
 			oSpaceship1.II = false;
 			oSpaceship1.NI = false;
 			oSpaceship1.LI = 0;
 			oSpaceship1.MI = -1;
 			if (!((GameObject) (oSpaceship1)).CI)
-				oSpaceship1.equip(true, null);
+				oSpaceship1.Equip(true, null);
 			else if (((GameObject) (oSpaceship1)).g != null) {
 				((oSpaceship) ((GameObject) (oSpaceship1)).g).D++;
-				oSpaceship1.equip(true, null);
+				oSpaceship1.Equip(true, null);
 			}
 		}
 
 		oGameObjectlist1 = owner.wZ;
-		i1 = oGameObjectlist1.C;
+		i1 = oGameObjectlist1.mySize;
 		for (int l = 0; l < i1; l++) {
-			oGameObjectlist oGameObjectlist2 = owner.wZ;
-			oSpaceship oSpaceship2 = (oSpaceship) (l < 0 || l >= oGameObjectlist2.C ? null : oGameObjectlist2.Z[l]);
+			GameObjectPool oGameObjectlist2 = owner.wZ;
+			oSpaceship oSpaceship2 = (oSpaceship) (l < 0 || l >= oGameObjectlist2.mySize ? null : oGameObjectlist2.internalList[l]);
 			oSpaceship2.II = false;
 			oSpaceship2.NI = false;
 			oSpaceship2.LI = 0;
 			oSpaceship2.MI = -1;
 			if (!((GameObject) (oSpaceship2)).CI)
-				oSpaceship2.equip(true, null);
+				oSpaceship2.Equip(true, null);
 			else if (((GameObject) (oSpaceship2)).g != null) {
 				((oSpaceship) ((GameObject) (oSpaceship2)).g).D++;
-				oSpaceship2.equip(true, null);
+				oSpaceship2.Equip(true, null);
 			}
 		}
 
@@ -96,7 +96,7 @@ final class gamemission {
 		int k2 = owner.viewHeight - owner.label_font.C - 5;
 		int l2 = owner.viewWidth / 2;
 		int i3 = owner.viewHeight - (owner.label_font.C + 20);
-		palette temp_palette_1, temp_palette_2;
+		Palette temp_palette_1, temp_palette_2;
 
 		switch (i) {
 			case 1200:
@@ -119,14 +119,14 @@ final class gamemission {
 				Object obj = owner.flashcolor_white;
 				Object obj9 = owner.flashcolor_navy;
 				Font gamefont1 = owner.hFontSmall;
-				show_flashstring(-1, "Objectives Failed||Aborting Mission", ((palette) (obj)), ((palette) (obj9)),
+				show_flashstring(-1, "Objectives Failed||Aborting Mission", ((Palette) (obj)), ((Palette) (obj9)),
 						gamefont1, true, l1, i2, 0, 150, 0, true, true, 1, -1, 0);
 				lightGray(100);
 				obj = owner.flashcolor_white;
 				obj9 = owner.flashcolor_navy;
 				gamefont1 = owner.label_font;
-				show_flashstring(-1, "Your Ship, The KFS Vengeance|Has Been Destroyed!", ((palette) (obj)),
-						((palette) (obj9)), gamefont1, true, j1, k1, 0, 190, 0, true, true, 1, -1, 0);
+				show_flashstring(-1, "Your Ship, The KFS Vengeance|Has Been Destroyed!", ((Palette) (obj)),
+						((Palette) (obj9)), gamefont1, true, j1, k1, 0, 190, 0, true, true, 1, -1, 0);
 				max(true, false, -1, -1, -1, -1, -1);
 				lightGray(140);
 				obj = Color.red;
@@ -145,14 +145,14 @@ final class gamemission {
 				Object obj1 = owner.flashcolor_white;
 				Object obj10 = owner.flashcolor_navy;
 				Object obj19 = owner.hFontSmall;
-				show_flashstring(-1, "Objectives Failed||Aborting Mission", ((palette) (obj1)), ((palette) (obj10)),
+				show_flashstring(-1, "Objectives Failed||Aborting Mission", ((Palette) (obj1)), ((Palette) (obj10)),
 						((Font) (obj19)), true, l1, i2, 0, 150, 0, true, true, 1, -1, 0);
 				lightGray(100);
 				obj1 = B + "|Has Been Destroyed!";
 				obj10 = owner.flashcolor_white;
 				obj19 = owner.flashcolor_navy;
 				Font gamefont7 = owner.label_font;
-				show_flashstring(-1, ((String) (obj1)), ((palette) (obj10)), ((palette) (obj19)), gamefont7, true, j1,
+				show_flashstring(-1, ((String) (obj1)), ((Palette) (obj10)), ((Palette) (obj19)), gamefont7, true, j1,
 						k1,
 						0, 190, 0, true, true, 1, -1, 0);
 				max(true, false, -1, -1, -1, -1, -1);
@@ -173,13 +173,13 @@ final class gamemission {
 				Object obj2 = owner.flashcolor_white;
 				Object obj11 = owner.flashcolor_navy;
 				Font gamefont2 = owner.hFontSmall;
-				show_flashstring(-1, "Objectives Failed||Aborting Mission", ((palette) (obj2)), ((palette) (obj11)),
+				show_flashstring(-1, "Objectives Failed||Aborting Mission", ((Palette) (obj2)), ((Palette) (obj11)),
 						gamefont2, true, l1, i2, 0, 150, 0, true, true, 1, -1, 0);
 				lightGray(100);
 				obj2 = owner.flashcolor_white;
 				obj11 = owner.flashcolor_navy;
 				gamefont2 = owner.label_font;
-				show_flashstring(-1, "Your Ships Have Been Destroyed!", ((palette) (obj2)), ((palette) (obj11)),
+				show_flashstring(-1, "Your Ships Have Been Destroyed!", ((Palette) (obj2)), ((Palette) (obj11)),
 						gamefont2,
 						true, j1, k1, 0, 190, 0, true, true, 1, -1, 0);
 				max(true, false, -1, -1, -1, -1, -1);
@@ -203,22 +203,22 @@ final class gamemission {
 
 			case 1001:
 				Object obj3 = owner.vZ;
-				((oGameObjectlist) (obj3)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj3)).I(true, null, -1, -1, -1, -1);
 				obj3 = owner.wZ;
-				((oGameObjectlist) (obj3)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj3)).I(true, null, -1, -1, -1, -1);
 				toString(9);
 				gray(0.0F, 0.0F, true, 30F);
 				obj3 = "Visit " + owner.labelSimpleURL;
-				palette palette = owner.flashcolor_white;
+				Palette palette = owner.flashcolor_white;
 				Object obj20 = owner.flashcolor_navy;
 				Object obj30 = owner.hFontSmall;
-				show_flashstring(3, ((String) (obj3)), palette, ((palette) (obj20)), ((Font) (obj30)), true, l2, i3, 0,
+				show_flashstring(3, ((String) (obj3)), palette, ((Palette) (obj20)), ((Font) (obj30)), true, l2, i3, 0,
 						10000, 0, true, false, 0, -1, 0);
 				lightGray(10);
 				obj3 = owner.flashcolor_yellow;
 				palette = owner.flashcolor_red;
 				obj20 = owner.label_font;
-				show_flashstring(-1, "The Terrans Invaded", ((palette) (obj3)), palette, ((Font) (obj20)), true, j, k,
+				show_flashstring(-1, "The Terrans Invaded", ((Palette) (obj3)), palette, ((Font) (obj20)), true, j, k,
 						0, 70, 0, true, true, 0, -1, 0);
 				lightGray(10);
 				blue(1, false, false, 1.0F);
@@ -258,21 +258,21 @@ final class gamemission {
 				obj20 = owner.flashcolor_yellow;
 				obj30 = owner.flashcolor_red;
 				Object obj39 = owner.label_font;
-				show_flashstring(-1, "We Struck Back", ((palette) (obj20)), ((palette) (obj30)), ((Font) (obj39)), true,
+				show_flashstring(-1, "We Struck Back", ((Palette) (obj20)), ((Palette) (obj30)), ((Font) (obj39)), true,
 						j, k, 0, 70, 0, true, true, 0, -1, 0);
 				lightGray(80);
 				obj20 = owner.labelSimpleURL + " Presents";
 				obj30 = owner.flashcolor_white;
 				obj39 = owner.flashcolor_navy;
 				Font gamefont16 = owner.label_font;
-				show_flashstring(-1, ((String) (obj20)), ((palette) (obj30)), ((palette) (obj39)), gamefont16, true, j,
+				show_flashstring(-1, ((String) (obj20)), ((Palette) (obj30)), ((Palette) (obj39)), gamefont16, true, j,
 						k,
 						0, 70, 0, true, true, 0, -1, 0);
 				lightGray(80);
 				obj20 = owner.flashcolor_white;
 				obj30 = owner.flashcolor_navy;
 				obj39 = owner.label_font;
-				show_flashstring(-1, "Realspace 2 - Emperor's Revenge", ((palette) (obj20)), ((palette) (obj30)),
+				show_flashstring(-1, "Realspace 2 - Emperor's Revenge", ((Palette) (obj20)), ((Palette) (obj30)),
 						((Font) (obj39)), true, j, k, 0, 200, 0, true, true, 0, -1, 0);
 				lightGray(40);
 				obj20 = owner.flashcolor_yellow;
@@ -282,95 +282,95 @@ final class gamemission {
 				@SuppressWarnings("unused")
 				Font gamefont27;
 				int j4 = k + (gamefont27 = owner.label_font).C * 2;
-				show_flashstring(-1, "Copyright 2001 AltoParc|www.altoparc.com", ((palette) (obj20)),
-						((palette) (obj30)),
+				show_flashstring(-1, "Copyright 2001 AltoParc|www.altoparc.com", ((Palette) (obj20)),
+						((Palette) (obj30)),
 						((Font) (obj39)), true, i4, j4, 0, 165, 0, true, true, 0, -1, 0);
 				lightGray(170);
 				obj20 = owner.flashcolor_yellow;
 				obj30 = owner.flashcolor_red;
 				obj39 = owner.label_font;
-				show_flashstring(-1, "We Smashed The Terran Frontier", ((palette) (obj20)), ((palette) (obj30)),
+				show_flashstring(-1, "We Smashed The Terran Frontier", ((Palette) (obj20)), ((Palette) (obj30)),
 						((Font) (obj39)), true, j, k, 0, 70, 0, true, true, 0, -1, 0);
 				lightGray(80);
 				obj20 = owner.flashcolor_yellow;
 				obj30 = owner.flashcolor_red;
 				obj39 = owner.label_font;
-				show_flashstring(-1, "Destroyed Their Outposts", ((palette) (obj20)), ((palette) (obj30)),
+				show_flashstring(-1, "Destroyed Their Outposts", ((Palette) (obj20)), ((Palette) (obj30)),
 						((Font) (obj39)), true, j, k, 0, 70, 0, true, true, 0, -1, 0);
 				lightGray(80);
 				obj20 = owner.flashcolor_yellow;
 				obj30 = owner.flashcolor_red;
 				obj39 = owner.label_font;
-				show_flashstring(-1, "Apocalypse Outpost Stopped Us", ((palette) (obj20)), ((palette) (obj30)),
+				show_flashstring(-1, "Apocalypse Outpost Stopped Us", ((Palette) (obj20)), ((Palette) (obj30)),
 						((Font) (obj39)), true, j, k, 0, 100, 0, true, true, 0, -1, 0);
 				lightGray(110);
 				obj20 = owner.flashcolor_yellow;
 				obj30 = owner.flashcolor_red;
 				obj39 = owner.label_font;
-				show_flashstring(-1, "Then The Antaris Crushed Our Forces", ((palette) (obj20)), ((palette) (obj30)),
+				show_flashstring(-1, "Then The Antaris Crushed Our Forces", ((Palette) (obj20)), ((Palette) (obj30)),
 						((Font) (obj39)), true, j, k, 0, 100, 0, true, true, 0, -1, 0);
 				lightGray(110);
 				obj20 = owner.flashcolor_yellow;
 				obj30 = owner.flashcolor_red;
 				obj39 = owner.label_font;
-				show_flashstring(-1, "We Had Nothing Left To Stop Them", ((palette) (obj20)), ((palette) (obj30)),
+				show_flashstring(-1, "We Had Nothing Left To Stop Them", ((Palette) (obj20)), ((Palette) (obj30)),
 						((Font) (obj39)), true, j, k, 0, 100, 0, true, true, 0, -1, 0);
 				lightGray(110);
 				obj20 = owner.flashcolor_yellow;
 				obj30 = owner.flashcolor_red;
 				obj39 = owner.label_font;
 				show_flashstring(-1, "They Attacked And Destroyed All|Worlds That Would Not Succumb",
-						((palette) (obj20)),
-						((palette) (obj30)), ((Font) (obj39)), true, j, k, 0, 140, 0, true, true, 0, -1, 0);
+						((Palette) (obj20)),
+						((Palette) (obj30)), ((Font) (obj39)), true, j, k, 0, 140, 0, true, true, 0, -1, 0);
 				lightGray(150);
 				obj20 = owner.flashcolor_yellow;
 				obj30 = owner.flashcolor_red;
 				obj39 = owner.label_font;
-				show_flashstring(-1, "They Devestated Our Homeworld", ((palette) (obj20)), ((palette) (obj30)),
+				show_flashstring(-1, "They Devestated Our Homeworld", ((Palette) (obj20)), ((Palette) (obj30)),
 						((Font) (obj39)), true, j, k, 0, 100, 0, true, true, 0, -1, 0);
 				lightGray(110);
 				obj20 = owner.flashcolor_yellow;
 				obj30 = owner.flashcolor_red;
 				obj39 = owner.label_font;
-				show_flashstring(-1, "The Emperor And The Katuri|People Demand Revenge!", ((palette) (obj20)),
-						((palette) (obj30)), ((Font) (obj39)), true, j, k, 0, 150, 0, true, true, 0, -1, 0);
+				show_flashstring(-1, "The Emperor And The Katuri|People Demand Revenge!", ((Palette) (obj20)),
+						((Palette) (obj30)), ((Font) (obj39)), true, j, k, 0, 150, 0, true, true, 0, -1, 0);
 				lightGray(160);
 				obj20 = owner.flashcolor_yellow;
 				obj30 = owner.flashcolor_red;
 				obj39 = owner.label_font;
-				show_flashstring(-1, "Gather Our Remaing Forces", ((palette) (obj20)), ((palette) (obj30)),
+				show_flashstring(-1, "Gather Our Remaing Forces", ((Palette) (obj20)), ((Palette) (obj30)),
 						((Font) (obj39)), true, j, k, 0, 70, 0, true, true, 0, -1, 0);
 				lightGray(80);
 				obj20 = owner.flashcolor_yellow;
 				obj30 = owner.flashcolor_red;
 				obj39 = owner.label_font;
-				show_flashstring(-1, "Drive Back The Terran Defilers", ((palette) (obj20)), ((palette) (obj30)),
+				show_flashstring(-1, "Drive Back The Terran Defilers", ((Palette) (obj20)), ((Palette) (obj30)),
 						((Font) (obj39)), true, j, k, 0, 70, 0, true, true, 0, -1, 0);
 				lightGray(80);
 				obj20 = owner.flashcolor_yellow;
 				obj30 = owner.flashcolor_red;
 				obj39 = owner.label_font;
 				show_flashstring(-1, "And Exact Our Revenge By Destroying|Their Homeworld... The Earth!",
-						((palette) (obj20)), ((palette) (obj30)), ((Font) (obj39)), true, j, k, 0, 200, 0, true, true,
+						((Palette) (obj20)), ((Palette) (obj30)), ((Font) (obj39)), true, j, k, 0, 200, 0, true, true,
 						0, -1, 0);
 				lightGray(250);
 				obj20 = owner.flashcolor_white;
 				obj30 = owner.flashcolor_navy;
 				obj39 = owner.label_font;
-				show_flashstring(-1, "Game Design & Programming||Brian Fisher", ((palette) (obj20)),
-						((palette) (obj30)),
+				show_flashstring(-1, "Game Design & Programming||Brian Fisher", ((Palette) (obj20)),
+						((Palette) (obj30)),
 						((Font) (obj39)), true, j, k, 0, 200, 0, true, true, 0, -1, 0);
 				lightGray(250);
 				obj20 = owner.flashcolor_white;
 				obj30 = owner.flashcolor_navy;
 				obj39 = owner.label_font;
-				show_flashstring(-1, "Artwork||Rodrigo Aguilar", ((palette) (obj20)), ((palette) (obj30)),
+				show_flashstring(-1, "Artwork||Rodrigo Aguilar", ((Palette) (obj20)), ((Palette) (obj30)),
 						((Font) (obj39)), true, j, k, 0, 200, 0, true, true, 0, -1, 0);
 				lightGray(250);
 				obj20 = owner.flashcolor_white;
 				obj30 = owner.flashcolor_navy;
 				obj39 = owner.label_font;
-				show_flashstring(-1, "Music||Jason Graves", ((palette) (obj20)), ((palette) (obj30)), ((Font) (obj39)),
+				show_flashstring(-1, "Music||Jason Graves", ((Palette) (obj20)), ((Palette) (obj30)), ((Font) (obj39)),
 						true, j, k, 0, 200, 0, true, true, 0, -1, 0);
 				lightGray(250);
 				obj20 = owner.flashcolor_white;
@@ -378,7 +378,7 @@ final class gamemission {
 				obj39 = owner.label_font;
 				show_flashstring(-1,
 						"star_blinking Special Thanks To Everyone|That Helped With Testing||You Helped Make This Game Awsome!",
-						((palette) (obj20)), ((palette) (obj30)), ((Font) (obj39)), true, j, k, 0, 200, 0, true, true,
+						((Palette) (obj20)), ((Palette) (obj30)), ((Font) (obj39)), true, j, k, 0, 200, 0, true, true,
 						0, -1, 0);
 				lightGray(3000);
 				append(true);
@@ -389,7 +389,7 @@ final class gamemission {
 
 			case 300:
 				owner.NC = false;
-				oGameObjectlist oGameObjectlist1 = owner.vC;
+				GameObjectPool oGameObjectlist1 = owner.vC;
 				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
 				gray(0.0F, 0.0F, true, 30F);
 				owner.PC = 1;
@@ -424,14 +424,14 @@ final class gamemission {
 				Object obj12 = owner.flashcolor_yellow;
 				Object obj21 = owner.flashcolor_red;
 				Object obj31 = owner.hFontLarge;
-				show_flashstring(-1, "Choose One Of The Following", ((palette) (obj12)), ((palette) (obj21)),
+				show_flashstring(-1, "Choose One Of The Following", ((Palette) (obj12)), ((Palette) (obj21)),
 						((Font) (obj31)), true, j, j3, 0, 1000, 0, true, false, 0, -1, 0);
 				obj12 = owner.hFontSmall;
 				j3 += ((Font) (obj12)).C + (int) (35F * owner.viewScale);
 				obj12 = owner.flashcolor_white;
 				obj21 = owner.flashcolor_navy;
 				obj31 = owner.label_font;
-				show_flashstring(1, "Start Game", ((palette) (obj12)), ((palette) (obj21)), ((Font) (obj31)), true, j,
+				show_flashstring(1, "Start Game", ((Palette) (obj12)), ((Palette) (obj21)), ((Font) (obj31)), true, j,
 						j3, 0, 1000, 0, true, false, 0, -1, 0);
 				obj12 = owner.label_font;
 				j3 += ((Font) (obj12)).C + (int) (20F * owner.viewScale);
@@ -443,7 +443,7 @@ final class gamemission {
 				obj21 = owner.flashcolor_white;
 				obj31 = owner.flashcolor_navy;
 				Object obj40 = owner.label_font;
-				show_flashstring(2, ((String) (obj12)), ((palette) (obj21)), ((palette) (obj31)), ((Font) (obj40)),
+				show_flashstring(2, ((String) (obj12)), ((Palette) (obj21)), ((Palette) (obj31)), ((Font) (obj40)),
 						true, j, j3, 0, 1000, 0, true, false, 0, -1, 0);
 				obj21 = owner.label_font;
 				j3 += ((Font) (obj21)).C * 2 + (int) (20F * owner.viewScale);
@@ -451,7 +451,7 @@ final class gamemission {
 				obj31 = owner.flashcolor_white;
 				obj40 = owner.flashcolor_navy;
 				Font gamefont17 = owner.label_font;
-				show_flashstring(3, ((String) (obj21)), ((palette) (obj31)), ((palette) (obj40)), gamefont17, true, j,
+				show_flashstring(3, ((String) (obj21)), ((Palette) (obj31)), ((Palette) (obj40)), gamefont17, true, j,
 						j3,
 						0, 1000, 0, true, false, 0, -1, 0);
 				obj21 = owner.label_font;
@@ -459,7 +459,7 @@ final class gamemission {
 				obj21 = owner.flashcolor_white;
 				obj31 = owner.flashcolor_navy;
 				obj40 = owner.label_font;
-				show_flashstring(4, "Return To Demo Mode", ((palette) (obj21)), ((palette) (obj31)), ((Font) (obj40)),
+				show_flashstring(4, "Return To Demo Mode", ((Palette) (obj21)), ((Palette) (obj31)), ((Font) (obj40)),
 						true, j, j3, 0, 1000, 0, true, false, 0, -1, 0);
 				max();
 				lightGray(1000);
@@ -467,29 +467,29 @@ final class gamemission {
 				return;
 
 			case 301:
-				oGameObjectlist oGameObjectlist2 = owner.vC;
+				GameObjectPool oGameObjectlist2 = owner.vC;
 				oGameObjectlist2.I(true, null, -1, -1, -1, -1);
 				owner.PC = 1;
 				max(true, true, -1, -1, -1, -1, -1);
 				int k3 = (int) (120F * owner.viewScale);
 				Object obj13 = owner.flashcolor_yellow;
-				palette palette1 = owner.flashcolor_red;
+				Palette palette1 = owner.flashcolor_red;
 				Font gamefont8 = owner.hFontLarge;
-				show_flashstring(-1, "Choose Game Difficulty", ((palette) (obj13)), palette1, gamefont8, true, j, k3, 0,
+				show_flashstring(-1, "Choose Game Difficulty", ((Palette) (obj13)), palette1, gamefont8, true, j, k3, 0,
 						1000, 0, true, false, 0, -1, 0);
 				obj13 = owner.hFontSmall;
 				k3 += ((Font) (obj13)).C + (int) (35F * owner.viewScale);
 				obj13 = owner.flashcolor_white;
 				palette1 = owner.flashcolor_navy;
 				gamefont8 = owner.label_font;
-				show_flashstring(1, "Minor Skirmish", ((palette) (obj13)), palette1, gamefont8, true, j, k3, 0, 1000, 0,
+				show_flashstring(1, "Minor Skirmish", ((Palette) (obj13)), palette1, gamefont8, true, j, k3, 0, 1000, 0,
 						true, false, 0, -1, 0);
 				obj13 = owner.label_font;
 				k3 += ((Font) (obj13)).C + (int) (20F * owner.viewScale);
 				obj13 = owner.flashcolor_white;
 				palette1 = owner.flashcolor_navy;
 				gamefont8 = owner.label_font;
-				show_flashstring(2, "Under Attack", ((palette) (obj13)), palette1, gamefont8, true, j, k3, 0, 1000, 0,
+				show_flashstring(2, "Under Attack", ((Palette) (obj13)), palette1, gamefont8, true, j, k3, 0, 1000, 0,
 						true,
 						false, 0, -1, 0);
 				obj13 = owner.label_font;
@@ -497,7 +497,7 @@ final class gamemission {
 				obj13 = owner.flashcolor_white;
 				palette1 = owner.flashcolor_navy;
 				gamefont8 = owner.label_font;
-				show_flashstring(3, "Major Battle", ((palette) (obj13)), palette1, gamefont8, true, j, k3, 0, 1000, 0,
+				show_flashstring(3, "Major Battle", ((Palette) (obj13)), palette1, gamefont8, true, j, k3, 0, 1000, 0,
 						true,
 						false, 0, -1, 0);
 				obj13 = owner.label_font;
@@ -505,7 +505,7 @@ final class gamemission {
 				obj13 = owner.flashcolor_white;
 				palette1 = owner.flashcolor_navy;
 				gamefont8 = owner.label_font;
-				show_flashstring(4, "Blitzkrieg", ((palette) (obj13)), palette1, gamefont8, true, j, k3, 0, 1000, 0,
+				show_flashstring(4, "Blitzkrieg", ((Palette) (obj13)), palette1, gamefont8, true, j, k3, 0, 1000, 0,
 						true,
 						false, 0, -1, 0);
 				obj13 = owner.label_font;
@@ -513,7 +513,7 @@ final class gamemission {
 				obj13 = owner.flashcolor_white;
 				palette1 = owner.flashcolor_navy;
 				gamefont8 = owner.label_font;
-				show_flashstring(5, "Previous Menu", ((palette) (obj13)), palette1, gamefont8, true, j, k3, 0, 1000, 0,
+				show_flashstring(5, "Previous Menu", ((Palette) (obj13)), palette1, gamefont8, true, j, k3, 0, 1000, 0,
 						true, false, 0, -1, 0);
 				max();
 				lightGray(1000);
@@ -521,15 +521,15 @@ final class gamemission {
 				return;
 
 			case 302:
-				oGameObjectlist oGameObjectlist3 = owner.vC;
+				GameObjectPool oGameObjectlist3 = owner.vC;
 				oGameObjectlist3.I(true, null, -1, -1, -1, -1);
 				owner.PC = owner.QC;
 				max(true, true, -1, -1, -1, -1, -1);
 				int l3 = (int) (120F * owner.viewScale);
 				Object obj14 = owner.flashcolor_yellow;
-				palette palette2 = owner.flashcolor_red;
+				Palette palette2 = owner.flashcolor_red;
 				Font gamefont9 = owner.hFontLarge;
-				show_flashstring(-1, "Choose Detail Level", ((palette) (obj14)), palette2, gamefont9, true, j, l3, 0,
+				show_flashstring(-1, "Choose Detail Level", ((Palette) (obj14)), palette2, gamefont9, true, j, l3, 0,
 						1000,
 						0, true, false, 0, -1, 0);
 				obj14 = owner.hFontSmall;
@@ -537,21 +537,21 @@ final class gamemission {
 				obj14 = owner.flashcolor_white;
 				palette2 = owner.flashcolor_navy;
 				gamefont9 = owner.label_font;
-				show_flashstring(1, "Normal / High", ((palette) (obj14)), palette2, gamefont9, true, j, l3, 0, 1000, 0,
+				show_flashstring(1, "Normal / High", ((Palette) (obj14)), palette2, gamefont9, true, j, l3, 0, 1000, 0,
 						true, false, 0, -1, 0);
 				obj14 = owner.label_font;
 				l3 += ((Font) (obj14)).C + (int) (20F * owner.viewScale);
 				obj14 = owner.flashcolor_white;
 				palette2 = owner.flashcolor_navy;
 				gamefont9 = owner.label_font;
-				show_flashstring(2, "Medium", ((palette) (obj14)), palette2, gamefont9, true, j, l3, 0, 1000, 0, true,
+				show_flashstring(2, "Medium", ((Palette) (obj14)), palette2, gamefont9, true, j, l3, 0, 1000, 0, true,
 						false, 0, -1, 0);
 				obj14 = owner.label_font;
 				l3 += ((Font) (obj14)).C + (int) (20F * owner.viewScale);
 				obj14 = owner.flashcolor_white;
 				palette2 = owner.flashcolor_navy;
 				gamefont9 = owner.label_font;
-				show_flashstring(3, "Low", ((palette) (obj14)), palette2, gamefont9, true, j, l3, 0, 1000, 0, true,
+				show_flashstring(3, "Low", ((Palette) (obj14)), palette2, gamefont9, true, j, l3, 0, 1000, 0, true,
 						false,
 						0, -1, 0);
 				obj14 = owner.label_font;
@@ -559,7 +559,7 @@ final class gamemission {
 				obj14 = owner.flashcolor_white;
 				palette2 = owner.flashcolor_navy;
 				gamefont9 = owner.label_font;
-				show_flashstring(4, "Previous Menu", ((palette) (obj14)), palette2, gamefont9, true, j, l3, 0, 1000, 0,
+				show_flashstring(4, "Previous Menu", ((Palette) (obj14)), palette2, gamefont9, true, j, l3, 0, 1000, 0,
 						true, false, 0, -1, 0);
 				max();
 				lightGray(1000);
@@ -568,7 +568,7 @@ final class gamemission {
 
 			case 100: // 'd'
 				owner.NC = true;
-				oGameObjectlist oGameObjectlist4 = owner.vC;
+				GameObjectPool oGameObjectlist4 = owner.vC;
 				oGameObjectlist4.I(true, null, -1, -1, -1, -1);
 				max(true, true, -1, -1, -1, -1, -1);
 				P = 0;
@@ -585,8 +585,8 @@ final class gamemission {
 				P++;
 				toString(1);
 				gray(0.0F, 0.0F, true, 30F);
-				palette palette11 = owner.flashcolor_red;
-				palette palette16 = owner.HZ;
+				Palette palette11 = owner.flashcolor_red;
+				Palette palette16 = owner.HZ;
 				Object obj46 = owner.hFontLarge;
 				show_flashstring(-1, "Mission One - Defilers", palette11, palette16, ((Font) (obj46)), true, l, i1, 0,
 						80, 0, true, false, 0, -1, 0);
@@ -631,7 +631,7 @@ final class gamemission {
 				obj46 = owner.flashcolor_red;
 				Object obj47 = owner.label_font;
 				show_flashstring(-1, "It's The United Fleet!||The Dogs Mean To End The War", temp_palette_2,
-						((palette) (obj46)), ((Font) (obj47)), true, j1, k1, 0, 100, 0, true, true, 1, -1, 0);
+						((Palette) (obj46)), ((Font) (obj47)), true, j1, k1, 0, 100, 0, true, true, 1, -1, 0);
 				lightGray(20);
 				f64 = f + 100F * owner.viewScale;
 				float f68 = f19 - 100F * owner.viewScale;
@@ -646,7 +646,7 @@ final class gamemission {
 				temp_palette_1 = owner.flashcolor_yellow;
 				obj47 = owner.flashcolor_red;
 				Object obj48 = owner.label_font;
-				show_flashstring(-1, "All Remaining Forces... Attack!", temp_palette_1, ((palette) (obj47)),
+				show_flashstring(-1, "All Remaining Forces... Attack!", temp_palette_1, ((Palette) (obj47)),
 						((Font) (obj48)), true, j1, k1, 0, 100, 0, true, true, 1, -1, 0);
 				lightGray(50);
 				f68 = f + 550F * owner.viewScale;
@@ -749,11 +749,11 @@ final class gamemission {
 				float f1 = owner.worldBorderLeft + owner.worldHrz * 0.25F;
 				float f20 = owner.worldBorderTop + owner.worldVrt * 0.75F;
 				Object obj22 = owner.vC;
-				((oGameObjectlist) (obj22)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj22)).I(true, null, -1, -1, -1, -1);
 				obj22 = owner.vZ;
-				((oGameObjectlist) (obj22)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj22)).I(true, null, -1, -1, -1, -1);
 				obj22 = owner.wZ;
-				((oGameObjectlist) (obj22)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj22)).I(true, null, -1, -1, -1, -1);
 				out(-1, -1, -1, -1, 100, ((sprite_group) (null)), 2, 1);
 				random(0.0F, 2, -1, -1, -1, 100);
 				getName(0.25F);
@@ -779,7 +779,7 @@ final class gamemission {
 				temp_palette_1 = owner.flashcolor_yellow;
 				Object obj32 = owner.flashcolor_red;
 				Font gamefont10 = owner.label_font;
-				show_flashstring(-1, "Re-Enforcements Have Arrived", temp_palette_1, ((palette) (obj32)), gamefont10,
+				show_flashstring(-1, "Re-Enforcements Have Arrived", temp_palette_1, ((Palette) (obj32)), gamefont10,
 						true,
 						j1, k1, 0, 80, 0, true, true, 1, -1, 0);
 				toString(2, 1, -1, -1, -1, -1);
@@ -788,7 +788,7 @@ final class gamemission {
 				temp_palette_1 = owner.AZ;
 				obj32 = owner.flashcolor_navy;
 				gamefont10 = owner.hFontSmall;
-				show_flashstring(-1, "KFS Vengeance", temp_palette_1, ((palette) (obj32)), gamefont10, false, 0, 0, 0,
+				show_flashstring(-1, "KFS Vengeance", temp_palette_1, ((Palette) (obj32)), gamefont10, false, 0, 0, 0,
 						80,
 						0, true, true, 1, 101, 2);
 				lightGray(40);
@@ -798,7 +798,7 @@ final class gamemission {
 				gamefont10 = owner.label_font;
 				show_flashstring(-1,
 						"Protect These Ships Until|More Re-Enforcements Arrive.||Atleast One Ship Must Survive!",
-						temp_palette_1, ((palette) (obj32)), gamefont10, true, j1, k1, 0, 200, 0, true, true, 1, -1, 0);
+						temp_palette_1, ((Palette) (obj32)), gamefont10, true, j1, k1, 0, 200, 0, true, true, 1, -1, 0);
 				gray(2, 120, 201, 5.5F + 0.4F * Q);
 				lightGray(2, Math.max(70 + -4 * Q, 23), 5, 1);
 				lightGray(150);
@@ -822,7 +822,7 @@ final class gamemission {
 				temp_palette_1 = owner.flashcolor_white;
 				obj32 = owner.flashcolor_navy;
 				gamefont10 = owner.hFontLarge;
-				show_flashstring(-1, "All Clear!", temp_palette_1, ((palette) (obj32)), gamefont10, true, j1, k1, 0, 90,
+				show_flashstring(-1, "All Clear!", temp_palette_1, ((Palette) (obj32)), gamefont10, true, j1, k1, 0, 90,
 						0,
 						true, false, 0, -1, 0);
 				getName(owner.NZ, owner.cZ, false);
@@ -834,20 +834,20 @@ final class gamemission {
 				float f2 = owner.worldBorderLeft + owner.worldHrz * 0.25F;
 				float f21 = owner.worldBorderTop + owner.worldVrt * 0.75F;
 				Object obj23 = owner.wZ;
-				((oGameObjectlist) (obj23)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj23)).I(true, null, -1, -1, -1, -1);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				P++;
 				obj23 = owner.flashcolor_red;
-				palette palette3 = owner.HZ;
+				Palette palette3 = owner.HZ;
 				Font gamefont11 = owner.hFontLarge;
-				show_flashstring(-1, "Mission Two - The Gathering", ((palette) (obj23)), palette3, gamefont11, true, l,
+				show_flashstring(-1, "Mission Two - The Gathering", ((Palette) (obj23)), palette3, gamefont11, true, l,
 						i1,
 						0, 80, 0, true, false, 0, -1, 0);
 				getName(owner.NZ, owner.zZ, false);
 				obj23 = owner.flashcolor_white;
 				palette3 = owner.flashcolor_navy;
 				gamefont11 = owner.label_font;
-				show_flashstring(10, "Skip Intro", ((palette) (obj23)), palette3, gamefont11, true, j2, k2, 0, 10000, 0,
+				show_flashstring(10, "Skip Intro", ((Palette) (obj23)), palette3, gamefont11, true, j2, k2, 0, 10000, 0,
 						true, false, 0, -1, 0);
 				lightGray(10);
 				float f41 = f2 + 250F * owner.viewScale;
@@ -899,17 +899,17 @@ final class gamemission {
 
 			case 111: // 'o'
 				Object obj4 = owner.vC;
-				((oGameObjectlist) (obj4)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj4)).I(true, null, -1, -1, -1, -1);
 				getName(0.25F);
 				compareTo(1, 110);
 				compareTo(2, 100);
 				compareTo(3, 100);
 				valueOf(1, -1, -1, -1, -1, "");
 				lightGray(101, true);
-				append(1, 1102, owner.vZ.C, -1);
+				append(1, 1102, owner.vZ.mySize, -1);
 				float f3 = owner.worldBorderRight - 500F * owner.viewScale;
 				float f22 = owner.worldBorderTop + 500F * owner.viewScale;
-				palette f4 = null;
+				Palette f4 = null;
 				red(1, f3, f22, -1, 1);
 				abs(2, false, true, true, false);
 				f4 = owner.flashcolor_yellow;
@@ -918,7 +918,7 @@ final class gamemission {
 				show_flashstring(-1,
 						"Protect The Ships As They Are|Dispatched To The Jump Point||Atleast One Ship Must Survive!",
 						f4,
-						((palette) (obj15)), gamefont3, true, j1, k1, 0, 200, 0, true, true, 1, -1, 0);
+						((Palette) (obj15)), gamefont3, true, j1, k1, 0, 200, 0, true, true, 1, -1, 0);
 				lightGray(100);
 				abs(1, 3, 2, 160 + 40 * Q, 40);
 				gray(2, 200, 203, 5.5F + 0.4F * Q);
@@ -948,7 +948,7 @@ final class gamemission {
 				f4 = owner.flashcolor_white;
 				obj15 = owner.flashcolor_navy;
 				gamefont3 = owner.hFontLarge;
-				show_flashstring(-1, "All Clear!", f4, ((palette) (obj15)), gamefont3, true, j1, k1, 0, 90, 0, true,
+				show_flashstring(-1, "All Clear!", f4, ((Palette) (obj15)), gamefont3, true, j1, k1, 0, 90, 0, true,
 						false,
 						0, -1, 0);
 				getName(owner.NZ, owner.cZ, false);
@@ -968,7 +968,7 @@ final class gamemission {
 				float f74 = owner.worldBorderLeft + owner.worldHrz * 0.5F;
 				float f75 = owner.worldBorderTop + owner.worldVrt * 0.6F;
 				Object obj49 = owner.wZ;
-				((oGameObjectlist) (obj49)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj49)).I(true, null, -1, -1, -1, -1);
 				P++;
 				toString(2);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
@@ -1107,18 +1107,18 @@ final class gamemission {
 				float f5 = owner.worldBorderLeft + owner.worldHrz * 0.2F;
 				float f24 = owner.worldBorderTop + owner.worldVrt * 0.2F;
 				Object obj24 = owner.vC;
-				((oGameObjectlist) (obj24)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj24)).I(true, null, -1, -1, -1, -1);
 				getName(0.3F);
 				compareTo(1, 80);
 				compareTo(2, 80);
 				compareTo(3, 100);
 				compareTo(5, 110);
 				obj24 = owner.flashcolor_yellow;
-				palette palette4 = owner.flashcolor_red;
+				Palette palette4 = owner.flashcolor_red;
 				Font gamefont12 = owner.label_font;
 				show_flashstring(-1,
 						"Destroy Their Re-Enforcements|Then Destroy Their Outpost||Atleast One Ship Must Survive!",
-						((palette) (obj24)), palette4, gamefont12, true, j1, k1, 0, 200, 0, true, true, 1, -1, 0);
+						((Palette) (obj24)), palette4, gamefont12, true, j1, k1, 0, 200, 0, true, true, 1, -1, 0);
 				float f43 = f5 + 200F * owner.viewScale;
 				float f53 = f24 + 200F * owner.viewScale;
 				red(2, f43, f53, -1, 3);
@@ -1156,21 +1156,21 @@ final class gamemission {
 				float f25 = owner.worldBorderTop + owner.worldVrt * 0.2F;
 				P++;
 				Object obj25 = owner.wZ;
-				((oGameObjectlist) (obj25)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj25)).I(true, null, -1, -1, -1, -1);
 				toString(4);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				F(1, -1, -1, -1, -1, 3);
 				gray(f6, f25, true, 30F);
 				obj25 = owner.flashcolor_red;
-				palette palette5 = owner.HZ;
+				Palette palette5 = owner.HZ;
 				Object obj41 = owner.hFontLarge;
-				show_flashstring(-1, "Mission Four - Transport Alley", ((palette) (obj25)), palette5, ((Font) (obj41)),
+				show_flashstring(-1, "Mission Four - Transport Alley", ((Palette) (obj25)), palette5, ((Font) (obj41)),
 						true, l, i1, 0, 80, 0, true, false, 0, -1, 0);
 				getName(owner.NZ, owner.zZ, false);
 				obj25 = owner.flashcolor_white;
 				palette5 = owner.flashcolor_navy;
 				obj41 = owner.label_font;
-				show_flashstring(10, "Skip Intro", ((palette) (obj25)), palette5, ((Font) (obj41)), true, j2, k2, 0,
+				show_flashstring(10, "Skip Intro", ((Palette) (obj25)), palette5, ((Font) (obj41)), true, j2, k2, 0,
 						10000, 0, true, false, 0, -1, 0);
 				lightGray(10);
 				gray(f6, f25, false, 30F);
@@ -1179,7 +1179,7 @@ final class gamemission {
 				obj25 = owner.flashcolor_yellow;
 				palette5 = owner.flashcolor_red;
 				obj41 = owner.label_font;
-				show_flashstring(-1, "Entering The Wolf 359 System", ((palette) (obj25)), palette5, ((Font) (obj41)),
+				show_flashstring(-1, "Entering The Wolf 359 System", ((Palette) (obj25)), palette5, ((Font) (obj41)),
 						true, j1, k1, 0, 80, 0, true, true, 1, -1, 0);
 				lightGray(10);
 				max(1, f6, f25, 350F, 350F);
@@ -1195,13 +1195,13 @@ final class gamemission {
 				Font gamefont18 = owner.label_font;
 				show_flashstring(-1,
 						"Empire Worlds Are Under Siege Here||We Must Break The Terran Siege And|Drive Them From This System",
-						palette5, ((palette) (obj41)), gamefont18, true, j1, k1, 0, 180, 0, true, true, 1, -1, 0);
+						palette5, ((Palette) (obj41)), gamefont18, true, j1, k1, 0, 180, 0, true, true, 1, -1, 0);
 				lightGray(190);
 				palette5 = owner.flashcolor_yellow;
 				obj41 = owner.flashcolor_red;
 				gamefont18 = owner.label_font;
 				show_flashstring(-1, "Terran Tranports Are Attempting|star_blinking Re-Supply Run To Their Forces",
-						palette5, ((palette) (obj41)), gamefont18, true, j1, k1, 0, 150, 0, true, true, 1, -1, 0);
+						palette5, ((Palette) (obj41)), gamefont18, true, j1, k1, 0, 150, 0, true, true, 1, -1, 0);
 				lightGray(160);
 				red(131);
 				return;
@@ -1210,7 +1210,7 @@ final class gamemission {
 				float f7 = owner.worldBorderLeft + owner.worldHrz * 0.5F;
 				float f26 = owner.worldBorderTop + owner.worldVrt * 0.2F;
 				Object obj26 = owner.vC;
-				((oGameObjectlist) (obj26)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj26)).I(true, null, -1, -1, -1, -1);
 				getName(0.33F);
 				compareTo(2, 100);
 				compareTo(3, 100);
@@ -1219,7 +1219,7 @@ final class gamemission {
 				Font gamefont13 = owner.label_font;
 				show_flashstring(-1,
 						"Prevent The Terran Transports|From Reaching The Jump Point||Every Last Transport Must Be Destroyed!",
-						((palette) (obj26)), ((palette) (obj33)), gamefont13, true, j1, k1, 0, 200, 0, true, true, 1,
+						((Palette) (obj26)), ((Palette) (obj33)), gamefont13, true, j1, k1, 0, 200, 0, true, true, 1,
 						-1,
 						0);
 				abs(2, false, false, false, true);
@@ -1252,7 +1252,7 @@ final class gamemission {
 				obj26 = owner.flashcolor_white;
 				obj33 = owner.flashcolor_navy;
 				gamefont13 = owner.hFontLarge;
-				show_flashstring(-1, "All Clear!", ((palette) (obj26)), ((palette) (obj33)), gamefont13, true, j1, k1,
+				show_flashstring(-1, "All Clear!", ((Palette) (obj26)), ((Palette) (obj33)), gamefont13, true, j1, k1,
 						0,
 						90, 0, true, false, 0, -1, 0);
 				getName(owner.NZ, owner.cZ, false);
@@ -1266,13 +1266,13 @@ final class gamemission {
 				Object obj5 = owner.flashcolor_white;
 				Object obj16 = owner.flashcolor_navy;
 				Font gamefont4 = owner.hFontSmall;
-				show_flashstring(-1, "Objectives Failed||Aborting Mission", ((palette) (obj5)), ((palette) (obj16)),
+				show_flashstring(-1, "Objectives Failed||Aborting Mission", ((Palette) (obj5)), ((Palette) (obj16)),
 						gamefont4, true, l1, i2, 0, 150, 0, true, true, 1, -1, 0);
 				lightGray(100);
 				obj5 = owner.flashcolor_white;
 				obj16 = owner.flashcolor_navy;
 				gamefont4 = owner.label_font;
-				show_flashstring(-1, "An Enemy Transport Has Escaped!", ((palette) (obj5)), ((palette) (obj16)),
+				show_flashstring(-1, "An Enemy Transport Has Escaped!", ((Palette) (obj5)), ((Palette) (obj16)),
 						gamefont4,
 						true, j1, k1, 0, 190, 0, true, true, 1, -1, 0);
 				max(true, false, -1, -1, -1, -1, -1);
@@ -1290,26 +1290,26 @@ final class gamemission {
 
 			case 140:
 				Object obj6 = owner.dZ;
-				obj6 = ((oGameObjectlist) (obj6)).C <= 0 ? null : ((Object) (((oGameObjectlist) (obj6)).Z[0]));
+				obj6 = ((GameObjectPool) (obj6)).mySize <= 0 ? null : ((Object) (((GameObjectPool) (obj6)).internalList[0]));
 				float f27 = ((GameObject) (obj6)).J - 100F * owner.viewScale;
 				float f44 = ((GameObject) (obj6)).S;
 				P++;
 				Object obj34 = owner.wZ;
-				((oGameObjectlist) (obj34)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj34)).I(true, null, -1, -1, -1, -1);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				red(1, 0.0F, 0.0F, -1, 4);
 				gray(f27, f44, true, 30F);
 				obj34 = owner.flashcolor_red;
-				palette palette12 = owner.HZ;
+				Palette palette12 = owner.HZ;
 				Font gamefont19 = owner.hFontLarge;
-				show_flashstring(-1, "Mission Five - Siege Lines", ((palette) (obj34)), palette12, gamefont19, true, l,
+				show_flashstring(-1, "Mission Five - Siege Lines", ((Palette) (obj34)), palette12, gamefont19, true, l,
 						i1,
 						0, 80, 0, true, false, 0, -1, 0);
 				getName(owner.NZ, owner.zZ, false);
 				obj34 = owner.flashcolor_white;
 				palette12 = owner.flashcolor_navy;
 				gamefont19 = owner.label_font;
-				show_flashstring(10, "Skip Intro", ((palette) (obj34)), palette12, gamefont19, true, j2, k2, 0, 10000,
+				show_flashstring(10, "Skip Intro", ((Palette) (obj34)), palette12, gamefont19, true, j2, k2, 0, 10000,
 						0,
 						true, false, 0, -1, 0);
 				lightGray(10);
@@ -1320,7 +1320,7 @@ final class gamemission {
 				palette12 = owner.flashcolor_red;
 				gamefont19 = owner.label_font;
 				show_flashstring(-1, "The Terrans Have Detected Us|And Dispatched Forces To Deal With Us",
-						((palette) (obj34)), palette12, gamefont19, true, j1, k1, 0, 150, 0, true, true, 1, -1, 0);
+						((Palette) (obj34)), palette12, gamefont19, true, j1, k1, 0, 150, 0, true, true, 1, -1, 0);
 				lightGray(10);
 				lightGray(101, false);
 				lightGray(150);
@@ -1329,7 +1329,8 @@ final class gamemission {
 
 			case 141:
 				Object obj7 = owner.vC;
-				((oGameObjectlist) (obj7)).I(true, null, -1, -1, -1, -1);
+				owner.vC.I(true, null, -1, -1, -1, -1);
+				
 				getName(0.25F);
 				compareTo(1, 120);
 				compareTo(2, 60);
@@ -1340,7 +1341,7 @@ final class gamemission {
 				Object obj17 = owner.flashcolor_red;
 				Font gamefont5 = owner.label_font;
 				show_flashstring(-1, "Destroy All Incoming Enemies||Protect Your Ships||Atleast One Ship Must Survive!",
-						((palette) (obj7)), ((palette) (obj17)), gamefont5, true, j1, k1, 0, 200, 0, true, true, 1, -1,
+						((Palette) (obj7)), ((Palette) (obj17)), gamefont5, true, j1, k1, 0, 200, 0, true, true, 1, -1,
 						0);
 				abs(2, true, true, true, false);
 				abs(1, 3, -1, 0, 0);
@@ -1376,7 +1377,7 @@ final class gamemission {
 				obj7 = owner.flashcolor_white;
 				obj17 = owner.flashcolor_navy;
 				gamefont5 = owner.hFontLarge;
-				show_flashstring(-1, "All Clear!", ((palette) (obj7)), ((palette) (obj17)), gamefont5, true, j1, k1, 0,
+				show_flashstring(-1, "All Clear!", ((Palette) (obj7)), ((Palette) (obj17)), gamefont5, true, j1, k1, 0,
 						90,
 						0, true, false, 0, -1, 0);
 				getName(owner.NZ, owner.cZ, false);
@@ -1389,10 +1390,10 @@ final class gamemission {
 			case 150:
 				float f8 = owner.worldBorderLeft + owner.worldHrz * 0.7F;
 				float f28 = owner.worldBorderTop + owner.worldVrt * 0.3F;
-				palette temp_palette;
+				Palette temp_palette;
 				P++;
 				Object obj27 = owner.wZ;
-				((oGameObjectlist) (obj27)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj27)).I(true, null, -1, -1, -1, -1);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				F(1, -1, -1, -1, -1, 3);
 				toString(3);
@@ -1406,7 +1407,7 @@ final class gamemission {
 				blue(1, false, false, 1.0F);
 				gray(f8, f28, true, 30F);
 				temp_palette = owner.flashcolor_red;
-				palette palette6 = owner.HZ;
+				Palette palette6 = owner.HZ;
 				Font gamefont14 = owner.hFontLarge;
 				show_flashstring(-1, "Mission Six - Desparate Times", temp_palette, palette6, gamefont14, true, l, i1,
 						0,
@@ -1446,7 +1447,7 @@ final class gamemission {
 			case 151:
 				float f9 = owner.worldBorderLeft + owner.worldHrz * 0.7F;
 				float f29 = owner.worldBorderTop + owner.worldVrt * 0.3F;
-				oGameObjectlist oGameObjectlist5 = owner.vC;
+				GameObjectPool oGameObjectlist5 = owner.vC;
 				oGameObjectlist5.I(true, null, -1, -1, -1, -1);
 				getName(0.25F);
 				compareTo(1, 120);
@@ -1481,7 +1482,7 @@ final class gamemission {
 				Font gamefont20 = owner.label_font;
 				show_flashstring(-1,
 						"Hold Off The United Fleet Advance||Protect The Ships And Outposts||Atleast One Must Survive!",
-						((palette) (obj35)), ((palette) (obj42)), gamefont20, true, j1, k1, 0, 200, 0, true, true, 1,
+						((Palette) (obj35)), ((Palette) (obj42)), gamefont20, true, j1, k1, 0, 200, 0, true, true, 1,
 						-1,
 						0);
 				abs(2, false, false, false, true);
@@ -1518,7 +1519,7 @@ final class gamemission {
 				obj35 = owner.flashcolor_white;
 				obj42 = owner.flashcolor_navy;
 				gamefont20 = owner.hFontLarge;
-				show_flashstring(-1, "All Clear!", ((palette) (obj35)), ((palette) (obj42)), gamefont20, true, j1, k1,
+				show_flashstring(-1, "All Clear!", ((Palette) (obj35)), ((Palette) (obj42)), gamefont20, true, j1, k1,
 						0,
 						90, 0, true, false, 0, -1, 0);
 				getName(owner.NZ, owner.cZ, false);
@@ -1532,7 +1533,7 @@ final class gamemission {
 				float f10 = owner.worldBorderLeft + owner.worldHrz * 0.8F;
 				float f30 = owner.worldBorderLeft + owner.worldHrz * 0.2F;
 				P++;
-				oGameObjectlist oGameObjectlist6 = owner.wZ;
+				GameObjectPool oGameObjectlist6 = owner.wZ;
 				oGameObjectlist6.I(true, null, -1, -1, -1, -1);
 				max(true, true, 1, -1, -1, 130, -1);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
@@ -1546,8 +1547,8 @@ final class gamemission {
 						300F * owner.viewScale, 8F);
 				blue(1, false, false, 1.0F);
 				gray(f10, 0.0F, true, 30F);
-				palette palette7 = owner.flashcolor_red;
-				palette palette13 = owner.HZ;
+				Palette palette7 = owner.flashcolor_red;
+				Palette palette13 = owner.HZ;
 				Font gamefont21 = owner.hFontLarge;
 				show_flashstring(-1, "Mission Seven - Starbase 69", palette7, palette13, gamefont21, true, l, i1, 0, 80,
 						0,
@@ -1581,7 +1582,7 @@ final class gamemission {
 			case 161:
 				float f11 = owner.worldBorderLeft + owner.worldHrz * 0.8F;
 				float f31 = owner.worldBorderLeft + owner.worldHrz * 0.2F;
-				oGameObjectlist oGameObjectlist7 = owner.vC;
+				GameObjectPool oGameObjectlist7 = owner.vC;
 				oGameObjectlist7.I(true, null, -1, -1, -1, -1);
 				getName(0.25F);
 				compareTo(1, 120);
@@ -1608,7 +1609,7 @@ final class gamemission {
 				Font gamefont22 = owner.label_font;
 				show_flashstring(-1,
 						"Protect The Transports As|They Make Their Supply Run||At Most Six Transports Can Be Lost!",
-						((palette) (obj36)), ((palette) (obj43)), gamefont22, true, j1, k1, 0, 200, 0, true, true, 1,
+						((Palette) (obj36)), ((Palette) (obj43)), gamefont22, true, j1, k1, 0, 200, 0, true, true, 1,
 						-1,
 						0);
 				abs(2, false, true, false, true);
@@ -1663,7 +1664,7 @@ final class gamemission {
 				obj36 = owner.flashcolor_white;
 				obj43 = owner.flashcolor_navy;
 				gamefont22 = owner.hFontLarge;
-				show_flashstring(-1, "All Clear!", ((palette) (obj36)), ((palette) (obj43)), gamefont22, true, j1, k1,
+				show_flashstring(-1, "All Clear!", ((Palette) (obj36)), ((Palette) (obj43)), gamefont22, true, j1, k1,
 						0,
 						90, 0, true, false, 0, -1, 0);
 				getName(owner.NZ, owner.cZ, false);
@@ -1679,13 +1680,13 @@ final class gamemission {
 				Object obj8 = owner.flashcolor_white;
 				Object obj18 = owner.flashcolor_navy;
 				Font gamefont6 = owner.hFontSmall;
-				show_flashstring(-1, "Objectives Failed||Aborting Mission", ((palette) (obj8)), ((palette) (obj18)),
+				show_flashstring(-1, "Objectives Failed||Aborting Mission", ((Palette) (obj8)), ((Palette) (obj18)),
 						gamefont6, true, l1, i2, 0, 150, 0, true, true, 1, -1, 0);
 				lightGray(100);
 				obj8 = owner.flashcolor_white;
 				obj18 = owner.flashcolor_navy;
 				gamefont6 = owner.label_font;
-				show_flashstring(-1, "Too Many Transports Have Been Lost!", ((palette) (obj8)), ((palette) (obj18)),
+				show_flashstring(-1, "Too Many Transports Have Been Lost!", ((Palette) (obj8)), ((Palette) (obj18)),
 						gamefont6, true, j1, k1, 0, 190, 0, true, true, 1, -1, 0);
 				max(true, false, -1, -1, -1, -1, -1);
 				lightGray(140);
@@ -1706,23 +1707,23 @@ final class gamemission {
 				P++;
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				Object obj28 = owner.wZ;
-				((oGameObjectlist) (obj28)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj28)).I(true, null, -1, -1, -1, -1);
 				max(true, true, 1, -1, -1, 100, -1);
 				max(true, true, 1, -1, -1, 131, -1);
 				F(1, -1, -1, -1, -1, 3);
 				toString(6);
 				gray(f12, f32, true, 30F);
 				obj28 = owner.flashcolor_red;
-				palette palette8 = owner.HZ;
+				Palette palette8 = owner.HZ;
 				Font gamefont15 = owner.hFontLarge;
-				show_flashstring(-1, "Mission Eight - Carrier Battle", ((palette) (obj28)), palette8, gamefont15, true,
+				show_flashstring(-1, "Mission Eight - Carrier Battle", ((Palette) (obj28)), palette8, gamefont15, true,
 						l,
 						i1, 0, 80, 0, true, false, 0, -1, 0);
 				getName(owner.NZ, owner.zZ, false);
 				obj28 = owner.flashcolor_white;
 				palette8 = owner.flashcolor_navy;
 				gamefont15 = owner.label_font;
-				show_flashstring(10, "Skip Intro", ((palette) (obj28)), palette8, gamefont15, true, j2, k2, 0, 10000, 0,
+				show_flashstring(10, "Skip Intro", ((Palette) (obj28)), palette8, gamefont15, true, j2, k2, 0, 10000, 0,
 						true, false, 0, -1, 0);
 				lightGray(90);
 				getName();
@@ -1731,14 +1732,14 @@ final class gamemission {
 				gamefont15 = owner.label_font;
 				show_flashstring(-1,
 						"The Day Of Our Revenge Begins Now||The Assualt Will Now Commence|On The Terran Home System",
-						((palette) (obj28)), palette8, gamefont15, true, j1, k1, 0, 180, 0, true, true, 1, -1, 0);
+						((Palette) (obj28)), palette8, gamefont15, true, j1, k1, 0, 180, 0, true, true, 1, -1, 0);
 				lightGray(190);
 				getName();
 				obj28 = owner.flashcolor_yellow;
 				palette8 = owner.flashcolor_red;
 				gamefont15 = owner.label_font;
 				show_flashstring(-1, "We Will Jump In Just Outside Of|Saturn And Destroy Their Carrier Forces",
-						((palette) (obj28)), palette8, gamefont15, true, j1, k1, 0, 130, 0, true, true, 1, -1, 0);
+						((Palette) (obj28)), palette8, gamefont15, true, j1, k1, 0, 130, 0, true, true, 1, -1, 0);
 				lightGray(140);
 				red(171);
 				return;
@@ -1746,7 +1747,7 @@ final class gamemission {
 			case 171:
 				float f13 = owner.worldBorderLeft + owner.worldHrz * 0.4F;
 				float f33 = owner.worldBorderTop + owner.worldVrt * 0.5F;
-				oGameObjectlist oGameObjectlist8 = owner.vC;
+				GameObjectPool oGameObjectlist8 = owner.vC;
 				oGameObjectlist8.I(true, null, -1, -1, -1, -1);
 				getName(0.25F);
 				compareTo(1, 100);
@@ -1769,7 +1770,7 @@ final class gamemission {
 				Object obj44 = owner.flashcolor_red;
 				Font gamefont23 = owner.label_font;
 				show_flashstring(-1, "Destroy All Enemy Ships||Protect Our Ships||Atleast One Must Survive!",
-						((palette) (obj37)), ((palette) (obj44)), gamefont23, true, j1, k1, 0, 200, 0, true, true, 1,
+						((Palette) (obj37)), ((Palette) (obj44)), gamefont23, true, j1, k1, 0, 200, 0, true, true, 1,
 						-1,
 						0);
 				abs(1, 3, -1, 0, 0);
@@ -1804,7 +1805,7 @@ final class gamemission {
 				obj37 = owner.flashcolor_white;
 				obj44 = owner.flashcolor_navy;
 				gamefont23 = owner.hFontLarge;
-				show_flashstring(-1, "All Clear!", ((palette) (obj37)), ((palette) (obj44)), gamefont23, true, j1, k1,
+				show_flashstring(-1, "All Clear!", ((Palette) (obj37)), ((Palette) (obj44)), gamefont23, true, j1, k1,
 						0,
 						90, 0, true, false, 0, -1, 0);
 				getName(owner.NZ, owner.cZ, false);
@@ -1820,7 +1821,7 @@ final class gamemission {
 				float f47 = owner.worldBorderLeft + owner.worldHrz * 0.2F;
 				float f56 = owner.worldBorderTop + owner.worldVrt * 0.2F;
 				P++;
-				oGameObjectlist oGameObjectlist11 = owner.wZ;
+				GameObjectPool oGameObjectlist11 = owner.wZ;
 				oGameObjectlist11.I(true, null, -1, -1, -1, -1);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				F(1, -1, -1, -1, -1, 3);
@@ -1842,8 +1843,8 @@ final class gamemission {
 				f66 = f14 - 80F * owner.viewScale;
 				float f70 = f34 - 80F * owner.viewScale;
 				gray(f66, f70, true, 30F);
-				palette palette17 = owner.flashcolor_red;
-				palette palette19 = owner.HZ;
+				Palette palette17 = owner.flashcolor_red;
+				Palette palette19 = owner.HZ;
 				Font gamefont28 = owner.hFontLarge;
 				show_flashstring(-1, "Mission Nine - God Of War", palette17, palette19, gamefont28, true, l, i1, 0, 80,
 						0,
@@ -1878,7 +1879,7 @@ final class gamemission {
 			case 181:
 				float f15 = owner.worldBorderLeft + owner.worldHrz * 0.2F;
 				float f35 = owner.worldBorderTop + owner.worldVrt * 0.2F;
-				oGameObjectlist oGameObjectlist9 = owner.vC;
+				GameObjectPool oGameObjectlist9 = owner.vC;
 				oGameObjectlist9.I(true, null, -1, -1, -1, -1);
 				getName(0.25F);
 				compareTo(1, 100);
@@ -1896,8 +1897,8 @@ final class gamemission {
 				int ai7[] = { 122, 120, 121, -1 };
 				instance_create_group(1, ai7, 2, true, f15, f35, 400F * owner.viewScale, 3F);
 				blue(1, false, false, 1.0F);
-				palette palette9 = owner.flashcolor_yellow;
-				palette palette14 = owner.flashcolor_red;
+				Palette palette9 = owner.flashcolor_yellow;
+				Palette palette14 = owner.flashcolor_red;
 				Font gamefont24 = owner.label_font;
 				show_flashstring(-1, "Destroy All United Fleet Forces||Protect Your Ships||Atleast One Must Survive!",
 						palette9, palette14, gamefont24, true, j1, k1, 0, 200, 0, true, true, 1, -1, 0);
@@ -1931,7 +1932,7 @@ final class gamemission {
 				float f48 = owner.worldBorderLeft + owner.worldHrz * 0.2F;
 				float f57 = owner.worldBorderTop + owner.worldVrt * 0.8F;
 				P++;
-				oGameObjectlist oGameObjectlist12 = owner.wZ;
+				GameObjectPool oGameObjectlist12 = owner.wZ;
 				oGameObjectlist12.I(true, null, -1, -1, -1, -1);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				F(1, -1, -1, -1, -1, 3);
@@ -1957,8 +1958,8 @@ final class gamemission {
 				red(2, f16 - 350F * owner.viewScale,
 						f36 - 100F * owner.viewScale, 212, 4);
 				gray(f16, f36, true, 30F);
-				palette palette18 = owner.flashcolor_red;
-				palette palette20 = owner.HZ;
+				Palette palette18 = owner.flashcolor_red;
+				Palette palette20 = owner.HZ;
 				Font gamefont29 = owner.hFontLarge;
 				show_flashstring(-1, "Final Mission - Apocalypse Now", palette18, palette20, gamefont29, true, l, i1, 0,
 						80,
@@ -1994,7 +1995,7 @@ final class gamemission {
 			case 191:
 				float f17 = owner.worldBorderLeft + owner.worldHrz * 0.2F;
 				float f37 = owner.worldBorderTop + owner.worldVrt * 0.8F;
-				oGameObjectlist oGameObjectlist10 = owner.vC;
+				GameObjectPool oGameObjectlist10 = owner.vC;
 				oGameObjectlist10.I(true, null, -1, -1, -1, -1);
 				getName(0.25F);
 				compareTo(1, 120);
@@ -2015,8 +2016,8 @@ final class gamemission {
 				float f63 = f37 + 150F * owner.viewScale;
 				instance_create(1, 123, 2, false, f58, f63, 3F, -1, "");
 				blue(1, false, false, 1.0F);
-				palette palette10 = owner.flashcolor_yellow;
-				palette palette15 = owner.flashcolor_red;
+				Palette palette10 = owner.flashcolor_yellow;
+				Palette palette15 = owner.flashcolor_red;
 				Font gamefont25 = owner.label_font;
 				show_flashstring(-1,
 						"Destroy All United Fleet Forces||Only Their Complete And Utter|Destruction Is Acceptable!",
@@ -2045,7 +2046,7 @@ final class gamemission {
 				float f18 = owner.worldBorderLeft + owner.worldHrz * 0.65F;
 				float f38 = owner.worldBorderTop + owner.worldVrt * 0.3F;
 				Object obj29 = owner.wZ;
-				((oGameObjectlist) (obj29)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj29)).I(true, null, -1, -1, -1, -1);
 				random(1);
 				lightGray(80);
 				append(true);
@@ -2057,7 +2058,7 @@ final class gamemission {
 				Object obj45 = owner.label_font;
 				show_flashstring(-1,
 						"The Earth Is Defenseless...||The Terrans Will Now Pay|For Desvastating Our Homeworld!",
-						((palette) (obj29)), ((palette) (obj38)), ((Font) (obj45)), true, j1, k1, 0, 140, 0, true, true,
+						((Palette) (obj29)), ((Palette) (obj38)), ((Font) (obj45)), true, j1, k1, 0, 140, 0, true, true,
 						1, -1, 0);
 				lightGray(50);
 				gray(f18, f38, false, 30F);
@@ -2072,7 +2073,7 @@ final class gamemission {
 				obj38 = owner.flashcolor_yellow;
 				obj45 = owner.flashcolor_red;
 				Font gamefont26 = owner.label_font;
-				show_flashstring(-1, "All Ships Leave Immediately", ((palette) (obj38)), ((palette) (obj45)),
+				show_flashstring(-1, "All Ships Leave Immediately", ((Palette) (obj38)), ((Palette) (obj45)),
 						gamefont26,
 						true, j1, k1, 0, 80, 0, true, true, 1, -1, 0);
 				lightGray(20);
@@ -2085,7 +2086,7 @@ final class gamemission {
 				obj38 = owner.flashcolor_yellow;
 				obj45 = owner.flashcolor_red;
 				gamefont26 = owner.label_font;
-				show_flashstring(-1, "Such Shall Be The Fate For All Terrans", ((palette) (obj38)), ((palette) (obj45)),
+				show_flashstring(-1, "Such Shall Be The Fate For All Terrans", ((Palette) (obj38)), ((Palette) (obj45)),
 						gamefont26, true, j1, k1, 0, 80, 0, true, true, 1, -1, 0);
 				lightGray(90);
 				obj38 = owner.flashcolor_yellow;
@@ -2093,20 +2094,20 @@ final class gamemission {
 				gamefont26 = owner.label_font;
 				show_flashstring(-1,
 						"We Must Now Destroy The One|Place We Could Never Conquer.||Our Nemesis... Apocalypse Outpost",
-						((palette) (obj38)), ((palette) (obj45)), gamefont26, true, j1, k1, 0, 160, 0, true, true, 1,
+						((Palette) (obj38)), ((Palette) (obj45)), gamefont26, true, j1, k1, 0, 160, 0, true, true, 1,
 						-1,
 						0);
 				lightGray(170);
 				obj38 = owner.flashcolor_white;
 				obj45 = owner.flashcolor_navy;
 				gamefont26 = owner.label_font;
-				show_flashstring(-1, "Coming Next To The Realspace Saga", ((palette) (obj38)), ((palette) (obj45)),
+				show_flashstring(-1, "Coming Next To The Realspace Saga", ((Palette) (obj38)), ((Palette) (obj45)),
 						gamefont26, true, j, k, 0, 120, 0, true, true, 0, -1, 0);
 				lightGray(130);
 				obj38 = owner.flashcolor_white;
 				obj45 = owner.flashcolor_navy;
 				gamefont26 = owner.label_font;
-				show_flashstring(-1, "Realspace 3 - Apocalypse Returns", ((palette) (obj38)), ((palette) (obj45)),
+				show_flashstring(-1, "Realspace 3 - Apocalypse Returns", ((Palette) (obj38)), ((Palette) (obj45)),
 						gamefont26, true, j, k, 0, 200, 0, true, true, 0, -1, 0);
 				lightGray(210);
 				obj38 = Color.red;
@@ -2136,8 +2137,8 @@ final class gamemission {
 				}
 
 				if (!owner.pC && owner.qC) {
-					oGameObjectlist oGameObjectlist1 = owner.dZ;
-					if (oGameObjectlist1.C == 0)
+					GameObjectPool oGameObjectlist1 = owner.dZ;
+					if (oGameObjectlist1.mySize == 0)
 						I(1101);
 				}
 				if (valueOf) {
@@ -2152,18 +2153,18 @@ final class gamemission {
 					return;
 				owner.qC = false;
 				
-				oGameObjectlist obj = owner.dZ;
+				GameObjectPool obj = owner.dZ;
 				oSpaceship nobj = null;
-				nobj = (oSpaceship) (obj.C <= 0 ? null : obj.Z[0]);
+				nobj = (oSpaceship) (obj.mySize <= 0 ? null : obj.internalList[0]);
 				if (nobj != null) {
 					nobj.Z = false;
 					nobj.C = 0;
 					nobj.B = 0;
 				}
-				oGameObjectlist oGameObjectlist3 = owner.IC;
-				if (oGameObjectlist3.C == 0) {
-					oGameObjectlist oGameObjectlist4 = owner.oZ;
-					if (oGameObjectlist4.C == 0)
+				GameObjectPool oGameObjectlist3 = owner.IC;
+				if (oGameObjectlist3.mySize == 0) {
+					GameObjectPool oGameObjectlist4 = owner.oZ;
+					if (oGameObjectlist4.mySize == 0)
 						break label1;
 				}
 				return;
@@ -2186,92 +2187,92 @@ final class gamemission {
 					return;
 			}
 		if (L) {
-			oGameObjectlist oGameObjectlist2 = owner.wZ;
+			GameObjectPool oGameObjectlist2 = owner.wZ;
 			boolean flag1 = M;
 			boolean flag;
-			if (oGameObjectlist2.C <= 0) {
+			if (oGameObjectlist2.mySize <= 0) {
 				flag = false;
 			} else {
-				oGameObjectlist2.Z[0].equip(flag1, null);
+				oGameObjectlist2.internalList[0].Equip(flag1, null);
 				flag = true;
 			}
 			if (!flag) {
-				oGameObjectlist oGameObjectlist5 = owner.yZ;
+				GameObjectPool oGameObjectlist5 = owner.yZ;
 				boolean flag2 = M;
-				if (oGameObjectlist5.C <= 0) {
+				if (oGameObjectlist5.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist5.Z[0].equip(flag2, null);
+					oGameObjectlist5.internalList[0].Equip(flag2, null);
 					flag = true;
 				}
 			}
 			if (!flag) {
-				oGameObjectlist oGameObjectlist6 = owner.IC;
+				GameObjectPool oGameObjectlist6 = owner.IC;
 				boolean flag3 = M;
-				if (oGameObjectlist6.C <= 0) {
+				if (oGameObjectlist6.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist6.Z[0].equip(flag3, null);
+					oGameObjectlist6.internalList[0].Equip(flag3, null);
 					flag = true;
 				}
 			}
 			if (!flag) {
-				oGameObjectlist oGameObjectlist7 = owner.vZ;
+				GameObjectPool oGameObjectlist7 = owner.vZ;
 				boolean flag4 = M;
-				if (oGameObjectlist7.C <= 0) {
+				if (oGameObjectlist7.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist7.Z[0].equip(flag4, null);
+					oGameObjectlist7.internalList[0].Equip(flag4, null);
 					flag = true;
 				}
 			}
 			if (!flag) {
-				oGameObjectlist oGameObjectlist8 = owner.dZ;
+				GameObjectPool oGameObjectlist8 = owner.dZ;
 				boolean flag5 = M;
-				if (oGameObjectlist8.C <= 0) {
+				if (oGameObjectlist8.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist8.Z[0].equip(flag5, null);
+					oGameObjectlist8.internalList[0].Equip(flag5, null);
 					flag = true;
 				}
 			}
 			if (!flag) {
-				oGameObjectlist oGameObjectlist9 = owner.AC;
+				GameObjectPool oGameObjectlist9 = owner.AC;
 				boolean flag6 = M;
-				if (oGameObjectlist9.C <= 0) {
+				if (oGameObjectlist9.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist9.Z[0].equip(flag6, null);
+					oGameObjectlist9.internalList[0].Equip(flag6, null);
 					flag = true;
 				}
 			}
 			if (!flag) {
-				oGameObjectlist oGameObjectlist10 = owner.EC;
+				GameObjectPool oGameObjectlist10 = owner.EC;
 				boolean flag7 = M;
-				if (oGameObjectlist10.C <= 0) {
+				if (oGameObjectlist10.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist10.Z[0].equip(flag7, null);
+					oGameObjectlist10.internalList[0].Equip(flag7, null);
 					flag = true;
 				}
 			}
 			if (!flag) {
-				oGameObjectlist oGameObjectlist11 = owner.GC;
+				GameObjectPool oGameObjectlist11 = owner.GC;
 				boolean flag8 = M;
-				if (oGameObjectlist11.C <= 0) {
+				if (oGameObjectlist11.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist11.Z[0].equip(flag8, null);
+					oGameObjectlist11.internalList[0].Equip(flag8, null);
 					flag = true;
 				}
 			}
 			if (!flag) {
-				oGameObjectlist oGameObjectlist12 = owner.BC;
+				GameObjectPool oGameObjectlist12 = owner.BC;
 				boolean flag9 = M;
-				if (oGameObjectlist12.C <= 0) {
+				if (oGameObjectlist12.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist12.Z[0].equip(flag9, null);
+					oGameObjectlist12.internalList[0].Equip(flag9, null);
 					flag = true;
 				}
 			}
@@ -2307,9 +2308,9 @@ final class gamemission {
 					case 101: // 'e'
 						if (missioncmd1.E) {
 							owner.qC = false;
-							oGameObjectlist obj = owner.dZ;
+							GameObjectPool obj = owner.dZ;
 							oSpaceship nobj = null;
-							nobj = (oSpaceship) (obj.C <= 0 ? null : (obj).Z[0]);
+							nobj = (oSpaceship) (obj.mySize <= 0 ? null : (obj).internalList[0]);
 							if (nobj != null) {
 								nobj.Z = false;
 								nobj.C = 0;
@@ -2385,7 +2386,7 @@ final class gamemission {
 						I.M = 0;
 						if (flag || missioncmd1.G) {
 							if (missioncmd1.I == -1 || missioncmd1.I == 2) {
-								oGameObjectlist oGameObjectlist1 = owner.wZ;
+								GameObjectPool oGameObjectlist1 = owner.wZ;
 								boolean flag2 = missioncmd1.E;
 								int k5 = missioncmd1.Z;
 								int i7 = missioncmd1.C;
@@ -2402,7 +2403,7 @@ final class gamemission {
 							}
 
 							if (missioncmd1.I == -1 || missioncmd1.I == 1) {
-								oGameObjectlist oGameObjectlist2 = owner.vZ;
+								GameObjectPool oGameObjectlist2 = owner.vZ;
 								boolean flag3 = missioncmd1.E;
 								int l5 = missioncmd1.Z;
 								int j7 = missioncmd1.C;
@@ -2425,7 +2426,7 @@ final class gamemission {
 								oGameObjectlist2.I(flag3, null, l5, j7, k8, j9);
 							}
 							if (missioncmd1.Z == 10) {
-								oGameObjectlist oGameObjectlist3 = owner.AC;
+								GameObjectPool oGameObjectlist3 = owner.AC;
 								boolean flag4 = missioncmd1.E;
 								int i6 = missioncmd1.Z;
 								int k7 = missioncmd1.C;
@@ -2554,12 +2555,12 @@ final class gamemission {
 
 					case 422:
 						if (missioncmd1.I == 2) {
-							oGameObjectlist oGameObjectlist6 = owner.wZ;
-							int i2 = oGameObjectlist6.C;
+							GameObjectPool oGameObjectlist6 = owner.wZ;
+							int i2 = oGameObjectlist6.mySize;
 							for (int i = 0; i < i2; i++) {
-								oGameObjectlist oGameObjectlist7 = owner.wZ;
-								GameObject oGameObject4 = i < 0 || i >= oGameObjectlist7.C ? null
-										: oGameObjectlist7.Z[i];
+								GameObjectPool oGameObjectlist7 = owner.wZ;
+								GameObject oGameObject4 = i < 0 || i >= oGameObjectlist7.mySize ? null
+										: oGameObjectlist7.internalList[i];
 								if (oGameObject4.e == 1 && (missioncmd1.Z == -1 || oGameObject4.JI == missioncmd1.Z)
 										&& (missioncmd1.C == -1 || oGameObject4.ship_grade == missioncmd1.C)
 										&& (missioncmd1.B == -1 || oGameObject4.AI == missioncmd1.B)
@@ -2569,11 +2570,11 @@ final class gamemission {
 
 							break;
 						}
-						oGameObjectlist oGameObjectlist8 = owner.vZ;
-						int j2 = oGameObjectlist8.C;
+						GameObjectPool oGameObjectlist8 = owner.vZ;
+						int j2 = oGameObjectlist8.mySize;
 						for (int j = 0; j < j2; j++) {
 							oGameObjectlist8 = owner.vZ;
-							GameObject oGameObject5 = j < 0 || j >= oGameObjectlist8.C ? null : oGameObjectlist8.Z[j];
+							GameObject oGameObject5 = j < 0 || j >= oGameObjectlist8.mySize ? null : oGameObjectlist8.internalList[j];
 							if (oGameObject5.e == 1 && (missioncmd1.Z == -1 || oGameObject5.JI == missioncmd1.Z)
 									&& (missioncmd1.C == -1 || oGameObject5.ship_grade == missioncmd1.C)
 									&& (missioncmd1.B == -1 || oGameObject5.AI == missioncmd1.B)
@@ -2582,10 +2583,10 @@ final class gamemission {
 						}
 
 						oGameObjectlist8 = owner.dZ;
-						j2 = oGameObjectlist8.C;
+						j2 = oGameObjectlist8.mySize;
 						for (int k = 0; k < j2; k++) {
-							oGameObjectlist oGameObjectlist9 = owner.dZ;
-							GameObject oGameObject6 = k < 0 || k >= oGameObjectlist9.C ? null : oGameObjectlist9.Z[k];
+							GameObjectPool oGameObjectlist9 = owner.dZ;
+							GameObject oGameObject6 = k < 0 || k >= oGameObjectlist9.mySize ? null : oGameObjectlist9.internalList[k];
 							if (oGameObject6.e == 1 && (missioncmd1.Z == -1 || oGameObject6.JI == missioncmd1.Z)
 									&& (missioncmd1.C == -1 || oGameObject6.ship_grade == missioncmd1.C)
 									&& (missioncmd1.B == -1 || oGameObject6.AI == missioncmd1.B)
@@ -2597,12 +2598,12 @@ final class gamemission {
 
 					case 423:
 						if (missioncmd1.I == 2) {
-							oGameObjectlist oGameObjectlist10 = owner.wZ;
-							int k2 = oGameObjectlist10.C;
+							GameObjectPool oGameObjectlist10 = owner.wZ;
+							int k2 = oGameObjectlist10.mySize;
 							for (int l = 0; l < k2; l++) {
-								oGameObjectlist oGameObjectlist11 = owner.wZ;
-								GameObject oGameObject7 = l < 0 || l >= oGameObjectlist11.C ? null
-										: oGameObjectlist11.Z[l];
+								GameObjectPool oGameObjectlist11 = owner.wZ;
+								GameObject oGameObject7 = l < 0 || l >= oGameObjectlist11.mySize ? null
+										: oGameObjectlist11.internalList[l];
 								if (oGameObject7.e == 1 && (missioncmd1.Z == -1 || oGameObject7.JI == missioncmd1.Z)
 										&& (missioncmd1.C == -1 || oGameObject7.ship_grade == missioncmd1.C)
 										&& (missioncmd1.B == -1 || oGameObject7.AI == missioncmd1.B)
@@ -2612,12 +2613,12 @@ final class gamemission {
 
 							break;
 						}
-						oGameObjectlist oGameObjectlist12 = owner.vZ;
-						int l2 = oGameObjectlist12.C;
+						GameObjectPool oGameObjectlist12 = owner.vZ;
+						int l2 = oGameObjectlist12.mySize;
 						for (int i1 = 0; i1 < l2; i1++) {
-							oGameObjectlist oGameObjectlist13 = owner.vZ;
-							GameObject oGameObject8 = i1 < 0 || i1 >= oGameObjectlist13.C ? null
-									: oGameObjectlist13.Z[i1];
+							GameObjectPool oGameObjectlist13 = owner.vZ;
+							GameObject oGameObject8 = i1 < 0 || i1 >= oGameObjectlist13.mySize ? null
+									: oGameObjectlist13.internalList[i1];
 							if (oGameObject8.e == 1 && (missioncmd1.Z == -1 || oGameObject8.JI == missioncmd1.Z)
 									&& (missioncmd1.C == -1 || oGameObject8.ship_grade == missioncmd1.C)
 									&& (missioncmd1.B == -1 || oGameObject8.AI == missioncmd1.B)
@@ -2629,12 +2630,12 @@ final class gamemission {
 
 					case 424:
 						if (missioncmd1.I == 2) {
-							oGameObjectlist oGameObjectlist14 = owner.wZ;
-							int i3 = oGameObjectlist14.C;
+							GameObjectPool oGameObjectlist14 = owner.wZ;
+							int i3 = oGameObjectlist14.mySize;
 							for (int j1 = 0; j1 < i3; j1++) {
-								oGameObjectlist oGameObjectlist15 = owner.wZ;
-								GameObject oGameObject9 = j1 < 0 || j1 >= oGameObjectlist15.C ? null
-										: oGameObjectlist15.Z[j1];
+								GameObjectPool oGameObjectlist15 = owner.wZ;
+								GameObject oGameObject9 = j1 < 0 || j1 >= oGameObjectlist15.mySize ? null
+										: oGameObjectlist15.internalList[j1];
 								if (oGameObject9.e == 1 && (missioncmd1.Z == -1 || oGameObject9.JI == missioncmd1.Z)
 										&& (missioncmd1.C == -1 || oGameObject9.ship_grade == missioncmd1.C)
 										&& (missioncmd1.B == -1 || oGameObject9.AI == missioncmd1.B)
@@ -2644,12 +2645,12 @@ final class gamemission {
 
 							break;
 						}
-						oGameObjectlist oGameObjectlist16 = owner.vZ;
-						int j3 = oGameObjectlist16.C;
+						GameObjectPool oGameObjectlist16 = owner.vZ;
+						int j3 = oGameObjectlist16.mySize;
 						for (int k1 = 0; k1 < j3; k1++) {
-							oGameObjectlist oGameObjectlist17 = owner.vZ;
-							GameObject oGameObject10 = k1 < 0 || k1 >= oGameObjectlist17.C ? null
-									: oGameObjectlist17.Z[k1];
+							GameObjectPool oGameObjectlist17 = owner.vZ;
+							GameObject oGameObject10 = k1 < 0 || k1 >= oGameObjectlist17.mySize ? null
+									: oGameObjectlist17.internalList[k1];
 							if (oGameObject10.e == 1 && (missioncmd1.Z == -1 || oGameObject10.JI == missioncmd1.Z)
 									&& (missioncmd1.C == -1 || oGameObject10.ship_grade == missioncmd1.C)
 									&& (missioncmd1.B == -1 || oGameObject10.AI == missioncmd1.B)
@@ -2667,15 +2668,15 @@ final class gamemission {
 						break;
 
 					case 427:
-						oGameObjectlist oGameObjectlist18;
+						GameObjectPool oGameObjectlist18;
 						if (missioncmd1.I == 2)
 							oGameObjectlist18 = owner.wZ;
 						else
 							oGameObjectlist18 = owner.vZ;
-						int k3 = oGameObjectlist18.C;
+						int k3 = oGameObjectlist18.mySize;
 						for (int l1 = 0; l1 < k3; l1++) {
-							oSpaceship oSpaceship1 = (oSpaceship) (l1 < 0 || l1 >= oGameObjectlist18.C ? null
-									: oGameObjectlist18.Z[l1]);
+							oSpaceship oSpaceship1 = (oSpaceship) (l1 < 0 || l1 >= oGameObjectlist18.mySize ? null
+									: oGameObjectlist18.internalList[l1]);
 							if (((GameObject) (oSpaceship1)).e == 1 && (oSpaceship1.QI == 3 || oSpaceship1.QI == 2)
 									&& (missioncmd1.Z == -1 || ((GameObject) (oSpaceship1)).JI == missioncmd1.Z)
 									&& (missioncmd1.C == -1 || ((GameObject) (oSpaceship1)).ship_grade == missioncmd1.C)
@@ -2799,8 +2800,8 @@ final class gamemission {
 					case 205:
 						GameObject oGameObject1;
 						if (missioncmd1.I == 101) {
-							oGameObjectlist oGameObjectlist5 = owner.dZ;
-							oGameObject1 = oGameObjectlist5.C <= 0 ? null : oGameObjectlist5.Z[0];
+							GameObjectPool oGameObjectlist5 = owner.dZ;
+							oGameObject1 = oGameObjectlist5.mySize <= 0 ? null : oGameObjectlist5.internalList[0];
 						} else {
 							oGameObject1 = owner.I(-1, -1, -1, -1, missioncmd1.I);
 						}
@@ -2924,7 +2925,7 @@ final class gamemission {
 
 					case 501:
 						if (flag) {
-							oGameObjectlist oGameObjectlist4 = owner.oZ;
+							GameObjectPool oGameObjectlist4 = owner.oZ;
 							oGameObjectlist4.I(true, null, -1, -1, -1, -1);
 							oGameObjectlist4 = owner.qZ;
 							oGameObjectlist4.I(true, null, -1, -1, -1, -1);
@@ -2964,7 +2965,7 @@ final class gamemission {
 			}
 	}
 
-	final void Z() {
+	final void CompleteImmediately() {
 		for (int i = O; abs < Z && O == i;)
 			HNSM(true);
 
@@ -3372,7 +3373,7 @@ final class gamemission {
 		}
 	}
 
-	final void show_flashstring(int i, String s, palette palette, palette palette1, Font gamefont1, boolean flag,
+	final void show_flashstring(int i, String s, Palette palette, Palette palette1, Font gamefont1, boolean flag,
 			int j, int k, int l, int i1, int j1, boolean flag1, boolean flag2, int k1, int l1, int i2) {
 		missioncmd missioncmd1 = new missioncmd(600);
 		missioncmd1.P = s;
@@ -3434,7 +3435,7 @@ final class gamemission {
 		}
 	}
 
-	final void getName(gamesoundlist gamesoundlist1, int i, boolean flag) {
+	final void getName(GameSoundPool gamesoundlist1, int i, boolean flag) {
 		missioncmd missioncmd1 = new missioncmd(104);
 		missioncmd1.X = gamesoundlist1;
 		missioncmd1.I = i;
@@ -3640,10 +3641,10 @@ final class gamemission {
 		}
 	}
 
-	final void HNSM(oGameObjectlist oGameObjectlist1, float f, float f1, float f2, float f3) {
-		int i = oGameObjectlist1.C;
+	final void HNSM(GameObjectPool oGameObjectlist1, float f, float f1, float f2, float f3) {
+		int i = oGameObjectlist1.mySize;
 		for (int j = 0; j < i; j++) {
-			oSpaceship oSpaceship1 = (oSpaceship) (j < 0 || j >= oGameObjectlist1.C ? null : oGameObjectlist1.Z[j]);
+			oSpaceship oSpaceship1 = (oSpaceship) (j < 0 || j >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[j]);
 			if (((GameObject) (oSpaceship1)).e == 3) {
 				float f4 = f + ((float) Math.random() - 0.5F) * f2;
 				float f5 = f1 + ((float) Math.random() - 0.5F) * f3;
@@ -3850,15 +3851,15 @@ final class gamemission {
 		}
 	}
 
-	final void blue(int i, oGameObjectlist oGameObjectlist1, int j, int k, int l, float f) {
+	final void blue(int i, GameObjectPool oGameObjectlist1, int j, int k, int l, float f) {
 		int i2 = 0;
 		int j2 = 0;
-		int k2 = oGameObjectlist1.C;
+		int k2 = oGameObjectlist1.mySize;
 		if (k2 == 0)
 			return;
 		oSpaceship aspaceship[] = new oSpaceship[k2];
 		for (int i1 = 0; i1 < k2; i1++) {
-			oSpaceship oSpaceship1 = (oSpaceship) (i1 < 0 || i1 >= oGameObjectlist1.C ? null : oGameObjectlist1.Z[i1]);
+			oSpaceship oSpaceship1 = (oSpaceship) (i1 < 0 || i1 >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[i1]);
 			if (((GameObject) (oSpaceship1)).AI == j) {
 				aspaceship[i2] = oSpaceship1;
 				i2++;
@@ -3869,7 +3870,7 @@ final class gamemission {
 			return;
 		oSpaceship aspaceship1[] = new oSpaceship[k2];
 		for (int j1 = 0; j1 < k2; j1++) {
-			oSpaceship oSpaceship2 = (oSpaceship) (j1 < 0 || j1 >= oGameObjectlist1.C ? null : oGameObjectlist1.Z[j1]);
+			oSpaceship oSpaceship2 = (oSpaceship) (j1 < 0 || j1 >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[j1]);
 			if (((GameObject) (oSpaceship2)).AI == k) {
 				aspaceship1[j2] = oSpaceship2;
 				j2++;
@@ -3888,10 +3889,10 @@ final class gamemission {
 
 	}
 
-	final void compareTo(oGameObjectlist oGameObjectlist1) {
-		int i = oGameObjectlist1.C;
+	final void compareTo(GameObjectPool oGameObjectlist1) {
+		int i = oGameObjectlist1.mySize;
 		for (int j = 0; j < i; j++) {
-			oSpaceship oSpaceship1 = (oSpaceship) (j < 0 || j >= oGameObjectlist1.C ? null : oGameObjectlist1.Z[j]);
+			oSpaceship oSpaceship1 = (oSpaceship) (j < 0 || j >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[j]);
 			if (((GameObject) (oSpaceship1)).e == 1) {
 				oSpaceship1.QI = 3;
 				oSpaceship1.MI = 25;

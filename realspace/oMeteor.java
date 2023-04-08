@@ -6,8 +6,8 @@ package realspace;
 // Source File Name:   star_y
 
 final class oMeteor extends GameObject {
-	oMeteor(GameApp gameapp1) {
-		super(gameapp1);
+	oMeteor(GameApp applet) {
+		super(applet);
 	}
 
 	@Override
@@ -18,23 +18,23 @@ final class oMeteor extends GameObject {
 			super.y = super.x.I(super.d, super.b);
 		C();
 		super.s++;
-		if (super.K > 0.0F && super.J > ((AppletImplements) (GameApp.Instance)).worldBorderRight
-				|| super.K < 0.0F && super.J < ((AppletImplements) (GameApp.Instance)).worldBorderLeft
-				|| super.L > 0.0F && super.S > ((AppletImplements) (GameApp.Instance)).worldBorderBottom
-				|| super.L < 0.0F && super.S < ((AppletImplements) (GameApp.Instance)).worldBorderTop)
-			equip(true, null);
+		if (super.K > 0.0F && super.J > (GameApp.Instance).worldBorderRight
+				|| super.K < 0.0F && super.J < (GameApp.Instance).worldBorderLeft
+				|| super.L > 0.0F && super.S > (GameApp.Instance).worldBorderBottom
+				|| super.L < 0.0F && super.S < (GameApp.Instance).worldBorderTop)
+			Equip(true, null);
 	}
 
 	@Override
-	final void equip(boolean flag, GameObject oGameObject1) {
+	final void Equip(boolean flag, GameObject oGameObject1) {
 		if (oGameObject1 != null && oGameObject1.JI == 8)
 			super.ascore = 0;
-		super.equip(flag, oGameObject1);
+		super.Equip(flag, oGameObject1);
 		int i = super.m + super.n / 3;
 		byte byte0 = 1;
 		boolean flag1 = false;
 		sprite_group sprite_group1 = GameApp.Instance.C;
-		palette palette = null;
+		Palette palette = null;
 		if (!flag) {
 			switch (super.ship_grade) {
 			case 1: // '\001'

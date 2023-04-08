@@ -34,6 +34,11 @@ public abstract class AppletImplements extends Applet implements Runnable
 	String lastInputString = "";
 	boolean isGuest;
 	String serializedIsGuest;
+	float viewScale;
+	int viewWidth;
+	int viewHeight;
+	float screen_width;
+	float screen_height;
 	HighscoreDialogue highscoreDialgueHandle;
 	boolean isHiscoreEnabled;
 	String highscoreHost;
@@ -41,11 +46,10 @@ public abstract class AppletImplements extends Applet implements Runnable
 	int sizeOfHighScore;
 	HighscoreStorage TB;
 	HighscoreStorage UB;
-	float viewScale;
-	int viewWidth;
-	int viewHeight;
-	float screen_width;
-	float screen_height;
+
+	protected int loadProgress;
+	protected final int loadMaxProgress = 112;
+	protected boolean toggleMusic;
 
 	boolean isPaused;
 	float worldBorderLeft;
@@ -65,9 +69,9 @@ public abstract class AppletImplements extends Applet implements Runnable
 	Font hFontSmall;
 	Font label_font;
 	Font hFontLarge;
-	surface lC;
-	surface mC;
-	int currentTimeMillis;
+	Canvas lC;
+	Canvas mC;
+	int spritesNumber;
 	int nC;
 	int drawImage;
 	int encode;
@@ -78,9 +82,9 @@ public abstract class AppletImplements extends Applet implements Runnable
 	int rC;
 	boolean tC;
 	String uC;
-	oGameObjectlist vC;
-	oGameObjectlist wC;
-	oGameObjectlist floatValue;
+	GameObjectPool vC;
+	GameObjectPool wC;
+	GameObjectPool floatValue;
 	// Vector flush;
 	int xC;
 	int yC;
@@ -94,12 +98,9 @@ public abstract class AppletImplements extends Applet implements Runnable
 	long IB;
 	long indexOf;
 	long isAlive;
-	int EB;
-	int GB;
-	boolean toggleMusic;
 	boolean KB;
-	palette LB;
-	palette MB;
+	Palette LB;
+	Palette MB;
 	Color label_color;
 	Color requestFocus;
 	Color size;
@@ -126,7 +127,7 @@ public abstract class AppletImplements extends Applet implements Runnable
 
 		toggleMusic = true;
 		KB = true;
-		currentTimeMillis = 0;
+		spritesNumber = 0;
 		nC = 0;
 		drawImage = -1;
 		encode = -1;
@@ -195,85 +196,87 @@ public abstract class AppletImplements extends Applet implements Runnable
 		append();
 
 		// flush = new Vector();
-		vC = new oGameObjectlist((GameApp) this, 10);
-		floatValue = new oGameObjectlist((GameApp) this, 1);
-		wC = new oGameObjectlist((GameApp) this, 11);
+		vC = new GameObjectPool((GameApp) this, 10);
+		floatValue = new GameObjectPool((GameApp) this, 1);
+		wC = new GameObjectPool((GameApp) this, 11);
 
 		for (int j = 0; j < wC.I; j++) 
 		{
 			GameLabel gametext1 = new GameLabel((GameApp) this);
-			oGameObjectlist oGameObjectlist1 = wC;
+			GameObjectPool oGameObjectlist1 = wC;
 			GameLabel gametext2 = gametext1;
 
-			if (oGameObjectlist1.C < oGameObjectlist1.I) 
+			if (oGameObjectlist1.mySize < oGameObjectlist1.I) 
 			{
-				oGameObjectlist1.Z[oGameObjectlist1.C] = gametext2;
-				oGameObjectlist1.C++;
+				oGameObjectlist1.internalList[oGameObjectlist1.mySize] = gametext2;
+				oGameObjectlist1.mySize++;
 			}
 		}
 
 		label_color = Color.yellow;
 		requestFocus = Color.blue;
 		size = Color.red;
-		LB = new palette((GameApp) this, 4);
-		palette palette1 = LB;
+
+		LB = new Palette(4);
+		Palette palette1 = LB;
 		Color color = Color.gray.brighter();
 		int k = color.getRGB();
-		if (palette1.Z < palette1.C) {
-			palette1.I[palette1.Z] = k;
-			palette1.Z++;
+
+		if (palette1.GetSize() < palette1.GetCapacity())
+		{
+			palette1.AddColor(k);
 		}
 		palette1 = LB;
 
 		color = Color.gray;
 		k = color.getRGB();
-		if (palette1.Z < palette1.C) {
-			palette1.I[palette1.Z] = k;
-			palette1.Z++;
+		if (palette1.GetSize() < palette1.GetCapacity())
+		{
+			palette1.AddColor(k);
 		}
 		palette1 = LB;
 
 		color = Color.gray.darker();
 		k = color.getRGB();
-		if (palette1.Z < palette1.C) {
-			palette1.I[palette1.Z] = k;
-			palette1.Z++;
+		if (palette1.GetSize() < palette1.GetCapacity())
+		{
+			palette1.AddColor(k);
 		}
 		palette1 = LB;
 		color = Color.gray.darker().darker();
 		k = color.getRGB();
-		if (palette1.Z < palette1.C) {
-			palette1.I[palette1.Z] = k;
-			palette1.Z++;
+		if (palette1.GetSize() < palette1.GetCapacity())
+		{
+			palette1.AddColor(k);
 		}
-		MB = new palette((GameApp) this, 4);
+		MB = new Palette(4);
 		palette1 = MB;
 		color = Color.gray;
 		k = color.getRGB();
-		if (palette1.Z < palette1.C) {
-			palette1.I[palette1.Z] = k;
-			palette1.Z++;
+		if (palette1.GetSize() < palette1.GetCapacity())
+		{
+			palette1.AddColor(k);
 		}
 		palette1 = MB;
 		color = Color.gray.darker();
 		k = color.getRGB();
-		if (palette1.Z < palette1.C) {
-			palette1.I[palette1.Z] = k;
-			palette1.Z++;
+		if (palette1.GetSize() < palette1.GetCapacity())
+		{
+			palette1.AddColor(k);
 		}
 		palette1 = MB;
 		color = Color.gray.brighter();
 		k = color.getRGB();
-		if (palette1.Z < palette1.C) {
-			palette1.I[palette1.Z] = k;
-			palette1.Z++;
+		if (palette1.GetSize() < palette1.GetCapacity())
+		{
+			palette1.AddColor(k);
 		}
 		palette1 = MB;
 		color = Color.gray.darker().darker();
 		k = color.getRGB();
-		if (palette1.Z < palette1.C) {
-			palette1.I[palette1.Z] = k;
-			palette1.Z++;
+		if (palette1.GetSize() < palette1.GetCapacity())
+		{
+			palette1.AddColor(k);
 		}
 
 		// Integer
@@ -339,9 +342,10 @@ public abstract class AppletImplements extends Applet implements Runnable
 	}
 
 	@Override
-	public final void destroy() {
-		System.out.println("at destroy");
-		C();
+	public final void destroy() 
+	{
+		System.out.println("[Applet] Cleanup");
+		Cleanup();
 	}
 
 	@Override
@@ -351,12 +355,14 @@ public abstract class AppletImplements extends Applet implements Runnable
 		if (s.toUpperCase().indexOf("BRIAN") < 0
 				&& (s.toUpperCase().indexOf("FREEWEBGAMES.COM") < 0 || s1.toUpperCase().indexOf("FREEWEBGAMES.COM") < 0)
 				&& s.toUpperCase().indexOf("ALTOP1100") < 0
-				&& (s.toUpperCase().indexOf("ARCADETOWN.COM") < 0 || s1.toUpperCase().indexOf("ARCADETOWN.COM") < 0)) {
+				&& (s.toUpperCase().indexOf("ARCADETOWN.COM") < 0 || s1.toUpperCase().indexOf("ARCADETOWN.COM") < 0)) 
+		{
 			labelSimpleURL = "ArcadeTown.com";
 			labelURL = "http://www.arcadetown.com/index.asp";
 		}
 
-		if (!LoadAssets()) {
+		if (!LoadAssets()) 
+		{
 			return;
 		}
 
@@ -374,17 +380,23 @@ public abstract class AppletImplements extends Applet implements Runnable
 		IB = 0L;
 		getImage = 0L;
 		getParameter = 0;
-		Graphics g = getGraphics();
-		do {
-			do {
+
+		Graphics gdc = getGraphics();
+		do 
+		{
+			do 
+			{
 				long l = System.currentTimeMillis();
-				if (l >= l4) {
+				if (l >= l4) 
+				{
 					isAlive = l5;
 					l4 = (l + 1000L) - 10L;
 					l5 = 0L;
 				}
+
 				l5++;
-				if (l >= l3) {
+				if (l >= l3) 
+				{
 					indexOf = getParent;
 					getOutputStream = getImage;
 					getParent = 0L;
@@ -423,7 +435,7 @@ public abstract class AppletImplements extends Applet implements Runnable
 					if (!isPaused)
 						I();
 					getParameter++;
-					paint(g);
+					paint(gdc);
 				}
 			} while (getDefaultToolkit <= 0L);
 			try {
@@ -437,12 +449,14 @@ public abstract class AppletImplements extends Applet implements Runnable
 	}
 
 	@Override
-	public final void update(Graphics g) {
+	public final void update(Graphics g) 
+	{
 		paint(g);
 	}
 
 	@Override
-	public final void paint(Graphics g) {
+	public final void paint(Graphics g) 
+	{
 		I(lC);
 		lC.I();
 		g.drawImage(lC.D, 0, 0, lC.I, lC.Z, null);
@@ -451,52 +465,55 @@ public abstract class AppletImplements extends Applet implements Runnable
 		getParameter--;
 	}
 
-	public void I(surface surface1) {
-		if (!assetsLoaded) {
+	public void I(Canvas surface) 
+	{
+		if (!assetsLoaded) 
+		{
 			int i = viewWidth / 8;
 			int j = viewHeight / 4;
 
-			surface1.I(i - 4, j - 4, (viewWidth * 3) / 4 + 8, viewHeight / 2 + 8, Color.gray.getRGB());
-			surface1.I(i, j, (viewWidth * 3) / 4, viewHeight / 2, Color.darkGray.brighter().getRGB());
+			surface.I(i - 4, j - 4, (viewWidth * 3) / 4 + 8, viewHeight / 2 + 8, Color.gray.getRGB());
+			surface.I(i, j, (viewWidth * 3) / 4, viewHeight / 2, Color.darkGray.brighter().getRGB());
 
 			i += (int) (20F * viewScale);
 			j += (int) (30F * viewScale);
 			if (labelLoading != null && label_font != null) {
-				surface1.draw_string(labelSimpleURL, Color.red.getRGB(), hFontSmall, i - 1, j + 1);
-				surface1.draw_string(labelSimpleURL, Color.yellow.getRGB(), hFontSmall, i, j);
+				surface.DrawLabel(labelSimpleURL, Color.red.getRGB(), hFontSmall, i - 1, j + 1);
+				surface.DrawLabel(labelSimpleURL, Color.yellow.getRGB(), hFontSmall, i, j);
 
 				Font gamefont3 = hFontSmall;
 				j += gamefont3.C;
 
-				surface1.draw_string(labelTitle, Color.red.getRGB(), hFontSmall, i - 1, j + 1);
-				surface1.draw_string(labelTitle, Color.yellow.getRGB(), hFontSmall, i, j);
+				surface.DrawLabel(labelTitle, Color.red.getRGB(), hFontSmall, i - 1, j + 1);
+				surface.DrawLabel(labelTitle, Color.yellow.getRGB(), hFontSmall, i, j);
 
 				gamefont3 = hFontSmall;
 				j += gamefont3.C + (int) (25F * viewScale);
-				surface1.draw_string(labelLoading, Color.blue.getRGB(), hFontSmall, i - 1, j + 1);
-				surface1.draw_string(labelLoading, Color.white.getRGB(), hFontSmall, i, j);
+				surface.DrawLabel(labelLoading, Color.blue.getRGB(), hFontSmall, i - 1, j + 1);
+				surface.DrawLabel(labelLoading, Color.white.getRGB(), hFontSmall, i, j);
 				gamefont3 = hFontSmall;
 
 				j += gamefont3.C + (int) (10F * viewScale);
 			}
 
-			if (0 < GB) {
-				int k = (viewHeight / 4 + viewHeight / 2) - (int) (60F * viewScale);
-				int l = (viewWidth * 3) / 4 - 60;
-				gameutil.I(surface1, i, k, l, 30, (float) EB / (float) GB, Colours.DarkYellow,
-						Colours.Lime);
+			if (0 < loadProgress) {
+				final int gx = (viewHeight / 4 + viewHeight / 2) - (int) (60F * viewScale);
+				final int gy = (viewWidth * 3) / 4 - 60;
+				final float current_progress = (float) loadProgress / (float) loadMaxProgress;
+
+				gameutil.DrawGaugebar(surface, i, gx, gy, 30, current_progress, Colours.DarkYellow, Colours.Lime);
 			}
 			return;
 		}
 
-		vC.I(surface1);
-		floatValue.I(surface1);
+		vC.I(surface);
+		floatValue.I(surface);
 
 		if (isPaused) {
 			final int dx = viewWidth / 2 - label_font.I(labelPause) / 2;
 			final int dy = viewHeight / 2 - label_font.C / 2;
 
-			surface1.draw_string(labelPause, -1, label_font, dx, dy);
+			surface.DrawLabel(labelPause, -1, label_font, dx, dy);
 		}
 
 		if (showDebugInfos) {
@@ -504,7 +521,7 @@ public abstract class AppletImplements extends Applet implements Runnable
 					+ String.valueOf(getDocumentBase);
 			Font gamefont2 = hFontSmall;
 
-			surface1.draw_string(s1, -1, gamefont2, 200, 50);
+			surface.DrawLabel(s1, -1, gamefont2, 200, 50);
 		}
 	}
 
@@ -526,37 +543,46 @@ public abstract class AppletImplements extends Applet implements Runnable
 	final void addImage() 
 	{}
 
-	final imagepixels I(String s) 
+	final Bitmap LoadSprite(String img_path) 
 	{
-		System.out.println("loadImage " + s + " totalMemory=" + String.valueOf(Runtime.getRuntime().totalMemory()) + " freeMemory=" + String.valueOf(Runtime.getRuntime().freeMemory()));
-		java.awt.Image image = getImage(getCodeBase(), s);
+		System.out.println("loadImage " + img_path + " totalMemory=" + String.valueOf(Runtime.getRuntime().totalMemory())
+				+ " freeMemory=" + String.valueOf(Runtime.getRuntime().freeMemory()));
+		
+		java.awt.Image image = getImage(getCodeBase(), img_path);
 		MediaTracker mediatracker = new MediaTracker(this);
-		mediatracker.addImage(image, currentTimeMillis);
-		try {
+		mediatracker.addImage(image, spritesNumber);
+		
+		try 
+		{
 			mediatracker.waitForAll();
-			currentTimeMillis++;
-		} catch (Exception _ex) {
-			labelLoading = "Error loading image " + s;
-			System.out.println(labelLoading);
+			spritesNumber++;
+		} 
+		catch (Exception _ex) 
+		{
+			labelLoading = "Error loading image " + img_path;
 			repaint();
+
+			System.out.println(labelLoading);
 			return null;
 		}
 
 		if (mediatracker.isErrorID(0) || image == null) 
 		{
-			labelLoading = "Error loading image " + s;
-			System.out.println(labelLoading);
+			labelLoading = "Error loading image " + img_path;
 			repaint();
+
+			System.out.println(labelLoading);
 			return null;
 		} 
 		else 
 		{
-			imagepixels imagepixels1 = new imagepixels(image, this);
+			Bitmap bitmap = new Bitmap(image, this);
 			mediatracker.removeImage(image);
 			image = null;
 			mediatracker = null;
 			System.gc();
-			return imagepixels1;
+
+			return bitmap;
 		}
 	}
 
@@ -582,13 +608,13 @@ public abstract class AppletImplements extends Applet implements Runnable
 	}
 
 	@Override
-	public boolean keyDown(Event event, int key_chr) 
+	public boolean keyDown(Event event, int keycode) 
 	{
 		for (int j = 3; j > 0; j--)
 		{
 			inputKeys[j] = inputKeys[j - 1];
 		}
-		inputKeys[0] = key_chr;
+		inputKeys[0] = keycode;
 
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < 4; i++) {
@@ -596,7 +622,7 @@ public abstract class AppletImplements extends Applet implements Runnable
 		}
 		lastInputString = builder.toString().trim().toLowerCase();
 		
-		char key = Character.toLowerCase((char) key_chr);
+		char key = Character.toLowerCase((char) keycode);
 		if (key == '$')
 		{
 			showDebugInfos = !showDebugInfos;
@@ -608,13 +634,13 @@ public abstract class AppletImplements extends Applet implements Runnable
 			{
 				// Sound On
 				toggleMusic = false;
-				label = "Sound Off";
+				label = "Sound On";
 			} 
 			else 
 			{
 				// Sound Off
 				toggleMusic = true;
-				label = "";
+				label = "Sound Off";
 			}
 			floatValue.I();
 
@@ -666,7 +692,7 @@ public abstract class AppletImplements extends Applet implements Runnable
 	void D() {
 	}
 
-	void C() {
+	void Cleanup() {
 		eC = null;
 		hFontSmall = null;
 		label_font = null;
@@ -710,9 +736,9 @@ public abstract class AppletImplements extends Applet implements Runnable
 	}
 
 	final void append() {
-		lC = new surface((GameApp) this, viewWidth, viewHeight);
+		lC = new Canvas((GameApp) this, viewWidth, viewHeight);
 		lC.I(0, 0, viewWidth, viewHeight, getBackground().getRGB());
-		mC = new surface((GameApp) this, viewWidth, viewHeight);
+		mC = new Canvas((GameApp) this, viewWidth, viewHeight);
 		mC.I(0, 0, viewWidth, viewHeight, getBackground().getRGB());
 	}
 

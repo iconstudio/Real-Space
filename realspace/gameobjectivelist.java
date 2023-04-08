@@ -9,8 +9,8 @@ import java.awt.Rectangle;
 
 final class gameobjectivelist {
 
-	gameobjectivelist(GameApp gameapp1, int i, int j) {
-		HNSM = gameapp1;
+	gameobjectivelist(GameApp applet, int i, int j) {
+		HNSM = applet;
 		I = new gameobjective[j];
 		for (int k = 0; k < j; k++)
 			I[k] = new gameobjective();
@@ -21,7 +21,7 @@ final class gameobjectivelist {
 			max = 1;
 		else
 			max = 2;
-		D = new oGameObjectlist(gameapp1, 5);
+		D = new GameObjectPool(applet, 5);
 		U = new int[20];
 		V = new int[20];
 		W = new float[20];
@@ -65,12 +65,12 @@ final class gameobjectivelist {
 			if (random <= 0) {
 				int i = 0;
 				if (height == 2) {
-					oGameObjectlist oGameObjectlist1 = HNSM.wZ;
-					int l = oGameObjectlist1.C;
+					GameObjectPool oGameObjectlist1 = HNSM.wZ;
+					int l = oGameObjectlist1.mySize;
 					for (int j = 0; j < l && (width == -1 || i < width); j++) {
-						oGameObjectlist oGameObjectlist2 = HNSM.wZ;
-						oSpaceship oSpaceship1 = (oSpaceship) (j < 0 || j >= oGameObjectlist2.C ? null
-								: oGameObjectlist2.Z[j]);
+						GameObjectPool oGameObjectlist2 = HNSM.wZ;
+						oSpaceship oSpaceship1 = (oSpaceship) (j < 0 || j >= oGameObjectlist2.mySize ? null
+								: oGameObjectlist2.internalList[j]);
 						if (((GameObject) (oSpaceship1)).e == 1 && oSpaceship1.QI != round && oSpaceship1.QI != 1) {
 							i++;
 							oSpaceship1.QI = round;
@@ -78,12 +78,12 @@ final class gameobjectivelist {
 					}
 
 				} else {
-					oGameObjectlist oGameObjectlist3 = HNSM.vZ;
-					int i1 = oGameObjectlist3.C;
+					GameObjectPool oGameObjectlist3 = HNSM.vZ;
+					int i1 = oGameObjectlist3.mySize;
 					for (int k = 0; k < i1 && (width == -1 || i < width); k++) {
-						oGameObjectlist oGameObjectlist4 = HNSM.vZ;
-						oSpaceship oSpaceship2 = (oSpaceship) (k < 0 || k >= oGameObjectlist4.C ? null
-								: oGameObjectlist4.Z[k]);
+						GameObjectPool oGameObjectlist4 = HNSM.vZ;
+						oSpaceship oSpaceship2 = (oSpaceship) (k < 0 || k >= oGameObjectlist4.mySize ? null
+								: oGameObjectlist4.internalList[k]);
 						if (((GameObject) (oSpaceship2)).e == 1 && oSpaceship2.QI != round && oSpaceship2.QI != 1) {
 							i++;
 							oSpaceship2.QI = round;
@@ -149,7 +149,7 @@ final class gameobjectivelist {
 				break;
 
 			case 6: // '\006'
-				HNSM.Mission.I(gameobjective1.L);
+				HNSM.currentMission.I(gameobjective1.L);
 				return;
 			}
 			if (flag)
@@ -256,7 +256,7 @@ final class gameobjectivelist {
 					oSpaceship1 = (oSpaceship) HNSM.xZ.I(HNSM.vZ);
 				if (oSpaceship1 == null)
 					return;
-				oSpaceship1.I(V[l], height, HNSM.Mission.I(1.0F, 0.05F) * ((AppletImplements) (HNSM)).viewScale);
+				oSpaceship1.I(V[l], height, HNSM.currentMission.I(1.0F, 0.05F) * ((AppletImplements) (HNSM)).viewScale);
 				oSpaceship1.QI = 3;
 				if (G) {
 					oSpaceship1.II = true;
@@ -281,7 +281,7 @@ final class gameobjectivelist {
 					else
 						oSpaceship2 = (oSpaceship) HNSM.xZ.I(HNSM.vZ);
 					if (oSpaceship2 != null) {
-						oSpaceship2.I(V[l], height, HNSM.Mission.I(1.0F, 0.2F) * ((AppletImplements) (HNSM)).viewScale);
+						oSpaceship2.I(V[l], height, HNSM.currentMission.I(1.0F, 0.2F) * ((AppletImplements) (HNSM)).viewScale);
 						oSpaceship2.QI = 3;
 						if (G) {
 							oSpaceship2.II = true;
@@ -315,7 +315,7 @@ final class gameobjectivelist {
 	int B;
 	int height;
 	int max;
-	oGameObjectlist D;
+	GameObjectPool D;
 	int F;
 	int J;
 	int S;

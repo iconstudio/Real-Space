@@ -6,13 +6,13 @@ package realspace;
 // Source File Name:   star_y
 
 final class oWeapon extends GameObject {
-	oWeapon(GameApp gameapp1) {
-		super(gameapp1);
+	oWeapon(GameApp applet) {
+		super(applet);
 	}
 
 	final void I(oSpaceship oSpaceship1, boolean flag, float f, float f1, float f2, float f3, float f4, float f5,
 			boolean flag1, sprite_group sprite_group1, int i, int j, int k, int l, boolean flag2) {
-		super.initialize(sprite_group1, 9, j, k, l, flag2, oSpaceship1, flag);
+		super.Awake(sprite_group1, 9, j, k, l, flag2, oSpaceship1, flag);
 		super.g = oSpaceship1;
 		super.ship_grade = 0;
 		super.AI = 0;
@@ -129,7 +129,7 @@ final class oWeapon extends GameObject {
 	}
 
 	@Override
-	final void Draw(surface surface) {
+	final void Draw(Canvas surface) {
 		if (super.g.s >= 0)
 			super.Draw(surface);
 	}
@@ -242,7 +242,7 @@ final class oWeapon extends GameObject {
 				else
 					oSpaceship2 = (oSpaceship) GameApp.Instance.xZ.I(GameApp.Instance.vZ);
 				if (oSpaceship2 != null) {
-					oSpaceship2.I(iI, ((GameObject) (oSpaceship1)).EI, GameApp.Instance.Mission.I(1.0F, 0.2F));
+					oSpaceship2.I(iI, ((GameObject) (oSpaceship1)).EI, GameApp.Instance.currentMission.I(1.0F, 0.2F));
 					oSpaceship2.QI = 3;
 					oSpaceship2.I(f, f1, null, f2, f3, ((GameObject) (oSpaceship1)).M * 1.5F, 1.0F,
 							((GameObject) (oSpaceship1)).O, true);
@@ -257,13 +257,13 @@ final class oWeapon extends GameObject {
 	}
 
 	@Override
-	final void equip(boolean flag, GameObject oGameObject1) {
+	final void Equip(boolean flag, GameObject oGameObject1) {
 		if (oGameObject1 != null && oGameObject1.JI == 8)
 			super.ascore = 0;
-		super.equip(flag, oGameObject1);
+		super.Equip(flag, oGameObject1);
 		if (!flag && super.h) {
 			sprite_group sprite_group1 = GameApp.Instance.D;
-			palette palette = GameApp.Instance.DZ;
+			Palette palette = GameApp.Instance.DZ;
 			GameApp.Instance.NZ.I(GameApp.Instance.TZ, true, false);
 			Explosion explosion1 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.oZ);
 			if (explosion1 != null) {

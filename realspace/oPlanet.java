@@ -6,12 +6,12 @@ package realspace;
 // Source File Name:   star_y
 
 final class oPlanet extends GameObject {
-	oPlanet(GameApp gameapp1) {
-		super(gameapp1);
+	oPlanet(GameApp applet) {
+		super(applet);
 	}
 
 	final void I(sprite_group sprite_group1, int i, boolean flag, int j, int k) {
-		super.initialize(sprite_group1, 10, 1000, i, 0, flag);
+		super.Awake(sprite_group1, 10, 1000, i, 0, flag);
 		super.d = j;
 		super.b = k;
 		super.y = sprite_group1.I(j, k);
@@ -45,10 +45,10 @@ final class oPlanet extends GameObject {
 	}
 
 	@Override
-	final void equip(boolean flag, GameObject oGameObject1) {
+	final void Equip(boolean flag, GameObject oGameObject1) {
 		if (oGameObject1 != null && oGameObject1.JI == 8)
 			super.ascore = 0;
-		super.equip(flag, oGameObject1);
+		super.Equip(flag, oGameObject1);
 		if (!flag) {
 			// palette palette = null;
 			// palette = super.KI.DZ;
@@ -57,29 +57,29 @@ final class oPlanet extends GameObject {
 				explosionbit explosionbit1 = (explosionbit) GameApp.Instance.uZ.I(GameApp.Instance.tZ);
 				if (explosionbit1 != null) {
 					explosionbit1.I(GameApp.Instance.gI, null, this, super.m + super.n);
-					explosionbit1.I(super.J - 10F * ((AppletImplements) (GameApp.Instance)).viewScale,
-							super.S + 15F * ((AppletImplements) (GameApp.Instance)).viewScale, -0.1F, 0.07F, false);
+					explosionbit1.I(super.J - 10F * (GameApp.Instance).viewScale,
+							super.S + 15F * (GameApp.Instance).viewScale, -0.1F, 0.07F, false);
 					explosionbit1.a = 500;
 				}
 				explosionbit1 = (explosionbit) GameApp.Instance.uZ.I(GameApp.Instance.tZ);
 				if (explosionbit1 != null) {
 					explosionbit1.I(GameApp.Instance.lI, null, this, super.m + super.n);
-					explosionbit1.I(super.J + 70F * ((AppletImplements) (GameApp.Instance)).viewScale,
-							super.S + -40F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.4F, -0.2F, false);
+					explosionbit1.I(super.J + 70F * (GameApp.Instance).viewScale,
+							super.S + -40F * (GameApp.Instance).viewScale, 0.4F, -0.2F, false);
 					explosionbit1.a = 490;
 				}
 				explosionbit1 = (explosionbit) GameApp.Instance.uZ.I(GameApp.Instance.tZ);
 				if (explosionbit1 != null) {
 					explosionbit1.I(GameApp.Instance.kI, null, this, super.m + super.n);
-					explosionbit1.I(super.J + 40F * ((AppletImplements) (GameApp.Instance)).viewScale,
-							super.S + -90F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.2F, -0.8F, false);
+					explosionbit1.I(super.J + 40F * (GameApp.Instance).viewScale,
+							super.S + -90F * (GameApp.Instance).viewScale, 0.2F, -0.8F, false);
 					explosionbit1.a = 480;
 				}
 				explosionbit1 = (explosionbit) GameApp.Instance.uZ.I(GameApp.Instance.tZ);
 				if (explosionbit1 != null) {
 					explosionbit1.I(GameApp.Instance.kI, null, this, super.m + super.n);
-					explosionbit1.I(super.J + -30F * ((AppletImplements) (GameApp.Instance)).viewScale,
-							super.S + -100F * ((AppletImplements) (GameApp.Instance)).viewScale, -0.3F, -0.75F, false);
+					explosionbit1.I(super.J + -30F * (GameApp.Instance).viewScale,
+							super.S + -100F * (GameApp.Instance).viewScale, -0.3F, -0.75F, false);
 					explosionbit1.a = 470;
 				}
 			}
@@ -111,8 +111,8 @@ final class oPlanet extends GameObject {
 					explosionbit2.I(GameApp.Instance.hI, GameApp.Instance.J, this, 100);
 					explosionbit2.I(super.J + ((float) Math.random() - 0.2F) * 100F,
 							super.S + ((float) Math.random() - 0.8F) * 100F,
-							((float) Math.random() - 0.2F) * 10F * ((AppletImplements) (GameApp.Instance)).viewScale,
-							((float) Math.random() - 0.8F) * 7F * ((AppletImplements) (GameApp.Instance)).viewScale, false);
+							((float) Math.random() - 0.2F) * 10F * (GameApp.Instance).viewScale,
+							((float) Math.random() - 0.8F) * 7F * (GameApp.Instance).viewScale, false);
 					explosionbit2.s = (int) (Math.random() * -80D);
 					explosionbit2.a = 100;
 				}

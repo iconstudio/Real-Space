@@ -6,8 +6,8 @@ package realspace;
 // Source File Name:   star_y
 
 final class oWeaponfire extends GameObject {
-	oWeaponfire(GameApp gameapp1) {
-		super(gameapp1);
+	oWeaponfire(GameApp applet) {
+		super(applet);
 		F = new int[4];
 		HNSM = new int[4];
 		max = new int[200][4];
@@ -57,7 +57,7 @@ final class oWeaponfire extends GameObject {
 	@SuppressWarnings("unused")
 	final void F(sprite_group sprite_group1, sprite_group sprite_group2, GameObject oGameObject1, int i, int j, int k,
 			int l, int i1, int j1, int k1, int l1, float f) {
-		super.initialize(sprite_group1, 6, k, 1, 0, false);
+		super.Awake(sprite_group1, 6, k, 1, 0, false);
 		D = sprite_group2;
 		super.M = f;
 		super.ship_grade = i;
@@ -107,14 +107,14 @@ final class oWeaponfire extends GameObject {
 				I = 1.0F;
 				Z = 1.0F;
 			}
-			F[0] = (l - (int) I) + ((AppletImplements) (GameApp.Instance)).WC;
-			HNSM[0] = (i1 - (int) Z) + ((AppletImplements) (GameApp.Instance)).XC;
-			F[1] = l + (int) I + ((AppletImplements) (GameApp.Instance)).WC;
-			HNSM[1] = i1 + (int) Z + ((AppletImplements) (GameApp.Instance)).XC;
-			F[2] = j1 + (int) I + ((AppletImplements) (GameApp.Instance)).WC;
-			HNSM[2] = k1 + (int) Z + ((AppletImplements) (GameApp.Instance)).XC;
-			F[3] = (j1 - (int) I) + ((AppletImplements) (GameApp.Instance)).WC;
-			HNSM[3] = (k1 - (int) Z) + ((AppletImplements) (GameApp.Instance)).XC;
+			F[0] = (l - (int) I) + (GameApp.Instance).WC;
+			HNSM[0] = (i1 - (int) Z) + (GameApp.Instance).XC;
+			F[1] = l + (int) I + (GameApp.Instance).WC;
+			HNSM[1] = i1 + (int) Z + (GameApp.Instance).XC;
+			F[2] = j1 + (int) I + (GameApp.Instance).WC;
+			HNSM[2] = k1 + (int) Z + (GameApp.Instance).XC;
+			F[3] = (j1 - (int) I) + (GameApp.Instance).WC;
+			HNSM[3] = (k1 - (int) Z) + (GameApp.Instance).XC;
 			return;
 
 		case 6: // '\006'
@@ -124,8 +124,8 @@ final class oWeaponfire extends GameObject {
 				LI = GameApp.Instance.MZ;
 			else
 				LI = GameApp.Instance.LZ;
-			palette palette1;
-			super.a = 40 + (palette1 = LI).C + 1;
+			Palette palette1;
+			super.a = 40 + (palette1 = LI).GetCapacity() + 1;
 			C = 5;
 			float f3 = j1 - l;
 			float f5 = k1 - i1;
@@ -187,7 +187,7 @@ final class oWeaponfire extends GameObject {
 			C();
 			super.s++;
 			if (super.s >= super.a)
-				equip(true, null);
+				Equip(true, null);
 			break;
 
 		case 3: // '\003'
@@ -195,7 +195,7 @@ final class oWeaponfire extends GameObject {
 			C();
 			super.s++;
 			if (super.s >= super.a)
-				equip(true, null);
+				Equip(true, null);
 			break;
 
 		case 2: // '\002'
@@ -203,34 +203,34 @@ final class oWeaponfire extends GameObject {
 			B();
 			super.s++;
 			if (super.s >= super.a)
-				equip(true, null);
+				Equip(true, null);
 			break;
 
 		case 4: // '\004'
 			D();
 			super.s++;
 			if (super.s >= super.a)
-				equip(true, null);
+				Equip(true, null);
 			break;
 
 		case 5: // '\005'
 			super.s++;
 			if (super.s >= super.a)
-				equip(false, null);
+				Equip(false, null);
 			else if (super.g != null && super.g.e != 1) {
-				equip(true, null);
+				Equip(true, null);
 			} else {
 				if (super.g != null) {
-					F[0] = (int) (super.g.J - I) + ((AppletImplements) (GameApp.Instance)).WC;
-					HNSM[0] = (int) (super.g.S - Z) + ((AppletImplements) (GameApp.Instance)).XC;
-					F[1] = (int) (super.g.J + I) + ((AppletImplements) (GameApp.Instance)).WC;
-					HNSM[1] = (int) (super.g.S + Z) + ((AppletImplements) (GameApp.Instance)).XC;
+					F[0] = (int) (super.g.J - I) + (GameApp.Instance).WC;
+					HNSM[0] = (int) (super.g.S - Z) + (GameApp.Instance).XC;
+					F[1] = (int) (super.g.J + I) + (GameApp.Instance).WC;
+					HNSM[1] = (int) (super.g.S + Z) + (GameApp.Instance).XC;
 				}
 				if (super.Q != null) {
-					F[2] = (int) (super.Q.J + I) + ((AppletImplements) (GameApp.Instance)).WC;
-					HNSM[2] = (int) (super.Q.S + Z) + ((AppletImplements) (GameApp.Instance)).XC;
-					F[3] = (int) (super.Q.J - I) + ((AppletImplements) (GameApp.Instance)).WC;
-					HNSM[3] = (int) (super.Q.S - Z) + ((AppletImplements) (GameApp.Instance)).XC;
+					F[2] = (int) (super.Q.J + I) + (GameApp.Instance).WC;
+					HNSM[2] = (int) (super.Q.S + Z) + (GameApp.Instance).XC;
+					F[3] = (int) (super.Q.J - I) + (GameApp.Instance).WC;
+					HNSM[3] = (int) (super.Q.S - Z) + (GameApp.Instance).XC;
 				}
 			}
 			break;
@@ -238,7 +238,7 @@ final class oWeaponfire extends GameObject {
 		case 6: // '\006'
 			super.s++;
 			if (super.s >= super.a)
-				equip(false, null);
+				Equip(false, null);
 			break;
 		}
 		if (D != null && super.e == 1 && super.s % 3 == 0) {
@@ -250,11 +250,11 @@ final class oWeaponfire extends GameObject {
 
 	@Override
 	@SuppressWarnings("unused")
-	final void Draw(surface surface) {
+	final void Draw(Canvas surface) {
 		switch (super.ship_grade) {
 		case 6: // '\006'
-			palette palette1 = LI;
-			int i = palette1.C;
+			Palette palette1 = LI;
+			int i = palette1.GetCapacity();
 			for (int j = 0; j < C; j++) {
 				// int i1 = 40 * j;
 				int k = 0;
@@ -322,7 +322,7 @@ final class oWeaponfire extends GameObject {
 	}
 
 	@Override
-	final void equip(boolean flag, GameObject oGameObject1) {
+	final void Equip(boolean flag, GameObject oGameObject1) {
 		if (!flag) {
 			sprite_group sprite_group1;
 			if (super.EI == 2)
@@ -368,7 +368,7 @@ final class oWeaponfire extends GameObject {
 				break;
 			}
 		}
-		super.equip(flag, oGameObject1);
+		super.Equip(flag, oGameObject1);
 	}
 
 	int F[];
@@ -381,5 +381,5 @@ final class oWeaponfire extends GameObject {
 	int C;
 	boolean B;
 	sprite_group D;
-	palette LI;
+	Palette LI;
 }

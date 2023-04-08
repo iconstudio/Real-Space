@@ -1,17 +1,15 @@
 package realspace;
-// Decompiled by Jad v1.5.8f. Copyright 2001 Pavel Kouznetsov.
-
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) 
-// Source File Name:   star_y
 
 final class gameutil {
-	static final void I(surface surface1, int i, int j, int k, int l, float f, int color1, int color2) {
+	static final void DrawGaugebar(Canvas surface1, int i, int j, int k, int l, float f, int color_from, int color_to) 
+	{
 		int k1 = (int) (k * f);
-		int l1 = color_blend(color1, color2, f);
+		int l1 = color_blend(color_from, color_to, f);
 		int i2 = (l + 1) / 2;
 		int j2 = color_blend(0, l1, 0.35F);
-		for (int l2 = 0; l2 < i2; l2++) {
+
+		for (int l2 = 0; l2 < i2; l2++) 
+		{
 			int k2 = color_blend(j2, l1, l2 / (i2 - 2.0F));
 			surface1.I(i, j + l2, k1, 1, k2);
 			surface1.I(i, (j + l) - 1 - l2, k1, 1, k2);

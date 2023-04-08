@@ -41,7 +41,7 @@ class GameObject {
 	int e;
 	GameObject g;
 	boolean h;
-	oGameObjectlist k;
+	GameObjectPool k;
 	boolean l;
 	int m;
 	int n;
@@ -56,33 +56,34 @@ class GameObject {
 	boolean v;
 	boolean w;
 	sprite_group x;
-	sprite y;
+	Sprite y;
 	boolean II;
 	String ZI;
 	boolean CI;
 	float BI;
 	int DI;
-	oGameObjectlist FI;
 	int JI;
 	int ship_grade;
 	int AI;
 	int EI;
 	int ascore;
 	int HI;
+	GameObjectPool FI;
 
-	public GameObject(GameApp gameapp1) {
-		GameApp.Instance = gameapp1;
+	public GameObject(GameApp applet)
+	{
+		GameApp.Instance = applet;
 		k = null;
 		FI = null;
 		e = 2;
 	}
 
-	protected final void initialize(sprite_group spr, int i1, int j1, int k1, int l1, boolean flag) {
-		initialize(spr, i1, j1, k1, l1, flag, null, true);
+	protected final void Awake(sprite_group spr, int i1, int j1, int k1, int l1, boolean flag)
+	{
+		Awake(spr, i1, j1, k1, l1, flag, null, true);
 	}
 
-	protected final void initialize(sprite_group spr, int i1, int j1, int k1, int l1, boolean flag,
-			GameObject oGameObject1, boolean flag1) {
+	protected final void Awake(sprite_group spr, int i1, int j1, int k1, int l1, boolean flag, GameObject oGameObject1, boolean flag1) {
 		x = spr;
 		m = j1;
 		o = k1;
@@ -138,33 +139,32 @@ class GameObject {
 			g.l = true;
 	}
 
-	void Draw(surface surface1) {
+	void Draw(Canvas surface1) {
 		if (y != null && w) {
 			if (t > 0) {
 				if (n <= 0)
-					surface1.Z((int) J + ((AppletImplements) (GameApp.Instance)).WC, (int) S + ((AppletImplements) (GameApp.Instance)).XC,
-							(y.D + 10) - sqrt * 3, (y.F + 10) - sqrt * 3, ((AppletImplements) (GameApp.Instance)).MB.I(sqrt, t));
+					surface1.Z((int) J + (GameApp.Instance).WC, (int) S + (GameApp.Instance).XC,
+							(y.D + 10) - sqrt * 3, (y.F + 10) - sqrt * 3, (GameApp.Instance).MB.Pick(sqrt, t));
 				else
-					surface1.Z((int) J + ((AppletImplements) (GameApp.Instance)).WC, (int) S + ((AppletImplements) (GameApp.Instance)).XC, y.D + 10, y.F + 10,
-							((AppletImplements) (GameApp.Instance)).LB.I(sqrt, t));
+					surface1.Z((int) J + (GameApp.Instance).WC, (int) S + (GameApp.Instance).XC, y.D + 10, y.F + 10,
+							(GameApp.Instance).LB.Pick(sqrt, t));
 				sqrt++;
 				if (sqrt >= t)
 					t = 0;
 			}
 
-			surface1.I(y, A + ((AppletImplements) (GameApp.Instance)).WC, E + ((AppletImplements) (GameApp.Instance)).XC, GameApp.Instance);
+			surface1.I(y, A + (GameApp.Instance).WC, E + (GameApp.Instance).XC, GameApp.Instance);
 
 			if (u) {
-				int i1 = (Math.round(J) - 15) + ((AppletImplements) (GameApp.Instance)).WC;
-				int j1 = Math.round(S) + y.F + 5 + ((AppletImplements) (GameApp.Instance)).XC;
+				int i1 = (Math.round(J) - 15) + (GameApp.Instance).WC;
+				int j1 = Math.round(S) + y.F + 5 + (GameApp.Instance).XC;
 				float f1 = (float) (o + n) / (float) (p + q);
 
-				gameutil.I(surface1, i1, j1, 30, 10, f1, Colours.Red, Colours.Green);
+				gameutil.DrawGaugebar(surface1, i1, j1, 30, 10, f1, Colours.Red, Colours.Green);
 			}
 		}
-		
-		if (k != null)
-		{
+
+		if (k != null) {
 			k.I(surface1);
 		}
 	}
@@ -569,20 +569,20 @@ class GameObject {
 		DI = 8;
 	}
 
-	void equip(boolean flag, GameObject oGameObject1) {
+	void Equip(boolean flag, GameObject oGameObject1) {
 		e = 2;
 		if (EI == 2 && !flag && ascore > 0)
 			GameApp.Instance.Z(ascore);
 		if (k != null) {
-			oGameObjectlist oGameObjectlist1 = k;
+			GameObjectPool oGameObjectlist1 = k;
 			oGameObjectlist1.I(flag, oGameObject1, -1, -1, -1, -1);
 		}
 		if (II) {
 			gameobjectivelist gameobjectivelist1;
 			if (EI == 2)
-				gameobjectivelist1 = GameApp.Instance.Mission.C;
+				gameobjectivelist1 = GameApp.Instance.currentMission.C;
 			else
-				gameobjectivelist1 = GameApp.Instance.Mission.I;
+				gameobjectivelist1 = GameApp.Instance.currentMission.I;
 			if (flag)
 				gameobjectivelist1.E++;
 			else
@@ -599,8 +599,8 @@ class GameObject {
 					i1 += gameobjectivelist1.A;
 				}
 				if (j1 >= i1) {
-					GameApp.Instance.Mission.B = ZI;
-					GameApp.Instance.Mission.I(gameobjectivelist1.F);
+					GameApp.Instance.currentMission.B = ZI;
+					GameApp.Instance.currentMission.I(gameobjectivelist1.F);
 				}
 			}
 		}
@@ -622,8 +622,8 @@ class GameObject {
 	final boolean atan(GameObject oGameObject1) {
 		if (y == null || oGameObject1.y == null)
 			return false;
-		sprite sprite1 = y;
-		sprite sprite2 = oGameObject1.y;
+		Sprite sprite1 = y;
+		Sprite sprite2 = oGameObject1.y;
 		int i1 = sprite1.Z;
 		int j1 = sprite2.Z;
 		rlepart rlepart1 = sprite1.I[0];
@@ -689,7 +689,7 @@ class GameObject {
 					o -= i1;
 			}
 		if (o <= 0) {
-			equip(false, oGameObject1);
+			Equip(false, oGameObject1);
 			return;
 		}
 		if (k1 > 0 || j1 > 0)

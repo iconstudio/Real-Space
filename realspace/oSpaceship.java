@@ -6,16 +6,16 @@ package realspace;
 // Source File Name:   star_y
 
 final class oSpaceship extends GameObject {
-	oSpaceship(GameApp gameapp1) {
-		super(gameapp1);
+	oSpaceship(GameApp applet) {
+		super(applet);
 		YI = 100000F;
-		thrustors = new oShipthrustor(gameapp1);
-		super.k = new oGameObjectlist(gameapp1, 10);
+		thrustors = new oShipthrustor(applet);
+		super.k = new GameObjectPool(applet, 10);
 	}
 
 	protected final void initialize(sprite_group spr, int grade, int j, int k, int score, int attr1, int attr2,
 			int attr3, boolean flag, int l1) {
-		super.initialize(spr, 8, attr1, attr2, attr3, flag);
+		super.Awake(spr, 8, attr1, attr2, attr3, flag);
 		super.ship_grade = grade;
 		super.AI = j;
 		super.EI = k;
@@ -46,15 +46,15 @@ final class oSpaceship extends GameObject {
 	}
 
 	final void I(int i, int j, float f) {
-		float f2 = 400F * ((AppletImplements) (GameApp.Instance)).viewScale;
+		float f2 = 400F * (GameApp.Instance).viewScale;
 		byte byte0 = 80;
-		float f4 = 400F * ((AppletImplements) (GameApp.Instance)).viewScale;
+		float f4 = 400F * (GameApp.Instance).viewScale;
 		byte byte1 = 100;
 		// float f7 = 400F * ((gamebase) (super.KI)).ZB;
 		// byte byte2 = 80;
-		float f9 = 400F * ((AppletImplements) (GameApp.Instance)).viewScale;
+		float f9 = 400F * (GameApp.Instance).viewScale;
 		char c = '\240';
-		float f10 = 800F * ((AppletImplements) (GameApp.Instance)).viewScale;
+		float f10 = 800F * (GameApp.Instance).viewScale;
 		float f1;
 		float f3;
 		float f8;
@@ -90,23 +90,23 @@ final class oSpaceship extends GameObject {
 				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-10F * ((AppletImplements) (GameApp.Instance)).viewScale, 0F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-10F * (GameApp.Instance).viewScale, 0F * (GameApp.Instance).viewScale);
 			return;
 
 		case 102: // 'f'
 			initialize(GameApp.Instance.W, 1, i, j, 0, 30, 35, 55, false, 0);
-			weaponize(16F * ((AppletImplements) (GameApp.Instance)).viewScale, -10F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(16F * (GameApp.Instance).viewScale, -10F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.RI, GameApp.Instance.Q, GameApp.Instance.RZ, 70, 40, true,
 					4, 30, f8, f9, c);
-			weaponize(16F * ((AppletImplements) (GameApp.Instance)).viewScale, 10F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(16F * (GameApp.Instance).viewScale, 10F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.RI, GameApp.Instance.Q, GameApp.Instance.RZ, 70, 40, true,
 					4, 30, f8, f9, c);
 			if (GameApp.Instance.QC == 1)
 				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, -7F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, 7F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-15F * (GameApp.Instance).viewScale, -7F * (GameApp.Instance).viewScale);
+			thrustors.I(-15F * (GameApp.Instance).viewScale, 7F * (GameApp.Instance).viewScale);
 			return;
 
 		case 103: // 'g'
@@ -116,7 +116,7 @@ final class oSpaceship extends GameObject {
 				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, 0F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-15F * (GameApp.Instance).viewScale, 0F * (GameApp.Instance).viewScale);
 			return;
 
 		case 111: // 'o'
@@ -129,23 +129,23 @@ final class oSpaceship extends GameObject {
 				thrustors.I(1, 5, 12, 16F, GameApp.Instance.R);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 10, 12, 16F, GameApp.Instance.R);
-			thrustors.I(-20F * ((AppletImplements) (GameApp.Instance)).viewScale, 0F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-20F * (GameApp.Instance).viewScale, 0F * (GameApp.Instance).viewScale);
 			return;
 
 		case 112: // 'p'
 			initialize(GameApp.Instance.z, 2, i, j, 0, 50, 90, 110, false, 0);
-			weaponize(2.0F * ((AppletImplements) (GameApp.Instance)).viewScale, -15F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(2.0F * (GameApp.Instance).viewScale, -15F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.QI, GameApp.Instance.Q, GameApp.Instance.RZ, 40, 30, true,
 					4, 40, f8, f9, c);
-			weaponize(2.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 15F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(2.0F * (GameApp.Instance).viewScale, 15F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.QI, GameApp.Instance.Q, GameApp.Instance.RZ, 40, 30, true,
 					4, 40, f8, f9, c);
 			if (GameApp.Instance.QC == 1)
 				thrustors.I(1, 4, 12, 16F, GameApp.Instance.R);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 8, 12, 16F, GameApp.Instance.R);
-			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, -12F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, 12F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-15F * (GameApp.Instance).viewScale, -12F * (GameApp.Instance).viewScale);
+			thrustors.I(-15F * (GameApp.Instance).viewScale, 12F * (GameApp.Instance).viewScale);
 			return;
 
 		case 120: // 'x'
@@ -154,18 +154,18 @@ final class oSpaceship extends GameObject {
 				thrustors.I(1, 2, 12, 16F, GameApp.Instance.T);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-41F * ((AppletImplements) (GameApp.Instance)).viewScale, -28F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-41F * ((AppletImplements) (GameApp.Instance)).viewScale, 28F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			weaponize(30F * ((AppletImplements) (GameApp.Instance)).viewScale, -21F * ((AppletImplements) (GameApp.Instance)).viewScale,
-					2.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
+			thrustors.I(-41F * (GameApp.Instance).viewScale, -28F * (GameApp.Instance).viewScale);
+			thrustors.I(-41F * (GameApp.Instance).viewScale, 28F * (GameApp.Instance).viewScale);
+			weaponize(30F * (GameApp.Instance).viewScale, -21F * (GameApp.Instance).viewScale,
+					2.0F * (GameApp.Instance).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
 					GameApp.Instance.MI, null, GameApp.Instance.PZ, 20, 12, true, 3, 50, GameApp.Instance.nZ, f2, 30);
-			weaponize(30F * ((AppletImplements) (GameApp.Instance)).viewScale, 21F * ((AppletImplements) (GameApp.Instance)).viewScale,
-					2.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
+			weaponize(30F * (GameApp.Instance).viewScale, 21F * (GameApp.Instance).viewScale,
+					2.0F * (GameApp.Instance).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
 					GameApp.Instance.MI, null, GameApp.Instance.PZ, 20, 12, true, 3, 50, GameApp.Instance.nZ, f2, 30);
-			weaponize(-2F * ((AppletImplements) (GameApp.Instance)).viewScale, -45F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(-2F * (GameApp.Instance).viewScale, -45F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.RI, GameApp.Instance.Q, GameApp.Instance.RZ, 22, 12, true,
 					4, 45, f8, f9, c);
-			weaponize(-2F * ((AppletImplements) (GameApp.Instance)).viewScale, 45F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(-2F * (GameApp.Instance).viewScale, 45F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.RI, GameApp.Instance.Q, GameApp.Instance.RZ, 22, 12, true,
 					4, 45, f8, f9, c);
 			return;
@@ -176,13 +176,13 @@ final class oSpaceship extends GameObject {
 				thrustors.I(1, 2, 12, 16F, GameApp.Instance.T);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-50F * ((AppletImplements) (GameApp.Instance)).viewScale, -18F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-50F * ((AppletImplements) (GameApp.Instance)).viewScale, 18F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			weaponize(-2F * ((AppletImplements) (GameApp.Instance)).viewScale, -16F * ((AppletImplements) (GameApp.Instance)).viewScale,
-					2.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
+			thrustors.I(-50F * (GameApp.Instance).viewScale, -18F * (GameApp.Instance).viewScale);
+			thrustors.I(-50F * (GameApp.Instance).viewScale, 18F * (GameApp.Instance).viewScale);
+			weaponize(-2F * (GameApp.Instance).viewScale, -16F * (GameApp.Instance).viewScale,
+					2.0F * (GameApp.Instance).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
 					GameApp.Instance.MI, null, GameApp.Instance.PZ, 20, 12, true, 3, 50, GameApp.Instance.nZ, f2, 30);
-			weaponize(-2F * ((AppletImplements) (GameApp.Instance)).viewScale, 16F * ((AppletImplements) (GameApp.Instance)).viewScale,
-					2.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
+			weaponize(-2F * (GameApp.Instance).viewScale, 16F * (GameApp.Instance).viewScale,
+					2.0F * (GameApp.Instance).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
 					GameApp.Instance.MI, null, GameApp.Instance.PZ, 20, 12, true, 3, 50, GameApp.Instance.nZ, f2, 30);
 			return;
 
@@ -192,8 +192,8 @@ final class oSpaceship extends GameObject {
 				thrustors.I(1, 2, 12, 16F, GameApp.Instance.T);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-32F * ((AppletImplements) (GameApp.Instance)).viewScale, -6F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-32F * ((AppletImplements) (GameApp.Instance)).viewScale, 6F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-32F * (GameApp.Instance).viewScale, -6F * (GameApp.Instance).viewScale);
+			thrustors.I(-32F * (GameApp.Instance).viewScale, 6F * (GameApp.Instance).viewScale);
 			thruster_add(-5F, -40F, null, false, 40, 10, f10, 4.712389F, 1, 4, 101);
 			thruster_add(-5F, 40F, null, false, 40, 10, f10, 1.570796F, 1, 4, 101);
 			return;
@@ -204,9 +204,9 @@ final class oSpaceship extends GameObject {
 				thrustors.I(1, 2, 12, 16F, GameApp.Instance.T);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-71F * ((AppletImplements) (GameApp.Instance)).viewScale, -11F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-74F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-71F * ((AppletImplements) (GameApp.Instance)).viewScale, 11F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-71F * (GameApp.Instance).viewScale, -11F * (GameApp.Instance).viewScale);
+			thrustors.I(-74F * (GameApp.Instance).viewScale, 0.0F * (GameApp.Instance).viewScale);
+			thrustors.I(-71F * (GameApp.Instance).viewScale, 11F * (GameApp.Instance).viewScale);
 			thruster_add(-32F, -40F, null, false, 40, 10, f10, 4.712389F, 1, 5, 101);
 			thruster_add(-32F, 40F, null, false, 40, 10, f10, 1.570796F, 1, 5, 101);
 			thruster_add(34F, -32F, null, false, 40, 10, f10, 4.712389F, 1, 5, 101);
@@ -215,22 +215,22 @@ final class oSpaceship extends GameObject {
 
 		case 130:
 			initialize(GameApp.Instance.j, 4, i, j, 0, 100, 300, 500, false, 0);
-			weaponize(18F * ((AppletImplements) (GameApp.Instance)).viewScale, -35F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(18F * (GameApp.Instance).viewScale, -35F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false, GameApp.Instance.MI, null, GameApp.Instance.PZ, 12, 5, true, 3,
 					50, GameApp.Instance.nZ, f2, 30);
-			weaponize(18F * ((AppletImplements) (GameApp.Instance)).viewScale, -18F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(18F * (GameApp.Instance).viewScale, -18F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false, GameApp.Instance.MI, null, GameApp.Instance.PZ, 12, 5, true, 3,
 					50, GameApp.Instance.nZ, f2, 30);
-			weaponize(-58F * ((AppletImplements) (GameApp.Instance)).viewScale, -18F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(-58F * (GameApp.Instance).viewScale, -18F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 3.926991F, false, GameApp.Instance.s, true, GameApp.Instance.PI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(58F * ((AppletImplements) (GameApp.Instance)).viewScale, -18F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(58F * (GameApp.Instance).viewScale, -18F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 5.497787F, false, GameApp.Instance.a, true, GameApp.Instance.PI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(-62F * ((AppletImplements) (GameApp.Instance)).viewScale, 33F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(-62F * (GameApp.Instance).viewScale, 33F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 2.356194F, false, GameApp.Instance.e, true, GameApp.Instance.PI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(62F * ((AppletImplements) (GameApp.Instance)).viewScale, 32F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(62F * (GameApp.Instance).viewScale, 32F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.7853982F, false, GameApp.Instance.g, true, GameApp.Instance.PI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
 			return;
@@ -245,7 +245,7 @@ final class oSpaceship extends GameObject {
 				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-14F * ((AppletImplements) (GameApp.Instance)).viewScale, 0F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-14F * (GameApp.Instance).viewScale, 0F * (GameApp.Instance).viewScale);
 			return;
 
 		case 201:
@@ -258,7 +258,7 @@ final class oSpaceship extends GameObject {
 				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-14F * ((AppletImplements) (GameApp.Instance)).viewScale, 0F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-14F * (GameApp.Instance).viewScale, 0F * (GameApp.Instance).viewScale);
 			return;
 
 		case 202:
@@ -271,7 +271,7 @@ final class oSpaceship extends GameObject {
 				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-14F * ((AppletImplements) (GameApp.Instance)).viewScale, 0F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-14F * (GameApp.Instance).viewScale, 0F * (GameApp.Instance).viewScale);
 			return;
 
 		case 203:
@@ -284,8 +284,8 @@ final class oSpaceship extends GameObject {
 				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-12F * ((AppletImplements) (GameApp.Instance)).viewScale, -4F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-12F * ((AppletImplements) (GameApp.Instance)).viewScale, 4F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-12F * (GameApp.Instance).viewScale, -4F * (GameApp.Instance).viewScale);
+			thrustors.I(-12F * (GameApp.Instance).viewScale, 4F * (GameApp.Instance).viewScale);
 			return;
 
 		case 210:
@@ -294,25 +294,25 @@ final class oSpaceship extends GameObject {
 				thrustors.I(1, 5, 12, 16F, GameApp.Instance.R);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 10, 12, 16F, GameApp.Instance.R);
-			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, -5F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, 5F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-18F * (GameApp.Instance).viewScale, -5F * (GameApp.Instance).viewScale);
+			thrustors.I(-18F * (GameApp.Instance).viewScale, 5F * (GameApp.Instance).viewScale);
 			return;
 
 		case 211:
 			initialize(GameApp.Instance.p, 2, i, j, 500, 40, 60, 80, false, 0);
-			weaponize(13F * ((AppletImplements) (GameApp.Instance)).viewScale, -17F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(13F * (GameApp.Instance).viewScale, -17F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.LI, null, GameApp.Instance.OZ, 50, 40, true, 1, 45, f1,
 					f2, byte0);
-			weaponize(13F * ((AppletImplements) (GameApp.Instance)).viewScale, 17F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(13F * (GameApp.Instance).viewScale, 17F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.LI, null, GameApp.Instance.OZ, 50, 40, true, 1, 45, f1,
 					f2, byte0);
 			if (GameApp.Instance.QC == 1)
 				thrustors.I(2, 5, 12, 16F, GameApp.Instance.Q);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(2, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, -8F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, 8F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-18F * (GameApp.Instance).viewScale, -8F * (GameApp.Instance).viewScale);
+			thrustors.I(-18F * (GameApp.Instance).viewScale, 0.0F * (GameApp.Instance).viewScale);
+			thrustors.I(-18F * (GameApp.Instance).viewScale, 8F * (GameApp.Instance).viewScale);
 			return;
 
 		case 212:
@@ -325,26 +325,26 @@ final class oSpaceship extends GameObject {
 				thrustors.I(2, 5, 12, 16F, GameApp.Instance.Q);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(2, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-14F * ((AppletImplements) (GameApp.Instance)).viewScale, -10F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, 2.0F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-15F * ((AppletImplements) (GameApp.Instance)).viewScale, -2F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-14F * ((AppletImplements) (GameApp.Instance)).viewScale, 10F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-14F * (GameApp.Instance).viewScale, -10F * (GameApp.Instance).viewScale);
+			thrustors.I(-15F * (GameApp.Instance).viewScale, 2.0F * (GameApp.Instance).viewScale);
+			thrustors.I(-15F * (GameApp.Instance).viewScale, -2F * (GameApp.Instance).viewScale);
+			thrustors.I(-14F * (GameApp.Instance).viewScale, 10F * (GameApp.Instance).viewScale);
 			return;
 
 		case 213:
 			initialize(GameApp.Instance.r, 2, i, j, 700, 50, 70, 100, false, 0);
-			weaponize(0.0F * ((AppletImplements) (GameApp.Instance)).viewScale, -20F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(0.0F * (GameApp.Instance).viewScale, -20F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ, 35, 25, true,
 					4, 45, f8, f9, c);
-			weaponize(0.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 20F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(0.0F * (GameApp.Instance).viewScale, 20F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ, 35, 25, true,
 					4, 45, f8, f9, c);
 			if (GameApp.Instance.QC == 1)
 				thrustors.I(2, 5, 12, 16F, GameApp.Instance.R);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(2, 10, 12, 16F, GameApp.Instance.R);
-			thrustors.I(-22F * ((AppletImplements) (GameApp.Instance)).viewScale, -7F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-22F * ((AppletImplements) (GameApp.Instance)).viewScale, 7F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-22F * (GameApp.Instance).viewScale, -7F * (GameApp.Instance).viewScale);
+			thrustors.I(-22F * (GameApp.Instance).viewScale, 7F * (GameApp.Instance).viewScale);
 			return;
 
 		case 220:
@@ -353,13 +353,13 @@ final class oSpaceship extends GameObject {
 				thrustors.I(2, 3, 12, 16F, GameApp.Instance.T);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 3, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-40F * ((AppletImplements) (GameApp.Instance)).viewScale, -18F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-45F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-40F * ((AppletImplements) (GameApp.Instance)).viewScale, 18F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			weaponize(-11F * ((AppletImplements) (GameApp.Instance)).viewScale, -14F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			thrustors.I(-40F * (GameApp.Instance).viewScale, -18F * (GameApp.Instance).viewScale);
+			thrustors.I(-45F * (GameApp.Instance).viewScale, 0.0F * (GameApp.Instance).viewScale);
+			thrustors.I(-40F * (GameApp.Instance).viewScale, 18F * (GameApp.Instance).viewScale);
+			weaponize(-11F * (GameApp.Instance).viewScale, -14F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 22, 12, true,
 					3, 60, GameApp.Instance.nZ, f2, 30);
-			weaponize(-11F * ((AppletImplements) (GameApp.Instance)).viewScale, 14F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(-11F * (GameApp.Instance).viewScale, 14F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 22, 12, true,
 					3, 60, GameApp.Instance.nZ, f2, 30);
 			return;
@@ -370,13 +370,13 @@ final class oSpaceship extends GameObject {
 				thrustors.I(2, 3, 12, 16F, GameApp.Instance.T);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-23F * ((AppletImplements) (GameApp.Instance)).viewScale, -16F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-28F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-23F * ((AppletImplements) (GameApp.Instance)).viewScale, 16F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			weaponize(12F * ((AppletImplements) (GameApp.Instance)).viewScale, -12F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			thrustors.I(-23F * (GameApp.Instance).viewScale, -16F * (GameApp.Instance).viewScale);
+			thrustors.I(-28F * (GameApp.Instance).viewScale, 0.0F * (GameApp.Instance).viewScale);
+			thrustors.I(-23F * (GameApp.Instance).viewScale, 16F * (GameApp.Instance).viewScale);
+			weaponize(12F * (GameApp.Instance).viewScale, -12F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ, 25, 12, true,
 					4, 45, f8, f9, c);
-			weaponize(12F * ((AppletImplements) (GameApp.Instance)).viewScale, 12F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(12F * (GameApp.Instance).viewScale, 12F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ, 25, 12, true,
 					4, 45, f8, f9, c);
 			return;
@@ -387,20 +387,20 @@ final class oSpaceship extends GameObject {
 				thrustors.I(2, 3, 12, 16F, GameApp.Instance.T);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 3, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-42F * ((AppletImplements) (GameApp.Instance)).viewScale, -15F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-50F * ((AppletImplements) (GameApp.Instance)).viewScale, 9F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-50F * ((AppletImplements) (GameApp.Instance)).viewScale, -9F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-42F * ((AppletImplements) (GameApp.Instance)).viewScale, 15F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			weaponize(17F * ((AppletImplements) (GameApp.Instance)).viewScale, -10F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			thrustors.I(-42F * (GameApp.Instance).viewScale, -15F * (GameApp.Instance).viewScale);
+			thrustors.I(-50F * (GameApp.Instance).viewScale, 9F * (GameApp.Instance).viewScale);
+			thrustors.I(-50F * (GameApp.Instance).viewScale, -9F * (GameApp.Instance).viewScale);
+			thrustors.I(-42F * (GameApp.Instance).viewScale, 15F * (GameApp.Instance).viewScale);
+			weaponize(17F * (GameApp.Instance).viewScale, -10F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 25, 15, true,
 					3, 50, GameApp.Instance.nZ, f2, 30);
-			weaponize(17F * ((AppletImplements) (GameApp.Instance)).viewScale, 10F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(17F * (GameApp.Instance).viewScale, 10F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 25, 15, true,
 					3, 50, GameApp.Instance.nZ, f2, 30);
-			weaponize(5F * ((AppletImplements) (GameApp.Instance)).viewScale, -15F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(5F * (GameApp.Instance).viewScale, -15F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 25, 15, true,
 					3, 50, GameApp.Instance.nZ, f2, 30);
-			weaponize(5F * ((AppletImplements) (GameApp.Instance)).viewScale, 15F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(5F * (GameApp.Instance).viewScale, 15F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 25, 15, true,
 					3, 50, GameApp.Instance.nZ, f2, 30);
 			return;
@@ -411,43 +411,43 @@ final class oSpaceship extends GameObject {
 				thrustors.I(2, 3, 12, 16F, GameApp.Instance.T);
 			else if (GameApp.Instance.QC == 2)
 				thrustors.I(1, 3, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, -39F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-26F * ((AppletImplements) (GameApp.Instance)).viewScale, -34F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-26F * ((AppletImplements) (GameApp.Instance)).viewScale, 34F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-18F * ((AppletImplements) (GameApp.Instance)).viewScale, 39F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-18F * (GameApp.Instance).viewScale, -39F * (GameApp.Instance).viewScale);
+			thrustors.I(-26F * (GameApp.Instance).viewScale, -34F * (GameApp.Instance).viewScale);
+			thrustors.I(-26F * (GameApp.Instance).viewScale, 34F * (GameApp.Instance).viewScale);
+			thrustors.I(-18F * (GameApp.Instance).viewScale, 39F * (GameApp.Instance).viewScale);
 			thruster_add(-27F, 0.0F, null, false, 35, 15, f10, 3.141593F, 1, 5, 202);
 			return;
 
 		case 230:
 			initialize(GameApp.Instance.II, 4, i, j, 5000, 100, 400, 600, false, 0);
-			weaponize(0.0F * ((AppletImplements) (GameApp.Instance)).viewScale, 18F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(0.0F * (GameApp.Instance).viewScale, 18F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 10F, 0.0F, true, GameApp.Instance.FI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 12, 5, true, 3,
 					50, GameApp.Instance.nZ, f2, 30);
-			weaponize(-52F * ((AppletImplements) (GameApp.Instance)).viewScale, -12F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(-52F * (GameApp.Instance).viewScale, -12F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 3.926991F, false, GameApp.Instance.ZI, true, GameApp.Instance.YI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(51F * ((AppletImplements) (GameApp.Instance)).viewScale, -13F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(51F * (GameApp.Instance).viewScale, -13F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 5.497787F, false, GameApp.Instance.CI, true, GameApp.Instance.YI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(-70F * ((AppletImplements) (GameApp.Instance)).viewScale, 33F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(-70F * (GameApp.Instance).viewScale, 33F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 2.356194F, false, GameApp.Instance.BI, true, GameApp.Instance.YI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(70F * ((AppletImplements) (GameApp.Instance)).viewScale, 30F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(70F * (GameApp.Instance).viewScale, 30F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 0.7853982F, false, GameApp.Instance.DI, true, GameApp.Instance.YI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
 			return;
 
 		case 231:
 			initialize(GameApp.Instance.JI, 4, i, j, 10000, 100, 600, 1000, false, 0);
-			weaponize(-101F * ((AppletImplements) (GameApp.Instance)).viewScale, 85F * ((AppletImplements) (GameApp.Instance)).viewScale, 4F,
+			weaponize(-101F * (GameApp.Instance).viewScale, 85F * (GameApp.Instance).viewScale, 4F,
 					0.0F, 0.0F, 2.199115F, false, GameApp.Instance.SI, true, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					15, 5, true, 4, 50, f8, f9, c);
-			weaponize(-40F * ((AppletImplements) (GameApp.Instance)).viewScale, 125F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F,
+			weaponize(-40F * (GameApp.Instance).viewScale, 125F * (GameApp.Instance).viewScale, 0.0F,
 					0.0F, 0.0F, 2.199115F, false, GameApp.Instance.AI, true, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ,
 					15, 5, true, 4, 50, f8, f9, c);
-			thruster_add(61F * ((AppletImplements) (GameApp.Instance)).viewScale, 108F * ((AppletImplements) (GameApp.Instance)).viewScale,
+			thruster_add(61F * (GameApp.Instance).viewScale, 108F * (GameApp.Instance).viewScale,
 					GameApp.Instance.EI, true, 40, 20, f10, 1.256637F, 1, 18, 203);
-			thruster_add(103F * ((AppletImplements) (GameApp.Instance)).viewScale, 40F * ((AppletImplements) (GameApp.Instance)).viewScale,
+			thruster_add(103F * (GameApp.Instance).viewScale, 40F * (GameApp.Instance).viewScale,
 					GameApp.Instance.GI, true, 40, 20, f10, 1.256637F, 1, 18, 212);
 			return;
 
@@ -459,9 +459,9 @@ final class oSpaceship extends GameObject {
 				thrustors.I(1, 3, 10, 16F, GameApp.Instance.R);
 			else
 				thrustors.I(1, 5, 10, 16F, GameApp.Instance.R);
-			thrustors.I(-16F * ((AppletImplements) (GameApp.Instance)).viewScale, -16F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-20F * ((AppletImplements) (GameApp.Instance)).viewScale, 0.0F * ((AppletImplements) (GameApp.Instance)).viewScale);
-			thrustors.I(-16F * ((AppletImplements) (GameApp.Instance)).viewScale, 16F * ((AppletImplements) (GameApp.Instance)).viewScale);
+			thrustors.I(-16F * (GameApp.Instance).viewScale, -16F * (GameApp.Instance).viewScale);
+			thrustors.I(-20F * (GameApp.Instance).viewScale, 0.0F * (GameApp.Instance).viewScale);
+			thrustors.I(-16F * (GameApp.Instance).viewScale, 16F * (GameApp.Instance).viewScale);
 			weaponize(10F, -6F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.UI, null, GameApp.Instance.QZ, 10, 0,
 					false, 1, 70, GameApp.Instance.nZ, f2, 30);
 			weaponize(10F, 6F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.VI, null, GameApp.Instance.QZ, 10, 0,
@@ -504,21 +504,21 @@ final class oSpaceship extends GameObject {
 			}
 		}
 		super.I();
-		if (super.J < ((AppletImplements) (GameApp.Instance)).worldBorderLeft) {
-			super.J = ((AppletImplements) (GameApp.Instance)).worldBorderLeft;
+		if (super.J < (GameApp.Instance).worldBorderLeft) {
+			super.J = (GameApp.Instance).worldBorderLeft;
 			super.K = 0.0F;
 			F();
-		} else if (super.J > ((AppletImplements) (GameApp.Instance)).worldBorderRight) {
-			super.J = ((AppletImplements) (GameApp.Instance)).worldBorderRight;
+		} else if (super.J > (GameApp.Instance).worldBorderRight) {
+			super.J = (GameApp.Instance).worldBorderRight;
 			super.K = 0.0F;
 			F();
 		}
-		if (super.S < ((AppletImplements) (GameApp.Instance)).worldBorderTop) {
-			super.S = ((AppletImplements) (GameApp.Instance)).worldBorderTop;
+		if (super.S < (GameApp.Instance).worldBorderTop) {
+			super.S = (GameApp.Instance).worldBorderTop;
 			super.L = 0.0F;
 			F();
-		} else if (super.S > ((AppletImplements) (GameApp.Instance)).worldBorderBottom) {
-			super.S = ((AppletImplements) (GameApp.Instance)).worldBorderBottom;
+		} else if (super.S > (GameApp.Instance).worldBorderBottom) {
+			super.S = (GameApp.Instance).worldBorderBottom;
 			super.L = 0.0F;
 			F();
 		}
@@ -532,14 +532,14 @@ final class oSpaceship extends GameObject {
 				if (UI >= 20)
 					switch (VI) {
 					case 1: // '\001'
-						equip(true, null);
+						Equip(true, null);
 						break;
 
 					case 2: // '\002'
 						if (UI == 20)
 							I(super.J, super.S, super.K, super.L, 0.0F, 0.05F, true);
-						else if (super.S > ((AppletImplements) (GameApp.Instance)).screen_height + super.y.J)
-							equip(true, null);
+						else if (super.S > (GameApp.Instance).screen_height + super.y.J)
+							Equip(true, null);
 						break;
 					}
 			} else if (Math.abs(super.Q.J - super.J) < 10F && Math.abs(super.Q.S - super.S) < 10F)
@@ -573,7 +573,7 @@ final class oSpaceship extends GameObject {
 					if (super.CI)
 						super.e = 3;
 					else
-						equip(true, null);
+						Equip(true, null);
 					break;
 				}
 				if (super.Q == null) {
@@ -583,10 +583,10 @@ final class oSpaceship extends GameObject {
 					float f = (super.R + super.U) - super.J;
 					float f2 = (super.T + super.V) - super.S;
 					if (f * f + f2 * f2 < 10000F) {
-						super.R = ((AppletImplements) (GameApp.Instance)).YC + ((AppletImplements) (GameApp.Instance)).worldHrz * 0.1F
-								+ (float) Math.random() * 0.8F * ((AppletImplements) (GameApp.Instance)).worldHrz;
-						super.T = ((AppletImplements) (GameApp.Instance)).zC + ((AppletImplements) (GameApp.Instance)).worldVrt * 0.1F
-								+ (float) Math.random() * 0.8F * ((AppletImplements) (GameApp.Instance)).worldVrt;
+						super.R = (GameApp.Instance).YC + (GameApp.Instance).worldHrz * 0.1F
+								+ (float) Math.random() * 0.8F * (GameApp.Instance).worldHrz;
+						super.T = (GameApp.Instance).zC + (GameApp.Instance).worldVrt * 0.1F
+								+ (float) Math.random() * 0.8F * (GameApp.Instance).worldVrt;
 						super.U = 0.0F;
 						super.V = 0.0F;
 					}
@@ -636,7 +636,7 @@ final class oSpaceship extends GameObject {
 	}
 
 	@Override
-	final void Draw(surface surface) {
+	final void Draw(Canvas surface) {
 		thrustors.I(surface);
 		super.Draw(surface);
 	}
@@ -673,10 +673,10 @@ final class oSpaceship extends GameObject {
 	}
 
 	final void J() {
-		oGameObjectlist oGameObjectlist1 = super.k;
-		int k = oGameObjectlist1.C;
+		GameObjectPool oGameObjectlist1 = super.k;
+		int k = oGameObjectlist1.mySize;
 		for (int i = max + 1; i < k; i++) {
-			oWeapon oWeapon1 = (oWeapon) super.k.Z[i];
+			oWeapon oWeapon1 = (oWeapon) super.k.internalList[i];
 			if (!oWeapon1.MI) {
 				oWeapon1.J();
 				max = i;
@@ -685,7 +685,7 @@ final class oSpaceship extends GameObject {
 		}
 
 		for (int j = 0; j <= max; j++) {
-			oWeapon oWeapon2 = (oWeapon) super.k.Z[j];
+			oWeapon oWeapon2 = (oWeapon) super.k.internalList[j];
 			if (!oWeapon2.MI) {
 				oWeapon2.J();
 				max = j;
@@ -708,12 +708,12 @@ final class oSpaceship extends GameObject {
 		return WI;
 	}
 
-	protected final void out(oGameObjectlist oGameObjectlist1, float f) {
+	protected final void out(GameObjectPool oGameObjectlist1, float f) {
 		float f8 = f * f;
 		float f3 = F;
-		int j = oGameObjectlist1.C;
+		int j = oGameObjectlist1.mySize;
 		for (int k = 0; k < j; k++) {
-			GameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.C ? null : oGameObjectlist1.Z[k];
+			GameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[k];
 			if (oGameObject1.e == 1 && oGameObject1.v && oGameObject1.h && oGameObject1.BI > 0.0001F) {
 				if (oGameObject1.l)
 					out(oGameObject1.k, f);
@@ -771,14 +771,14 @@ final class oSpaceship extends GameObject {
 		Object obj = null;
 		gameobjectivelist gameobjectivelist1;
 		if (super.EI == 2)
-			gameobjectivelist1 = GameApp.Instance.Mission.C;
+			gameobjectivelist1 = GameApp.Instance.currentMission.C;
 		else
-			gameobjectivelist1 = GameApp.Instance.Mission.I;
-		oGameObjectlist oGameObjectlist2;
-		while (obj == null && LI < (oGameObjectlist2 = gameobjectivelist1.D).C) {
-			oGameObjectlist oGameObjectlist1 = gameobjectivelist1.D;
+			gameobjectivelist1 = GameApp.Instance.currentMission.I;
+		GameObjectPool oGameObjectlist2;
+		while (obj == null && LI < (oGameObjectlist2 = gameobjectivelist1.D).mySize) {
+			GameObjectPool oGameObjectlist1 = gameobjectivelist1.D;
 			int i = LI;
-			oWaypoint oWaypoint1 = (oWaypoint) (i < 0 || i >= oGameObjectlist1.C ? null : oGameObjectlist1.Z[i]);
+			oWaypoint oWaypoint1 = (oWaypoint) (i < 0 || i >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[i]);
 			if (oWaypoint1.Z == -1 || super.AI == oWaypoint1.Z)
 				obj = oWaypoint1;
 			else
@@ -814,12 +814,12 @@ final class oSpaceship extends GameObject {
 		return WI;
 	}
 
-	protected final void println(oGameObjectlist oGameObjectlist1, float f) {
+	protected final void println(GameObjectPool oGameObjectlist1, float f) {
 		float f8 = f * f;
 		float f3 = F;
-		int j = oGameObjectlist1.C;
+		int j = oGameObjectlist1.mySize;
 		for (int k = 0; k < j; k++) {
-			GameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.C ? null : oGameObjectlist1.Z[k];
+			GameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[k];
 			if (oGameObject1.e == 1 && oGameObject1.v && oGameObject1.h && oGameObject1.BI > 0.0001F) {
 				float f10 = oGameObject1.J - super.J;
 				float f11 = oGameObject1.S - super.S;
@@ -877,32 +877,32 @@ final class oSpaceship extends GameObject {
 	}
 
 	@Override
-	final void equip(boolean flag, GameObject oGameObject1) {
+	final void Equip(boolean flag, GameObject oGameObject1) {
 		if (flag)
 			super.ascore = 0;
 		else if (super.EI == 2 && oGameObject1 != null
 				&& (oGameObject1.JI == 8 && oGameObject1.AI == 150 || oGameObject1.JI == 6 && oGameObject1.g != null
 						&& oGameObject1.g.g != null && oGameObject1.g.g.AI == 150)) {
 			boolean flag1 = false;
-			if (GameApp.Instance.Mission.J > 0 && Math.random() < GameApp.Instance.Mission.D) {
+			if (GameApp.Instance.currentMission.J > 0 && Math.random() < GameApp.Instance.currentMission.D) {
 				flag1 = true;
 			} else {
-				GameApp.Instance.Mission.G++;
-				int i = Math.round((1.0F / GameApp.Instance.Mission.D) * 1.5F);
-				if (GameApp.Instance.Mission.G >= i)
+				GameApp.Instance.currentMission.G++;
+				int i = Math.round((1.0F / GameApp.Instance.currentMission.D) * 1.5F);
+				if (GameApp.Instance.currentMission.G >= i)
 					flag1 = true;
 			}
 			if (flag1) {
-				GameApp.Instance.Mission.G = 0;
-				int k = GameApp.Instance.Mission.J;
+				GameApp.Instance.currentMission.G = 0;
+				int k = GameApp.Instance.currentMission.J;
 				int l = -1;
-				int i1 = (int) (Math.random() * GameApp.Instance.Mission.E);
+				int i1 = (int) (Math.random() * GameApp.Instance.currentMission.E);
 				for (int j1 = 0; j1 < k && l == -1; j1++) {
-					int j = GameApp.Instance.Mission.A[j1];
+					int j = GameApp.Instance.currentMission.A[j1];
 					if (i1 > j)
 						i1 -= j;
 					else
-						l = GameApp.Instance.Mission.S[j1];
+						l = GameApp.Instance.currentMission.S[j1];
 				}
 
 				if (l != -1) {
@@ -911,17 +911,17 @@ final class oSpaceship extends GameObject {
 						oPowerup1.Z(l);
 						float f3 = super.K * 0.3F;
 						float f4 = super.L * 0.3F;
-						if (super.J < ((AppletImplements) (GameApp.Instance)).YC
-								+ ((AppletImplements) (GameApp.Instance)).screen_width * 2.0F && super.K < 0.0F)
+						if (super.J < (GameApp.Instance).YC
+								+ (GameApp.Instance).screen_width * 2.0F && super.K < 0.0F)
 							super.K = -super.K;
-						if (super.J > ((AppletImplements) (GameApp.Instance)).iC
-								- ((AppletImplements) (GameApp.Instance)).screen_width * 2.0F && super.K > 0.0F)
+						if (super.J > (GameApp.Instance).iC
+								- (GameApp.Instance).screen_width * 2.0F && super.K > 0.0F)
 							super.K = -super.K;
-						if (super.S < ((AppletImplements) (GameApp.Instance)).zC
-								+ ((AppletImplements) (GameApp.Instance)).screen_height * 2.0F && super.L < 0.0F)
+						if (super.S < (GameApp.Instance).zC
+								+ (GameApp.Instance).screen_height * 2.0F && super.L < 0.0F)
 							super.L = -super.L;
-						if (super.S > ((AppletImplements) (GameApp.Instance)).cC
-								- ((AppletImplements) (GameApp.Instance)).screen_height * 2.0F && super.L > 0.0F)
+						if (super.S > (GameApp.Instance).cC
+								- (GameApp.Instance).screen_height * 2.0F && super.L > 0.0F)
 							super.L = -super.L;
 						oPowerup1.I(super.J, super.S, f3, f4, true);
 					}
@@ -930,12 +930,12 @@ final class oSpaceship extends GameObject {
 		} else {
 			super.ascore = 0;
 		}
-		super.equip(flag, oGameObject1);
+		super.Equip(flag, oGameObject1);
 		byte byte0 = 0;
 		byte byte1 = 0;
 		if (!flag) {
 			sprite_group sprite_group1 = null;
-			palette palette = null;
+			Palette palette = null;
 			float f = (float) Math.random();
 			if (f > 0.67000000000000004D)
 				sprite_group1 = GameApp.Instance.D;

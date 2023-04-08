@@ -5,18 +5,18 @@ package realspace;
 // Decompiler options: packimports(3) 
 // Source File Name:   star_y
 
-final class sprite {
-	sprite(int i, int j, int k, int l, int i1, int j1, surface surface1, boolean flag, int k1, int ai[], int l1,
+final class Sprite {
+	Sprite(int i, int j, int k, int l, int i1, int j1, Canvas surface1, boolean flag, int k1, int ai[], int l1,
 			GameApp gameapp) {
 		HNSM(i, j, k, l, i1, j1, surface1, flag, k1, ai, l1, gameapp);
 	}
 
-	sprite(int i, int j, int k, int l, int i1, int j1, surface surface1, boolean flag, imagepixels imagepixels1,
+	Sprite(int i, int j, int k, int l, int i1, int j1, Canvas surface1, boolean flag, Bitmap imagepixels1,
 			GameApp gameapp) {
 		HNSM(i, j, k, l, i1, j1, surface1, flag, imagepixels1.Z[0], imagepixels1.Z, imagepixels1.I, gameapp);
 	}
 
-	private void HNSM(int i, int j, int k, int l, int i1, int j1, surface surface1, boolean flag, int k1, int ai[],
+	private void HNSM(int i, int j, int k, int l, int i1, int j1, Canvas surface1, boolean flag, int k1, int ai[],
 			int l1, GameApp gameapp) {
 		C = i;
 		B = j;
@@ -74,6 +74,7 @@ final class sprite {
 					if (flag2) {
 						if (j4 != k1 && (j4 & 0xff000000) != 0) {
 							flag2 = false;
+
 							rlepart1 = I[k4] = new rlepart();
 							rlepart1.I = (short) j2;
 							rlepart1.Z = (short) l2;
@@ -113,6 +114,7 @@ final class sprite {
 		for (int i3 = 0; i3 < j; i3++) {
 			int l3 = (i3 + l) * l1 + k;
 			int i5 = i;
+			
 			rlepart rlepart2 = I[k4] = new rlepart();
 			rlepart2.I = 0;
 			rlepart2.Z = (short) i3;
@@ -126,8 +128,8 @@ final class sprite {
 
 	}
 
-	public static final sprite I(float f, float f1, int i, int j, int k, int l, int i1, int j1, int k1,
-			imagepixels imagepixels1, surface surface1, GameApp gameapp) {
+	public static final Sprite I(float f, float f1, int i, int j, int k, int l, int i1, int j1, int k1,
+			Bitmap imagepixels1, Canvas surface1, GameApp gameapp) {
 		int l1 = j;
 		int i2 = k;
 		int j2 = l1 / 2;
@@ -278,7 +280,7 @@ final class sprite {
 			}
 
 		}
-		sprite sprite1 = new sprite(i8 - k7, (j8 - l7) + i, k7, l7, i13, j13 + i, surface1, true, 0, ai, l6, gameapp);
+		Sprite sprite1 = new Sprite(i8 - k7, (j8 - l7) + i, k7, l7, i13, j13 + i, surface1, true, 0, ai, l6, gameapp);
 		ai = null;
 		return sprite1;
 	}

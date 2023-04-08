@@ -16,7 +16,7 @@ final class sprite_group {
 
 	private void HNSM(GameApp gameapp, int i, int j) {
 		HNSM = gameapp;
-		max = new sprite[i][j];
+		max = new Sprite[i][j];
 		I = new int[i];
 		for (int k = 0; k < i; k++)
 			I[k] = 0;
@@ -30,7 +30,7 @@ final class sprite_group {
 		A = S * 0.5F;
 	}
 
-	final sprite I(int i, int j) {
+	final Sprite I(int i, int j) {
 		int k, l;
 		try {
 			k = i % Z;
@@ -51,7 +51,7 @@ final class sprite_group {
 		return i % Z;
 	}
 
-	final sprite I(int i, int j, int k) {
+	final Sprite I(int i, int j, int k) {
 		int l = i % Z;
 		int i1 = (j * I[l]) / k;
 		if (i1 >= I[l])
@@ -59,7 +59,7 @@ final class sprite_group {
 		return max[l][i1];
 	}
 
-	final void I(int i, sprite sprite1) {
+	final void I(int i, Sprite sprite1) {
 		int j = I[i];
 		if (j < round) {
 			max[i][j] = sprite1;
@@ -75,10 +75,10 @@ final class sprite_group {
 		}
 	}
 
-	final void I(float f, int i, int j, int k, int l, int i1, int j1, int k1, imagepixels imagepixels, int l1, int i2,
-			int j2, surface surface) {
+	final void I(float f, int i, int j, int k, int l, int i1, int j1, int k1, Bitmap imagepixels, int l1, int i2,
+			int j2, Canvas surface) {
 		for (int k2 = i2; k2 < j2; k2++) {
-			sprite sprite1 = sprite.I(f, (float) ((6.2831853071795862D / l1) * k2), i, j, k, l, i1,
+			Sprite sprite1 = Sprite.I(f, (float) ((6.2831853071795862D / l1) * k2), i, j, k, l, i1,
 					j1, k1, imagepixels, surface, HNSM);
 			if (sprite1 != null)
 				I(k2, sprite1);
@@ -86,10 +86,10 @@ final class sprite_group {
 
 	}
 
-	final void I(int i, float f, int j, int k, int l, int i1, int j1, int k1, int l1, imagepixels imagepixels, int i2,
-			int j2, int k2, surface surface) {
+	final void I(int i, float f, int j, int k, int l, int i1, int j1, int k1, int l1, Bitmap imagepixels, int i2,
+			int j2, int k2, Canvas surface) {
 		for (int l2 = j2; l2 < k2; l2++) {
-			sprite sprite1 = sprite.I(f, (float) ((6.2831853071795862D / i2) * l2), j, k, l, i1, j1,
+			Sprite sprite1 = Sprite.I(f, (float) ((6.2831853071795862D / i2) * l2), j, k, l, i1, j1,
 					k1, l1, imagepixels, surface, HNSM);
 			if (sprite1 != null)
 				I(i, sprite1);
@@ -98,7 +98,7 @@ final class sprite_group {
 	}
 
 	GameApp HNSM;
-	private sprite max[][];
+	private Sprite max[][];
 	int I[];
 	int round;
 	int Z;

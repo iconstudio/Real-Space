@@ -1,67 +1,109 @@
 package realspace;
-// Decompiled by Jad v1.5.8f. Copyright 2001 Pavel Kouznetsov.
 
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) 
-// Source File Name:   star_y
+import java.util.Arrays;
 
-final class palette {
-
-	palette(GameApp gameapp, int i) {
-		HNSM = gameapp;
-		I = new int[i];
-		C = i;
-		Z = 0;
-		B = false;
-		D = false;
+final class Palette 
+{
+	public Palette(final int colors_count) 
+	{
+		myData = new int[colors_count];
+		myCapacity = colors_count;
+		mySize = 0;
+		isDual = false;
+		isLinear = false;
 	}
 
-	final void I(int i, int j, int k, boolean flag, boolean flag1) {
-		for (int l = 0; l < k; l++) {
-			int i1 = (int) (((float) l / (float) k) * 255F);
-			int j1 = 255 - i1;
-			int l1 = (i >> 16 & 0xff) * j1;
-			int j2 = (i >> 8 & 0xff) * j1;
-			int l2 = (i & 0xff) * j1;
-			int k1 = (j >> 16 & 0xff) * i1;
-			int i2 = (j >> 8 & 0xff) * i1;
-			int k2 = (j & 0xff) * i1;
-			int i3 = 0xff000000 + ((k1 + l1 >> 8) << 16) + ((i2 + j2 >> 8) << 8) + (k2 + l2 >> 8);
-			if (Z < C) {
-				I[Z] = i3;
-				Z++;
+	final void MergeColors(final int color1, final int color2, final int colors_max, final boolean is_dual, final boolean is_linear)
+	{
+		for (int l = 0; l < colors_max; l++) 
+		{
+			int factor = (int) (((float) l / (float) colors_max) * 255F);
+			int inv_factor = 255 - factor;
+
+			int l1 = (color1 >> 16 & 0xff) * inv_factor;
+			int j2 = (color1 >> 8 & 0xff) * inv_factor;
+			int l2 = (color1 & 0xff) * inv_factor;
+
+			int k1 = (color2 >> 16 & 0xff) * factor;
+			int i2 = (color2 >> 8 & 0xff) * factor;
+			int k2 = (color2 & 0xff) * factor;
+
+			final int picked_color = 0xff000000 + ((k1 + l1 >> 8) << 16) + ((i2 + j2 >> 8) << 8) + (k2 + l2 >> 8);
+
+			if (mySize < myCapacity) 
+			{
+				myData[mySize] = picked_color;
+				mySize++;
 			}
 		}
 
-		B = flag;
-		D = flag1;
+		isDual = is_dual;
+		isLinear = is_linear;
 	}
 
-	final int I(int i, int j) {
-		if (D) {
-			if (i >= 0)
-				return I[i % Z];
-		} else if (B) {
-			if (i >= 0 && i < Z * 2)
-				return I[i >> 1];
-			if (i >= j - Z * 2 && i < j)
-				return I[j - i - 1 >> 1];
-		} else if (i >= 0 && i < j)
-			return I[(i * Z) / j];
-		return I[Z - 1];
+	final int Pick(final int x, final int y) 
+	{
+		if (isLinear) 
+		{
+			if (0 <= x) 
+			{
+				return myData[x % mySize];
+			}
+		} 
+		else if (isDual) 
+		{
+			if (0 <= x && x < mySize * 2) // move right
+			{
+				return myData[x >> 1];
+			} 
+			else if (x >= y - mySize * 2 && x < y) // move down
+			{
+				return myData[y - x - 1 >> 1];
+			}
+		} 
+		else if (0 <= x && x < y)
+		{
+			return myData[(x * mySize) / y];
+		}
+
+		return myData[mySize - 1];
 	}
 
-	final int I(int i) {
-		if (i >= 0 && i < Z)
-			return I[i];
+	final int Pick(final int index)
+	{
+		if (0 <= index && index < mySize)
+		{
+			return myData[index];
+		}
 		else
-			return I[Z - 1];
+		{
+			return myData[mySize - 1];
+		}
 	}
 
-	GameApp HNSM;
-	int I[];
-	int Z;
-	int C;
-	boolean B;
-	boolean D;
+	public void AddColor(final int color)
+	{
+		myCapacity = Math.max(myCapacity, mySize + 1);
+
+		int buffer[] = Arrays.copyOf(myData, myCapacity);
+		buffer[mySize++] = color;
+
+		myData = buffer;
+	}
+
+	public int GetSize()
+	{
+		return mySize;
+	}
+
+	public int GetCapacity()
+	{
+		return myCapacity;
+	}
+
+	private int myData[];
+	private int mySize;
+	private int myCapacity;
+	private boolean isDual;
+	private boolean isLinear;
 }

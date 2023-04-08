@@ -7,15 +7,15 @@ package realspace;
 
 final class starfield {
 
-	starfield(GameApp gameapp1, int number, int j, palette agamecolorlist[]) {
-		owner = gameapp1;
+	starfield(GameApp applet, int number, int j, Palette agamecolorlist[]) {
+		owner = applet;
 		star_number = number;
 		star_number_start = number;
 		random = j;
 		B = agamecolorlist;
 		star_x = new float[number];
 		star_y = new float[number];
-		C = new palette[number];
+		C = new Palette[number];
 		D = new int[number];
 		J = new int[number];
 		star_fade = new boolean[number];
@@ -109,17 +109,17 @@ final class starfield {
 
 	}
 
-	final void draw(surface surface1) {
+	final void draw(Canvas surface1) {
 		for (int i = 0; i < star_number; i++)
 			if (star_sprite_groups[i] == null) {
 				int j;
 				if (star_fade[i])
-					j = C[i].I(star_blinkcounter[i], star_lifetime[i]);
+					j = C[i].Pick(star_blinkcounter[i], star_lifetime[i]);
 				else
-					j = C[i].I(0);
+					j = C[i].Pick(0);
 				surface1.I((int) star_x[i], (int) star_y[i], D[i], J[i], j);
 			} else {
-				sprite sprite1;
+				Sprite sprite1;
 				if (star_fade[i])
 					sprite1 = star_sprite_groups[i].I(0, star_blinkcounter[i], star_lifetime[i]);
 				else
@@ -135,8 +135,8 @@ final class starfield {
 	float star_x[];
 	float star_y[];
 	int random;
-	palette C[];
-	palette B[];
+	Palette C[];
+	Palette B[];
 	int D[];
 	int J[];
 	boolean star_fade[];

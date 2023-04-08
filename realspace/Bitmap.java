@@ -1,17 +1,12 @@
 package realspace;
-// Decompiled by Jad v1.5.8f. Copyright 2001 Pavel Kouznetsov.
-
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) 
-// Source File Name:   star_y
 
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.PixelGrabber;
 
-public final class imagepixels {
-
-	public imagepixels(Image image, AppletImplements gamebase) {
+public final class Bitmap 
+{
+	public Bitmap(Image image, AppletImplements gamebase) {
 		I = image.getWidth(gamebase);
 		HNSM = image.getHeight(gamebase);
 		Z = new int[I * HNSM];
@@ -24,7 +19,7 @@ public final class imagepixels {
 		pixelgrabber = null;
 	}
 
-	final void I(int i, int j, int k, int l, imagepixels imagepixels1, int i1, int j1) {
+	final void I(int i, int j, int k, int l, Bitmap imagepixels1, int i1, int j1) {
 		for (int k2 = 0; k2 < j; k2++) {
 			int k1 = k + (l + k2) * I;
 			int l1 = i1 + (j1 + k2) * imagepixels1.I;

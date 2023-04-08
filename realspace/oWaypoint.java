@@ -11,7 +11,7 @@ final class oWaypoint extends GameObject {
 	}
 
 	final void I(int i, int j) {
-		super.initialize(null, 11, 1, 0, 0, true);
+		super.Awake(null, 11, 1, 0, 0, true);
 		I = j;
 		Z = i;
 	}

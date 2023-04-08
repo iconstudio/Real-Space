@@ -1,9 +1,4 @@
 package realspace;
-// Decompiled by Jad v1.5.8f. Copyright 2001 Pavel Kouznetsov.
-
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) 
-// Source File Name:   star_y
 
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -12,7 +7,26 @@ import java.awt.image.DirectColorModel;
 import java.awt.image.ImageConsumer;
 import java.awt.image.ImageProducer;
 
-final class surface implements ImageProducer {
+final class Canvas implements ImageProducer {
+	public Canvas(GameApp applet, int i, int j) {
+		addConsumer = applet;
+		HNSM = 0;
+		S = 0;
+		I = i;
+		Z = j;
+		C = i * j;
+		B = new int[i * j];
+		arraycopy = new DirectColorModel(32, 0xff0000, 65280, 255);
+		D = length.createImage(this);
+		I();
+
+		getDefaultToolkit = new float[createImage];
+		for (int k = 0; k < createImage; k++) {
+			getDefaultToolkit[k] = (float) Math.random();
+		}
+
+		imageComplete = 0;
+	}
 
 	@Override
 	public final void addConsumer(ImageConsumer imageconsumer) {
@@ -44,24 +58,6 @@ final class surface implements ImageProducer {
 		System.out.println("TDLR");
 	}
 
-	surface(GameApp gameapp1, int i, int j) {
-		addConsumer = gameapp1;
-		HNSM = 0;
-		S = 0;
-		I = i;
-		Z = j;
-		C = i * j;
-		B = new int[i * j];
-		arraycopy = new DirectColorModel(32, 0xff0000, 65280, 255);
-		D = length.createImage(this);
-		I();
-		getDefaultToolkit = new float[createImage];
-		for (int k = 0; k < createImage; k++)
-			getDefaultToolkit[k] = (float) Math.random();
-
-		imageComplete = 0;
-	}
-
 	final void I() {
 		if (charAt != null) {
 			charAt.setPixels(0, 0, I, Z, arraycopy, B, 0, I);
@@ -69,32 +65,37 @@ final class surface implements ImageProducer {
 		}
 	}
 
-	final void I(int i, int j, int k, int l, int i1) {
+	final void I(int i, int j, int k, int l, final int color) {
 		if (i < I && i + k >= 0 && j < Z && j + l >= 0) {
 			if (i < 0) {
 				k += i;
 				i = 0;
 			}
-			if (i + k >= I)
+
+			if (i + k >= I) {
 				k -= (i + k) - I;
+			}
 			if (j < 0) {
 				l += j;
 				j = 0;
 			}
-			if (j + l >= Z)
+
+			if (j + l >= Z) {
 				l -= (j + l) - Z;
+			}
+
 			int i2 = j * I + i;
 			for (int j1 = 0; j1 < l; j1++) {
 				int l1 = i2;
+
 				for (int k1 = 0; k1 < k;) {
-					B[l1] = i1;
+					B[l1] = color;
 					k1++;
 					l1++;
 				}
 
 				i2 += I;
 			}
-
 		}
 	}
 
@@ -107,9 +108,9 @@ final class surface implements ImageProducer {
 		I((i + k) - j1, k1, j1, l1, i1);
 	}
 
-	final void I(sprite sprite1, int i, int j, GameApp gameapp1) {
+	final void I(Sprite sprite1, int i, int j, GameApp applet) {
 		if (sprite1.H && addConsumer.QC != 3) {
-			HNSM(sprite1, i, j, gameapp1);
+			HNSM(sprite1, i, j, applet);
 			return;
 		}
 		if (i < I && i + sprite1.C >= 0 && j < Z && j + sprite1.B >= 0) {
@@ -154,13 +155,13 @@ final class surface implements ImageProducer {
 		}
 	}
 
-	final void I(sprite sprite1, int i, int j, int k, GameApp gameapp1) {
-		if (j < I && j + sprite1.C >= 0 && k < Z && k + sprite1.B >= 0) {
-			int l3 = sprite1.Z;
-			if (j >= 0 && j + sprite1.C < I && k >= 0 && k + sprite1.B < Z) {
+	final void DrawSprite(Sprite spr, int i, int j, int k, GameApp applet) {
+		if (j < I && j + spr.C >= 0 && k < Z && k + spr.B >= 0) {
+			int l3 = spr.Z;
+			if (j >= 0 && j + spr.C < I && k >= 0 && k + spr.B < Z) {
 				int k1 = k * I + j;
 				for (int l = 0; l < l3; l++) {
-					rlepart rlepart1 = sprite1.I[l];
+					rlepart rlepart1 = spr.I[l];
 					k1 += rlepart1.D;
 					int i2 = k1;
 					short word0 = rlepart1.C;
@@ -175,8 +176,10 @@ final class surface implements ImageProducer {
 
 				return;
 			}
-			for (int i1 = 0; i1 < l3; i1++) {
-				rlepart rlepart2 = sprite1.I[i1];
+
+			for (int i1 = 0; i1 < l3; i1++) 
+			{
+				rlepart rlepart2 = spr.I[i1];
 				int i3 = k + rlepart2.Z;
 				if (i3 >= 0 && i3 < Z) {
 					int k2 = j + rlepart2.I;
@@ -205,22 +208,26 @@ final class surface implements ImageProducer {
 		}
 	}
 
-	final void I(sprite sprite1, float f, int i, int j, GameApp gameapp1) {
-		if (f >= 0.99F) {
-			I(sprite1, i, j, gameapp1);
+	final void DrawSprite(Sprite spr, float f, int i, int j, GameApp applet) 
+	{
+		if (f >= 0.9999F) 
+		{
+			I(spr, i, j, applet);
 			return;
 		}
-		if (i < I && i + sprite1.C >= 0 && j < Z && j + sprite1.B >= 0) {
-			int l7 = sprite1.Z;
+
+		if (i < I && i + spr.C >= 0 && j < Z && j + spr.B >= 0) 
+		{
+			int l7 = spr.Z;
 			if (f < 0.0F)
 				f = 0.0F;
 			else if (f > 1.0F)
 				f = 1.0F;
 			int k4 = (int) (f * 255F);
-			if (i >= 0 && i + sprite1.C < I && j >= 0 && j + sprite1.B < Z) {
+			if (i >= 0 && i + spr.C < I && j >= 0 && j + spr.B < Z) {
 				int j1 = j * I + i;
 				for (int k = 0; k < l7; k++) {
-					rlepart rlepart1 = sprite1.I[k];
+					rlepart rlepart1 = spr.I[k];
 					j1 += rlepart1.D;
 					int l1 = j1;
 					short word0 = rlepart1.C;
@@ -245,7 +252,7 @@ final class surface implements ImageProducer {
 				return;
 			}
 			for (int l = 0; l < l7; l++) {
-				rlepart rlepart2 = sprite1.I[l];
+				rlepart rlepart2 = spr.I[l];
 				int l2 = j + rlepart2.Z;
 				if (l2 >= 0 && l2 < Z) {
 					int j2 = i + rlepart2.I;
@@ -283,7 +290,7 @@ final class surface implements ImageProducer {
 		}
 	}
 
-	final void HNSM(sprite sprite1, int i, int j, GameApp gameapp1) {
+	final void HNSM(Sprite sprite1, int i, int j, GameApp applet) {
 		if (i < I && i + sprite1.C >= 0 && j < Z && j + sprite1.B >= 0) {
 			int i8 = sprite1.Z;
 			if (i >= 0 && i + sprite1.C < I && j >= 0 && j + sprite1.B < Z) {
@@ -364,18 +371,21 @@ final class surface implements ImageProducer {
 		}
 	}
 
-	final void draw_string(String caption, int color, Font font, int j, int k) {
+	final void DrawLabel(String caption, int color, Font font, int j, int k) {
 		if (font == null)
 			return;
 		int l = caption.length();
 		for (int i1 = 0; i1 < l; i1++) {
 			char char_current = caption.charAt(i1);
-			sprite curr = char_current <= 0 || char_current >= Font.D ? null : font.I[char_current];
+			Sprite curr = char_current <= 0 || char_current >= Font.D ? null : font.I[char_current];
 			if (curr != null) {
 				if (color != 0xffffff)
-					I(curr, color, j, (k - curr.B) + (char_current <= 0 || char_current >= Font.D ? 0 : font.Z[char_current]), addConsumer);
+					DrawSprite(curr, color, j,
+							(k - curr.B) + (char_current <= 0 || char_current >= Font.D ? 0 : font.Z[char_current]),
+							addConsumer);
 				else
-					I(curr, j, (k - curr.B) + (char_current <= 0 || char_current >= Font.D ? 0 : font.Z[char_current]), addConsumer);
+					I(curr, j, (k - curr.B) + (char_current <= 0 || char_current >= Font.D ? 0 : font.Z[char_current]),
+							addConsumer);
 				j += curr.C + font.B;
 			} else if (char_current == ' ')
 				j += font.B * 2;

@@ -7,12 +7,12 @@ package realspace;
 
 final class explosionbit extends GameObject {
 
-	explosionbit(GameApp gameapp1) {
-		super(gameapp1);
+	explosionbit(GameApp applet) {
+		super(applet);
 	}
 
 	final void I(sprite_group sprite_group1, sprite_group sprite_group2, GameObject oGameObject1, int i) {
-		super.initialize(sprite_group1, 10, i, 0, 0, true);
+		super.Awake(sprite_group1, 10, i, 0, 0, true);
 		HNSM = sprite_group2;
 		I = 0.1F + (float) Math.random() * 0.1F * 6.283185F;
 		if (Math.random() < 0.5D)
@@ -28,7 +28,7 @@ final class explosionbit extends GameObject {
 	final void I() {
 		super.s++;
 		if (super.s >= super.a) {
-			equip(true, null);
+			Equip(true, null);
 			return;
 		}
 		super.Y += I;

@@ -35,9 +35,9 @@ final class missioncmd {
 	Color R;
 	Color T;
 	Font U;
-	palette V;
-	palette W;
-	gamesoundlist X;
+	Palette V;
+	Palette W;
+	GameSoundPool X;
 	sprite_group Y;
 	int i;
 }

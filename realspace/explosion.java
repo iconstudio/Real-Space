@@ -10,15 +10,15 @@ final class Explosion extends GameObject {
 	float C;
 	float B;
 	int D;
-	palette F;
+	Palette F;
 
 	float explosion_property_0[];
 	float explosion_property_1[];
 	float explosion_property_2[];
 	float explosion_property_3[];
 
-	public Explosion(GameApp gameapp1) {
-		super(gameapp1);
+	public Explosion(GameApp applet) {
+		super(applet);
 
 		explosion_property_0 = new float[40];
 		explosion_property_1 = new float[40];
@@ -28,7 +28,7 @@ final class Explosion extends GameObject {
 
 	public final void I(sprite_group sprite_group1, int i, float f, float f1, float f2, float f3, int j, int k, int l,
 			boolean flag) {
-		super.initialize(sprite_group1, 3, l, 0, 0, true);
+		super.Awake(sprite_group1, 3, l, 0, 0, true);
 		I(f, f1, f2 * 0.66F, f3 * 0.66F, true);
 		F = null;
 		super.ship_grade = i;
@@ -78,7 +78,7 @@ final class Explosion extends GameObject {
 	final void I() {
 		super.s++;
 		if (super.s >= super.a) {
-			equip(true, null);
+			Equip(true, null);
 			return;
 		}
 		if (super.s < Z) {
@@ -94,19 +94,19 @@ final class Explosion extends GameObject {
 	}
 
 	@Override
-	final void Draw(surface surface1) {
+	final void Draw(Canvas surface1) {
 		if (super.w) {
 			if (hashCode && super.s < I)
 				super.Draw(surface1);
 			if (super.s < Z && D > 0) {
 				int i;
 				if (F != null)
-					i = F.I(super.s, super.a);
+					i = F.Pick(super.s, super.a);
 				else
 					i = Color.lightGray.hashCode();
 				for (int j = 0; j < D; j++)
-					surface1.I((int) explosion_property_0[j] + ((AppletImplements) (GameApp.Instance)).WC,
-							(int) explosion_property_1[j] + ((AppletImplements) (GameApp.Instance)).XC, 3, 3, i);
+					surface1.I((int) explosion_property_0[j] + (GameApp.Instance).WC,
+							(int) explosion_property_1[j] + (GameApp.Instance).XC, 3, 3, i);
 
 			}
 		}
@@ -123,12 +123,12 @@ final class Explosion extends GameObject {
 		}
 	}
 
-	final void HNSM(int i, oGameObjectlist oGameObjectlist1) {
+	final void HNSM(int i, GameObjectPool oGameObjectlist1) {
 		int j1 = i * i;
 		if (i <= 0)
 			return;
-		for (int k1 = 0; k1 < oGameObjectlist1.C; k1++) {
-			GameObject oGameObject1 = oGameObjectlist1.Z[k1];
+		for (int k1 = 0; k1 < oGameObjectlist1.mySize; k1++) {
+			GameObject oGameObject1 = oGameObjectlist1.internalList[k1];
 			if (oGameObject1.e == 1 && oGameObject1.v && oGameObject1.h && oGameObject1.BI >= 0.0001F) {
 				if (oGameObject1.l)
 					HNSM(i, oGameObject1.k);

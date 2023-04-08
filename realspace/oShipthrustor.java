@@ -98,11 +98,11 @@ final class oShipthrustor {
 		}
 	}
 
-	final void I(surface surface1) {
+	final void I(Canvas surface1) {
 		if (S > 0) {
 			if (E == null) {
 				for (int k = 0; k < Z; k++) {
-					int i = mask.I(I[k], B);
+					int i = mask.Pick(I[k], B);
 					surface1.I((int) HNSM[k] + ((AppletImplements) (F)).WC, (int) cos[k] + ((AppletImplements) (F)).XC, 3, 3, i);
 				}
 
@@ -111,7 +111,7 @@ final class oShipthrustor {
 			for (int l = 0; l < Z; l++) {
 				int j = (E.I[0] * I[l]) / B;
 				if (j < E.I[0]) {
-					sprite sprite1 = E.I(0, j);
+					Sprite sprite1 = E.I(0, j);
 					surface1.I(sprite1, ((int) HNSM[l] - sprite1.D) + ((AppletImplements) (F)).WC,
 							((int) cos[l] - sprite1.F) + ((AppletImplements) (F)).XC, F);
 				}
@@ -127,7 +127,7 @@ final class oShipthrustor {
 	float sqrt[];
 	int I[];
 	int Z;
-	palette mask;
+	Palette mask;
 	int B;
 	float D[];
 	float J[];

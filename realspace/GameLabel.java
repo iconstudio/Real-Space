@@ -7,24 +7,22 @@ package realspace;
 
 import java.awt.Color;
 
-final class GameLabel extends GameObject 
-{
-	public GameLabel(GameApp gameapp) 
-	{
+final class GameLabel extends GameObject {
+	public GameLabel(GameApp gameapp) {
 		super(gameapp);
 		XI = new int[51];
 		YI = new int[51];
 		iI = new int[51];
 	}
 
-	public final void Draw(String caption, Color color, Font font, boolean flag, final int x, final int y, int k, int l, int i1,
-			boolean flag1){
-		if (font == null)
-		{
+	public final void Draw(String caption, Color color, Font font, boolean flag, final int x, final int y, int k, int l,
+			int i1,
+			boolean flag1) {
+		if (font == null) {
 			return;
 		}
 
-		super.initialize(null, 4, 0, 0, 0, true);
+		super.Awake(null, 4, 0, 0, 0, true);
 
 		F = caption.toCharArray();
 		HNSM = caption.length();
@@ -53,8 +51,7 @@ final class GameLabel extends GameObject
 		WI = 0;
 		int j1 = 0;
 
-		for (int k1 = 0; k1 < HNSM && zI < 51; k1++) 
-		{
+		for (int k1 = 0; k1 < HNSM && zI < 51; k1++) {
 			j1 = RI.I(F, XI[zI], (k1 - XI[zI]) + 1);
 			if (j1 > WI)
 				WI = j1;
@@ -88,21 +85,18 @@ final class GameLabel extends GameObject
 		Z = flag1;
 	}
 
-	final void I(float f, float f1, float f2, float f3) 
-	{
+	final void I(float f, float f1, float f2, float f3) {
 		super.I(f, f1, f2, f3, false);
 	}
 
-	final void I(palette palette1, palette palette2) 
-	{
+	final void I(Palette palette1, Palette palette2) {
 		D = palette1;
 		MI = palette1;
 		LI = palette2;
 		NI = palette2;
 	}
 
-	final void Z(int i) 
-	{
+	final void Z(int i) {
 		getRGB = true;
 		length = 0;
 		max = i;
@@ -111,29 +105,21 @@ final class GameLabel extends GameObject
 	}
 
 	@Override
-	final void I() 
-	{
-		if (UI != null) 
-		{
-			if (UI.e != 1)
-			{
+	final void I() {
+		if (UI != null) {
+			if (UI.e != 1) {
 				UI = null;
-			} 
-			else if (UI.v)
-			{
+			} else if (UI.v) {
 				super.J = UI.J;
 
-				if (VI == 1) 
-				{
+				if (VI == 1) {
 					Font gamefont1 = RI;
 					super.S = UI.E - gamefont1.C;
 					if (Z && super.DI == 1) {
 						Font gamefont2 = RI;
 						super.S -= (gamefont2.C * (zI - 1)) / 2;
 					}
-				} 
-				else 
-				{
+				} else {
 					Font gamefont3 = RI;
 					super.S = UI.H + gamefont3.C;
 					if (Z && super.DI == 1) {
@@ -141,27 +127,23 @@ final class GameLabel extends GameObject
 						super.S += (gamefont4.C * (zI - 1)) / 2;
 					}
 				}
-				
+
 				F();
 			}
-		} else 
-		{
+		} else {
 			super.I();
 		}
 
-		if (I != 0) 
-		{
+		if (I != 0) {
 			toCharArray++;
 			if (toCharArray >= I)
-				equip(true, null);
+				Equip(true, null);
 		}
 
-		if (getRGB) 
-		{
+		if (getRGB) {
 			length--;
 
-			if (length <= 0) 
-			{
+			if (length <= 0) {
 				min++;
 				length = max;
 				if (cI < zI && min >= XI[cI] + YI[cI])
@@ -171,25 +153,20 @@ final class GameLabel extends GameObject
 	}
 
 	@Override
-	final void Draw(surface surface1)
-	{
+	final void Draw(Canvas surface1) {
 		int i = 0;
 		int j;
 		int k;
 
-		if (TI) 
-		{
+		if (TI) {
 			j = (int) super.J;
 			k = (int) super.S;
-		} 
-		else 
-		{
-			j = (int) super.J + ((AppletImplements) (GameApp.Instance)).WC;
-			k = (int) super.S + ((AppletImplements) (GameApp.Instance)).XC;
+		} else {
+			j = (int) super.J + (GameApp.Instance).WC;
+			k = (int) super.S + (GameApp.Instance).XC;
 		}
 
-		if (Z && super.DI == 1) 
-	{
+		if (Z && super.DI == 1) {
 			Font gamefont1 = RI;
 			k -= (gamefont1.C * (zI - 1)) / 2;
 		}
@@ -217,15 +194,18 @@ final class GameLabel extends GameObject
 				j4 = j - l2 / 2;
 			else
 				j4 = j - PI;
+
 			int l4 = j4 + l3 * l1;
 			int i5 = k4 + i4 * j2;
 			surface1.I(j4, k4, l2, j3, OI.getRGB());
-			for (int j5 = 0; j5 < l3; j5++) {
+			for (int j5 = 0; j5 < l3; j5++) 
+			{
 				surface1.I(QI.I(0, 1), j4 + j5 * l1, k4 - j2, GameApp.Instance);
 				surface1.I(QI.I(0, 7), j4 + j5 * l1, i5, GameApp.Instance);
 			}
 
-			for (int k5 = 0; k5 < i4; k5++) {
+			for (int k5 = 0; k5 < i4; k5++) 
+			{
 				surface1.I(QI.I(0, 3), j4 - l1, k4 + k5 * j2, GameApp.Instance);
 				surface1.I(QI.I(0, 5), l4, k4 + k5 * j2, GameApp.Instance);
 			}
@@ -239,12 +219,12 @@ final class GameLabel extends GameObject
 		int k2 = 0;
 		// boolean flag = false;
 		if (LI != null)
-			k2 = LI.I(toCharArray, I);
+			k2 = LI.Pick(toCharArray, I);
 		else if (B != null)
 			k2 = B.getRGB();
 		int i2;
 		if (D != null)
-			i2 = D.I(toCharArray, I);
+			i2 = D.Pick(toCharArray, I);
 		else
 			i2 = C.getRGB();
 		for (; i <= cI && i < zI; i++) {
@@ -261,25 +241,25 @@ final class GameLabel extends GameObject
 			for (int i1 = XI[i]; i3 < k1 && i1 < min && i1 < HNSM; i3++) {
 				char c = F[i1];
 				Font gamefont4 = RI;
-				sprite sprite1 = c <= 0 || c >= Font.D ? null : gamefont4.I[c];
+				Sprite sprite1 = c <= 0 || c >= Font.D ? null : gamefont4.I[c];
 				if (sprite1 != null) {
 					if (B != null || LI != null) {
 						if (getRGB && LI != null)
-							if (min > HNSM + LI.C)
-								k2 = LI.I(toCharArray, I);
+							if (min > HNSM + LI.GetCapacity())
+								k2 = LI.Pick(toCharArray, I);
 							else
-								k2 = LI.I(min - i1);
+								k2 = LI.Pick(min - i1);
 						Font gamefont5 = RI;
-						surface1.I(sprite1, k2, k3 - 1,
+						surface1.DrawSprite(sprite1, k2, k3 - 1,
 								(k - sprite1.B) + (c <= 0 || c >= Font.D ? 0 : gamefont5.Z[c]) + 1, GameApp.Instance);
 					}
 					if (getRGB && D != null)
-						if (min > HNSM + D.C)
-							i2 = D.I(toCharArray, I);
+						if (min > HNSM + D.GetCapacity())
+							i2 = D.Pick(toCharArray, I);
 						else
-							i2 = D.I(min - i1);
+							i2 = D.Pick(min - i1);
 					Font gamefont6 = RI;
-					surface1.I(sprite1, i2, k3, (k - sprite1.B) + (c <= 0 || c >= Font.D ? 0 : gamefont6.Z[c]),
+					surface1.DrawSprite(sprite1, i2, k3, (k - sprite1.B) + (c <= 0 || c >= Font.D ? 0 : gamefont6.Z[c]),
 							GameApp.Instance);
 					k3 += sprite1.C + RI.B;
 				} else if (c == ' ')
@@ -306,10 +286,10 @@ final class GameLabel extends GameObject
 	boolean Z;
 	Color C;
 	Color B;
-	palette D;
-	palette LI;
-	palette MI;
-	palette NI;
+	Palette D;
+	Palette LI;
+	Palette MI;
+	Palette NI;
 	Color OI;
 	int PI;
 	sprite_group QI;

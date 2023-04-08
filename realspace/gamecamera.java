@@ -1,39 +1,38 @@
 package realspace;
-// Decompiled by Jad v1.5.8f. Copyright 2001 Pavel Kouznetsov.
 
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) 
-// Source File Name:   star_y
-
-final class gamecamera extends GameObject {
-
-	gamecamera(GameApp gameapp1) {
-		super(gameapp1);
+final class GameCamera extends GameObject
+{
+	public GameCamera(GameApp applet)
+	{
+		super(applet);
 	}
 
-	protected final void J() {
-		super.initialize(null, 11, 0, 0, 0, true);
+	protected final void Awake()
+	{
+		super.Awake(null, 11, 0, 0, 0, true);
+		
 		I(0.0F, 0.0F, true, 0.0F, 0.0F);
 		HNSM = -1;
 	}
 
 	@Override
 	final void I() {
-		if (GameApp.Instance.Mission.O == 1001 && super.Q == null)
+		if (GameApp.Instance.currentMission.O == 1001 && super.Q == null)
 			if (HNSM == -1)
 				HNSM = 50;
 			else if (HNSM > 0) {
 				HNSM--;
 			} else {
-				oGameObjectlist oGameObjectlist1;
+				GameObjectPool oGameObjectlist1;
 				if (Math.random() < 0.5D)
 					oGameObjectlist1 = GameApp.Instance.vZ;
 				else
 					oGameObjectlist1 = GameApp.Instance.wZ;
-				int i = oGameObjectlist1.C;
+				int i = oGameObjectlist1.mySize;
 				if (i > 0) {
 					int j = (int) (Math.random() * 0.99900000000000011D * i);
-					I(j < 0 || j >= oGameObjectlist1.C ? null : oGameObjectlist1.Z[j], true, 30F, 0.02F);
+					I(j < 0 || j >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[j], true, 30F,
+							0.02F);
 				}
 				HNSM = -1;
 			}
@@ -55,8 +54,8 @@ final class gamecamera extends GameObject {
 		} else {
 			super.I();
 		}
-		GameApp.Instance.WC = (int) (-super.J) + ((AppletImplements) (GameApp.Instance)).viewWidth / 2;
-		GameApp.Instance.XC = (int) (-super.S) + ((AppletImplements) (GameApp.Instance)).viewHeight / 2;
+		GameApp.Instance.WC = (int) (-super.J) + (GameApp.Instance).viewWidth / 2;
+		GameApp.Instance.XC = (int) (-super.S) + (GameApp.Instance).viewHeight / 2;
 	}
 
 	final void I(float f, float f1, boolean flag, float f2, float f3) {
@@ -69,8 +68,8 @@ final class gamecamera extends GameObject {
 		} else {
 			I(super.J, super.S, null, f, f1, f2, f3, true, false);
 		}
-		GameApp.Instance.WC = (int) (-super.J) + ((AppletImplements) (GameApp.Instance)).viewWidth / 2;
-		GameApp.Instance.XC = (int) (-super.S) + ((AppletImplements) (GameApp.Instance)).viewHeight / 2;
+		GameApp.Instance.WC = (int) (-super.J) + (GameApp.Instance).viewWidth / 2;
+		GameApp.Instance.XC = (int) (-super.S) + (GameApp.Instance).viewHeight / 2;
 	}
 
 	final void I(GameObject oGameObject1, boolean flag, float f, float f1) {
@@ -88,8 +87,8 @@ final class gamecamera extends GameObject {
 		} else {
 			I(super.J, super.S, oGameObject1, 0.0F, 0.0F, f, f1, true, false);
 		}
-		GameApp.Instance.WC = (int) (-super.J) + ((AppletImplements) (GameApp.Instance)).viewWidth / 2;
-		GameApp.Instance.XC = (int) (-super.S) + ((AppletImplements) (GameApp.Instance)).viewHeight / 2;
+		GameApp.Instance.WC = (int) (-super.J) + (GameApp.Instance).viewWidth / 2;
+		GameApp.Instance.XC = (int) (-super.S) + (GameApp.Instance).viewHeight / 2;
 	}
 
 	final boolean A() {
