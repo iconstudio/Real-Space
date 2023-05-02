@@ -2,17 +2,17 @@ package realspace;
 
 final class Font
 {
-	public Font(int i, int j, int k)
+	public Font(int i, int j)
 	{
-		C = i;
-		B = j;
-		charAt = k;
-		I = new Sprite[D];
+		myScaledWidth = j;
+		myHeight = i;
+
+		fragSprites = new Sprite[D];
 		Z = new int[D];
 
 		for (int l = 0; l < D; l++)
 		{
-			I[l] = null;
+			fragSprites[l] = null;
 			Z[l] = -1;
 		}
 	}
@@ -26,18 +26,18 @@ final class Font
 
 			if (c > 0 && c < D)
 			{
-				Sprite sprite1 = I[c];
+				Sprite sprite1 = fragSprites[c];
 
 				if (sprite1 != null)
-					k += sprite1.C + B;
+					k += sprite1.GetWidth() + myScaledWidth;
 				else if (c == ' ')
-					k += B * 2;
+					k += myScaledWidth * 2;
 				else
-					k += B;
+					k += myScaledWidth;
 			}
 			else
 			{
-				k += B;
+				k += myScaledWidth;
 			}
 
 			l++;
@@ -57,28 +57,27 @@ final class Font
 
 			if (c > 0 && c < D)
 			{
-				Sprite sprite1 = I[c];
+				Sprite sprite1 = fragSprites[c];
 
 				if (sprite1 != null)
-					i += sprite1.C + B;
+					i += sprite1.GetWidth() + myScaledWidth;
 				else if (c == ' ')
-					i += B * 2;
+					i += myScaledWidth * 2;
 				else
-					i += B;
+					i += myScaledWidth;
 			}
 			else
 			{
-				i += B;
+				i += myScaledWidth;
 			}
 		}
 
 		return i;
 	}
 
-	Sprite I[];
+	Sprite fragSprites[];
 	int Z[];
-	int C;
-	int B;
-	int charAt;
+	int myHeight;
+	int myScaledWidth;
 	static int D = 128;
 }

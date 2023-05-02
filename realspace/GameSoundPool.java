@@ -4,33 +4,33 @@ import java.applet.AudioClip;
 
 final class GameSoundPool
 {
-	GameSoundPool(GameApp gameapp, int i)
+	public GameSoundPool(final GameApp applet, final int sfx_count)
 	{
-		HNSM = gameapp;
-		internalList = new AudioClip[i];
-		audioLoops = new boolean[i];
-		audioIsPlayings = new boolean[i];
-		audioBeginTimings = new long[i];
-		audioLateLoop = new boolean[i];
-		out = new String[i];
-		getAudioClip = i;
+		gameApplet = applet;
+		internalList = new AudioClip[sfx_count];
+		audioLoops = new boolean[sfx_count];
+		audioIsPlayings = new boolean[sfx_count];
+		audioBeginTimings = new long[sfx_count];
+		audioLateLoop = new boolean[sfx_count];
+		audioFiles = new String[sfx_count];
+		myCapacity = sfx_count;
 		mySize = 0;
-		isPlaying = true;
+
+		nowPlaying = true;
 	}
 
-	final int sound_add(String file_path, boolean flag)
+	final int Load(final String file_path, final boolean flag)
 	{
-		if (mySize < getAudioClip)
+		if (mySize < myCapacity)
 		{
-			out[mySize] = file_path;
+			audioFiles[mySize] = file_path;
 			
 			audioLoops[mySize] = false;
 			audioIsPlayings[mySize] = false;
 			audioBeginTimings[mySize] = 0L;
-
 			audioLateLoop[mySize] = flag;
+
 			mySize++;
-			HNSM.nC++;
 			return mySize - 1;
 		}
 		else
@@ -39,10 +39,10 @@ final class GameSoundPool
 		}
 	}
 
-	final void I(final boolean plays)
+	final void ToggleLoop(final boolean play_flag)
 	{
-		isPlaying = plays;
-		if (plays)
+		nowPlaying = play_flag;
+		if (play_flag)
 		{
 			for (int i = 0; i < mySize; i++)
 			{
@@ -61,57 +61,56 @@ final class GameSoundPool
 		}
 	}
 
-	final void I(final int index, final boolean playing, final boolean looping)
+	final void Play(final int sfx_index, final boolean play_flag, final boolean loop_flag)
 	{
-		if (index < mySize)
+		if (sfx_index < mySize)
 		{
-			audioIsPlayings[index] = playing;
-			audioLoops[index] = looping;
+			audioIsPlayings[sfx_index] = play_flag;
+			audioLoops[sfx_index] = loop_flag;
 
-			if (playing && isPlaying)
+			if (play_flag && nowPlaying)
 			{
 				final long current_time = System.currentTimeMillis();
 
-				if (!audioLateLoop[index] || Math.abs(current_time - audioBeginTimings[index]) >= 200L)
+				if (!audioLateLoop[sfx_index] || Math.abs(current_time - audioBeginTimings[sfx_index]) >= 200L)
 				{
-					if (looping)
+					if (loop_flag)
 					{
-						internalList[index].loop();
+						internalList[sfx_index].loop();
 					}
 					else
 					{
-						internalList[index].play();
+						internalList[sfx_index].play();
 					}
 
-					audioBeginTimings[index] = current_time;
+					audioBeginTimings[sfx_index] = current_time;
 				}
 			}
 			else
 			{
-				internalList[index].stop();
+				internalList[sfx_index].stop();
 			}
 		}
 	}
 
-	final void PlayOnceAt(final int index)
+	final void PlayOnce(final int index)
 	{
-		System.out.println("load sound  getCodeBase=" + HNSM.getCodeBase() + " url=" + out[index]);
+		System.out.println("load sound  getCodeBase=" + gameApplet.getCodeBase() + " url=" + audioFiles[index]);
 
-		internalList[index] = HNSM.getAudioClip(HNSM.getCodeBase(), out[index]);
+		internalList[index] = gameApplet.getAudioClip(gameApplet.getCodeBase(), audioFiles[index]);
 		internalList[index].play();
 		internalList[index].stop();
 	}
 
-	GameApp HNSM;
-	AudioClip internalList[];
-	int mySize;
+	GameApp gameApplet;
 
+	AudioClip internalList[];
 	boolean audioLoops[];
 	boolean audioIsPlayings[];
 	long audioBeginTimings[];
 	boolean audioLateLoop[];
-
-	int getAudioClip;
-	String out[];
-	boolean isPlaying;
+	String audioFiles[];
+	int myCapacity;
+	int mySize;
+	boolean nowPlaying;
 }

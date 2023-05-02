@@ -8,6 +8,7 @@ import java.awt.Event;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.MediaTracker;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -28,17 +29,14 @@ public abstract class AppletImplements extends Applet implements Runnable
 	String labelURL;
 	String labelURLSuffix;
 	String labelSimpleURL;
-	boolean assetsLoaded;
 
+	final Color defaultLabelColour = Color.yellow;
+
+	boolean isPaused;
 	int inputKeys[] = { 32, 32, 32, 32 };
 	String lastInputString = "";
 	boolean isGuest;
 	String serializedIsGuest;
-	float viewScale;
-	int viewWidth;
-	int viewHeight;
-	float screen_width;
-	float screen_height;
 	HighscoreDialogue highscoreDialgueHandle;
 	boolean isHiscoreEnabled;
 	String highscoreHost;
@@ -47,17 +45,22 @@ public abstract class AppletImplements extends Applet implements Runnable
 	HighscoreStorage TB;
 	HighscoreStorage UB;
 
+	boolean isAssetsLoaded;
 	protected int loadProgress;
 	protected final int loadMaxProgress = 112;
-	protected boolean toggleMusic;
+	protected boolean toggleAudio;
 
-	boolean isPaused;
+	float viewScale;
+	int viewWidth;
+	int viewHeight;
+	float screen_width;
+	float screen_height;
+	
 	float worldBorderLeft;
 	float worldBorderRight;
 	float worldBorderTop;
 	float worldBorderBottom;
-	float worldHrz;
-	float worldVrt;
+	float worldDimension[];
 
 	int WC;
 	int XC;
@@ -65,24 +68,23 @@ public abstract class AppletImplements extends Applet implements Runnable
 	int iC;
 	int zC;
 	int cC;
-	Font eC;
-	Font hFontSmall;
-	Font label_font;
-	Font hFontLarge;
-	Canvas lC;
+	Font fontTiny;
+	Font fontSmall;
+	Font fontNormal;
+	Font fontLarge;
+	Canvas applicationCanvas;
 	Canvas mC;
 	int spritesNumber;
-	int nC;
-	int drawImage;
+
 	int encode;
 	int equals;
 	int err;
-	boolean pC;
+	boolean isAudioMuted;
 	boolean qC;
 	int rC;
 	boolean tC;
 	String uC;
-	GameObjectPool vC;
+	GameObjectPool gameUIObjects;
 	GameObjectPool wC;
 	GameObjectPool floatValue;
 	// Vector flush;
@@ -98,12 +100,9 @@ public abstract class AppletImplements extends Applet implements Runnable
 	long IB;
 	long indexOf;
 	long isAlive;
-	boolean KB;
+	boolean isMusicOn;
 	Palette LB;
 	Palette MB;
-	Color label_color;
-	Color requestFocus;
-	Color size;
 	String NB;
 
 	public AppletImplements() 
@@ -122,18 +121,17 @@ public abstract class AppletImplements extends Applet implements Runnable
 
 		labelPause = "Game Paused";
 		labelTitle = "Untitled";
-		assetsLoaded = false;
+		isAssetsLoaded = false;
 		isPaused = false;
 
-		toggleMusic = true;
-		KB = true;
+		toggleAudio = true;
+		isMusicOn = true;
 		spritesNumber = 0;
-		nC = 0;
-		drawImage = -1;
+
 		encode = -1;
 		equals = 0;
 		err = 0;
-		pC = true;
+		isAudioMuted = true;
 		qC = false;
 
 		String applet_parameter;
@@ -192,30 +190,21 @@ public abstract class AppletImplements extends Applet implements Runnable
 		screen_width = viewWidth;
 		screen_height = viewHeight;
 
-		I(0.0F, screen_width, 0.0F, screen_height);
+		InitializeWorldDimensions(0.0F, screen_width, 0.0F, screen_height);
 		append();
 
 		// flush = new Vector();
-		vC = new GameObjectPool((GameApp) this, 10);
+		gameUIObjects = new GameObjectPool((GameApp) this, 10);
 		floatValue = new GameObjectPool((GameApp) this, 1);
 		wC = new GameObjectPool((GameApp) this, 11);
 
-		for (int j = 0; j < wC.I; j++) 
+		// Allocate 11 labels
+		for (int j = 0; j < wC.myCapacity; j++) 
 		{
 			GameLabel gametext1 = new GameLabel((GameApp) this);
-			GameObjectPool oGameObjectlist1 = wC;
-			GameLabel gametext2 = gametext1;
 
-			if (oGameObjectlist1.mySize < oGameObjectlist1.I) 
-			{
-				oGameObjectlist1.internalList[oGameObjectlist1.mySize] = gametext2;
-				oGameObjectlist1.mySize++;
-			}
+			wC.SafeAdd(gametext1);
 		}
-
-		label_color = Color.yellow;
-		requestFocus = Color.blue;
-		size = Color.red;
 
 		LB = new Palette(4);
 		Palette palette1 = LB;
@@ -332,7 +321,7 @@ public abstract class AppletImplements extends Applet implements Runnable
 	public final void stop() 
 	{
 		System.out.println("at stop");
-		KB = false;
+		isMusicOn = false;
 
 		if (appletRoutine != null && appletRoutine.isAlive()) 
 		{
@@ -366,14 +355,16 @@ public abstract class AppletImplements extends Applet implements Runnable
 			return;
 		}
 
-		I(true);
+		InitializeSettings(true);
 		int i = xC / 2;
 		getDefaultToolkit = yC / 2;
 		getDocumentBase = yC / 2;
-		long l1 = System.currentTimeMillis();
-		long l3 = (l1 + 500L) - 10L;
-		long l4 = (l1 + 1000L) - 10L;
+
+		final long time_epoch = System.currentTimeMillis();
+		long l3 = (time_epoch + 500L) - 10L;
+		long l4 = (time_epoch + 1000L) - 10L;
 		long l5 = 0L;
+
 		indexOf = 0L;
 		getOutputStream = 0L;
 		getParent = 0L;
@@ -386,64 +377,89 @@ public abstract class AppletImplements extends Applet implements Runnable
 		{
 			do 
 			{
-				long l = System.currentTimeMillis();
-				if (l >= l4) 
+				long current_time = System.currentTimeMillis();
+				if (current_time >= l4) 
 				{
 					isAlive = l5;
-					l4 = (l + 1000L) - 10L;
+					l4 = (current_time + 1000L) - 10L;
 					l5 = 0L;
 				}
 
 				l5++;
-				if (l >= l3) 
+				if (current_time >= l3) 
 				{
 					indexOf = getParent;
 					getOutputStream = getImage;
 					getParent = 0L;
 					getImage = 0L;
-					long l2 = l;
+					long l2 = current_time;
 					l3 = (l2 + 500L) - 10L;
 					if (!isPaused)
-						if (indexOf >= i + 1) {
-							if (indexOf >= i + 2) {
+					{
+						if (indexOf >= i + 1)
+						{
+							if (indexOf >= i + 2)
+							{
 								if (getDocumentBase > getDefaultToolkit)
 									getDefaultToolkit += 2L;
 								else
 									getDocumentBase += 2L;
-							} else if (getDocumentBase > getDefaultToolkit)
+							}
+							else if (getDocumentBase > getDefaultToolkit)
+							{
 								getDefaultToolkit++;
+							}
 							else
+							{
 								getDocumentBase++;
+							}
+
 							if (getDefaultToolkit > yC)
+							{
 								getDefaultToolkit = yC;
-						} else if (indexOf <= xC - 1) {
-							if (indexOf <= i - 2) {
+							}
+						}
+						else if (indexOf <= xC - 1)
+						{
+							if (indexOf <= i - 2)
+							{
 								if (getDocumentBase < getDefaultToolkit)
 									getDefaultToolkit -= 2L;
 								else
 									getDocumentBase -= 2L;
-							} else if (getDocumentBase < getDefaultToolkit)
+							}
+							else if (getDocumentBase < getDefaultToolkit)
 								getDefaultToolkit--;
 							else
 								getDocumentBase--;
+
 							int j = 5;
 							if (getDefaultToolkit < j)
+							{
 								getDefaultToolkit = j;
+							}
 						}
+					}
 				}
-				if (getParameter <= 2) {
+				if (getParameter <= 2)
+				{
 					if (!isPaused)
 						I();
+
 					getParameter++;
 					paint(gdc);
 				}
 			} while (getDefaultToolkit <= 0L);
-			try {
+
+			try
+			{
 				if ((getParent & 1L) == 1L)
 					Thread.sleep(getDefaultToolkit);
 				else
 					Thread.sleep(getDocumentBase);
-			} catch (Exception _ex) {
+			}
+			catch (Exception _ex)
+			{
 			}
 		} while (true);
 	}
@@ -457,91 +473,90 @@ public abstract class AppletImplements extends Applet implements Runnable
 	@Override
 	public final void paint(Graphics g) 
 	{
-		I(lC);
-		lC.I();
-		g.drawImage(lC.D, 0, 0, lC.I, lC.Z, null);
+		RenderScene(applicationCanvas);
+		applicationCanvas.I();
+		
+		g.drawImage(applicationCanvas.D, 0, 0, applicationCanvas.I, applicationCanvas.Z, null);
 		Toolkit.getDefaultToolkit().sync();
 		getImage++;
 		getParameter--;
 	}
 
-	public void I(Canvas surface) 
+	public void RenderScene(Canvas surface) 
 	{
-		if (!assetsLoaded) 
+		if (!isAssetsLoaded) 
 		{
-			int i = viewWidth / 8;
-			int j = viewHeight / 4;
+			int dx = viewWidth / 8;
+			int dy = viewHeight / 4;
 
-			surface.I(i - 4, j - 4, (viewWidth * 3) / 4 + 8, viewHeight / 2 + 8, Color.gray.getRGB());
-			surface.I(i, j, (viewWidth * 3) / 4, viewHeight / 2, Color.darkGray.brighter().getRGB());
+			surface.I(dx - 4, dy - 4, (viewWidth * 3) / 4 + 8, viewHeight / 2 + 8, Color.gray.getRGB());
+			surface.I(dx, dy, (viewWidth * 3) / 4, viewHeight / 2, Color.darkGray.brighter().getRGB());
 
-			i += (int) (20F * viewScale);
-			j += (int) (30F * viewScale);
-			if (labelLoading != null && label_font != null) {
-				surface.DrawLabel(labelSimpleURL, Color.red.getRGB(), hFontSmall, i - 1, j + 1);
-				surface.DrawLabel(labelSimpleURL, Color.yellow.getRGB(), hFontSmall, i, j);
+			dx += (int) (20F * viewScale);
+			dy += (int) (30F * viewScale);
 
-				Font gamefont3 = hFontSmall;
-				j += gamefont3.C;
+			if (labelLoading != null && fontNormal != null)
+			{
+				surface.DrawLabel(labelSimpleURL, Color.red.getRGB(), fontSmall, dx - 1, dy + 1);
+				surface.DrawLabel(labelSimpleURL, Color.yellow.getRGB(), fontSmall, dx, dy);
 
-				surface.DrawLabel(labelTitle, Color.red.getRGB(), hFontSmall, i - 1, j + 1);
-				surface.DrawLabel(labelTitle, Color.yellow.getRGB(), hFontSmall, i, j);
+				Font gamefont3 = fontSmall;
+				dy += gamefont3.myHeight;
 
-				gamefont3 = hFontSmall;
-				j += gamefont3.C + (int) (25F * viewScale);
-				surface.DrawLabel(labelLoading, Color.blue.getRGB(), hFontSmall, i - 1, j + 1);
-				surface.DrawLabel(labelLoading, Color.white.getRGB(), hFontSmall, i, j);
-				gamefont3 = hFontSmall;
+				surface.DrawLabel(labelTitle, Color.red.getRGB(), fontSmall, dx - 1, dy + 1);
+				surface.DrawLabel(labelTitle, Color.yellow.getRGB(), fontSmall, dx, dy);
 
-				j += gamefont3.C + (int) (10F * viewScale);
+				gamefont3 = fontSmall;
+				dy += gamefont3.myHeight + (int) (25F * viewScale);
+				surface.DrawLabel(labelLoading, Color.blue.getRGB(), fontSmall, dx - 1, dy + 1);
+				surface.DrawLabel(labelLoading, Color.white.getRGB(), fontSmall, dx, dy);
+				gamefont3 = fontSmall;
+
+				dy += gamefont3.myHeight + (int) (10F * viewScale);
 			}
 
-			if (0 < loadProgress) {
+			// Drawing a loading bar
+			if (0 < loadProgress)
+			{
 				final int gx = (viewHeight / 4 + viewHeight / 2) - (int) (60F * viewScale);
 				final int gy = (viewWidth * 3) / 4 - 60;
+
 				final float current_progress = (float) loadProgress / (float) loadMaxProgress;
 
-				gameutil.DrawGaugebar(surface, i, gx, gy, 30, current_progress, Colours.DarkYellow, Colours.Lime);
+				gameutil.DrawGaugebar(surface, dx, gx, gy, 30, current_progress, Colours.DarkYellow, Colours.Lime);
 			}
 			return;
 		}
 
-		vC.I(surface);
-		floatValue.I(surface);
+		gameUIObjects.Draw(surface);
+		floatValue.Draw(surface);
 
 		if (isPaused) {
-			final int dx = viewWidth / 2 - label_font.I(labelPause) / 2;
-			final int dy = viewHeight / 2 - label_font.C / 2;
+			final int dx = viewWidth / 2 - fontNormal.I(labelPause) / 2;
+			final int dy = viewHeight / 2 - fontNormal.myHeight / 2;
 
-			surface.DrawLabel(labelPause, -1, label_font, dx, dy);
+			surface.DrawLabel(labelPause, -1, fontNormal, dx, dy);
 		}
 
 		if (showDebugInfos) {
 			String s1 = " FPS:" + String.valueOf(isAlive) + " Sleep:" + String.valueOf(getDefaultToolkit) + ", "
 					+ String.valueOf(getDocumentBase);
-			Font gamefont2 = hFontSmall;
+			Font gamefont2 = fontSmall;
 
 			surface.DrawLabel(s1, -1, gamefont2, 200, 50);
 		}
 	}
 
-	public void I() {
-		vC.Z();
-		floatValue.Z();
-		vC.C();
+	public void I()
+	{
+		gameUIObjects.Warp();
+		floatValue.Warp();
+		gameUIObjects.C();
 		floatValue.C();
-		if (drawImage > 0)
-			drawImage--;
-		else if (drawImage == 0) {
-			drawImage = -1;
-			addImage();
-		}
+		
 		getParent++;
 		IB++;
 	}
-
-	final void addImage() 
-	{}
 
 	final Bitmap LoadSprite(String img_path) 
 	{
@@ -588,11 +603,10 @@ public abstract class AppletImplements extends Applet implements Runnable
 
 	public abstract boolean LoadAssets();
 
-	public synchronized void I(boolean flag) 
+	public synchronized void InitializeSettings(boolean flag) 
 	{
-		pC = flag;
+		isAudioMuted = flag;
 		qC = false;
-		drawImage = 0;
 		rC = 0;
 		tC = false;
 		uC = "Score: " + String.valueOf(rC);
@@ -600,7 +614,7 @@ public abstract class AppletImplements extends Applet implements Runnable
 
 	final void Z(int i) 
 	{
-		if (!tC && !pC && qC) 
+		if (!tC && !isAudioMuted && qC) 
 		{
 			rC += i;
 			uC = "Score: " + String.valueOf(rC);
@@ -630,51 +644,51 @@ public abstract class AppletImplements extends Applet implements Runnable
 		else if (key == 'S') 
 		{
 			String label;
-			if (toggleMusic) 
+			if (toggleAudio) 
 			{
 				// Sound On
-				toggleMusic = false;
+				toggleAudio = false;
 				label = "Sound On";
 			} 
 			else 
 			{
 				// Sound Off
-				toggleMusic = true;
+				toggleAudio = true;
 				label = "Sound Off";
 			}
 			floatValue.I();
 
-			GameLabel text = (GameLabel) wC.I(floatValue);
+			GameLabel text = (GameLabel) wC.GiveLastInstanceTo(floatValue);
 			if (text != null) 
 			{
-				text.Draw(label, label_color, label_font, true, viewWidth / 2, viewHeight / 3, 0, 40, 0, true);
-				Color color = size;
-				text.B = color;
+				text.Draw(label, defaultLabelColour, fontNormal, true, viewWidth / 2, viewHeight / 3, 0, 40, 0, true);
+
+				text.B = Color.red;
 			}
 
 		} 
 		else if (key == 'M') 
 		{
-			String s1;
-			if (KB) 
+			String label;
+			if (isMusicOn) 
 			{
-				KB = false;
-				s1 = "Music Off";
+				isMusicOn = false;
+				label = "Music Off";
 			} 
 			else 
 			{
-				KB = true;
-				s1 = "Music On";
+				isMusicOn = true;
+				label = "Music On";
 			}
 
 			floatValue.I();
-			GameLabel gametext2 = (GameLabel) wC.I(floatValue);
+			GameLabel gametext2 = (GameLabel) wC.GiveLastInstanceTo(floatValue);
 
 			if (gametext2 != null)
 			{
-				gametext2.Draw(s1, label_color, label_font, true, viewWidth / 2, viewHeight / 3, 0, 40, 0, true);
-				Color color1 = size;
-				gametext2.B = color1;
+				gametext2.Draw(label, defaultLabelColour, fontNormal, true, viewWidth / 2, viewHeight / 3, 0, 40, 0, true);
+
+				gametext2.B = Color.red;
 			}
 
 		}
@@ -693,9 +707,9 @@ public abstract class AppletImplements extends Applet implements Runnable
 	}
 
 	void Cleanup() {
-		eC = null;
-		hFontSmall = null;
-		label_font = null;
+		fontTiny = null;
+		fontSmall = null;
+		fontNormal = null;
 	}
 
 	final void I(String s, String s1) {
@@ -736,19 +750,21 @@ public abstract class AppletImplements extends Applet implements Runnable
 	}
 
 	final void append() {
-		lC = new Canvas((GameApp) this, viewWidth, viewHeight);
-		lC.I(0, 0, viewWidth, viewHeight, getBackground().getRGB());
+		applicationCanvas = new Canvas((GameApp) this, viewWidth, viewHeight);
+		applicationCanvas.I(0, 0, viewWidth, viewHeight, getBackground().getRGB());
 		mC = new Canvas((GameApp) this, viewWidth, viewHeight);
 		mC.I(0, 0, viewWidth, viewHeight, getBackground().getRGB());
 	}
 
-	final void I(final float world_left, final float world_right, final float world_top, final float world_bottom) {
+	final void InitializeWorldDimensions(final float world_left, final float world_right, final float world_top, final float world_bottom)
+	{
 		worldBorderLeft = world_left;
 		worldBorderRight = world_right;
 		worldBorderTop = world_top;
 		worldBorderBottom = world_bottom;
-		worldHrz = world_right - world_left;
-		worldVrt = world_bottom - world_top;
+
+		worldDimension[0] = world_right - world_left;
+		worldDimension[1] = world_bottom - world_top;
 
 		YC = (int) world_left;
 		iC = (int) world_right;

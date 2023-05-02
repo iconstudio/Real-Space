@@ -13,12 +13,12 @@ final class Palette
 		isLinear = false;
 	}
 
-	final void MergeColors(final int color1, final int color2, final int colors_max, final boolean is_dual, final boolean is_linear)
+	final void EnumerateColors(final int color1, final int color2, final int colors_max, final boolean is_dual, final boolean is_linear)
 	{
 		for (int l = 0; l < colors_max; l++) 
 		{
-			int factor = (int) (((float) l / (float) colors_max) * 255F);
-			int inv_factor = 255 - factor;
+			final int factor = (int) (((float) l / (float) colors_max) * 255F);
+			final int inv_factor = 255 - factor;
 
 			int l1 = (color1 >> 16 & 0xff) * inv_factor;
 			int j2 = (color1 >> 8 & 0xff) * inv_factor;

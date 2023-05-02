@@ -27,284 +27,296 @@ public final class GameApp extends AppletImplements {
 		labelTitle = "Realspace 2 - Emperor's Revenge";
 		appletName = "realspace2";
 
-		surfaceCreated = false;
-		gray = false;
-		green = false;
+		isSurfaceCreated = false;
+		clearedSettings = false;
+		cheatedCowLevel = false;
 		round = false;
 		PC = -1;
 		QC = 1;
 		nZ = 12F * super.viewScale;
 		getAppletContext = (int) (220F * super.viewScale);
-		currentMission = new gamemission(this, 1000);
+		currentMission = new GameMission(this, 1000);
+		
 		DZ = new Palette(8);
-
-		Palette palette1 = DZ;
-		Color color = Color.yellow.brighter().brighter();
-		int i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		Palette temp_pallete = DZ;
+		Color temp_color1 = Color.yellow.brighter().brighter();
+		int i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = DZ;
-		color = Color.yellow.brighter();
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = DZ;
+		temp_color1 = Color.yellow.brighter();
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = DZ;
-		color = Color.yellow;
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = DZ;
+		temp_color1 = Color.yellow;
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = DZ;
-		color = Color.yellow.darker();
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = DZ;
+		temp_color1 = Color.yellow.darker();
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = DZ;
-		color = Color.red.brighter();
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = DZ;
+		temp_color1 = Color.red.brighter();
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = DZ;
-		color = Color.red;
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = DZ;
+		temp_color1 = Color.red;
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = DZ;
-		color = Color.red.darker();
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = DZ;
+		temp_color1 = Color.red.darker();
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = DZ;
-		color = Color.red.darker().darker();
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = DZ;
+		temp_color1 = Color.red.darker().darker();
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
 		FZ = new Palette(9);
-		palette1 = FZ;
-		color = Color.pink.brighter();
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = FZ;
+		temp_color1 = Color.pink.brighter();
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = FZ;
-		color = Color.pink;
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = FZ;
+		temp_color1 = Color.pink;
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = FZ;
-		color = Color.gray.brighter().brighter();
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = FZ;
+		temp_color1 = Color.gray.brighter().brighter();
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = FZ;
-		color = Color.gray.brighter();
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = FZ;
+		temp_color1 = Color.gray.brighter();
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = FZ;
-		color = Color.gray;
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = FZ;
+		temp_color1 = Color.gray;
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = FZ;
-		color = Color.gray.darker();
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = FZ;
+		temp_color1 = Color.gray.darker();
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = FZ;
-		color = Color.gray.darker().darker();
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = FZ;
+		temp_color1 = Color.gray.darker().darker();
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = FZ;
-		color = Color.blue.darker();
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = FZ;
+		temp_color1 = Color.blue.darker();
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
-		palette1 = FZ;
-		color = Color.blue.darker().darker();
-		i1 = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = FZ;
+		temp_color1 = Color.blue.darker().darker();
+		i1 = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(i1);
+			temp_pallete.AddColor(i1);
 		}
 
 		darker = new Palette(28);
-		darker.MergeColors(Color.red.darker().darker().getRGB(), Color.red.brighter().brighter().getRGB(), 14, false, true);
-		darker.MergeColors(Color.red.brighter().brighter().getRGB(), Color.red.darker().darker().getRGB(), 14, false, true);
+		darker.EnumerateColors(Color.red.darker().darker().getRGB(), Color.red.brighter().brighter().getRGB(), 14, false, true);
+		darker.EnumerateColors(Color.red.brighter().brighter().getRGB(), Color.red.darker().darker().getRGB(), 14, false, true);
+
 		freeMemory = new Palette(28);
-		freeMemory.MergeColors(Color.darkGray.getRGB(), Color.lightGray.getRGB(), 14, false, true);
-		freeMemory.MergeColors(Color.lightGray.getRGB(), Color.darkGray.getRGB(), 14, false, true);
+		freeMemory.EnumerateColors(Color.darkGray.getRGB(), Color.lightGray.getRGB(), 14, false, true);
+		freeMemory.EnumerateColors(Color.lightGray.getRGB(), Color.darkGray.getRGB(), 14, false, true);
+
 		HZ = new Palette(9);
-		palette1 = HZ;
-		color = Color.black;
-		Color color1 = Color.gray;
-		int color1_int;
-		palette1.MergeColors(color.getRGB(), color1.getRGB(), 9, true, false);
+		temp_pallete = HZ;
+		temp_color1 = Color.black;
+		Color temp_color2 = Color.gray;
+		int temp_color1code;
+		temp_pallete.EnumerateColors(temp_color1.getRGB(), temp_color2.getRGB(), 9, true, false);
+
 		flashcolor_white = new Palette(11);
-		palette1 = flashcolor_white;
-		color = Color.black;
-		color1 = Color.lightGray.brighter();
-		palette1.MergeColors(color.getRGB(), color1.getRGB(), 11, true, false);
+		temp_pallete = flashcolor_white;
+		temp_color1 = Color.black;
+		temp_color2 = Color.lightGray.brighter();
+		temp_pallete.EnumerateColors(temp_color1.getRGB(), temp_color2.getRGB(), 11, true, false);
+
 		flashcolor_red = new Palette(9);
-		palette1 = flashcolor_red;
-		color = Color.black;
-		color1 = Color.red.brighter().brighter();
-		palette1.MergeColors(color.getRGB(), color1.getRGB(), 9, true, false);
+		temp_pallete = flashcolor_red;
+		temp_color1 = Color.black;
+		temp_color2 = Color.red.brighter().brighter();
+		temp_pallete.EnumerateColors(temp_color1.getRGB(), temp_color2.getRGB(), 9, true, false);
+
 		flashcolor_navy = new Palette(9);
-		palette1 = flashcolor_navy;
-		color = Color.black;
-		color1 = Color.blue.brighter();
-		palette1.MergeColors(color.getRGB(), color1.getRGB(), 9, true, false);
+		temp_pallete = flashcolor_navy;
+		temp_color1 = Color.black;
+		temp_color2 = Color.blue.brighter();
+		temp_pallete.EnumerateColors(temp_color1.getRGB(), temp_color2.getRGB(), 9, true, false);
+
 		AZ = new Palette(9);
-		palette1 = AZ;
-		color = Color.black;
-		color1 = Color.white;
-		palette1.MergeColors(color.getRGB(), color1.getRGB(), 9, true, false);
+		temp_pallete = AZ;
+		temp_color1 = Color.black;
+		temp_color2 = Color.white;
+		temp_pallete.EnumerateColors(temp_color1.getRGB(), temp_color2.getRGB(), 9, true, false);
+
 		flashcolor_yellow = new Palette(9);
-		palette1 = flashcolor_yellow;
-		color = Color.black;
-		color1 = Color.yellow;
-		palette1.MergeColors(color.getRGB(), color1.getRGB(), 9, true, false);
+		temp_pallete = flashcolor_yellow;
+		temp_color1 = Color.black;
+		temp_color2 = Color.yellow;
+		temp_pallete.EnumerateColors(temp_color1.getRGB(), temp_color2.getRGB(), 9, true, false);
+
 		GZ = new Palette(12);
-		palette1 = GZ;
-		color = Color.yellow;
-		color1 = Color.black;
-		palette1.MergeColors(color.getRGB(), color1.getRGB(), 12, false, false);
+		temp_pallete = GZ;
+		temp_color1 = Color.yellow;
+		temp_color2 = Color.black;
+		temp_pallete.EnumerateColors(temp_color1.getRGB(), temp_color2.getRGB(), 12, false, false);
+
 		charAt = new Palette(6);
-		palette1 = charAt;
-		color = Color.gray;
-		color1 = Color.black;
-		palette1.MergeColors(color.getRGB(), color1.getRGB(), 6, false, false);
+		temp_pallete = charAt;
+		temp_color1 = Color.gray;
+		temp_color2 = Color.black;
+		temp_pallete.EnumerateColors(temp_color1.getRGB(), temp_color2.getRGB(), 6, false, false);
+
 		cos = new Palette(6);
-		palette1 = cos;
-		color = Color.blue;
-		color1 = Color.black;
-		palette1.MergeColors(color.getRGB(), color1.getRGB(), 6, false, false);
+		temp_pallete = cos;
+		temp_color1 = Color.blue;
+		temp_color2 = Color.black;
+		temp_pallete.EnumerateColors(temp_color1.getRGB(), temp_color2.getRGB(), 6, false, false);
+
 		darkGray = new Palette(8);
-		palette1 = darkGray;
-		color = Color.white;
-		color1 = Color.black;
-		palette1.MergeColors(color.getRGB(), color1.getRGB(), 8, false, false);
+		temp_pallete = darkGray;
+		temp_color1 = Color.white;
+		temp_color2 = Color.black;
+		temp_pallete.EnumerateColors(temp_color1.getRGB(), temp_color2.getRGB(), 8, false, false);
 
 		LZ = new Palette(5);
-		palette1 = LZ;
-		color = Color.green.brighter();
-		color1_int = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = LZ;
+		temp_color1 = Color.green.brighter();
+		temp_color1code = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(color1_int);
+			temp_pallete.AddColor(temp_color1code);
 		}
 
-		palette1 = LZ;
-		color = Color.green.brighter();
-		color1_int = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = LZ;
+		temp_color1 = Color.green.brighter();
+		temp_color1code = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(color1_int);
+			temp_pallete.AddColor(temp_color1code);
 		}
 
-		palette1 = LZ;
-		color = Color.green;
-		color1_int = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = LZ;
+		temp_color1 = Color.green;
+		temp_color1code = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(color1_int);
+			temp_pallete.AddColor(temp_color1code);
 		}
 
-		palette1 = LZ;
-		color = Color.green.darker();
-		color1_int = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = LZ;
+		temp_color1 = Color.green.darker();
+		temp_color1code = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(color1_int);
+			temp_pallete.AddColor(temp_color1code);
 		}
 
-		palette1 = LZ;
-		color = Color.green.darker().darker();
-		color1_int = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = LZ;
+		temp_color1 = Color.green.darker().darker();
+		temp_color1code = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(color1_int);
+			temp_pallete.AddColor(temp_color1code);
 		}
 
 		MZ = new Palette(5);
-		palette1 = MZ;
-		color = Color.red.brighter();
-		color1_int = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = MZ;
+		temp_color1 = Color.red.brighter();
+		temp_color1code = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(color1_int);
+			temp_pallete.AddColor(temp_color1code);
 		}
 
-		palette1 = MZ;
-		color = Color.red.brighter();
-		color1_int = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity()) 
+		temp_pallete = MZ;
+		temp_color1 = Color.red.brighter();
+		temp_color1code = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity()) 
 		{
-			palette1.AddColor(color1_int);
+			temp_pallete.AddColor(temp_color1code);
 		}
 
-		palette1 = MZ;
-		color = Color.red;
-		color1_int = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = MZ;
+		temp_color1 = Color.red;
+		temp_color1code = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(color1_int);
+			temp_pallete.AddColor(temp_color1code);
 		}
 
-		palette1 = MZ;
-		color = Color.red.darker();
-		color1_int = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = MZ;
+		temp_color1 = Color.red.darker();
+		temp_color1code = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(color1_int);
+			temp_pallete.AddColor(temp_color1code);
 		}
 
-		palette1 = MZ;
-		color = Color.red.darker().darker();
-		color1_int = color.getRGB();
-		if (palette1.GetSize() < palette1.GetCapacity())
+		temp_pallete = MZ;
+		temp_color1 = Color.red.darker().darker();
+		temp_color1code = temp_color1.getRGB();
+		if (temp_pallete.GetSize() < temp_pallete.GetCapacity())
 		{
-			palette1.AddColor(color1_int);
+			temp_pallete.AddColor(temp_color1code);
 		}
 
-		I((-5000F * viewScale) / 2.0F, (5000F * viewScale) / 2.0F, (-5000F * viewScale) / 2.0F,
-				(5000F * viewScale) / 2.0F);
-		fZ = worldBorderLeft + screen_width / 2.0F + 200F;
-		jZ = worldBorderRight - screen_width / 2.0F - 200F;
-		sZ = worldBorderTop + screen_height / 2.0F + 200F;
-		aZ = worldBorderBottom - screen_height / 2.0F - 200F;
+		final float world_size = 5000f;
+		InitializeWorldDimensions((-world_size * viewScale) / 2.0F, (world_size * viewScale) / 2.0F, (-world_size * viewScale) / 2.0F, (world_size * viewScale) / 2.0F);
+
+		viewBorderLeft = worldBorderLeft + screen_width / 2.0F + 200F;
+		viewBorderRight = worldBorderRight - screen_width / 2.0F - 200F;
+		viewBorderTop = worldBorderTop + screen_height / 2.0F + 200F;
+		viewBorderBottom = worldBorderBottom - screen_height / 2.0F - 200F;
 
 		lightGray = (int) (viewWidth * 0.25F);
 		min = (int) (viewHeight * 0.25F);
@@ -319,8 +331,8 @@ public final class GameApp extends AppletImplements {
 		println = keyUp + lightGray / 2;
 		random = length + min / 2;
 
-		red = lightGray / worldHrz;
-		repaint = min / worldVrt;
+		red = lightGray / worldDimension[0];
+		repaint = min / worldDimension[1];
 
 		labelLoading = null;
 		loadProgress = 0;
@@ -328,109 +340,145 @@ public final class GameApp extends AppletImplements {
 	}
 
 	@Override
-	public final void I() {
-		execute_cheat();
-		if (gray) {
-			gray = false;
-			if (super.pC)
-				I(false);
+	public final void I()
+	{
+		ExecuteCheat();
+
+		if (clearedSettings)
+		{
+			clearedSettings = false;
+
+			if (super.isAudioMuted)
+			{
+				InitializeSettings(false);
+			}
 		}
-		if (green) {
-			green = false;
+
+		if (cheatedCowLevel)
+		{
+			cheatedCowLevel = false;
 			currentMission.CompleteImmediately();
 		}
-		Camera.I();
+		myCamera.Update();
 
-		GameObjectPool obj = dZ;
-		oSpaceship nobj = (oSpaceship) ((obj).GetSize() <= 0 ? null : (obj).internalList[0]);
-		if (nobj != null && ((GameObject) (nobj)).s >= 0 && (nobj).QI == 4) {
-			if (gZ > 0) {
+		final GameObjectPool obj = dZ;
+		final oSpaceship nobj = (oSpaceship) (obj.GetSize() <= 0 ? null : (obj).internalList[0]);
+
+		if (nobj != null && ((GameObject) (nobj)).timeSinceEpoch >= 0 && (nobj).QI == 4)
+		{
+			if (gZ > 0)
+			{
 				gZ--;
 				if (gZ == 0)
 					eZ = 0;
 			}
-			if (!super.pC) {
-				if (getCodeBase != 1 && super.qC) {
-					if (getCodeBase == 2) {
-						float f1 = (float) Math.cos(nobj.Y);
-						float f3 = (float) Math.sin(nobj.Y);
-						nobj.W = f1 * ((GameObject) (nobj)).N;
-						nobj.X = f3 * ((GameObject) (nobj)).N;
-					} else {
-						float f2 = (float) (-Math.cos(((GameObject) (nobj)).Y));
-						float f4 = (float) (-Math.sin(((GameObject) (nobj)).Y));
-						nobj.W = f2 * ((GameObject) (nobj)).N * 0.3F;
-						nobj.X = f4 * ((GameObject) (nobj)).N * 0.3F;
+
+			if (!super.isAudioMuted)
+			{
+				if (getCodeBase != 1 && super.qC)
+				{
+					if (getCodeBase == 2)
+					{
+						final float f1 = (float) Math.cos(nobj.myRotation);
+						final float f3 = (float) Math.sin(nobj.myRotation);
+						nobj.hAccel = f1 * ((GameObject) (nobj)).accelFactorOnStage;
+						nobj.vAccel = f3 * ((GameObject) (nobj)).accelFactorOnStage;
 					}
-					nobj.K += ((GameObject) (nobj)).W;
-					nobj.L += ((GameObject) (nobj)).X;
-				} else {
-					nobj.W = 0.0F;
-					nobj.X = 0.0F;
+					else
+					{
+						final float f2 = (float) (-Math.cos(((GameObject) (nobj)).myRotation));
+						final float f4 = (float) (-Math.sin(((GameObject) (nobj)).myRotation));
+						nobj.hAccel = f2 * ((GameObject) (nobj)).accelFactorOnStage * 0.3F;
+						nobj.vAccel = f4 * ((GameObject) (nobj)).accelFactorOnStage * 0.3F;
+					}
+
+					nobj.hSpeed += ((GameObject) (nobj)).hAccel;
+					nobj.vSpeed += ((GameObject) (nobj)).vAccel;
 				}
-				if (getBackground != 1) {
-					if (getBackground == 2) {
+				else
+				{
+					nobj.hAccel = 0.0F;
+					nobj.vAccel = 0.0F;
+				}
+
+				if (getBackground != 1)
+				{
+					if (getBackground == 2)
+					{
 						getRGB -= 0.02454369F;
 						if (getRGB < -0.1963495F)
 							getRGB = -0.1963495F;
-						nobj.Y += getRGB;
-						if (((GameObject) (nobj)).Y < 0.0F)
-							nobj.Y += 6.283185F;
-					} else if (getBackground == 3) {
+						nobj.myRotation += getRGB;
+
+						if (((GameObject) (nobj)).myRotation < 0.0F)
+						{
+							nobj.myRotation += 6.283185F;
+						}
+					}
+					else if (getBackground == 3)
+					{
 						getRGB += 0.02454369F;
 						if (getRGB > 0.1963495F)
 							getRGB = 0.1963495F;
-						nobj.Y += getRGB;
-						if (((GameObject) (nobj)).Y >= 6.283185F)
-							nobj.Y -= 6.283185F;
+						nobj.myRotation += getRGB;
+
+						if (((GameObject) (nobj)).myRotation >= 6.283185F)
+						{
+							nobj.myRotation -= 6.283185F;
+						}
 					}
-					nobj.d = ((GameObject) (nobj)).x.I(((GameObject) (nobj)).Y);
+
+					nobj.frameIndex = ((GameObject) (nobj)).myAtlas.GetFrameByRotation(((GameObject) (nobj)).myRotation);
 				}
-			} else if (super.qC && Math.random() * 10D > 9D) {
+			}
+			else if (super.qC && Math.random() * 10D > 9D)
+			{
 				abs();
 			}
 
-			if (((GameObject) (nobj)).J <= fZ) {
-				if (((GameObject) (nobj)).K < 0.0F)
-					nobj.K = 0.0F;
-				nobj.J = fZ;
-				((GameObject) (nobj)).F();
-			} else if (((GameObject) (nobj)).J >= jZ) {
-				if (((GameObject) (nobj)).K > 0.0F)
-					nobj.K = 0.0F;
-				nobj.J = jZ;
-				((GameObject) (nobj)).F();
+			if (((GameObject) (nobj)).myX <= viewBorderLeft)
+			{
+				if (((GameObject) (nobj)).hSpeed < 0.0F)
+					nobj.hSpeed = 0.0F;
+				nobj.myX = viewBorderLeft;
+				((GameObject) (nobj)).CalcCollisionBox();
+			} else if (((GameObject) (nobj)).myX >= viewBorderRight) {
+				if (((GameObject) (nobj)).hSpeed > 0.0F)
+					nobj.hSpeed = 0.0F;
+				nobj.myX = viewBorderRight;
+				((GameObject) (nobj)).CalcCollisionBox();
 			}
 
-			if (((GameObject) (nobj)).S <= sZ) {
-				if (((GameObject) (nobj)).L < 0.0F)
-					nobj.L = 0.0F;
-				nobj.S = sZ;
-				((GameObject) (nobj)).F();
-			} else if (((GameObject) (nobj)).S >= aZ) {
-				if (((GameObject) (nobj)).L > 0.0F)
-					nobj.L = 0.0F;
-				nobj.S = aZ;
-				((GameObject) (nobj)).F();
+			if (((GameObject) (nobj)).myY <= viewBorderTop) {
+				if (((GameObject) (nobj)).vSpeed < 0.0F)
+					nobj.vSpeed = 0.0F;
+				nobj.myY = viewBorderTop;
+				((GameObject) (nobj)).CalcCollisionBox();
+			} else if (((GameObject) (nobj)).myY >= viewBorderBottom) {
+				if (((GameObject) (nobj)).vSpeed > 0.0F)
+					nobj.vSpeed = 0.0F;
+				nobj.myY = viewBorderBottom;
+				((GameObject) (nobj)).CalcCollisionBox();
 			}
 		}
-		Starfield.update(((GameObject) (Camera)).K, ((GameObject) (Camera)).L);
+
+		gameStarfield.update(((GameObject) (myCamera)).hSpeed, ((GameObject) (myCamera)).vSpeed);
 		super.I();
 		currentMission.I();
-		dZ.Z();
-		oZ.Z();
-		pZ.Z();
-		qZ.Z();
-		tZ.Z();
-		vZ.Z();
-		wZ.Z();
-		yZ.Z();
-		IC.Z();
-		ZC.Z();
-		AC.Z();
-		EC.Z();
-		GC.Z();
-		BC.Z();
+		dZ.Warp();
+		oZ.Warp();
+		pZ.Warp();
+		qZ.Warp();
+		tZ.Warp();
+		vZ.Warp();
+		wZ.Warp();
+		yZ.Warp();
+		IC.Warp();
+		ZC.Warp();
+		AC.Warp();
+		EC.Warp();
+		GC.Warp();
+		BC.Warp();
 		IC.Z(wZ);
 		IC.Z(GC);
 		ZC.Z(wZ);
@@ -460,20 +508,24 @@ public final class GameApp extends AppletImplements {
 	}
 
 	@Override
-	public final void I(Canvas applet_surface) {
-		Canvas surface2 = super.lC;
-		Canvas surface3 = super.mC;
+	public final void RenderScene(final Canvas applet_surface)
+	{
+		final Canvas surface2 = super.applicationCanvas;
+		final Canvas surface3 = super.mC;
 		System.arraycopy(surface3.B, 0, surface2.B, 0, surface2.C);
 
-		if (!assetsLoaded) {
+		if (!isAssetsLoaded)
+		{
 			int i1 = (super.viewWidth - 200) / 2;
 			int i2 = (super.viewHeight - 200) / 2;
 
-			if (spriteTitle != null) {
+			if (spriteTitle != null)
+			{
 				applet_surface.I(spriteTitle, i1, i2, this);
 			}
 
-			if (0 < loadProgress) {
+			if (0 < loadProgress)
+			{
 				i1 += 6;
 				i2 += 147;
 				gameutil.DrawGaugebar(applet_surface, i1, i2, 188, 20,
@@ -484,33 +536,40 @@ public final class GameApp extends AppletImplements {
 			return;
 		}
 
-		if (!surfaceCreated) {
-			surfaceCreated = true;
+		if (!isSurfaceCreated)
+		{
+			isSurfaceCreated = true;
 		}
 
-		Starfield.draw(applet_surface);
-		AC.I(applet_surface);
-		EC.I(applet_surface);
-		GC.I(applet_surface);
+		gameStarfield.draw(applet_surface);
+		AC.Draw(applet_surface);
+		EC.Draw(applet_surface);
+		GC.Draw(applet_surface);
 
-		if (!super.pC && NC) {
-			int dx = (int) (20F * super.viewScale);
+		// Render the main menu
+		if (!super.isAudioMuted && NC)
+		{
+			final int dx = (int) (20F * super.viewScale);
 			int dy = (int) (25F * super.viewScale);
-			applet_surface.DrawLabel(super.uC, Colours.White, super.hFontSmall, dx - 1, dy + 1);
+			applet_surface.DrawLabel(super.uC, Colours.White, super.fontSmall, dx - 1, dy + 1);
 
-			GameObject target = dZ.internalList[0];
-			GameObject obj = dZ.GetSize() <= 0 ? null : target;
+			final GameObject target = dZ.internalList[0];
+			final GameObject obj = dZ.GetSize() <= 0 ? null : target;
 
-			if (obj != null && obj.e == 1) {
+			if (obj != null && obj.activeMode == 1)
+			{
 				int k1 = (int) (220F * super.viewScale);
-				applet_surface.DrawLabel("Damage", Colours.White, super.hFontSmall, k1 - 1, dy + 1);
-				k1 += super.hFontSmall.I("Damage") + 7;
-				Font gamefont1 = super.hFontSmall;
-				dy -= (gamefont1.C * 3) / 5;
-				float f1 = (float) ((obj).o + (obj).n) / (float) ((obj).p + (obj).q);
-				if (f1 < MC) {
+				applet_surface.DrawLabel("Damage", Colours.White, super.fontSmall, k1 - 1, dy + 1);
+				k1 += super.fontSmall.I("Damage") + 7;
+				final Font gamefont1 = super.fontSmall;
+				dy -= (gamefont1.myHeight * 3) / 5;
+
+				final float f1 = (float) ((obj).o + (obj).n) / (float) ((obj).p + (obj).q);
+				if (f1 < MC)
+				{
 					MC = f1;
-				} else if (f1 > MC) {
+				} else if (f1 > MC)
+				{
 					if (f1 - MC > 0.01F)
 						MC += 0.01F;
 					else
@@ -518,62 +577,66 @@ public final class GameApp extends AppletImplements {
 				}
 
 				Object obj1;
-				gameutil.DrawGaugebar(applet_surface, k1, dy + 2, getAppletContext, ((Font) (obj1 = super.eC)).C - 4,
-						MC,
-						Colours.Red, Colours.Yellow);
-				applet_surface.I(k1, dy, getAppletContext, ((Font) (obj1 = super.eC)).C, Colours.DarkGreen, 1);
-				int k3 = (int) (35F * super.viewScale);
-				int i4 = (int) (20F * super.viewScale);
-				int k4 = i4 + (int) (48F * super.viewScale);
-				float f2 = Math.abs(super.IB % 22L - 11F) * 0.059F + 0.35F;
+				gameutil.DrawGaugebar(applet_surface, k1, dy + 2, getAppletContext, ((Font) (obj1 = super.fontTiny)).myHeight - 4, MC, Colours.Red, Colours.Yellow);
+
+				applet_surface.I(k1, dy, getAppletContext, ((Font) (obj1 = super.fontTiny)).myHeight, Colours.DarkGreen, 1);
+
+				final int k3 = (int) (35F * super.viewScale);
+				final int i4 = (int) (20F * super.viewScale);
+				final int k4 = i4 + (int) (48F * super.viewScale);
+				final float f2 = Math.abs(super.IB % 22L - 11F) * 0.059F + 0.35F;
 				dy = (int) (super.viewHeight * 0.7F);
 				if (hZ == 1)
-					applet_surface.DrawSprite(arraycopy.I(0, 0), f2, i4, dy, this);
+					applet_surface.DrawSprite(arraycopy.GetSprite(0, 0), f2, i4, dy, this);
 				else
-					applet_surface.I(arraycopy.I(0, 0), i4, dy, this);
-				applet_surface.DrawLabel("-", Colours.White, super.eC, k4, dy + super.eC.C + 2);
+					applet_surface.I(arraycopy.GetSprite(0, 0), i4, dy, this);
+				applet_surface.DrawLabel("-", Colours.White, super.fontTiny, k4, dy + super.fontTiny.myHeight + 2);
 				dy += k3;
 				obj1 = String.valueOf(kZ);
 				if (hZ == 2)
-					applet_surface.DrawSprite(arraycopy.I(1, 0), f2, i4, dy, this);
+					applet_surface.DrawSprite(arraycopy.GetSprite(1, 0), f2, i4, dy, this);
 				else
-					applet_surface.I(arraycopy.I(1, 0), i4, dy, this);
-				applet_surface.DrawLabel(((String) (obj1)), Colours.White, super.eC, k4, dy + super.eC.C + 2);
+					applet_surface.I(arraycopy.GetSprite(1, 0), i4, dy, this);
+				applet_surface.DrawLabel(((String) (obj1)), Colours.White, super.fontTiny, k4, dy + super.fontTiny.myHeight + 2);
 				dy += k3;
 				obj1 = String.valueOf(lZ);
 				if (hZ == 3)
-					applet_surface.DrawSprite(arraycopy.I(2, 0), f2, i4, dy, this);
+					applet_surface.DrawSprite(arraycopy.GetSprite(2, 0), f2, i4, dy, this);
 				else
-					applet_surface.I(arraycopy.I(2, 0), i4, dy, this);
-				applet_surface.DrawLabel(((String) (obj1)), Colours.White, super.eC, k4, dy + super.eC.C + 2);
+					applet_surface.I(arraycopy.GetSprite(2, 0), i4, dy, this);
+				applet_surface.DrawLabel(((String) (obj1)), Colours.White, super.fontTiny, k4, dy + super.fontTiny.myHeight + 2);
 				dy += k3;
 				obj1 = String.valueOf(mZ);
 				if (hZ == 4)
-					applet_surface.DrawSprite(arraycopy.I(3, 0), f2, i4, dy, this);
+					applet_surface.DrawSprite(arraycopy.GetSprite(3, 0), f2, i4, dy, this);
 				else
-					applet_surface.I(arraycopy.I(3, 0), i4, dy, this);
-				applet_surface.DrawLabel(((String) (obj1)), Colours.White, super.eC, k4, dy + super.eC.C + 2);
+					applet_surface.I(arraycopy.GetSprite(3, 0), i4, dy, this);
+				applet_surface.DrawLabel(((String) (obj1)), Colours.White, super.fontTiny, k4, dy + super.fontTiny.myHeight + 2);
 			}
+
 			applet_surface.I(keyUp, length, lightGray, min, getBackground().getRGB());
 		}
-		vZ.I(applet_surface);
-		wZ.I(applet_surface);
-		dZ.I(applet_surface);
-		oZ.I(applet_surface);
-		pZ.I(applet_surface);
-		yZ.I(applet_surface);
-		tZ.I(applet_surface);
-		qZ.I(applet_surface);
-		IC.I(applet_surface);
-		ZC.I(applet_surface);
-		BC.I(applet_surface);
-		if (super.pC) {
-			applet_surface.DrawLabel("Click Anywhere Or Press Any Key To Start", Color.red.getRGB(), super.hFontSmall,
-					super.viewWidth / 2 - super.hFontSmall.I("Click Anywhere Or Press Any Key To Start") / 2 - 1,
+
+		vZ.Draw(applet_surface);
+		wZ.Draw(applet_surface);
+		dZ.Draw(applet_surface);
+		oZ.Draw(applet_surface);
+		pZ.Draw(applet_surface);
+		yZ.Draw(applet_surface);
+		tZ.Draw(applet_surface);
+		qZ.Draw(applet_surface);
+		IC.Draw(applet_surface);
+		ZC.Draw(applet_surface);
+		BC.Draw(applet_surface);
+
+		// Render the main menu
+		if (super.isAudioMuted) {
+			applet_surface.DrawLabel("Click Anywhere Or Press Any Key To Start", Color.red.getRGB(), super.fontSmall,
+					super.viewWidth / 2 - super.fontSmall.I("Click Anywhere Or Press Any Key To Start") / 2 - 1,
 					super.viewHeight / 8 + 1);
 			applet_surface.DrawLabel("Click Anywhere Or Press Any Key To Start", Color.yellow.getRGB(),
-					super.hFontSmall,
-					super.viewWidth / 2 - super.hFontSmall.I("Click Anywhere Or Press Any Key To Start") / 2,
+					super.fontSmall,
+					super.viewWidth / 2 - super.fontSmall.I("Click Anywhere Or Press Any Key To Start") / 2,
 					super.viewHeight / 8);
 		} else if (NC) {
 			int l1 = 1;
@@ -590,16 +653,16 @@ public final class GameApp extends AppletImplements {
 				k2 += pink;
 			}
 			applet_surface.I(keyUp, length, lightGray, min, Colours.DarkGreen, 1);
-			applet_surface.I(black.I(0, 0), keyUp + (lightGray - black.C) / 2, length + min + 2, this);
+			applet_surface.I(black.GetSprite(0, 0), keyUp + (lightGray - black.C) / 2, length + min + 2, this);
 
-			int l2 = println + (int) (((GameObject) (Camera)).J * red);
-			int i3 = random + (int) (((GameObject) (Camera)).S * repaint);
+			int l2 = println + (int) (((GameObject) (myCamera)).myX * red);
+			int i3 = random + (int) (((GameObject) (myCamera)).myY * repaint);
 			applet_surface.I(l2 - 1, i3 - 1, 3, 3, Colours.Green);
 
-			int j3 = (int) ((super.viewWidth * red) / 2.0F);
-			int l3 = (int) ((super.viewHeight * red) / 2.0F);
-			int j4 = l2 + j3;
-			int l4 = i3 + l3;
+			final int j3 = (int) ((super.viewWidth * red) / 2.0F);
+			final int l3 = (int) ((super.viewHeight * red) / 2.0F);
+			final int j4 = l2 + j3;
+			final int l4 = i3 + l3;
 			l2 -= j3;
 			i3 -= l3;
 			applet_surface.I(l2, i3, 2, 5, Colours.Green);
@@ -617,40 +680,47 @@ public final class GameApp extends AppletImplements {
 			F(applet_surface, GC, false, 3, 3, Colours.Red, Colours.Maroon);
 			F(applet_surface, BC, true, 3, 3, Colours.Lemon, Colours.DarkYellow);
 		}
-		super.I(applet_surface);
+		super.RenderScene(applet_surface);
 	}
 
-	public final void F(Canvas surface1, GameObjectPool oGameObjectlist1, boolean flag, int i1, int j1, int k1,
-			int l1) {
-		int k2 = i1 / 2;
-		int l2 = j1 / 2;
+	public final void F(final Canvas canvas, final GameObjectPool pool, final boolean flag, final int i1, final int j1, final int k1, final int l1)
+	{
+		final int k2 = i1 / 2;
+		final int l2 = j1 / 2;
 
-		for (int i3 = 0; i3 < oGameObjectlist1.mySize; i3++) {
-			GameObject oGameObject1 = oGameObjectlist1.internalList[i3];
+		for (int i3 = 0; i3 < pool.mySize; i3++)
+		{
+			final GameObject obj = pool.internalList[i3];
 
-			if (oGameObject1.e == 1 && oGameObject1.v && oGameObject1.w) {
-				int i2 = (println + (int) (oGameObject1.J * red)) - k2;
-				int j2 = (random + (int) (oGameObject1.S * repaint)) - l2;
+			if (obj.activeMode == 1 && obj.isVisible && obj.isEnabled)
+			{
+				final int i2 = (println + (int) (obj.myX * red)) - k2;
+				final int j2 = (random + (int) (obj.myY * repaint)) - l2;
 
-				if (flag || oGameObject1.s < 28) {
-					if (oGameObject1.s % 8 < 4)
-						surface1.I(i2, j2, i1, j1, k1);
+				if (flag || obj.timeSinceEpoch < 28)
+				{
+					if (obj.timeSinceEpoch % 8 < 4)
+						canvas.I(i2, j2, i1, j1, k1);
 					else
-						surface1.I(i2, j2, i1, j1, l1);
-				} else {
-					surface1.I(i2, j2, i1, j1, k1);
+						canvas.I(i2, j2, i1, j1, l1);
+				}
+				else
+				{
+					canvas.I(i2, j2, i1, j1, k1);
 				}
 			}
 		}
-
 	}
 
-	public final void execute_cheat() {
-		if (cheatCode != 0 && !super.pC) {
+	public final void ExecuteCheat()
+	{
+		if (cheatCode != 0 && !super.isAudioMuted)
+		{
 			super.tC = true;
 			boolean flag = true;
 
-			switch (cheatCode) {
+			switch (cheatCode)
+			{
 				default:
 					break;
 
@@ -685,7 +755,7 @@ public final class GameApp extends AppletImplements {
 
 					for (int i = 0; i < temp_count; i++) {
 						// reference from original
-						GameObject ally = i < 0 || i >= temp_list.GetSize() ? null : vZ.internalList[i];
+						final GameObject ally = i < 0 || i >= temp_list.GetSize() ? null : vZ.internalList[i];
 
 						if (i == 0 && ally.r) {
 							flag = false;
@@ -699,7 +769,7 @@ public final class GameApp extends AppletImplements {
 
 					for (int j = 0; j < temp_count; j++) {
 						// reference from original
-						GameObject ally = j < 0 || j >= temp_list.GetSize() ? null : dZ.internalList[j];
+						final GameObject ally = j < 0 || j >= temp_list.GetSize() ? null : dZ.internalList[j];
 
 						if (j == 0 && ally.r) {
 							flag = false;
@@ -722,22 +792,24 @@ public final class GameApp extends AppletImplements {
 	}
 
 	@Override
-	public final boolean keyDown(Event event, int keycode) 
+	public final boolean keyDown(final Event event, final int keycode) 
 	{
 		super.keyDown(event, keycode);
 
-		if (!isPaused && assetsLoaded) 
+		if (!isPaused && isAssetsLoaded) 
 		{
-			if (super.pC)
+			if (super.isAudioMuted)
+			{
 				switch (keycode) {
 					default:
-						gray = true;
+						clearedSettings = true;
 						break;
 
 					case 80: // 'P'
 					case 112: // 'p'
 						break;
 				}
+			}
 			else if (currentMission.O == 300 || currentMission.O == 301 || currentMission.O == 302) {
 				switch (keycode) {
 					case 1004:
@@ -788,20 +860,28 @@ public final class GameApp extends AppletImplements {
 					case 32: // ' '
 					case 65: // 'star_blinking'
 					case 97: // 'a'
-						if (super.qC) {
+						if (super.qC)
+						{
 							abs();
-						} else {
-							GameObjectPool oGameObjectlist1 = super.vC;
+						}
+						else
+						{
+							final GameObjectPool oGameObjectlist1 = super.gameUIObjects;
+							
 							if (oGameObjectlist1.I(1, -1, -1, -1, -1, 10F) != null)
-								green = true;
+							{
+								cheatedCowLevel = true;
+							}
 						}
 						break;
 
 					case 10: // '\n'
 					case 27: // '\033'
-						GameObjectPool oGameObjectlist2 = super.vC;
+						final GameObjectPool oGameObjectlist2 = super.gameUIObjects;
 						if (oGameObjectlist2.I(1, -1, -1, -1, 10, -1F) != null)
-							green = true;
+						{
+							cheatedCowLevel = true;
+						}
 						break;
 
 					case 49: // '1'
@@ -824,12 +904,12 @@ public final class GameApp extends AppletImplements {
 						break;
 
 					case 1009:
-						I(false);
+						InitializeSettings(false);
 						break;
 
 					case 35: // '#'
-						I(true);
-						GameObjectPool oGameObjectlist3 = super.vC;
+						InitializeSettings(true);
+						final GameObjectPool oGameObjectlist3 = super.gameUIObjects;
 						oGameObjectlist3.I(true, null, -1, -1, -1, -1);
 						currentMission.I(1200);
 						break;
@@ -882,7 +962,7 @@ public final class GameApp extends AppletImplements {
 
 	@Override
 	@SuppressWarnings("deprecation")
-	public final boolean keyUp(Event event, int i1) {
+	public final boolean keyUp(final Event event, final int i1) {
 		super.keyUp(event, i1);
 		switch (i1) {
 			default:
@@ -905,8 +985,8 @@ public final class GameApp extends AppletImplements {
 			case 32: // ' '
 			case 65: // 'star_blinking'
 			case 97: // 'a'
-				GameObjectPool obj = dZ;
-				oSpaceship nobj = (oSpaceship) (obj.GetSize() <= 0 ? null : obj.internalList[0]);
+				final GameObjectPool obj = dZ;
+				final oSpaceship nobj = (oSpaceship) (obj.GetSize() <= 0 ? null : obj.internalList[0]);
 				if (nobj != null) {
 					nobj.Z = false;
 					nobj.C = 0;
@@ -918,48 +998,70 @@ public final class GameApp extends AppletImplements {
 	}
 
 	@Override
-	public final boolean mouseDown(Event event, int i1, int j1) {
-		if (!super.isPaused && super.assetsLoaded)
-			if (super.pC) {
+	public final boolean mouseDown(final Event event, final int mx, final int my) {
+		if (!super.isPaused && super.isAssetsLoaded)
+		{if (super.isAudioMuted)
+			{
 				boolean flag = false;
-				GameLabel gametext2 = (GameLabel) super.vC.I(i1, j1);
-				if (gametext2 != null && ((GameObject) (gametext2)).HI == 3) {
+
+				final GameLabel gametext2 = (GameLabel) super.gameUIObjects.OnMouseHover(mx, my);
+				if (gametext2 != null && ((GameObject) (gametext2)).HI == 3)
+				{
 					flag = true;
-					try {
+
+					try
+					{
 						getAppletContext().showDocument(
 								new URL(super.labelURL + "?game=realspace2&refer=" + getCodeBase() + labelURLSuffix),
 								"_blank");
-					} catch (Exception exception) {
+					}
+					catch (final Exception exception)
+					{
 						System.out.println("showDocument failed " + exception);
 					}
 				}
+
 				if (!flag)
-					gray = true;
-			} else {
-				GameLabel gametext1 = (GameLabel) super.vC.I(i1, j1);
-				if (gametext1 != null)
-					J(((GameObject) (gametext1)).HI);
+				{
+					clearedSettings = true;
+				}
 			}
+			else
+			{
+				final GameLabel gametext1 = (GameLabel) super.gameUIObjects.OnMouseHover(mx, my);
+				if (gametext1 != null)
+				{
+					J(((GameObject) (gametext1)).HI);
+				}
+			}
+		}
+
 		return true;
 	}
 
 	@Override
-	public final boolean mouseMove(Event event, int i1, int j1) {
-		if (!super.isPaused && super.assetsLoaded
-				&& (currentMission.O == 300 || currentMission.O == 301 || currentMission.O == 302)) {
-			GameLabel gametext1 = (GameLabel) super.vC.I(i1, j1);
+	public final boolean mouseMove(final Event event, final int mx, final int my)
+	{
+		if (!super.isPaused && super.isAssetsLoaded && (currentMission.O == 300 || currentMission.O == 301 || currentMission.O == 302))
+		{
+			final GameLabel gametext1 = (GameLabel) super.gameUIObjects.OnMouseHover(mx, my);
+
 			if (gametext1 != null)
+			{
 				I(((GameObject) (gametext1)).HI);
+			}
 		}
+
 		return true;
 	}
 
-	final void I(int i1) {
+	final void I(final int i1)
+	{
 		boolean flag = false;
-		GameObjectPool oGameObjectlist1 = super.vC;
-		int j1 = oGameObjectlist1.mySize;
+		final GameObjectPool oGameObjectlist1 = super.gameUIObjects;
+		final int j1 = oGameObjectlist1.mySize;
 		for (int k1 = 0; k1 < j1; k1++) {
-			Object obj = super.vC;
+			Object obj = super.gameUIObjects;
 			obj = k1 < 0 || k1 >= ((GameObjectPool) (obj)).GetSize() ? null : ((GameObjectPool) (obj)).internalList[k1];
 			if (obj != null && ((GameObject) (obj)).HI != -1 && ((GameObject) (obj)).HI == i1)
 				flag = true;
@@ -968,13 +1070,13 @@ public final class GameApp extends AppletImplements {
 		if (flag) {
 			PC = i1;
 			for (int l1 = 0; l1 < j1; l1++) {
-				GameObjectPool obj1 = super.vC;
-				GameLabel nobj = (GameLabel) (l1 < 0 || l1 >= obj1.GetSize() ? null : obj1.internalList[l1]);
+				final GameObjectPool obj1 = super.gameUIObjects;
+				final GameLabel nobj = (GameLabel) (l1 < 0 || l1 >= obj1.GetSize() ? null : obj1.internalList[l1]);
 				if (nobj != null && ((GameObject) (nobj)).HI != -1)
 					{if (((GameObject) (nobj)).HI == i1)
 					{
-						Palette palette1 = darker;
-						Palette palette2 = freeMemory;
+						final Palette palette1 = darker;
+						final Palette palette2 = freeMemory;
 						nobj.D = palette1;
 						nobj.LI = palette2;
 					}
@@ -988,7 +1090,7 @@ public final class GameApp extends AppletImplements {
 		}
 	}
 
-	final void J(int i1)
+	final void J(final int i1)
 	{
 		if (currentMission.O == 300)
 		{
@@ -1008,16 +1110,16 @@ public final class GameApp extends AppletImplements {
 								"_blank");
 
 						return;
-					} catch (Exception exception) {
+					} catch (final Exception exception) {
 						System.out.println("showDocument failed " + exception);
 					}
 
 					return;
 			}
 
-			GameObjectPool oGameObjectlist1 = super.vC;
+			final GameObjectPool oGameObjectlist1 = super.gameUIObjects;
 			oGameObjectlist1.I(true, null, -1, -1, -1, -1);
-			I(true);
+			InitializeSettings(true);
 			return;
 		}
 
@@ -1054,22 +1156,22 @@ public final class GameApp extends AppletImplements {
 			switch (i1) {
 				case 1: // '\001'
 					QC = 1;
-					starfield starfield1 = Starfield;
-					int j1 = Starfield.star_number_start;
+					final oStarfield starfield1 = gameStarfield;
+					final int j1 = gameStarfield.star_number_start;
 					starfield1.star_number = Math.min(j1, starfield1.star_number_start);
 					break;
 
 				case 2: // '\002'
 					QC = 2;
-					starfield starfield2 = Starfield;
-					int k1 = Starfield.star_number_start / 2;
+					final oStarfield starfield2 = gameStarfield;
+					final int k1 = gameStarfield.star_number_start / 2;
 					starfield2.star_number = Math.min(k1, starfield2.star_number_start);
 					break;
 
 				case 3: // '\003'
 					QC = 3;
-					starfield starfield3 = Starfield;
-					int l1 = Starfield.star_number_start / 4;
+					final oStarfield starfield3 = gameStarfield;
+					final int l1 = gameStarfield.star_number_start / 4;
 					starfield3.star_number = Math.min(l1, starfield3.star_number_start);
 					break;
 			}
@@ -1078,14 +1180,14 @@ public final class GameApp extends AppletImplements {
 			return;
 		}
 		if (i1 == 10)
-			green = true;
+			cheatedCowLevel = true;
 	}
 
 	final void abs()
 	{
-		GameObjectPool obj = dZ;
-		oSpaceship nobj = (oSpaceship) (obj.GetSize() <= 0 ? null : obj.internalList[0]);
-		if (nobj != null && ((GameObject) (nobj)).s >= 0 && nobj.QI == 4 && !nobj.Z) {
+		final GameObjectPool obj = dZ;
+		final oSpaceship nobj = (oSpaceship) (obj.GetSize() <= 0 ? null : obj.internalList[0]);
+		if (nobj != null && ((GameObject) (nobj)).timeSinceEpoch >= 0 && nobj.QI == 4 && !nobj.Z) {
 			nobj.J();
 			nobj.Z = true;
 			nobj.C = 5;
@@ -1096,820 +1198,858 @@ public final class GameApp extends AppletImplements {
 	@Override
 	public final boolean LoadAssets()
 	{
-		int k2 = 0;
-		brighter();
-		int l2 = k2++;
+		int current_loading_progress = 0;
+		InitializeInstancePools();
+
 		super.labelLoading = null;
-		super.loadProgress = l2;
+		super.loadProgress = ++current_loading_progress;
 		repaint();
 
 		//
-		Bitmap title_img = LoadSprite("images/title1.jpg");
-		spriteTitle = new Sprite(200, 200, 0, 0, 0, 0, super.lC, false, title_img, this);
-		title_img.Z = null;
-		title_img = null;
+		Bitmap temp_bitmap = LoadSprite("images/title1.jpg");
+		spriteTitle = new Sprite(200, 200, 0, 0, 0, 0, super.applicationCanvas, false, temp_bitmap, this);
+		temp_bitmap.myData = null;
+		temp_bitmap = null;
 		System.gc();
 
 		//
-		l2 = k2++;
 		super.labelLoading = null;
-		super.loadProgress = l2;
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
 
 		//
 		Bitmap font_img = LoadSprite("images/spacefont.gif");
 
-		eC = new Font((int) (17.6F * super.viewScale), (int) (2.2F * super.viewScale), (int) (2.2F * super.viewScale));
+		fontTiny = new Font((int) (17.6F * viewScale), (int) (2.2F * viewScale));
+		InitializeFont(fontTiny, font_img, 0.55F * viewScale);
 
-		black(super.eC, font_img, 0.55F * super.viewScale);
-		super.hFontSmall = new Font((int) (22.4F * super.viewScale), (int) (2.8F * super.viewScale), (int) (2.8F * super.viewScale));
+		fontSmall = new Font((int) (22.4F * viewScale), (int) (2.8F * viewScale));
+		InitializeFont(fontSmall, font_img, 0.7F * viewScale);
 
-		black(super.hFontSmall, font_img, 0.7F * super.viewScale);
-		super.label_font = new Font((int) (27.2F * super.viewScale), (int) (3.4F * super.viewScale), (int) (3.4F * super.viewScale));
+		fontNormal = new Font((int) (27.2F * viewScale), (int) (3.4F * viewScale));
+		InitializeFont(fontNormal, font_img, 0.85F * viewScale);
 
-		black(super.label_font, font_img, 0.85F * super.viewScale);
-		super.hFontLarge = new Font((int) (32F * super.viewScale), (int) (4F * super.viewScale), (int) (4F * super.viewScale));
+		fontLarge = new Font((int) (32F * viewScale), (int) (4F * viewScale));
+		InitializeFont(fontLarge, font_img, viewScale);
 
-		black(super.hFontLarge, font_img, super.viewScale);
-
-		//
-		font_img.Z = null;
+		font_img.myData = null;
 		font_img = null;
 		System.gc();
 
 		//
-		l2 = k2 += 2;
+		current_loading_progress += 2;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = l2;
+		super.loadProgress = current_loading_progress;
 		repaint();
 
 		//
-		NZ = new GameSoundPool(this, 14);
-		PZ = NZ.sound_add("sounds/fire2.au", true);
-		QZ = NZ.sound_add("sounds/fire5.au", false);
-		OZ = NZ.sound_add("sounds/fire1.au", true);
-		RZ = NZ.sound_add("sounds/fire3.au", true);
-		TZ = NZ.sound_add("sounds/explosion_sm1.au", true);
-		UZ = NZ.sound_add("sounds/explosion_sm2.au", true);
-		VZ = NZ.sound_add("sounds/explosion_sm3.au", true);
-		WZ = NZ.sound_add("sounds/explosion_med1.au", true);
-		XZ = NZ.sound_add("sounds/explosion_lrg1.au", true);
-		YZ = NZ.sound_add("sounds/explosion_lrg2.au", true);
-		iZ = NZ.sound_add("sounds/explosion_lrg3.au", true);
-		zZ = NZ.sound_add("sounds/levelstart.au", false);
-		cZ = NZ.sound_add("sounds/levelend.au", false);
-		bZ = NZ.sound_add("sounds/powerup2.au", false);
+		everySFXs = new GameSoundPool(this, 14);
+		PZ = everySFXs.Load("sounds/fire2.au", true);
+		QZ = everySFXs.Load("sounds/fire5.au", false);
+		OZ = everySFXs.Load("sounds/fire1.au", true);
+		RZ = everySFXs.Load("sounds/fire3.au", true);
+		TZ = everySFXs.Load("sounds/explosion_sm1.au", true);
+		UZ = everySFXs.Load("sounds/explosion_sm2.au", true);
+		VZ = everySFXs.Load("sounds/explosion_sm3.au", true);
+		WZ = everySFXs.Load("sounds/explosion_med1.au", true);
+		XZ = everySFXs.Load("sounds/explosion_lrg1.au", true);
+		YZ = everySFXs.Load("sounds/explosion_lrg2.au", true);
+		iZ = everySFXs.Load("sounds/explosion_lrg3.au", true);
+		zZ = everySFXs.Load("sounds/levelstart.au", false);
+		cZ = everySFXs.Load("sounds/levelend.au", false);
+		bZ = everySFXs.Load("sounds/powerup2.au", false);
 		
-		for (int i1 = 0; i1 < NZ.mySize; i1++)
+		for (int i1 = 0; i1 < everySFXs.mySize; i1++)
 		{
-			k2 += 2;
+			current_loading_progress += 2;
 			super.labelLoading = "Loading And Preparing Resources";
-			super.loadProgress = k2;
+			super.loadProgress = current_loading_progress;
 
 			repaint();
-			NZ.PlayOnceAt(i1);
+			everySFXs.PlayOnce(i1);
 		}
 
-		//
-		gamemusicpiece gamemusicpiece1, gamemusicpiece2, gamemusicpiece3, gamemusicpiece4;
+		// Loads music
+		MusicPiece chords[] = new MusicPiece[4];
 		try
 		{
 			//
-			gamemusicpiece1 = new gamemusicpiece(this, "sounds/music1.au");
-			k2 += 2;
+			chords[0] = new MusicPiece(this, "sounds/music1.au");
+			current_loading_progress += 2;
 			super.labelLoading = "Loading And Preparing Resources";
-			super.loadProgress = k2;
+			super.loadProgress = current_loading_progress;
 			repaint();
 
 			//
-			gamemusicpiece2 = new gamemusicpiece(this, "sounds/music2.au");
-			k2 += 2;
+			chords[1] = new MusicPiece(this, "sounds/music2.au");
+			current_loading_progress += 2;
 			super.labelLoading = "Loading And Preparing Resources";
-			super.loadProgress = k2;
+			super.loadProgress = current_loading_progress;
 			repaint();
 
 			//
-			gamemusicpiece3 = new gamemusicpiece(this, "sounds/music3.au");
-			k2 += 2;
+			chords[2] = new MusicPiece(this, "sounds/music3.au");
+			current_loading_progress += 2;
 			super.labelLoading = "Loading And Preparing Resources";
-			super.loadProgress = k2;
+			super.loadProgress = current_loading_progress;
 			repaint();
 
 			//
-			gamemusicpiece4 = new gamemusicpiece(this, "sounds/music4.au");
-			k2 += 2;
+			chords[3] = new MusicPiece(this, "sounds/music4.au");
+			current_loading_progress += 2;
 			super.labelLoading = "Loading And Preparing Resources";
-			super.loadProgress = k2;
+			super.loadProgress = current_loading_progress;
 			repaint();
 
 			//
-			gc = new gamemusicseq(12);
-			gc.I(gamemusicpiece1);
-			gc.I(gamemusicpiece1);
-			gc.I(gamemusicpiece1);
-			gc.I(gamemusicpiece4);
-			gc.I(gamemusicpiece4);
-			gc.I(gamemusicpiece4);
-			gc.I(gamemusicpiece3);
-			gc.I(gamemusicpiece3);
-			gc.I(gamemusicpiece4);
-			gc.I(gamemusicpiece4);
-			gc.I(gamemusicpiece3);
-			gc.I(gamemusicpiece3);
-			gc.I(gamemusicpiece2);
-			gc.I(gamemusicpiece2);
-			gc.I(gamemusicpiece2);
-			gc.I();
-			gamemusicpiece1 = null;
-			gamemusicpiece2 = null;
-			gamemusicpiece3 = null;
-			gamemusicpiece4 = null;
-		} catch (Exception _ex) {
-			System.out.println("ERROR: exception during music load");
-			gc = null;
+			gameMusic = new MusicSequence(12);
+			gameMusic.Add(chords[0]);
+			gameMusic.Add(chords[0]);
+			gameMusic.Add(chords[0]);
+			gameMusic.Add(chords[3]);
+			gameMusic.Add(chords[3]);
+			gameMusic.Add(chords[3]);
+			gameMusic.Add(chords[2]);
+			gameMusic.Add(chords[2]);
+			gameMusic.Add(chords[3]);
+			gameMusic.Add(chords[3]);
+			gameMusic.Add(chords[2]);
+			gameMusic.Add(chords[2]);
+			gameMusic.Add(chords[1]);
+			gameMusic.Add(chords[1]);
+			gameMusic.Add(chords[1]);
+			gameMusic.Initialize();
+
+			chords[0] = null;
+			chords[1] = null;
+			chords[2] = null;
+			chords[3] = null;
+			chords = null;
 		}
+		catch (final Exception e)
+		{
+			System.out.println("ERROR: exception during music load");
+			gameMusic = null;
+		}
+
 		System.gc();
-		System.out.println("after music load  totalMemory=" + String.valueOf(Runtime.getRuntime().totalMemory())
-				+ " freeMemory=" + String.valueOf(Runtime.getRuntime().freeMemory()));
+		System.out.println("after music load totalMemory=" + String.valueOf(Runtime.getRuntime().totalMemory())
+ + " freeMemory=" + String.valueOf(Runtime.getRuntime().freeMemory()));
+
 		// gamemusicpiece1 = k2 += 3;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = k2;
+		super.loadProgress = current_loading_progress;
 
 		repaint();
-		if ((title_img = LoadSprite("images/ships1.gif")) == null)
+		if (null == (temp_bitmap = LoadSprite("images/ships1.gif")))
+		{
 			return false;
-		G = new sprite_group(this, 64, 1);
+		}
+
+		G = new SpriteGroup(this, 64, 1);
 		Object obj = G;
 		float f1 = super.viewScale, factor;
-		Object obj1 = super.lC;
-		((sprite_group) (obj)).I(f1, 1, 27, 11, 277, 9, 0, 0, title_img, 64, 0, 64, ((Canvas) (obj1)));
-		H = new sprite_group(this, 64, 1);
+		Object obj1 = super.applicationCanvas;
+		((SpriteGroup) (obj)).I(f1, 1, 27, 11, 277, 9, 0, 0, temp_bitmap, 64, 0, 64, ((Canvas) (obj1)));
+		H = new SpriteGroup(this, 64, 1);
 		obj = H;
 		f1 = super.viewScale;
-		obj1 = super.lC;
-		((sprite_group) (obj)).I(f1, 1, 17, 24, 282, 29, 0, 0, title_img, 64, 0, 64, ((Canvas) (obj1)));
-		K = new sprite_group(this, 64, 1);
+		obj1 = super.applicationCanvas;
+		((SpriteGroup) (obj)).I(f1, 1, 17, 24, 282, 29, 0, 0, temp_bitmap, 64, 0, 64, ((Canvas) (obj1)));
+
+		K = new SpriteGroup(this, 64, 1);
 		obj = K;
 		f1 = super.viewScale;
-		obj1 = super.lC;
-		((sprite_group) (obj)).I(f1, 1, 19, 21, 282, 60, 0, 0, title_img, 64, 0, 64, ((Canvas) (obj1)));
-		L = new sprite_group(this, 64, 1);
+		obj1 = super.applicationCanvas;
+		((SpriteGroup) (obj)).I(f1, 1, 19, 21, 282, 60, 0, 0, temp_bitmap, 64, 0, 64, ((Canvas) (obj1)));
+
+		L = new SpriteGroup(this, 64, 1);
 		obj = L;
 		f1 = super.viewScale;
-		obj1 = super.lC;
-		((sprite_group) (obj)).I(f1, 1, 23, 16, 318, 61, 0, 0, title_img, 64, 0, 64, ((Canvas) (obj1)));
-		M = new sprite_group(this, 64, 1);
+		obj1 = super.applicationCanvas;
+		((SpriteGroup) (obj)).I(f1, 1, 23, 16, 318, 61, 0, 0, temp_bitmap, 64, 0, 64, ((Canvas) (obj1)));
+
+		M = new SpriteGroup(this, 64, 1);
 		obj = M;
 		f1 = super.viewScale;
-		obj1 = super.lC;
-		((sprite_group) (obj)).I(f1, 1, 26, 11, 354, 35, 0, 0, title_img, 64, 0, 64, ((Canvas) (obj1)));
-		N = new sprite_group(this, 64, 1);
+		obj1 = super.applicationCanvas;
+		((SpriteGroup) (obj)).I(f1, 1, 26, 11, 354, 35, 0, 0, temp_bitmap, 64, 0, 64, ((Canvas) (obj1)));
+		N = new SpriteGroup(this, 64, 1);
 		obj = N;
 		f1 = super.viewScale;
-		obj1 = super.lC;
-		((sprite_group) (obj)).I(f1, 1, 18, 16, 357, 58, 0, 0, title_img, 64, 0, 64, ((Canvas) (obj1)));
-		O = new sprite_group(this, 64, 1);
+		obj1 = super.applicationCanvas;
+		((SpriteGroup) (obj)).I(f1, 1, 18, 16, 357, 58, 0, 0, temp_bitmap, 64, 0, 64, ((Canvas) (obj1)));
+
+		O = new SpriteGroup(this, 64, 1);
 		obj = O;
 		f1 = super.viewScale;
-		obj1 = super.lC;
-		((sprite_group) (obj)).I(f1, 1, 23, 11, 390, 60, 0, 0, title_img, 64, 0, 64, ((Canvas) (obj1)));
-		P = new sprite_group(this, 64, 1);
+		obj1 = super.applicationCanvas;
+		((SpriteGroup) (obj)).I(f1, 1, 23, 11, 390, 60, 0, 0, temp_bitmap, 64, 0, 64, ((Canvas) (obj1)));
+
+		P = new SpriteGroup(this, 64, 1);
 		obj = P;
 		f1 = super.viewScale;
-		obj1 = super.lC;
-		((sprite_group) (obj)).I(f1, 1, 23, 19, 390, 32, 0, 0, title_img, 64, 0, 64, ((Canvas) (obj1)));
-		obj = k2++;
+		obj1 = super.applicationCanvas;
+		((SpriteGroup) (obj)).I(f1, 1, 23, 19, 390, 32, 0, 0, temp_bitmap, 64, 0, 64, ((Canvas) (obj1)));
+
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		k = new sprite_group(this, 32, 1);
-		arraycopy(k, super.viewScale, 3, 4, 55, 22, title_img, 32, 0, 32);
-		obj = k2++;
+		k = new SpriteGroup(this, 32, 1);
+		arraycopy(k, super.viewScale, 3, 4, 55, 22, temp_bitmap, 32, 0, 32);
+
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		l = new sprite_group(this, 32, 1);
-		arraycopy(l, super.viewScale, 3, 5, 91, 21, title_img, 32, 0, 32);
-		obj = k2++;
+		l = new SpriteGroup(this, 32, 1);
+		arraycopy(l, super.viewScale, 3, 5, 91, 21, temp_bitmap, 32, 0, 32);
+
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		m = new sprite_group(this, 32, 1);
-		arraycopy(m, super.viewScale, 3, 7, 123, 27, title_img, 32, 0, 32);
-		obj = k2++;
+		m = new SpriteGroup(this, 32, 1);
+		arraycopy(m, super.viewScale, 3, 7, 123, 27, temp_bitmap, 32, 0, 32);
+
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		obj = k2++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		n = new sprite_group(this, 32, 1);
-		arraycopy(n, super.viewScale, 3, 12, 159, 24, title_img, 32, 0, 32);
-		obj = k2++;
+		n = new SpriteGroup(this, 32, 1);
+		arraycopy(n, super.viewScale, 3, 12, 159, 24, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		o = new sprite_group(this, 32, 1);
-		arraycopy(o, super.viewScale, 3, 44, 55, 32, title_img, 32, 0, 32);
-		obj = k2++;
+		o = new SpriteGroup(this, 32, 1);
+		arraycopy(o, super.viewScale, 3, 44, 55, 32, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		p = new sprite_group(this, 32, 1);
-		arraycopy(p, super.viewScale, 3, 47, 96, 45, title_img, 32, 0, 32);
-		obj = k2++;
+		p = new SpriteGroup(this, 32, 1);
+		arraycopy(p, super.viewScale, 3, 47, 96, 45, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		q = new sprite_group(this, 32, 1);
-		arraycopy(q, super.viewScale, 3, 47, 148, 34, title_img, 32, 0, 32);
-		obj = k2++;
+		q = new SpriteGroup(this, 32, 1);
+		arraycopy(q, super.viewScale, 3, 47, 148, 34, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		obj = k2++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		r = new sprite_group(this, 32, 1);
-		arraycopy(r, super.viewScale, 3, 95, 8, 51, title_img, 32, 0, 32);
-		obj = k2++;
+		r = new SpriteGroup(this, 32, 1);
+		arraycopy(r, super.viewScale, 3, 95, 8, 51, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		t = new sprite_group(this, 32, 1);
-		arraycopy(t, super.viewScale, 3, 152, 10, 44, title_img, 32, 0, 32);
-		obj = k2++;
+		t = new SpriteGroup(this, 32, 1);
+		arraycopy(t, super.viewScale, 3, 152, 10, 44, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		obj = k2++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		u = new sprite_group(this, 32, 1);
-		arraycopy(u, super.viewScale, 3, 150, 125, 46, title_img, 32, 0, 32);
-		obj = k2++;
+		u = new SpriteGroup(this, 32, 1);
+		arraycopy(u, super.viewScale, 3, 150, 125, 46, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		v = new sprite_group(this, 32, 1);
-		arraycopy(v, super.viewScale, 3, 8, 192, 48, title_img, 32, 0, 32);
-		obj = k2++;
+		v = new SpriteGroup(this, 32, 1);
+		arraycopy(v, super.viewScale, 3, 8, 192, 48, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		w = new sprite_group(this, 32, 1);
-		arraycopy(w, super.viewScale, 3, 390, 169, 86, title_img, 32, 0, 32);
-		obj = k2++;
+		w = new SpriteGroup(this, 32, 1);
+		arraycopy(w, super.viewScale, 3, 390, 169, 86, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		II = new sprite_group(this, 1);
-		append(II, super.viewScale, 0.0F, 0, 244, 136, 112, title_img);
-		FI = new sprite_group(this, 64, 1);
-		FI.I(super.viewScale, 3, 33, 32, 100, 133, 6, 0, title_img, 64, 0, 64, super.lC);
-		ZI = new sprite_group(this, 1);
-		append(ZI, super.viewScale, 0.0F, 0, 125, 172, 49, title_img);
-		CI = new sprite_group(this, 1);
-		append(CI, super.viewScale, 0.0F, 0, 181, 174, 46, title_img);
-		BI = new sprite_group(this, 1);
-		append(BI, super.viewScale, 0.0F, 0, 120, 223, 36, title_img);
-		DI = new sprite_group(this, 1);
-		append(DI, super.viewScale, 0.0F, 0, 186, 224, 32, title_img);
-		obj = k2++;
+		II = new SpriteGroup(this, 1);
+		append(II, super.viewScale, 0.0F, 0, 244, 136, 112, temp_bitmap);
+
+		FI = new SpriteGroup(this, 64, 1);
+		FI.I(super.viewScale, 3, 33, 32, 100, 133, 6, 0, temp_bitmap, 64, 0, 64, super.applicationCanvas);
+
+		ZI = new SpriteGroup(this, 1);
+		append(ZI, super.viewScale, 0.0F, 0, 125, 172, 49, temp_bitmap);
+
+		CI = new SpriteGroup(this, 1);
+		append(CI, super.viewScale, 0.0F, 0, 181, 174, 46, temp_bitmap);
+
+		BI = new SpriteGroup(this, 1);
+		append(BI, super.viewScale, 0.0F, 0, 120, 223, 36, temp_bitmap);
+
+		DI = new SpriteGroup(this, 1);
+		append(DI, super.viewScale, 0.0F, 0, 186, 224, 32, temp_bitmap);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		JI = new sprite_group(this, 1);
-		append(JI, super.viewScale, 0.0F, 0, 450, 8, 240, title_img);
-		SI = new sprite_group(this, 1);
-		append(SI, super.viewScale, 0.0F, 0, 401, 146, 20, title_img);
-		AI = new sprite_group(this, 1);
-		append(AI, super.viewScale, 0.0F, 0, 401, 89, 47, title_img);
-		EI = new sprite_group(this, 1);
-		append(EI, super.viewScale, 0.0F, 0, 341, 81, 53, title_img);
-		GI = new sprite_group(this, 1);
-		append(GI, super.viewScale, 0.0F, 0, 299, 85, 45, title_img);
-		obj = k2++;
+		JI = new SpriteGroup(this, 1);
+		append(JI, super.viewScale, 0.0F, 0, 450, 8, 240, temp_bitmap);
+		SI = new SpriteGroup(this, 1);
+		append(SI, super.viewScale, 0.0F, 0, 401, 146, 20, temp_bitmap);
+		AI = new SpriteGroup(this, 1);
+		append(AI, super.viewScale, 0.0F, 0, 401, 89, 47, temp_bitmap);
+		EI = new SpriteGroup(this, 1);
+		append(EI, super.viewScale, 0.0F, 0, 341, 81, 53, temp_bitmap);
+		GI = new SpriteGroup(this, 1);
+		append(GI, super.viewScale, 0.0F, 0, 299, 85, 45, temp_bitmap);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		HI = new sprite_group(this, 64, 1);
-		HI.I(super.viewScale, 0, 13, 10, 251, 8, 2, 0, title_img, 64, 0, 64, super.lC);
-		title_img.Z = null;
-		title_img = null;
+		HI = new SpriteGroup(this, 64, 1);
+		HI.I(super.viewScale, 0, 13, 10, 251, 8, 2, 0, temp_bitmap, 64, 0, 64, super.applicationCanvas);
+		temp_bitmap.myData = null;
+		temp_bitmap = null;
 		System.gc();
-		obj = k2 += 3;
+
+		obj = current_loading_progress += 3;
 		super.labelLoading = "Loading And Preparing Resources";
 		super.loadProgress = ((int) (obj));
 
 		repaint();
-		if ((title_img = LoadSprite("images/ships2.gif")) == null)
+		if ((temp_bitmap = LoadSprite("images/ships2.gif")) == null)
+		{
 			return false;
-		obj = k2++;
+		}
+
+		obj = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		U = new sprite_group(this, 32, 1);
-		arraycopy(U, super.viewScale, 3, 7, 60, 32, title_img, 32, 0, 32);
-		obj = k2++;
+		U = new SpriteGroup(this, 32, 1);
+		arraycopy(U, super.viewScale, 3, 7, 60, 32, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		V = new sprite_group(this, 32, 1);
-		arraycopy(V, super.viewScale, 3, 16, 98, 33, title_img, 32, 0, 32);
-		obj = k2++;
+		V = new SpriteGroup(this, 32, 1);
+		arraycopy(V, super.viewScale, 3, 16, 98, 33, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		W = new sprite_group(this, 32, 1);
-		arraycopy(W, super.viewScale, 3, 11, 136, 37, title_img, 32, 0, 32);
-		obj = k2++;
+		W = new SpriteGroup(this, 32, 1);
+		arraycopy(W, super.viewScale, 3, 11, 136, 37, temp_bitmap, 32, 0, 32);
+
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		obj = k2++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		X = new sprite_group(this, 32, 1);
-		arraycopy(X, super.viewScale, 3, 10, 178, 38, title_img, 32, 0, 32);
-		obj = k2++;
+		X = new SpriteGroup(this, 32, 1);
+		arraycopy(X, super.viewScale, 3, 10, 178, 38, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		Y = new sprite_group(this, 64, 1);
-		arraycopy(Y, super.viewScale, 3, 53, 54, 41, title_img, 64, 0, 64);
-		obj = k2++;
+		Y = new SpriteGroup(this, 64, 1);
+		arraycopy(Y, super.viewScale, 3, 53, 54, 41, temp_bitmap, 64, 0, 64);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		i = new sprite_group(this, 32, 1);
-		arraycopy(i, super.viewScale, 3, 55, 105, 46, title_img, 32, 0, 32);
-		obj = k2++;
+		i = new SpriteGroup(this, 32, 1);
+		arraycopy(i, super.viewScale, 3, 55, 105, 46, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		obj = k2++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		z = new sprite_group(this, 32, 1);
-		arraycopy(z, super.viewScale, 3, 57, 151, 50, title_img, 32, 0, 32);
-		obj = k2++;
+		z = new SpriteGroup(this, 32, 1);
+		arraycopy(z, super.viewScale, 3, 57, 151, 50, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		c = new sprite_group(this, 32, 1);
-		arraycopy(c, super.viewScale, 3, 108, 47, 106, title_img, 32, 0, 32);
-		obj = k2++;
+		c = new SpriteGroup(this, 32, 1);
+		arraycopy(c, super.viewScale, 3, 108, 47, 106, temp_bitmap, 32, 0, 32);
+
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		obj = k2++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		b = new sprite_group(this, 32, 1);
-		arraycopy(b, super.viewScale, 3, 111, 159, 66, title_img, 32, 0, 32);
-		obj = k2++;
+		b = new SpriteGroup(this, 32, 1);
+		arraycopy(b, super.viewScale, 3, 111, 159, 66, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		d = new sprite_group(this, 32, 1);
-		arraycopy(d, super.viewScale, 3, 233, 6, 88, title_img, 32, 0, 32);
-		obj = k2++;
+		d = new SpriteGroup(this, 32, 1);
+		arraycopy(d, super.viewScale, 3, 233, 6, 88, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		f = new sprite_group(this, 32, 1);
-		arraycopy(f, super.viewScale, 3, 228, 117, 104, title_img, 32, 0, 32);
-		obj = k2++;
+		f = new SpriteGroup(this, 32, 1);
+		arraycopy(f, super.viewScale, 3, 228, 117, 104, temp_bitmap, 32, 0, 32);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		j = new sprite_group(this, 1);
-		append(j, super.viewScale, 0.0F, 0, 322, 5, 108, title_img);
-		s = new sprite_group(this, 1);
-		append(s, super.viewScale, 0.0F, 0, 400, 126, 25, title_img);
-		a = new sprite_group(this, 1);
-		append(a, super.viewScale, 0.0F, 0, 426, 126, 25, title_img);
-		e = new sprite_group(this, 1);
-		append(e, super.viewScale, 0.0F, 0, 400, 161, 17, title_img);
-		g = new sprite_group(this, 1);
-		append(g, super.viewScale, 0.0F, 0, 430, 160, 17, title_img);
-		obj = k2++;
+		j = new SpriteGroup(this, 1);
+		append(j, super.viewScale, 0.0F, 0, 322, 5, 108, temp_bitmap);
+		s = new SpriteGroup(this, 1);
+		append(s, super.viewScale, 0.0F, 0, 400, 126, 25, temp_bitmap);
+		a = new SpriteGroup(this, 1);
+		append(a, super.viewScale, 0.0F, 0, 426, 126, 25, temp_bitmap);
+		e = new SpriteGroup(this, 1);
+		append(e, super.viewScale, 0.0F, 0, 400, 161, 17, temp_bitmap);
+		g = new SpriteGroup(this, 1);
+		append(g, super.viewScale, 0.0F, 0, 430, 160, 17, temp_bitmap);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		h = new sprite_group(this, 1);
-		append(h, super.viewScale, 0.0F, 0, 460, 2, 282, title_img);
-		obj = k2++;
+		h = new SpriteGroup(this, 1);
+		append(h, super.viewScale, 0.0F, 0, 460, 2, 282, temp_bitmap);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
+		repaint();
+
+		F = new SpriteGroup(this, 12);
+		append(F, super.viewScale, 0.0F, 0, 5, 227, 23, temp_bitmap);
+		append(F, super.viewScale, 0.0F, 0, 36, 227, 23, temp_bitmap);
+		append(F, super.viewScale, 0.0F, 0, 66, 227, 23, temp_bitmap);
+		append(F, super.viewScale, 0.0F, 0, 97, 227, 23, temp_bitmap);
+		append(F, super.viewScale, 0.0F, 0, 127, 227, 23, temp_bitmap);
+		append(F, super.viewScale, 0.0F, 0, 157, 227, 23, temp_bitmap);
+		append(F, super.viewScale, 0.0F, 0, 187, 227, 23, temp_bitmap);
+		append(F, super.viewScale, 0.0F, 0, 217, 227, 23, temp_bitmap);
+		append(F, super.viewScale, 0.0F, 0, 247, 227, 23, temp_bitmap);
+		append(F, super.viewScale, 0.0F, 0, 277, 227, 23, temp_bitmap);
+		append(F, super.viewScale, 0.0F, 0, 307, 227, 23, temp_bitmap);
+		append(F, super.viewScale, 0.0F, 0, 337, 227, 23, temp_bitmap);
+		
+		super.labelLoading = "Loading And Preparing Resources";
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		F = new sprite_group(this, 12);
-		append(F, super.viewScale, 0.0F, 0, 5, 227, 23, title_img);
-		append(F, super.viewScale, 0.0F, 0, 36, 227, 23, title_img);
-		append(F, super.viewScale, 0.0F, 0, 66, 227, 23, title_img);
-		append(F, super.viewScale, 0.0F, 0, 97, 227, 23, title_img);
-		append(F, super.viewScale, 0.0F, 0, 127, 227, 23, title_img);
-		append(F, super.viewScale, 0.0F, 0, 157, 227, 23, title_img);
-		append(F, super.viewScale, 0.0F, 0, 187, 227, 23, title_img);
-		append(F, super.viewScale, 0.0F, 0, 217, 227, 23, title_img);
-		append(F, super.viewScale, 0.0F, 0, 247, 227, 23, title_img);
-		append(F, super.viewScale, 0.0F, 0, 277, 227, 23, title_img);
-		append(F, super.viewScale, 0.0F, 0, 307, 227, 23, title_img);
-		append(F, super.viewScale, 0.0F, 0, 337, 227, 23, title_img);
-		obj = k2++;
+		HNSM = new SpriteGroup(this, 12);
+		append(HNSM, super.viewScale, 0.0F, 0, 6, 256, 27, temp_bitmap);
+		append(HNSM, super.viewScale, 0.0F, 0, 37, 256, 27, temp_bitmap);
+		append(HNSM, super.viewScale, 0.0F, 0, 67, 256, 27, temp_bitmap);
+		append(HNSM, super.viewScale, 0.0F, 0, 97, 256, 27, temp_bitmap);
+		append(HNSM, super.viewScale, 0.0F, 0, 127, 256, 27, temp_bitmap);
+		append(HNSM, super.viewScale, 0.0F, 0, 157, 256, 27, temp_bitmap);
+		append(HNSM, super.viewScale, 0.0F, 0, 186, 256, 27, temp_bitmap);
+		append(HNSM, super.viewScale, 0.0F, 0, 216, 256, 27, temp_bitmap);
+		append(HNSM, super.viewScale, 0.0F, 0, 247, 256, 27, temp_bitmap);
+		append(HNSM, super.viewScale, 0.0F, 0, 276, 256, 27, temp_bitmap);
+		append(HNSM, super.viewScale, 0.0F, 0, 306, 256, 27, temp_bitmap);
+		append(HNSM, super.viewScale, 0.0F, 0, 336, 256, 27, temp_bitmap);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		HNSM = new sprite_group(this, 12);
-		append(HNSM, super.viewScale, 0.0F, 0, 6, 256, 27, title_img);
-		append(HNSM, super.viewScale, 0.0F, 0, 37, 256, 27, title_img);
-		append(HNSM, super.viewScale, 0.0F, 0, 67, 256, 27, title_img);
-		append(HNSM, super.viewScale, 0.0F, 0, 97, 256, 27, title_img);
-		append(HNSM, super.viewScale, 0.0F, 0, 127, 256, 27, title_img);
-		append(HNSM, super.viewScale, 0.0F, 0, 157, 256, 27, title_img);
-		append(HNSM, super.viewScale, 0.0F, 0, 186, 256, 27, title_img);
-		append(HNSM, super.viewScale, 0.0F, 0, 216, 256, 27, title_img);
-		append(HNSM, super.viewScale, 0.0F, 0, 247, 256, 27, title_img);
-		append(HNSM, super.viewScale, 0.0F, 0, 276, 256, 27, title_img);
-		append(HNSM, super.viewScale, 0.0F, 0, 306, 256, 27, title_img);
-		append(HNSM, super.viewScale, 0.0F, 0, 336, 256, 27, title_img);
-		obj = k2++;
-		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj));
-
-		repaint();
-		abs = new sprite_group(this, 64, 1);
-		abs.I(super.viewScale, 0, 13, 10, 133, 5, 2, 0, title_img, 64, 0, 64, super.lC);
-		KI = new sprite_group(this, 64, 1);
-		KI.I(super.viewScale, 0, 14, 11, 132, 26, 2, 0, title_img, 64, 0, 64, super.lC);
-		title_img.Z = null;
-		title_img = null;
+		abs = new SpriteGroup(this, 64, 1);
+		abs.I(super.viewScale, 0, 13, 10, 133, 5, 2, 0, temp_bitmap, 64, 0, 64, super.applicationCanvas);
+		KI = new SpriteGroup(this, 64, 1);
+		KI.I(super.viewScale, 0, 14, 11, 132, 26, 2, 0, temp_bitmap, 64, 0, 64, super.applicationCanvas);
+		temp_bitmap.myData = null;
+		temp_bitmap = null;
 		System.gc();
-		float f2 = k2 += 3;
+
+		final float f2 = current_loading_progress += 3;
 		super.labelLoading = "Loading And Preparing Resources";
 		super.loadProgress = (int) f2;
 
 		repaint();
-		if ((title_img = LoadSprite("images/effects4.jpg")) == null)
+		if ((temp_bitmap = LoadSprite("images/effects4.jpg")) == null)
+		{
 			return false;
-		title_img.I(0, 20, 0, 20, 0, 20);
-		title_img.I(368, 212, 302, 236, title_img, 302, 236);
-		title_img.I(183, 158, 298, 443, title_img, 298, 443);
-		jI = new sprite_group(this, 2);
-		sprite_group sprite_group1 = jI;
-		float f3 = super.viewScale;
-		Object obj3 = super.lC;
-		Object obj2 = Sprite.I(f3, 0.0F, 0, 269, 263, 13, 2, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		}
+		temp_bitmap.MakeOpaque(0, 20, 0, 20, 0, 20);
+		temp_bitmap.ReadAtlas(368, 212, 302, 236, temp_bitmap, 302, 236);
+		temp_bitmap.ReadAtlas(183, 158, 298, 443, temp_bitmap, 298, 443);
+
+		jI = new SpriteGroup(this, 2);
+		SpriteGroup sprite_group1 = jI;
+		final float f3 = super.viewScale;
+		Object obj3 = super.applicationCanvas;
+		Object temp_object2 = Sprite.I(f3, 0.0F, 0, 269, 263, 13, 2, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
 		sprite_group1 = jI;
-		obj2 = super.viewScale * 0.6F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 269, 263, 13, 2, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		sI = new sprite_group(this, 2);
+		temp_object2 = super.viewScale * 0.6F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 269, 263, 13, 2, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
+		sI = new SpriteGroup(this, 2);
 		sprite_group1 = sI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 226, 226, 320, 7, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 226, 226, 320, 7, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
 		sprite_group1 = sI;
-		obj2 = super.viewScale * 0.6F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 226, 226, 320, 7, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		mI = new sprite_group(this, 2);
+		temp_object2 = super.viewScale * 0.6F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 226, 226, 320, 7, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
+		mI = new SpriteGroup(this, 2);
 		sprite_group1 = mI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 280, 279, 16, 271, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 280, 279, 16, 271, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
 		sprite_group1 = mI;
-		obj2 = super.viewScale * 0.6F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 280, 279, 16, 271, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		vI = new sprite_group(this, 1);
+		temp_object2 = super.viewScale * 0.6F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 280, 279, 16, 271, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
+		vI = new SpriteGroup(this, 1);
 		sprite_group1 = vI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 176, 208, 480, 240, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		wI = new sprite_group(this, 1);
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 176, 208, 480, 240, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
+		wI = new SpriteGroup(this, 1);
 		sprite_group1 = wI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 156, 200, 305, 239, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		xI = new sprite_group(this, 1);
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 156, 200, 305, 239, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
+		xI = new SpriteGroup(this, 1);
 		sprite_group1 = xI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 183, 158, 298, 443, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		gI = new sprite_group(this, 1, 1);
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 183, 158, 298, 443, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
+		gI = new SpriteGroup(this, 1, 1);
 		sprite_group1 = gI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 233, 201, 434, 596, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		hI = new sprite_group(this, 16, 1);
-		hI.I(super.viewScale, 0, 36, 30, 35, 691, 0, 0, title_img, 16, 0, 16, super.lC);
-		kI = new sprite_group(this, 1, 1);
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 233, 201, 434, 596, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
+		hI = new SpriteGroup(this, 16, 1);
+		hI.I(super.viewScale, 0, 36, 30, 35, 691, 0, 0, temp_bitmap, 16, 0, 16, super.applicationCanvas);
+		kI = new SpriteGroup(this, 1, 1);
 		sprite_group1 = kI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 65, 49, 30, 742, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		lI = new sprite_group(this, 1, 1);
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 65, 49, 30, 742, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
+		lI = new SpriteGroup(this, 1, 1);
 		sprite_group1 = lI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 5.969026F, 0, 119, 108, 114, 685, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 5.969026F, 0, 119, 108, 114, 685, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		yI = new sprite_group(this, 2);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
+		yI = new SpriteGroup(this, 2);
 		sprite_group1 = yI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 124, 124, 37, 557, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 124, 124, 37, 557, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
 		sprite_group1 = yI;
-		obj2 = super.viewScale * 0.55F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 124, 124, 37, 557, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		IZ = new sprite_group(this, 2);
+		temp_object2 = super.viewScale * 0.55F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 124, 124, 37, 557, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
+		IZ = new SpriteGroup(this, 2);
 		sprite_group1 = IZ;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 124, 124, 177, 557, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 124, 124, 177, 557, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
 		sprite_group1 = IZ;
-		obj2 = super.viewScale * 0.6F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 124, 124, 177, 557, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		title_img.Z = null;
-		title_img = null;
+		temp_object2 = super.viewScale * 0.6F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 124, 124, 177, 557, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+
+		temp_bitmap.myData = null;
+		temp_bitmap = null;
 		System.gc();
-		factor = k2 += 3;
+
+		factor = current_loading_progress += 3;
 		super.labelLoading = "Loading And Preparing Resources";
 		super.loadProgress = (int) factor;
 
 		repaint();
-		if ((title_img = LoadSprite("images/effects3.jpg")) == null)
+		if ((temp_bitmap = LoadSprite("images/effects3.jpg")) == null)
+		{
 			return false;
-		title_img.I(0, 20, 0, 20, 0, 20);
-		title_img.I(114, 120, 17, 263, title_img, 17, 402);
-		nI = new sprite_group(this, 1);
+		}
+		temp_bitmap.MakeOpaque(0, 20, 0, 20, 0, 20);
+		temp_bitmap.ReadAtlas(114, 120, 17, 263, temp_bitmap, 17, 402);
+
+		nI = new SpriteGroup(this, 1);
 		sprite_group1 = nI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 123, 121, 10, 8, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		tI = new sprite_group(this, 2);
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 123, 121, 10, 8, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+		tI = new SpriteGroup(this, 2);
 		sprite_group1 = tI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 65, 65, 7, 157, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 65, 65, 7, 157, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = tI;
-		obj2 = super.viewScale * 0.6F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 65, 65, 7, 157, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		uI = new sprite_group(this, 2);
+		temp_object2 = super.viewScale * 0.6F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 65, 65, 7, 157, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+		uI = new SpriteGroup(this, 2);
 		sprite_group1 = uI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 123, 122, 166, 281, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 123, 122, 166, 281, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = uI;
-		obj2 = super.viewScale * 0.5F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 123, 122, 166, 281, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		eI = new sprite_group(this, 1, 4);
+		temp_object2 = super.viewScale * 0.5F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 123, 122, 166, 281, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+		eI = new SpriteGroup(this, 1, 4);
 		sprite_group1 = eI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 277, 276, 317, 239, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 277, 276, 317, 239, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = eI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 270, 270, 385, 520, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 270, 270, 385, 520, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = eI;
-		obj2 = super.viewScale * 0.6F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 270, 270, 385, 520, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		temp_object2 = super.viewScale * 0.6F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 270, 270, 385, 520, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = eI;
-		obj2 = super.viewScale * 0.6F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 277, 276, 317, 239, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		pI = new sprite_group(this, 1);
+		temp_object2 = super.viewScale * 0.6F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 277, 276, 317, 239, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+		pI = new SpriteGroup(this, 1);
 		sprite_group1 = pI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 162, 161, 145, 5, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		qI = new sprite_group(this, 1);
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 162, 161, 145, 5, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+		qI = new SpriteGroup(this, 1);
 		sprite_group1 = qI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 89, 88, 86, 169, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		aI = new sprite_group(this, 2);
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 89, 88, 86, 169, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+		aI = new SpriteGroup(this, 2);
 		sprite_group1 = aI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 364, 160, 4, 542, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 364, 160, 4, 542, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = aI;
-		obj2 = super.viewScale * 0.6F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 364, 160, 4, 542, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		rI = new sprite_group(this, 1);
+		temp_object2 = super.viewScale * 0.6F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 364, 160, 4, 542, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+		rI = new SpriteGroup(this, 1);
 		sprite_group1 = rI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 89, 89, 156, 419, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		oI = new sprite_group(this, 2);
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 89, 89, 156, 419, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+		oI = new SpriteGroup(this, 2);
 		sprite_group1 = oI;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 229, 229, 339, 5, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 229, 229, 339, 5, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = oI;
-		obj2 = super.viewScale * 0.6F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 229, 229, 339, 5, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		brighter = new sprite_group(this, 1);
+		temp_object2 = super.viewScale * 0.6F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 229, 229, 339, 5, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+		brighter = new SpriteGroup(this, 1);
 		sprite_group1 = brighter;
-		obj2 = super.viewScale;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		sStarWhite = new sprite_group(this, 3);
-		append(sStarWhite, super.viewScale * 0.55F, 0.0F, 0, 5, 702, 30, title_img);
-		append(sStarWhite, super.viewScale * 0.55F, 0.0F, 0, 32, 702, 30, title_img);
-		append(sStarWhite, super.viewScale * 0.55F, 0.0F, 0, 58, 702, 30, title_img);
-		sStarRed = new sprite_group(this, 3);
-		append(sStarRed, super.viewScale * 0.55F, 0.0F, 0, 5, 734, 30, title_img);
-		append(sStarRed, super.viewScale * 0.55F, 0.0F, 0, 32, 734, 30, title_img);
-		append(sStarRed, super.viewScale * 0.55F, 0.0F, 0, 58, 734, 30, title_img);
-		sStarBlue = new sprite_group(this, 3);
-		append(sStarBlue, super.viewScale * 0.55F, 0.0F, 0, 5, 764, 30, title_img);
-		append(sStarBlue, super.viewScale * 0.55F, 0.0F, 0, 32, 764, 30, title_img);
-		append(sStarBlue, super.viewScale * 0.55F, 0.0F, 0, 58, 764, 30, title_img);
+		temp_object2 = super.viewScale;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+		sStarWhite = new SpriteGroup(this, 3);
+		append(sStarWhite, super.viewScale * 0.55F, 0.0F, 0, 5, 702, 30, temp_bitmap);
+		append(sStarWhite, super.viewScale * 0.55F, 0.0F, 0, 32, 702, 30, temp_bitmap);
+		append(sStarWhite, super.viewScale * 0.55F, 0.0F, 0, 58, 702, 30, temp_bitmap);
+		sStarRed = new SpriteGroup(this, 3);
+		append(sStarRed, super.viewScale * 0.55F, 0.0F, 0, 5, 734, 30, temp_bitmap);
+		append(sStarRed, super.viewScale * 0.55F, 0.0F, 0, 32, 734, 30, temp_bitmap);
+		append(sStarRed, super.viewScale * 0.55F, 0.0F, 0, 58, 734, 30, temp_bitmap);
+		sStarBlue = new SpriteGroup(this, 3);
+		append(sStarBlue, super.viewScale * 0.55F, 0.0F, 0, 5, 764, 30, temp_bitmap);
+		append(sStarBlue, super.viewScale * 0.55F, 0.0F, 0, 32, 764, 30, temp_bitmap);
+		append(sStarBlue, super.viewScale * 0.55F, 0.0F, 0, 58, 764, 30, temp_bitmap);
 		// gameimagelist1 = k2++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = k2 - 1;
+		super.loadProgress = current_loading_progress - 1;
 
 		repaint();
-		sprite_group_ship = new sprite_group(this, 52);
+		sprite_group_ship = new SpriteGroup(this, 52);
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.2F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.0F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)), this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		temp_object2 = super.viewScale * 0.2F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.0F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)), this);
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.3F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.7853982F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.3F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.7853982F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.4F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 1.570796F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.4F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 1.570796F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.5F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 2.356194F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.5F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 2.356194F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.6F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 3.141593F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.6F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 3.141593F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.7F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 3.926991F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.7F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 3.926991F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.8F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 4.712389F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.8F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 4.712389F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.9F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 5.497787F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.9F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 5.497787F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		factor = super.viewScale;
-		obj2 = super.lC;
-		obj = Sprite.I(factor, 0.0F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj2)), this);
+		temp_object2 = super.applicationCanvas;
+		obj = Sprite.I(factor, 0.0F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (temp_object2)), this);
 		factor = super.viewScale;
-		obj2 = super.lC;
-		Sprite sprite1 = Sprite.I(factor, 0.5215044F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj2)),
-				this);
-		factor = super.viewScale;
-		obj2 = super.lC;
-		obj1 = Sprite.I(factor, 1.04615F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj2)), this);
-		factor = super.viewScale;
-		obj2 = super.lC;
-		Sprite sprite10 = Sprite.I(factor, 1.570796F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj2)),
+		temp_object2 = super.applicationCanvas;
+		final Sprite sprite1 = Sprite.I(factor, 0.5215044F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (temp_object2)),
 				this);
 		factor = super.viewScale;
-		obj2 = super.lC;
-		Sprite sprite13 = Sprite.I(factor, 2.095442F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj2)),
+		temp_object2 = super.applicationCanvas;
+		obj1 = Sprite.I(factor, 1.04615F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (temp_object2)), this);
+		factor = super.viewScale;
+		temp_object2 = super.applicationCanvas;
+		final Sprite sprite10 = Sprite.I(factor, 1.570796F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (temp_object2)),
 				this);
 		factor = super.viewScale;
-		obj2 = super.lC;
-		Sprite sprite14 = Sprite.I(factor, 2.616947F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj2)),
+		temp_object2 = super.applicationCanvas;
+		final Sprite sprite13 = Sprite.I(factor, 2.095442F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (temp_object2)),
 				this);
 		factor = super.viewScale;
-		obj2 = super.lC;
-		Sprite sprite15 = Sprite.I(factor, 3.141593F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj2)),
+		temp_object2 = super.applicationCanvas;
+		final Sprite sprite14 = Sprite.I(factor, 2.616947F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (temp_object2)),
 				this);
 		factor = super.viewScale;
-		obj2 = super.lC;
-		Sprite sprite16 = Sprite.I(factor, 3.506017F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj2)),
+		temp_object2 = super.applicationCanvas;
+		final Sprite sprite15 = Sprite.I(factor, 3.141593F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (temp_object2)),
 				this);
 		factor = super.viewScale;
-		obj2 = super.lC;
-		Sprite sprite17 = Sprite.I(factor, 4.187743F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj2)),
+		temp_object2 = super.applicationCanvas;
+		final Sprite sprite16 = Sprite.I(factor, 3.506017F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (temp_object2)),
 				this);
 		factor = super.viewScale;
-		obj2 = super.lC;
-		Sprite sprite18 = Sprite.I(factor, 4.712389F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj2)),
+		temp_object2 = super.applicationCanvas;
+		final Sprite sprite17 = Sprite.I(factor, 4.187743F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (temp_object2)),
 				this);
 		factor = super.viewScale;
-		obj2 = super.lC;
-		Sprite sprite19 = Sprite.I(factor, 5.237035F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj2)),
+		temp_object2 = super.applicationCanvas;
+		final Sprite sprite18 = Sprite.I(factor, 4.712389F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (temp_object2)),
 				this);
 		factor = super.viewScale;
-		obj2 = super.lC;
-		Sprite sprite20 = Sprite.I(factor, 5.758539F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj2)),
+		temp_object2 = super.applicationCanvas;
+		final Sprite sprite19 = Sprite.I(factor, 5.237035F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (temp_object2)),
+				this);
+		factor = super.viewScale;
+		temp_object2 = super.applicationCanvas;
+		final Sprite sprite20 = Sprite.I(factor, 5.758539F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (temp_object2)),
 				this);
 		for (int j1 = 0; j1 < 3; j1++) {
 			sprite_group1 = sprite_group_ship;
@@ -1939,545 +2079,545 @@ public final class GameApp extends AppletImplements {
 		}
 
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.9F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.7853982F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.9F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.7853982F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.8F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 0.7853982F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.8F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 0.7853982F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.7F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 1.570796F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.7F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 1.570796F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.6F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 2.356194F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.6F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 2.356194F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.5F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 3.141593F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.5F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 3.141593F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.4F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 3.926991F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.4F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 3.926991F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.3F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 4.712389F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.3F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 4.712389F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
 		sprite_group1 = sprite_group_ship;
-		obj2 = super.viewScale * 0.2F;
-		obj3 = super.lC;
-		obj2 = Sprite.I(((float) (obj2)), 5.497787F, 0, 114, 119, 17, 263, 0, 0, title_img, ((Canvas) (obj3)),
+		temp_object2 = super.viewScale * 0.2F;
+		obj3 = super.applicationCanvas;
+		temp_object2 = Sprite.I(((float) (temp_object2)), 5.497787F, 0, 114, 119, 17, 263, 0, 0, temp_bitmap, ((Canvas) (obj3)),
 				this);
-		sprite_group1.I(0, ((Sprite) (obj2)));
-		title_img.Z = null;
-		title_img = null;
+		sprite_group1.I(0, ((Sprite) (temp_object2)));
+		temp_bitmap.myData = null;
+		temp_bitmap = null;
 		System.gc();
-		Palette agamecolorlist[] = { charAt, cos, darkGray };
-		Starfield = new starfield(this, 150, 3, agamecolorlist);
-		obj2 = k2 += 3;
+		final Palette agamecolorlist[] = { charAt, cos, darkGray };
+		gameStarfield = new oStarfield(this, 150, 3, agamecolorlist);
+		temp_object2 = current_loading_progress += 3;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		if ((title_img = LoadSprite("images/kaboom2.gif")) == null)
+		if ((temp_bitmap = LoadSprite("images/kaboom2.gif")) == null)
 			return false;
-		title_img.I(580, 54, 6, 111, title_img, 6, 111);
-		title_img.I(120, 20, 340, 6, title_img, 340, 26);
-		title_img.I(204, 20, 594, 125, title_img, 594, 145);
-		title_img.I(160, 19, 339, 55, title_img, 339, 74);
-		title_img.I(400, 40, 3, 387, title_img, 3, 427);
-		title_img.I(907, 79, 5, 174, title_img, 5, 174);
-		title_img.I(904, 106, 5, 265, title_img, 5, 265);
-		obj2 = k2++;
+		temp_bitmap.ReadAtlas(580, 54, 6, 111, temp_bitmap, 6, 111);
+		temp_bitmap.ReadAtlas(120, 20, 340, 6, temp_bitmap, 340, 26);
+		temp_bitmap.ReadAtlas(204, 20, 594, 125, temp_bitmap, 594, 145);
+		temp_bitmap.ReadAtlas(160, 19, 339, 55, temp_bitmap, 339, 74);
+		temp_bitmap.ReadAtlas(400, 40, 3, 387, temp_bitmap, 3, 427);
+		temp_bitmap.ReadAtlas(907, 79, 5, 174, temp_bitmap, 5, 174);
+		temp_bitmap.ReadAtlas(904, 106, 5, 265, temp_bitmap, 5, 265);
+		
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ++current_loading_progress;
 
 		repaint();
-		black = new sprite_group(this, 1);
-		obj2 = black;
-		float f4 = super.viewScale;
+		black = new SpriteGroup(this, 1);
+		temp_object2 = black;
+		float temp_float4 = super.viewScale;
 
-		Canvas surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 114, 36, 4, 4, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		I = new sprite_group(this, 6);
-		obj2 = I;
-		f4 = super.viewScale * 0.12F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 115, 107, 509, 6, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = I;
-		f4 = super.viewScale * 0.14F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 115, 107, 509, 6, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = I;
-		f4 = super.viewScale * 0.17F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 115, 107, 509, 6, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = I;
-		f4 = super.viewScale * 0.21F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 115, 107, 509, 6, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = I;
-		f4 = super.viewScale * 0.26F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 115, 107, 509, 6, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = I;
-		f4 = super.viewScale * 0.32F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 115, 107, 509, 6, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		Z = new sprite_group(this, 6);
-		obj2 = Z;
-		f4 = super.viewScale * 0.12F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 78, 77, 633, 21, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Z;
-		f4 = super.viewScale * 0.14F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 78, 77, 633, 21, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Z;
-		f4 = super.viewScale * 0.17F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 78, 77, 633, 21, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Z;
-		f4 = super.viewScale * 0.21F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 78, 77, 633, 21, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Z;
-		f4 = super.viewScale * 0.26F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 78, 77, 633, 21, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Z;
-		f4 = super.viewScale * 0.32F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 78, 77, 633, 21, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		C = new sprite_group(this, 10);
-		obj2 = C;
-		f4 = super.viewScale * 2.0F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 42, 42, 9, 118, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = C;
-		f4 = super.viewScale * 2.0F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 54, 51, 58, 112, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = C;
-		f4 = super.viewScale * 2.0F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 57, 53, 114, 112, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = C;
-		f4 = super.viewScale * 2.0F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 58, 54, 174, 111, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = C;
-		f4 = super.viewScale * 2.0F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 58, 55, 238, 112, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = C;
-		f4 = super.viewScale * 2.0F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 55, 51, 299, 112, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = C;
-		f4 = super.viewScale * 2.0F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 54, 51, 360, 112, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = C;
-		f4 = super.viewScale * 2.0F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 57, 51, 414, 112, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = C;
-		f4 = super.viewScale * 2.0F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 52, 48, 472, 112, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = C;
-		f4 = super.viewScale * 2.0F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 48, 46, 536, 114, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = k2++;
+		Canvas temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 114, 36, 4, 4, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		I = new SpriteGroup(this, 6);
+		temp_object2 = I;
+		temp_float4 = super.viewScale * 0.12F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 115, 107, 509, 6, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = I;
+		temp_float4 = super.viewScale * 0.14F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 115, 107, 509, 6, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = I;
+		temp_float4 = super.viewScale * 0.17F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 115, 107, 509, 6, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = I;
+		temp_float4 = super.viewScale * 0.21F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 115, 107, 509, 6, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = I;
+		temp_float4 = super.viewScale * 0.26F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 115, 107, 509, 6, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = I;
+		temp_float4 = super.viewScale * 0.32F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 115, 107, 509, 6, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		Z = new SpriteGroup(this, 6);
+		temp_object2 = Z;
+		temp_float4 = super.viewScale * 0.12F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 78, 77, 633, 21, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Z;
+		temp_float4 = super.viewScale * 0.14F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 78, 77, 633, 21, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Z;
+		temp_float4 = super.viewScale * 0.17F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 78, 77, 633, 21, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Z;
+		temp_float4 = super.viewScale * 0.21F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 78, 77, 633, 21, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Z;
+		temp_float4 = super.viewScale * 0.26F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 78, 77, 633, 21, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Z;
+		temp_float4 = super.viewScale * 0.32F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 78, 77, 633, 21, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		C = new SpriteGroup(this, 10);
+		temp_object2 = C;
+		temp_float4 = super.viewScale * 2.0F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 42, 42, 9, 118, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = C;
+		temp_float4 = super.viewScale * 2.0F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 54, 51, 58, 112, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = C;
+		temp_float4 = super.viewScale * 2.0F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 57, 53, 114, 112, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = C;
+		temp_float4 = super.viewScale * 2.0F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 58, 54, 174, 111, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = C;
+		temp_float4 = super.viewScale * 2.0F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 58, 55, 238, 112, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = C;
+		temp_float4 = super.viewScale * 2.0F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 55, 51, 299, 112, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = C;
+		temp_float4 = super.viewScale * 2.0F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 54, 51, 360, 112, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = C;
+		temp_float4 = super.viewScale * 2.0F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 57, 51, 414, 112, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = C;
+		temp_float4 = super.viewScale * 2.0F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 52, 48, 472, 112, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = C;
+		temp_float4 = super.viewScale * 2.0F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 48, 46, 536, 114, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		B = new sprite_group(this, 14);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 23, 174, 79, title_img);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 73, 174, 79, title_img);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 138, 174, 79, title_img);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 200, 174, 79, title_img);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 263, 174, 79, title_img);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 330, 174, 79, title_img);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 395, 174, 79, title_img);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 461, 174, 79, title_img);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 525, 174, 79, title_img);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 590, 174, 79, title_img);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 656, 174, 79, title_img);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 721, 174, 79, title_img);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 786, 174, 79, title_img);
-		append(B, super.viewScale * 1.4F, 0.0F, 0, 852, 174, 79, title_img);
-		D = new sprite_group(this, 8);
-		append(D, super.viewScale * 1.2F, 0.0F, 0, 29, 265, 106, title_img);
-		append(D, super.viewScale * 1.2F, 0.0F, 0, 130, 265, 106, title_img);
-		append(D, super.viewScale * 1.2F, 0.0F, 0, 240, 265, 106, title_img);
-		append(D, super.viewScale * 1.2F, 0.0F, 0, 354, 265, 106, title_img);
-		append(D, super.viewScale * 1.2F, 0.0F, 0, 467, 265, 106, title_img);
-		append(D, super.viewScale * 1.2F, 0.0F, 0, 584, 265, 106, title_img);
-		append(D, super.viewScale * 1.2F, 0.0F, 0, 711, 265, 106, title_img);
-		append(D, super.viewScale * 1.2F, 0.0F, 0, 873, 265, 106, title_img);
-		obj2 = k2++;
+		B = new SpriteGroup(this, 14);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 23, 174, 79, temp_bitmap);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 73, 174, 79, temp_bitmap);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 138, 174, 79, temp_bitmap);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 200, 174, 79, temp_bitmap);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 263, 174, 79, temp_bitmap);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 330, 174, 79, temp_bitmap);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 395, 174, 79, temp_bitmap);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 461, 174, 79, temp_bitmap);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 525, 174, 79, temp_bitmap);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 590, 174, 79, temp_bitmap);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 656, 174, 79, temp_bitmap);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 721, 174, 79, temp_bitmap);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 786, 174, 79, temp_bitmap);
+		append(B, super.viewScale * 1.4F, 0.0F, 0, 852, 174, 79, temp_bitmap);
+		D = new SpriteGroup(this, 8);
+		append(D, super.viewScale * 1.2F, 0.0F, 0, 29, 265, 106, temp_bitmap);
+		append(D, super.viewScale * 1.2F, 0.0F, 0, 130, 265, 106, temp_bitmap);
+		append(D, super.viewScale * 1.2F, 0.0F, 0, 240, 265, 106, temp_bitmap);
+		append(D, super.viewScale * 1.2F, 0.0F, 0, 354, 265, 106, temp_bitmap);
+		append(D, super.viewScale * 1.2F, 0.0F, 0, 467, 265, 106, temp_bitmap);
+		append(D, super.viewScale * 1.2F, 0.0F, 0, 584, 265, 106, temp_bitmap);
+		append(D, super.viewScale * 1.2F, 0.0F, 0, 711, 265, 106, temp_bitmap);
+		append(D, super.viewScale * 1.2F, 0.0F, 0, 873, 265, 106, temp_bitmap);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		J = new sprite_group(this, 10);
-		obj2 = J;
-		f4 = super.viewScale * 0.65F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 12, 11, 17, 402, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = J;
-		f4 = super.viewScale * 0.65F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 17, 19, 55, 397, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = J;
-		f4 = super.viewScale * 0.65F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 24, 26, 92, 397, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = J;
-		f4 = super.viewScale * 0.65F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 30, 28, 121, 395, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = J;
-		f4 = super.viewScale * 0.65F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 35, 34, 168, 393, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = J;
-		f4 = super.viewScale * 0.65F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 37, 35, 206, 392, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = J;
-		f4 = super.viewScale * 0.65F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 40, 40, 244, 387, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = J;
-		f4 = super.viewScale * 0.65F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 40, 40, 284, 387, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = J;
-		f4 = super.viewScale * 0.65F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 40, 40, 324, 387, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = J;
-		f4 = super.viewScale * 0.65F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 40, 40, 364, 387, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = k2++;
+		J = new SpriteGroup(this, 10);
+		temp_object2 = J;
+		temp_float4 = super.viewScale * 0.65F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 12, 11, 17, 402, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = J;
+		temp_float4 = super.viewScale * 0.65F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 17, 19, 55, 397, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = J;
+		temp_float4 = super.viewScale * 0.65F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 24, 26, 92, 397, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = J;
+		temp_float4 = super.viewScale * 0.65F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 30, 28, 121, 395, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = J;
+		temp_float4 = super.viewScale * 0.65F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 35, 34, 168, 393, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = J;
+		temp_float4 = super.viewScale * 0.65F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 37, 35, 206, 392, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = J;
+		temp_float4 = super.viewScale * 0.65F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 40, 40, 244, 387, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = J;
+		temp_float4 = super.viewScale * 0.65F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 40, 40, 284, 387, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = J;
+		temp_float4 = super.viewScale * 0.65F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 40, 40, 324, 387, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = J;
+		temp_float4 = super.viewScale * 0.65F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 40, 40, 364, 387, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		S = new sprite_group(this, 14);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 23, 174, 79, title_img);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 73, 174, 79, title_img);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 138, 174, 79, title_img);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 200, 174, 79, title_img);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 263, 174, 79, title_img);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 330, 174, 79, title_img);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 395, 174, 79, title_img);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 461, 174, 79, title_img);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 525, 174, 79, title_img);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 590, 174, 79, title_img);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 656, 174, 79, title_img);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 721, 174, 79, title_img);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 786, 174, 79, title_img);
-		append(S, super.viewScale * 0.4F, 0.0F, 0, 852, 174, 79, title_img);
-		A = new sprite_group(this, 9);
-		append(A, super.viewScale * 0.4F, 0.0F, 0, 29, 265, 106, title_img);
-		append(A, super.viewScale * 0.4F, 0.0F, 0, 130, 265, 106, title_img);
-		append(A, super.viewScale * 0.4F, 0.0F, 0, 240, 265, 106, title_img);
-		append(A, super.viewScale * 0.4F, 0.0F, 0, 354, 265, 106, title_img);
-		append(A, super.viewScale * 0.4F, 0.0F, 0, 467, 265, 106, title_img);
-		append(A, super.viewScale * 0.4F, 0.0F, 0, 584, 265, 106, title_img);
-		append(A, super.viewScale * 0.4F, 0.0F, 0, 711, 265, 106, title_img);
-		E = new sprite_group(this, 8);
-		append(E, super.viewScale, 0.0F, 0, 342, 55, 19, title_img);
-		append(E, super.viewScale, 0.0F, 0, 361, 55, 19, title_img);
-		append(E, super.viewScale, 0.0F, 0, 381, 55, 19, title_img);
-		append(E, super.viewScale, 0.0F, 0, 401, 55, 19, title_img);
-		append(E, super.viewScale, 0.0F, 0, 421, 55, 19, title_img);
-		append(E, super.viewScale, 0.0F, 0, 442, 55, 19, title_img);
-		append(E, super.viewScale, 0.0F, 0, 463, 55, 19, title_img);
-		append(E, super.viewScale, 0.0F, 0, 483, 55, 19, title_img);
-		obj2 = k2++;
+		S = new SpriteGroup(this, 14);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 23, 174, 79, temp_bitmap);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 73, 174, 79, temp_bitmap);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 138, 174, 79, temp_bitmap);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 200, 174, 79, temp_bitmap);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 263, 174, 79, temp_bitmap);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 330, 174, 79, temp_bitmap);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 395, 174, 79, temp_bitmap);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 461, 174, 79, temp_bitmap);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 525, 174, 79, temp_bitmap);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 590, 174, 79, temp_bitmap);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 656, 174, 79, temp_bitmap);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 721, 174, 79, temp_bitmap);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 786, 174, 79, temp_bitmap);
+		append(S, super.viewScale * 0.4F, 0.0F, 0, 852, 174, 79, temp_bitmap);
+		A = new SpriteGroup(this, 9);
+		append(A, super.viewScale * 0.4F, 0.0F, 0, 29, 265, 106, temp_bitmap);
+		append(A, super.viewScale * 0.4F, 0.0F, 0, 130, 265, 106, temp_bitmap);
+		append(A, super.viewScale * 0.4F, 0.0F, 0, 240, 265, 106, temp_bitmap);
+		append(A, super.viewScale * 0.4F, 0.0F, 0, 354, 265, 106, temp_bitmap);
+		append(A, super.viewScale * 0.4F, 0.0F, 0, 467, 265, 106, temp_bitmap);
+		append(A, super.viewScale * 0.4F, 0.0F, 0, 584, 265, 106, temp_bitmap);
+		append(A, super.viewScale * 0.4F, 0.0F, 0, 711, 265, 106, temp_bitmap);
+		E = new SpriteGroup(this, 8);
+		append(E, super.viewScale, 0.0F, 0, 342, 55, 19, temp_bitmap);
+		append(E, super.viewScale, 0.0F, 0, 361, 55, 19, temp_bitmap);
+		append(E, super.viewScale, 0.0F, 0, 381, 55, 19, temp_bitmap);
+		append(E, super.viewScale, 0.0F, 0, 401, 55, 19, temp_bitmap);
+		append(E, super.viewScale, 0.0F, 0, 421, 55, 19, temp_bitmap);
+		append(E, super.viewScale, 0.0F, 0, 442, 55, 19, temp_bitmap);
+		append(E, super.viewScale, 0.0F, 0, 463, 55, 19, temp_bitmap);
+		append(E, super.viewScale, 0.0F, 0, 483, 55, 19, temp_bitmap);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		Q = new sprite_group(this, 10);
-		obj2 = Q;
-		f4 = super.viewScale * 0.6F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 8, 9, 600, 131, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Q;
-		f4 = super.viewScale * 0.6F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 13, 14, 617, 128, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Q;
-		f4 = super.viewScale * 0.6F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 14, 14, 637, 128, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Q;
-		f4 = super.viewScale * 0.6F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 20, 20, 654, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Q;
-		f4 = super.viewScale * 0.6F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 20, 20, 674, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Q;
-		f4 = super.viewScale * 0.6F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 20, 20, 694, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Q;
-		f4 = super.viewScale * 0.6F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 19, 20, 715, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Q;
-		f4 = super.viewScale * 0.6F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 19, 20, 735, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Q;
-		f4 = super.viewScale * 0.6F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 19, 20, 755, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = Q;
-		f4 = super.viewScale * 0.6F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 20, 19, 774, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		R = new sprite_group(this, 10);
-		obj2 = R;
-		f4 = super.viewScale * 0.8F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 8, 9, 600, 131, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = R;
-		f4 = super.viewScale * 0.8F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 13, 14, 617, 128, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = R;
-		f4 = super.viewScale * 0.8F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 14, 14, 637, 128, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = R;
-		f4 = super.viewScale * 0.8F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 20, 20, 654, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = R;
-		f4 = super.viewScale * 0.8F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 20, 20, 674, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = R;
-		f4 = super.viewScale * 0.8F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 20, 20, 694, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = R;
-		f4 = super.viewScale * 0.8F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 19, 20, 715, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = R;
-		f4 = super.viewScale * 0.8F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 19, 20, 735, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = R;
-		f4 = super.viewScale * 0.8F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 19, 20, 755, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = R;
-		f4 = super.viewScale * 0.8F;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 20, 19, 774, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		T = new sprite_group(this, 10);
-		obj2 = T;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 8, 9, 600, 131, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = T;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 13, 14, 617, 128, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = T;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 14, 14, 637, 128, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = T;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 20, 20, 654, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = T;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 20, 20, 674, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = T;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 20, 20, 694, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = T;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 19, 20, 715, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = T;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 19, 20, 735, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = T;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 19, 20, 755, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = T;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 0, 20, 19, 774, 125, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		title_img.Z = null;
-		title_img = null;
+		Q = new SpriteGroup(this, 10);
+		temp_object2 = Q;
+		temp_float4 = super.viewScale * 0.6F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 8, 9, 600, 131, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Q;
+		temp_float4 = super.viewScale * 0.6F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 13, 14, 617, 128, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Q;
+		temp_float4 = super.viewScale * 0.6F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 14, 14, 637, 128, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Q;
+		temp_float4 = super.viewScale * 0.6F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 20, 20, 654, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Q;
+		temp_float4 = super.viewScale * 0.6F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 20, 20, 674, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Q;
+		temp_float4 = super.viewScale * 0.6F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 20, 20, 694, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Q;
+		temp_float4 = super.viewScale * 0.6F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 19, 20, 715, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Q;
+		temp_float4 = super.viewScale * 0.6F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 19, 20, 735, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Q;
+		temp_float4 = super.viewScale * 0.6F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 19, 20, 755, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = Q;
+		temp_float4 = super.viewScale * 0.6F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 20, 19, 774, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		R = new SpriteGroup(this, 10);
+		temp_object2 = R;
+		temp_float4 = super.viewScale * 0.8F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 8, 9, 600, 131, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = R;
+		temp_float4 = super.viewScale * 0.8F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 13, 14, 617, 128, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = R;
+		temp_float4 = super.viewScale * 0.8F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 14, 14, 637, 128, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = R;
+		temp_float4 = super.viewScale * 0.8F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 20, 20, 654, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = R;
+		temp_float4 = super.viewScale * 0.8F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 20, 20, 674, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = R;
+		temp_float4 = super.viewScale * 0.8F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 20, 20, 694, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = R;
+		temp_float4 = super.viewScale * 0.8F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 19, 20, 715, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = R;
+		temp_float4 = super.viewScale * 0.8F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 19, 20, 735, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = R;
+		temp_float4 = super.viewScale * 0.8F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 19, 20, 755, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = R;
+		temp_float4 = super.viewScale * 0.8F;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 20, 19, 774, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		T = new SpriteGroup(this, 10);
+		temp_object2 = T;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 8, 9, 600, 131, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = T;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 13, 14, 617, 128, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = T;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 14, 14, 637, 128, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = T;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 20, 20, 654, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = T;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 20, 20, 674, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = T;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 20, 20, 694, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = T;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 19, 20, 715, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = T;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 19, 20, 735, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = T;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 19, 20, 755, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = T;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 0, 20, 19, 774, 125, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_bitmap.myData = null;
+		temp_bitmap = null;
 		System.gc();
-		obj2 = k2 += 3;
+		temp_object2 = current_loading_progress += 3;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		if ((title_img = LoadSprite("images/weapons.gif")) == null)
+		if ((temp_bitmap = LoadSprite("images/weapons.gif")) == null)
 			return false;
-		title_img.I(120, 20, 78, 62, title_img, 78, 82);
-		title_img.I(32, 16, 147, 109, title_img, 147, 125);
-		title_img.I(48, 26, 147, 165, title_img, 147, 165);
-		obj2 = k2++;
+		temp_bitmap.ReadAtlas(120, 20, 78, 62, temp_bitmap, 78, 82);
+		temp_bitmap.ReadAtlas(32, 16, 147, 109, temp_bitmap, 147, 125);
+		temp_bitmap.ReadAtlas(48, 26, 147, 165, temp_bitmap, 147, 165);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		LI = new sprite_group(this, 2);
-		obj2 = LI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 20, 20, 148, 168, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = LI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 21, 21, 173, 168, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = k2++;
+		LI = new SpriteGroup(this, 2);
+		temp_object2 = LI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 20, 20, 148, 168, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = LI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 21, 21, 173, 168, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		WI = new sprite_group(this, 2);
-		obj2 = WI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 16, 16, 147, 109, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = WI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 16, 16, 163, 109, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = k2++;
+		WI = new SpriteGroup(this, 2);
+		temp_object2 = WI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 16, 16, 147, 109, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = WI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 16, 16, 163, 109, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		OI = new sprite_group(this, 1, 16);
-		OI.I(0, super.viewScale, 1, 17, 20, 81, 62, 0, 0, title_img, 16, 0, 16, super.lC);
-		MI = new sprite_group(this, 32, 6);
+		OI = new SpriteGroup(this, 1, 16);
+		OI.I(0, super.viewScale, 1, 17, 20, 81, 62, 0, 0, temp_bitmap, 16, 0, 16, super.applicationCanvas);
+		MI = new SpriteGroup(this, 32, 6);
 		MI.J = true;
 		for (int k1 = 0; k1 < 32; k1++) {
-			obj2 = (float) (0.098174770424681035D * k1);
-			f4 = super.viewScale;
-			surface1 = super.lC;
-			obj = Sprite.I(f4, ((float) (obj2)), 1, 14, 9, 147, 149, 0, 0, title_img, surface1, this);
-			f4 = super.viewScale;
-			surface1 = super.lC;
-			Sprite sprite2 = Sprite.I(f4, ((float) (obj2)), 1, 16, 10, 163, 149, 0, 0, title_img, surface1, this);
-			f4 = super.viewScale;
-			surface1 = super.lC;
-			Sprite sprite6 = Sprite.I(f4, ((float) (obj2)), 1, 23, 12, 182, 148, 0, 0, title_img, surface1, this);
-			f4 = super.viewScale;
-			surface1 = super.lC;
-			Sprite sprite11 = Sprite.I(f4, ((float) (obj2)), 1, 16, 11, 209, 149, 0, 0, title_img, surface1, this);
+			temp_object2 = (float) (0.098174770424681035D * k1);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
+			obj = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 14, 9, 147, 149, 0, 0, temp_bitmap, temp_canvas, this);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
+			final Sprite sprite2 = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 16, 10, 163, 149, 0, 0, temp_bitmap, temp_canvas, this);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
+			final Sprite sprite6 = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 23, 12, 182, 148, 0, 0, temp_bitmap, temp_canvas, this);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
+			final Sprite sprite11 = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 16, 11, 209, 149, 0, 0, temp_bitmap, temp_canvas, this);
 			MI.I(k1, ((Sprite) (obj)));
 			MI.I(k1, sprite2);
 			MI.I(k1, sprite6);
@@ -2486,27 +2626,27 @@ public final class GameApp extends AppletImplements {
 			MI.I(k1, sprite2);
 		}
 
-		NI = new sprite_group(this, 32, 6);
+		NI = new SpriteGroup(this, 32, 6);
 		NI.J = true;
 
 		for (int l1 = 0; l1 < 32; l1++) {
-			obj2 = (float) (0.098174770424681035D * l1);
-			f4 = super.viewScale;
-			surface1 = super.lC;
+			temp_object2 = (float) (0.098174770424681035D * l1);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
 
-			obj = Sprite.I(f4, ((float) (obj2)), 1, 12, 10, 5, 4, 0, 0, title_img, surface1, this);
-			f4 = super.viewScale;
-			surface1 = super.lC;
+			obj = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 12, 10, 5, 4, 0, 0, temp_bitmap, temp_canvas, this);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
 
-			Sprite sprite3 = Sprite.I(f4, ((float) (obj2)), 1, 14, 11, 20, 4, 0, 0, title_img, surface1, this);
-			f4 = super.viewScale;
-			surface1 = super.lC;
+			final Sprite sprite3 = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 14, 11, 20, 4, 0, 0, temp_bitmap, temp_canvas, this);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
 
-			Sprite sprite7 = Sprite.I(f4, ((float) (obj2)), 1, 16, 13, 39, 3, 0, 0, title_img, surface1, this);
-			f4 = super.viewScale;
-			surface1 = super.lC;
+			final Sprite sprite7 = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 16, 13, 39, 3, 0, 0, temp_bitmap, temp_canvas, this);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
 
-			Sprite sprite12 = Sprite.I(f4, ((float) (obj2)), 1, 20, 14, 60, 3, 0, 0, title_img, surface1, this);
+			final Sprite sprite12 = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 20, 14, 60, 3, 0, 0, temp_bitmap, temp_canvas, this);
 
 			NI.I(l1, ((Sprite) (obj)));
 			NI.I(l1, sprite3);
@@ -2516,218 +2656,229 @@ public final class GameApp extends AppletImplements {
 			NI.I(l1, sprite3);
 		}
 
-		UI = new sprite_group(this, 32, 3);
+		UI = new SpriteGroup(this, 32, 3);
 		UI.J = true;
 		for (int i2 = 0; i2 < 32; i2++)
 		{
-			obj2 = (float) (0.098174770424681035D * i2);
-			f4 = super.viewScale;
-			surface1 = super.lC;
+			temp_object2 = (float) (0.098174770424681035D * i2);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
 
-			obj = Sprite.I(f4, ((float) (obj2)), 1, 30, 19, 168, 1, 0, 0, title_img, surface1, this);
-			f4 = super.viewScale;
-			surface1 = super.lC;
+			obj = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 30, 19, 168, 1, 0, 0, temp_bitmap, temp_canvas, this);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
 
-			Sprite sprite4 = Sprite.I(f4, ((float) (obj2)), 1, 30, 16, 168, 21, 0, 0, title_img, surface1, this);
-			f4 = super.viewScale;
-			surface1 = super.lC;
+			final Sprite sprite4 = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 30, 16, 168, 21, 0, 0, temp_bitmap, temp_canvas, this);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
 
-			Sprite sprite8 = Sprite.I(f4, ((float) (obj2)), 1, 30, 20, 168, 40, 0, 0, title_img, surface1, this);
+			final Sprite sprite8 = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 30, 20, 168, 40, 0, 0, temp_bitmap, temp_canvas, this);
 
 			UI.I(i2, ((Sprite) (obj)));
 			UI.I(i2, sprite4);
 			UI.I(i2, sprite8);
 		}
 
-		VI = new sprite_group(this, 32, 3);
+		VI = new SpriteGroup(this, 32, 3);
 		VI.J = true;
 
 		for (int j2 = 0; j2 < 32; j2++)
 		{
-			obj2 = (float) (0.098174770424681035D * j2);
-			f4 = super.viewScale;
-			surface1 = super.lC;
+			temp_object2 = (float) (0.098174770424681035D * j2);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
 
-			obj = Sprite.I(f4, ((float) (obj2)), 1, 30, 15, 132, 3, 0, 0, title_img, surface1, this);
-			f4 = super.viewScale;
-			surface1 = super.lC;
+			obj = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 30, 15, 132, 3, 0, 0, temp_bitmap, temp_canvas, this);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
 
-			Sprite sprite5 = Sprite.I(f4, ((float) (obj2)), 1, 31, 15, 132, 21, 0, 0, title_img, surface1, this);
-			f4 = super.viewScale;
-			surface1 = super.lC;
+			final Sprite sprite5 = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 31, 15, 132, 21, 0, 0, temp_bitmap, temp_canvas, this);
+			temp_float4 = super.viewScale;
+			temp_canvas = super.applicationCanvas;
 
-			Sprite sprite9 = Sprite.I(f4, ((float) (obj2)), 1, 31, 15, 132, 43, 0, 0, title_img, surface1, this);
+			final Sprite sprite9 = Sprite.I(temp_float4, ((float) (temp_object2)), 1, 31, 15, 132, 43, 0, 0, temp_bitmap, temp_canvas, this);
 
 			VI.I(j2, ((Sprite) (obj)));
 			VI.I(j2, sprite5);
 			VI.I(j2, sprite9);
 		}
 
-		obj2 = k2++;
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		PI = new sprite_group(this, 32, 1);
-		obj2 = PI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		((sprite_group) (obj2)).I(f4, 1, 21, 9, 5, 51, 0, 0, title_img, 32, 0, 32, surface1);
-		obj2 = k2++;
+		PI = new SpriteGroup(this, 32, 1);
+		temp_object2 = PI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		((SpriteGroup) (temp_object2)).I(temp_float4, 1, 21, 9, 5, 51, 0, 0, temp_bitmap, 32, 0, 32, temp_canvas);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		QI = new sprite_group(this, 32, 1);
-		obj2 = QI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		((sprite_group) (obj2)).I(f4, 1, 20, 15, 42, 43, 0, 0, title_img, 32, 0, 32, surface1);
-		obj2 = k2++;
+		QI = new SpriteGroup(this, 32, 1);
+		temp_object2 = QI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		((SpriteGroup) (temp_object2)).I(temp_float4, 1, 20, 15, 42, 43, 0, 0, temp_bitmap, 32, 0, 32, temp_canvas);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		RI = new sprite_group(this, 32, 1);
-		obj2 = RI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		((sprite_group) (obj2)).I(f4, 1, 21, 17, 41, 61, 0, 0, title_img, 32, 0, 32, surface1);
-		obj2 = k2++;
+		RI = new SpriteGroup(this, 32, 1);
+		temp_object2 = RI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		((SpriteGroup) (temp_object2)).I(temp_float4, 1, 21, 17, 41, 61, 0, 0, temp_bitmap, 32, 0, 32, temp_canvas);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		TI = new sprite_group(this, 64, 1);
-		obj2 = TI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		((sprite_group) (obj2)).I(f4, 1, 28, 16, 5, 20, 0, 0, title_img, 64, 0, 64, surface1);
-		obj2 = k2++;
+		TI = new SpriteGroup(this, 64, 1);
+		temp_object2 = TI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		((SpriteGroup) (temp_object2)).I(temp_float4, 1, 28, 16, 5, 20, 0, 0, temp_bitmap, 64, 0, 64, temp_canvas);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		XI = new sprite_group(this, 32, 1);
-		obj2 = XI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		((sprite_group) (obj2)).I(f4, 1, 22, 11, 4, 73, 0, 0, title_img, 32, 0, 32, surface1);
-		obj2 = k2++;
+		XI = new SpriteGroup(this, 32, 1);
+		temp_object2 = XI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		((SpriteGroup) (temp_object2)).I(temp_float4, 1, 22, 11, 4, 73, 0, 0, temp_bitmap, 32, 0, 32, temp_canvas);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		YI = new sprite_group(this, 32, 1);
-		obj2 = YI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		((sprite_group) (obj2)).I(f4, 1, 24, 20, 38, 21, 0, 0, title_img, 32, 0, 32, surface1);
-		obj2 = k2++;
+		YI = new SpriteGroup(this, 32, 1);
+		temp_object2 = YI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		((SpriteGroup) (temp_object2)).I(temp_float4, 1, 24, 20, 38, 21, 0, 0, temp_bitmap, 32, 0, 32, temp_canvas);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		append = new sprite_group(this, 32, 1);
-		obj2 = append;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		((sprite_group) (obj2)).I(f4, 1, 26, 9, 2, 86, 0, 0, title_img, 32, 0, 32, surface1);
-		obj2 = k2++;
+		append = new SpriteGroup(this, 32, 1);
+		temp_object2 = append;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		((SpriteGroup) (temp_object2)).I(temp_float4, 1, 26, 9, 2, 86, 0, 0, temp_bitmap, 32, 0, 32, temp_canvas);
+		temp_object2 = current_loading_progress++;
 		super.labelLoading = "Loading And Preparing Resources";
-		super.loadProgress = ((int) (obj2));
+		super.loadProgress = ((int) (temp_object2));
 
 		repaint();
-		iI = new sprite_group(this, 8);
-		obj2 = super.viewScale;
+		iI = new SpriteGroup(this, 8);
+		temp_object2 = super.viewScale;
 
-		Canvas temp_surf = super.lC;
-		obj = Sprite.I(((float) (obj2)), 0.0F, 1, 22, 25, 5, 222, 0, 0, title_img, temp_surf, this);
-		obj2 = iI;
-		((sprite_group) (obj2)).I(0, ((Sprite) (obj)));
-		obj2 = iI;
-		((sprite_group) (obj2)).I(0, ((Sprite) (obj)));
-		obj2 = iI;
-		((sprite_group) (obj2)).I(0, ((Sprite) (obj)));
-		obj2 = iI;
-		((sprite_group) (obj2)).I(0, ((Sprite) (obj)));
-		obj2 = iI;
-		((sprite_group) (obj2)).I(0, ((Sprite) (obj)));
-		obj2 = iI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 22, 25, 29, 222, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = iI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 22, 25, 54, 222, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = iI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 22, 25, 76, 222, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		zI = new sprite_group(this, 2);
-		obj2 = zI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 39, 24, 5, 193, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = zI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 39, 24, 47, 193, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		cI = new sprite_group(this, 3);
-		obj2 = cI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 40, 24, 5, 165, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = cI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 40, 24, 47, 165, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = cI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 40, 24, 89, 165, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		bI = new sprite_group(this, 1);
-		obj2 = bI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 37, 28, 5, 251, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		dI = new sprite_group(this, 1);
-		obj2 = dI;
-		f4 = super.viewScale;
-		surface1 = super.lC;
-		Sprite.I(f4, 0.0F, 1, 37, 24, 47, 254, 0, 0, title_img, surface1, this);
-		((sprite_group) (obj2)).I(0, (int) f4);
-		obj2 = k2++;
+		final Canvas temp_surf = super.applicationCanvas;
+		obj = Sprite.I(((float) (temp_object2)), 0.0F, 1, 22, 25, 5, 222, 0, 0, temp_bitmap, temp_surf, this);
+		
+		temp_object2 = iI;
+		((SpriteGroup) (temp_object2)).I(0, ((Sprite) (obj)));
+		temp_object2 = iI;
+		((SpriteGroup) (temp_object2)).I(0, ((Sprite) (obj)));
+		temp_object2 = iI;
+		((SpriteGroup) (temp_object2)).I(0, ((Sprite) (obj)));
+		temp_object2 = iI;
+		((SpriteGroup) (temp_object2)).I(0, ((Sprite) (obj)));
+		temp_object2 = iI;
+		((SpriteGroup) (temp_object2)).I(0, ((Sprite) (obj)));
+		temp_object2 = iI;
+		
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 22, 25, 29, 222, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+
+		temp_object2 = iI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 22, 25, 54, 222, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+
+		temp_object2 = iI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 22, 25, 76, 222, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+
+		zI = new SpriteGroup(this, 2);
+		temp_object2 = zI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 39, 24, 5, 193, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+
+		temp_object2 = zI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 39, 24, 47, 193, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+
+		cI = new SpriteGroup(this, 3);
+		temp_object2 = cI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 40, 24, 5, 165, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+
+		temp_object2 = cI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 40, 24, 47, 165, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+
+		temp_object2 = cI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 40, 24, 89, 165, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+
+		bI = new SpriteGroup(this, 1);
+		temp_object2 = bI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 37, 28, 5, 251, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+
+		dI = new SpriteGroup(this, 1);
+		temp_object2 = dI;
+		temp_float4 = super.viewScale;
+		temp_canvas = super.applicationCanvas;
+		Sprite.I(temp_float4, 0.0F, 1, 37, 24, 47, 254, 0, 0, temp_bitmap, temp_canvas, this);
+		((SpriteGroup) (temp_object2)).GetSprite(0, (int) temp_float4);
+		temp_object2 = current_loading_progress++;
 
 		labelLoading = "Loading And Preparing Resources";
-		loadProgress = (int) (obj2);
+		loadProgress = (int) (temp_object2);
 		repaint();
 
-		Canvas temp = super.lC;
-		arraycopy = new sprite_group(this, 4, 1);
-		arraycopy.I(0, Sprite.I(((float) (obj2 = super.viewScale)), 0.0F, 1, 40, 24, 89, 193, 0, 0, title_img, temp,
+		final Canvas temp = super.applicationCanvas;
+		arraycopy = new SpriteGroup(this, 4, 1);
+		arraycopy.I(0, Sprite.I(((float) (temp_object2 = super.viewScale)), 0.0F, 1, 40, 24, 89, 193, 0, 0, temp_bitmap, temp,
 				this));
-		arraycopy.I(1, Sprite.I(((float) (obj2 = super.viewScale)), 0.0F, 1, 40, 24, 134, 193, 0, 0, title_img,
+		arraycopy.I(1, Sprite.I(((float) (temp_object2 = super.viewScale)), 0.0F, 1, 40, 24, 134, 193, 0, 0, temp_bitmap,
 				temp, this));
-		arraycopy.I(2, Sprite.I(((float) (obj2 = super.viewScale)), 0.0F, 1, 40, 24, 178, 193, 0, 0, title_img,
+		arraycopy.I(2, Sprite.I(((float) (temp_object2 = super.viewScale)), 0.0F, 1, 40, 24, 178, 193, 0, 0, temp_bitmap,
 				temp, this));
-		arraycopy.I(3, Sprite.I(((float) (obj2 = super.viewScale)), 0.0F, 1, 40, 24, 225, 193, 0, 0, title_img,
+		arraycopy.I(3, Sprite.I(((float) (temp_object2 = super.viewScale)), 0.0F, 1, 40, 24, 225, 193, 0, 0, temp_bitmap,
 				temp, this));
-		title_img.Z = null;
-		title_img = null;
+		temp_bitmap.myData = null;
+		temp_bitmap = null;
 
 		System.gc();
-		assetsLoaded = true;
+		isAssetsLoaded = true;
 
 		System.out.println("after load totalMemory=" + String.valueOf(Runtime.getRuntime().totalMemory())
 				+ " freeMemory=" + String.valueOf(Runtime.getRuntime().freeMemory()) + " totalRleBytes="
@@ -2736,77 +2887,81 @@ public final class GameApp extends AppletImplements {
 		return true;
 	}
 
-	public final void append(sprite_group sprite_group1, float f1, float f2, int i1, int j1, int k1, int l1, Bitmap imagepixels1)
+	public final void append(final SpriteGroup sprite_group1, final float f1, final float f2, final int i1, final int j1, final int k1, final int l1, final Bitmap imagepixels1)
 	{
-		Rectangle rectangle = imagepixels1.I(j1, k1, l1);
-		int i2 = rectangle.width;
-		int j2 = rectangle.height;
-		int k2 = rectangle.x;
-		int l2 = rectangle.y;
-		Canvas surface1 = super.lC;
-		Sprite sprite1 = Sprite.I(f1, f2, i1, i2, j2, k2, l2, 0, 0, imagepixels1, surface1, this);
+		final Rectangle rectangle = imagepixels1.GetRectFromAtlas(j1, k1, l1);
+		final int i2 = rectangle.width;
+		final int j2 = rectangle.height;
+		final int k2 = rectangle.x;
+		final int l2 = rectangle.y;
+		final Canvas surface1 = super.applicationCanvas;
+		final Sprite sprite1 = Sprite.I(f1, f2, i1, i2, j2, k2, l2, 0, 0, imagepixels1, surface1, this);
 
 		sprite_group1.I(0, sprite1);
 	}
 
-	public final void arraycopy(sprite_group sprite_group1, float f1, int i1, int j1, int k1, int l1, Bitmap imagepixels1, int i2, int j2, int k2)
+	public final void arraycopy(final SpriteGroup sprite_group1, final float f1, final int i1, final int j1, final int k1, final int l1, final Bitmap imagepixels1, final int i2, final int j2, final int k2)
 	{
-		Rectangle rectangle = imagepixels1.I(j1, k1, l1);
-		float f2 = super.viewScale;
-		int l2 = rectangle.width;
-		int i3 = rectangle.height;
-		int j3 = rectangle.x;
-		int k3 = rectangle.y;
-		Canvas surface1 = super.lC;
+		final Rectangle rectangle = imagepixels1.GetRectFromAtlas(j1, k1, l1);
+		final float f2 = super.viewScale;
+		final int l2 = rectangle.width;
+		final int i3 = rectangle.height;
+		final int j3 = rectangle.x;
+		final int k3 = rectangle.y;
+		final Canvas surface1 = super.applicationCanvas;
 		sprite_group1.I(f2, i1, l2, i3, j3, k3, 0, 0, imagepixels1, i2, j2, k2, surface1);
 	}
 
-	public final void black(Font gamefont1, Bitmap imagepixels1, float f1) 
+	public final void InitializeFont(final Font target_font, final Bitmap font_bitmap, final float scale) 
 	{
-		blue("0123456789", gamefont1, imagepixels1, f1, 2, 1, 27, 27);
-		blue("ABCDEFGHIJKLM", gamefont1, imagepixels1, f1, 1, 30, 24, 24);
-		blue("NOPQRSTUVWXYZ", gamefont1, imagepixels1, f1, 2, 58, 24, 24);
-		blue("abcdefghijklm", gamefont1, imagepixels1, f1, 2, 86, 31, 26);
-		blue("nopqrstuvwxyz", gamefont1, imagepixels1, f1, 2, 120, 31, 24);
-		blue("$()[]", gamefont1, imagepixels1, f1, 2, 160, 28, 28);
-		blue("@/,!?#%&*+-':.", gamefont1, imagepixels1, f1, 80, 162, 28, 28);
+		CreateFontBy("0123456789", target_font, font_bitmap, scale, 2, 1, 27, 27);
+		CreateFontBy("ABCDEFGHIJKLM", target_font, font_bitmap, scale, 1, 30, 24, 24);
+		CreateFontBy("NOPQRSTUVWXYZ", target_font, font_bitmap, scale, 2, 58, 24, 24);
+		CreateFontBy("abcdefghijklm", target_font, font_bitmap, scale, 2, 86, 31, 26);
+		CreateFontBy("nopqrstuvwxyz", target_font, font_bitmap, scale, 2, 120, 31, 24);
+		CreateFontBy("$()[]", target_font, font_bitmap, scale, 2, 160, 28, 28);
+		CreateFontBy("@/,!?#%&*+-':.", target_font, font_bitmap, scale, 80, 162, 28, 28);
 
-		int i1 = Math.round(-18F * f1);
-		Object obj = super.lC;
-		obj = Sprite.I(f1, 0.0F, 0, 8, 5, 369, 164, 0, 0, imagepixels1, ((Canvas) (obj)), this);
-		gamefont1.I[34] = ((Sprite) (obj));
-		gamefont1.Z[34] = i1;
+		final int i1 = Math.round(-18F * scale);
+
+		final Sprite result = Sprite.I(scale, 0.0F, 0, 8, 5, 369, 164, 0, 0, font_bitmap, super.applicationCanvas, this);
+
+		target_font.fragSprites[34] = result;
+		target_font.Z[34] = i1;
 	}
 
-	public final void blue(String s1, Font gamefont1, Bitmap imagepixels1, float f1, int i1, int j1, int k1, int l1)
+	public final void CreateFontBy(final String ref_string, final Font target_font, final Bitmap bitmap, final float scale, int index, final int x, final int y, final int l1)
 	{
-		int j2 = s1.length();
-		for (int k2 = 0; k2 < j2; k2++)
+		final int ref_length = ref_string.length();
+		for (int i = 0; i < ref_length; i++)
 		{
-			char c1 = s1.charAt(k2);
-			Rectangle rectangle = imagepixels1.I(i1, j1, k1);
-			int i2 = Math.round((((rectangle.y - j1) + rectangle.height) - l1) * f1);
+			final char parsing_char = ref_string.charAt(i);
 
-			int l2 = rectangle.width;
-			int i3 = rectangle.height;
-			int j3 = rectangle.x;
-			int k3 = rectangle.y;
+			final Rectangle rect = bitmap.GetRectFromAtlas(index, x, y);
+			//final int font_height = ;
+			final int i2 = Math.round((((rect.y - x) + rect.height) - l1) * scale);
 
-			Canvas surface1 = super.lC;
-			Sprite sprite1 = Sprite.I(f1, 0.0F, 0, l2, i3, j3, k3, 0, 0, imagepixels1, surface1, this);
-			gamefont1.I[c1] = sprite1;
-			gamefont1.Z[c1] = i2;
-			i1 = rectangle.x + rectangle.width + 1;
+			final int l2 = rect.width;
+			final int i3 = rect.height;
+			final int j3 = rect.x;
+			final int k3 = rect.y;
+
+			final Canvas surface1 = super.applicationCanvas;
+			final Sprite result = Sprite.I(scale, 0.0F, 0, l2, i3, j3, k3, 0, 0, bitmap, surface1, this);
+
+			target_font.fragSprites[parsing_char] = result;
+			target_font.Z[parsing_char] = i2;
+			index = rect.x + rect.width + 1;
 		}
 	}
 
 	@Override
-	public final synchronized void I(boolean flag)
+	public final synchronized void InitializeSettings(final boolean flag)
 	{
-		super.I(flag);
+		super.InitializeSettings(flag);
 		if (!flag)
 		{
-			super.vC.I();
+			super.gameUIObjects.I();
 		}
 
 		cheatCode = 0;
@@ -2814,38 +2969,40 @@ public final class GameApp extends AppletImplements {
 		getBackground = 1;
 		getCodeBase = 1;
 
-		NZ.I(!pC && toggleMusic);
-		if (gc != null)
+		everySFXs.ToggleLoop(!isAudioMuted && toggleAudio);
+		if (gameMusic != null)
 		{
-			gc.I(!pC && KB);
+			gameMusic.SetPlay(!isAudioMuted && isMusicOn);
 		}
 
 		if (flag)
 		{
 			currentMission.I(1000);
 			return;
-		} else {
+		}
+		else
+		{
 			PC = 1;
 			currentMission.I(300);
 			return;
 		}
 	}
 
-	final void brighter()
+	final void InitializeInstancePools()
 	{
 		dZ = new GameObjectPool(this, 1);
 		vZ = new GameObjectPool(this, 50);
 		wZ = new GameObjectPool(this, 50);
 
-		int j3 = dZ.I + vZ.I + wZ.I;
+		int j3 = dZ.myCapacity + vZ.myCapacity + wZ.myCapacity;
 		xZ = new GameObjectPool(this, j3);
 
 		for (int i1 = 0; i1 < j3; i1++)
 		{
-			oSpaceship oSpaceship1 = new oSpaceship(this);
-			GameObjectPool oGameObjectlist1 = xZ;
-			oSpaceship oSpaceship2 = oSpaceship1;
-			if (oGameObjectlist1.mySize < oGameObjectlist1.I)
+			final oSpaceship oSpaceship1 = new oSpaceship(this);
+			final GameObjectPool oGameObjectlist1 = xZ;
+			final oSpaceship oSpaceship2 = oSpaceship1;
+			if (oGameObjectlist1.mySize < oGameObjectlist1.myCapacity)
 			{
 				oGameObjectlist1.internalList[oGameObjectlist1.mySize] = oSpaceship2;
 				oGameObjectlist1.mySize++;
@@ -2855,16 +3012,16 @@ public final class GameApp extends AppletImplements {
 		ZC = new GameObjectPool(this, 15);
 		yZ = new GameObjectPool(this, 30);
 		IC = new GameObjectPool(this, 30);
-		j3 = yZ.I + IC.I + ZC.I;
+		j3 = yZ.myCapacity + IC.myCapacity + ZC.myCapacity;
 		CC = new GameObjectPool(this, j3);
 
 		for (int j1 = 0; j1 < j3; j1++)
 		{
-			oWeaponfire oWeaponfire1 = new oWeaponfire(this);
-			GameObjectPool oGameObjectlist2 = CC;
-			oWeaponfire oWeaponfire2 = oWeaponfire1;
+			final oWeaponfire oWeaponfire1 = new oWeaponfire(this);
+			final GameObjectPool oGameObjectlist2 = CC;
+			final oWeaponfire oWeaponfire2 = oWeaponfire1;
 
-			if (oGameObjectlist2.mySize < oGameObjectlist2.I)
+			if (oGameObjectlist2.mySize < oGameObjectlist2.myCapacity)
 			{
 				oGameObjectlist2.internalList[oGameObjectlist2.mySize] = oWeaponfire2;
 				oGameObjectlist2.mySize++;
@@ -2873,12 +3030,12 @@ public final class GameApp extends AppletImplements {
 
 		BC = new GameObjectPool(this, 5);
 		DC = new GameObjectPool(this, 5);
-		for (int k1 = 0; k1 < DC.I; k1++)
+		for (int k1 = 0; k1 < DC.myCapacity; k1++)
 		{
-			oPowerup oPowerup1 = new oPowerup(this);
-			GameObjectPool oGameObjectlist3 = DC;
-			oPowerup oPowerup2 = oPowerup1;
-			if (oGameObjectlist3.mySize < oGameObjectlist3.I)
+			final oPowerup oPowerup1 = new oPowerup(this);
+			final GameObjectPool oGameObjectlist3 = DC;
+			final oPowerup oPowerup2 = oPowerup1;
+			if (oGameObjectlist3.mySize < oGameObjectlist3.myCapacity)
 			{
 				oGameObjectlist3.internalList[oGameObjectlist3.mySize] = oPowerup2;
 				oGameObjectlist3.mySize++;
@@ -2886,12 +3043,12 @@ public final class GameApp extends AppletImplements {
 		}
 
 		FC = new GameObjectPool(this, 300);
-		for (int l1 = 0; l1 < FC.I; l1++)
+		for (int l1 = 0; l1 < FC.myCapacity; l1++)
 		{
-			oWeapon oWeapon1 = new oWeapon(this);
-			GameObjectPool oGameObjectlist4 = FC;
-			oWeapon oWeapon2 = oWeapon1;
-			if (oGameObjectlist4.mySize < oGameObjectlist4.I)
+			final oWeapon oWeapon1 = new oWeapon(this);
+			final GameObjectPool oGameObjectlist4 = FC;
+			final oWeapon oWeapon2 = oWeapon1;
+			if (oGameObjectlist4.mySize < oGameObjectlist4.myCapacity)
 			{
 				oGameObjectlist4.internalList[oGameObjectlist4.mySize] = oWeapon2;
 				oGameObjectlist4.mySize++;
@@ -2901,13 +3058,13 @@ public final class GameApp extends AppletImplements {
 		oZ = new GameObjectPool(this, 40);
 		pZ = new GameObjectPool(this, 80);
 		qZ = new GameObjectPool(this, 40);
-		j3 = oZ.I + qZ.I + pZ.I;
+		j3 = oZ.myCapacity + qZ.myCapacity + pZ.myCapacity;
 		rZ = new GameObjectPool(this, j3);
 		for (int i2 = 0; i2 < j3; i2++) {
-			Explosion explosion1 = new Explosion(this);
-			GameObjectPool oGameObjectlist5 = rZ;
-			Explosion explosion2 = explosion1;
-			if (oGameObjectlist5.mySize < oGameObjectlist5.I) {
+			final Explosion explosion1 = new Explosion(this);
+			final GameObjectPool oGameObjectlist5 = rZ;
+			final Explosion explosion2 = explosion1;
+			if (oGameObjectlist5.mySize < oGameObjectlist5.myCapacity) {
 				oGameObjectlist5.internalList[oGameObjectlist5.mySize] = explosion2;
 				oGameObjectlist5.mySize++;
 			}
@@ -2915,11 +3072,11 @@ public final class GameApp extends AppletImplements {
 
 		tZ = new GameObjectPool(this, 50);
 		uZ = new GameObjectPool(this, 50);
-		for (int j2 = 0; j2 < uZ.I; j2++) {
-			explosionbit explosionbit1 = new explosionbit(this);
-			GameObjectPool oGameObjectlist6 = uZ;
-			explosionbit explosionbit2 = explosionbit1;
-			if (oGameObjectlist6.mySize < oGameObjectlist6.I) {
+		for (int j2 = 0; j2 < uZ.myCapacity; j2++) {
+			final explosionbit explosionbit1 = new explosionbit(this);
+			final GameObjectPool oGameObjectlist6 = uZ;
+			final explosionbit explosionbit2 = explosionbit1;
+			if (oGameObjectlist6.mySize < oGameObjectlist6.myCapacity) {
 				oGameObjectlist6.internalList[oGameObjectlist6.mySize] = explosionbit2;
 				oGameObjectlist6.mySize++;
 			}
@@ -2928,44 +3085,47 @@ public final class GameApp extends AppletImplements {
 		AC = new GameObjectPool(this, 30);
 		EC = new GameObjectPool(this, 10);
 		GC = new GameObjectPool(this, 10);
-		getRuntime = new GameObjectPool(this, AC.I + EC.I + EC.I);
-		for (int k2 = 0; k2 < getRuntime.I; k2++) {
-			GameObject oGameObject1 = new GameObject(this);
-			GameObjectPool oGameObjectlist7 = getRuntime;
-			if (oGameObjectlist7.mySize < oGameObjectlist7.I) {
+		getRuntime = new GameObjectPool(this, AC.myCapacity + EC.myCapacity + EC.myCapacity);
+		for (int k2 = 0; k2 < getRuntime.myCapacity; k2++) {
+			final GameObject oGameObject1 = new GameObject(this);
+			final GameObjectPool oGameObjectlist7 = getRuntime;
+			if (oGameObjectlist7.mySize < oGameObjectlist7.myCapacity) {
 				oGameObjectlist7.internalList[oGameObjectlist7.mySize] = oGameObject1;
 				oGameObjectlist7.mySize++;
 			}
 		}
 
 		JC = new GameObjectPool(this, 25);
-		for (int l2 = 0; l2 < JC.I; l2++) {
-			oPlanet oPlanet1 = new oPlanet(this);
-			GameObjectPool oGameObjectlist8 = JC;
-			oPlanet oPlanet2 = oPlanet1;
-			if (oGameObjectlist8.mySize < oGameObjectlist8.I) {
+		for (int l2 = 0; l2 < JC.myCapacity; l2++)
+		{
+			final oPlanet oPlanet1 = new oPlanet(this);
+			final GameObjectPool oGameObjectlist8 = JC;
+			final oPlanet oPlanet2 = oPlanet1;
+			if (oGameObjectlist8.mySize < oGameObjectlist8.myCapacity) {
 				oGameObjectlist8.internalList[oGameObjectlist8.mySize] = oPlanet2;
 				oGameObjectlist8.mySize++;
 			}
 		}
 
 		SC = new GameObjectPool(this, 10);
-		for (int i3 = 0; i3 < SC.I; i3++) {
-			oWaypoint oWaypoint1 = new oWaypoint(this);
-			GameObjectPool oGameObjectlist9 = SC;
-			oWaypoint oWaypoint2 = oWaypoint1;
-			if (oGameObjectlist9.mySize < oGameObjectlist9.I) {
+		for (int i3 = 0; i3 < SC.myCapacity; i3++)
+		{
+			final oWaypoint oWaypoint1 = new oWaypoint(this);
+			final GameObjectPool oGameObjectlist9 = SC;
+			final oWaypoint oWaypoint2 = oWaypoint1;
+			if (oGameObjectlist9.mySize < oGameObjectlist9.myCapacity) {
 				oGameObjectlist9.internalList[oGameObjectlist9.mySize] = oWaypoint2;
 				oGameObjectlist9.mySize++;
 			}
 		}
 
-		Camera = new GameCamera(this);
-		Camera.Awake();
+		myCamera = new GameCamera(this);
+		myCamera.Awake();
 	}
 
 	@Override
-	final void Cleanup() {
+	final void Cleanup()
+	{
 		super.Cleanup();
 		// surface drawsurface1;
 		// if (super.lC != null)
@@ -2973,21 +3133,24 @@ public final class GameApp extends AppletImplements {
 	}
 
 	@Override
-	final void B() {
-		NZ.I(!super.pC && toggleMusic);
+	final void B()
+	{
+		everySFXs.ToggleLoop(!super.isAudioMuted && toggleAudio);
 	}
 
 	@Override
-	final void D() {
-		if (gc != null) {
-			gc.I(!super.pC && super.KB);
+	final void D()
+	{
+		if (gameMusic != null)
+		{
+			gameMusic.SetPlay(!super.isAudioMuted && super.isMusicOn);
 		}
 	}
 
-	final GameObject I(int i1, int j1, int k1, int l1, int i2) {
+	final GameObject I(final int i1, final int j1, final int k1, final int l1, final int i2) {
 		if (i1 == -1 || i1 == 2) {
-			GameObjectPool oGameObjectlist1 = wZ;
-			GameObject oGameObject1 = oGameObjectlist1.I(1, j1, k1, l1, i2, -1F);
+			final GameObjectPool oGameObjectlist1 = wZ;
+			final GameObject oGameObject1 = oGameObjectlist1.I(1, j1, k1, l1, i2, -1F);
 			if (oGameObject1 != null)
 				return oGameObject1;
 		}
@@ -3020,119 +3183,119 @@ public final class GameApp extends AppletImplements {
 		return null;
 	}
 
-	sprite_group F;
-	sprite_group HNSM;
-	sprite_group I;
-	sprite_group Z;
-	sprite_group C;
-	sprite_group B;
-	sprite_group D;
-	sprite_group J;
-	sprite_group S;
-	sprite_group A;
-	sprite_group E;
-	sprite_group G;
-	sprite_group H;
-	sprite_group K;
-	sprite_group L;
-	sprite_group M;
-	sprite_group N;
-	sprite_group O;
-	sprite_group P;
-	sprite_group Q;
-	sprite_group R;
-	sprite_group T;
-	sprite_group U;
-	sprite_group V;
-	sprite_group W;
-	sprite_group X;
-	sprite_group Y;
-	sprite_group i;
-	sprite_group z;
-	sprite_group c;
-	sprite_group b;
-	sprite_group d;
-	sprite_group f;
-	sprite_group j;
-	sprite_group s;
-	sprite_group a;
-	sprite_group e;
-	sprite_group g;
-	sprite_group h;
-	sprite_group k;
-	sprite_group l;
-	sprite_group m;
-	sprite_group n;
-	sprite_group o;
-	sprite_group p;
-	sprite_group q;
-	sprite_group r;
-	sprite_group t;
-	sprite_group u;
-	sprite_group v;
-	sprite_group w;
-	sprite_group II;
-	sprite_group ZI;
-	sprite_group CI;
-	sprite_group BI;
-	sprite_group DI;
-	sprite_group FI;
-	sprite_group JI;
-	sprite_group SI;
-	sprite_group AI;
-	sprite_group EI;
-	sprite_group GI;
-	sprite_group HI;
-	sprite_group abs;
-	sprite_group KI;
-	sprite_group LI;
-	sprite_group MI;
-	sprite_group NI;
-	sprite_group OI;
-	sprite_group PI;
-	sprite_group QI;
-	sprite_group RI;
-	sprite_group TI;
-	sprite_group UI;
-	sprite_group VI;
-	sprite_group WI;
-	sprite_group XI;
-	sprite_group YI;
-	sprite_group append;
-	sprite_group iI;
-	sprite_group zI;
-	sprite_group cI;
-	sprite_group bI;
-	sprite_group dI;
-	sprite_group arraycopy;
-	sprite_group sprite_group_ship;
-	sprite_group black;
+	SpriteGroup F;
+	SpriteGroup HNSM;
+	SpriteGroup I;
+	SpriteGroup Z;
+	SpriteGroup C;
+	SpriteGroup B;
+	SpriteGroup D;
+	SpriteGroup J;
+	SpriteGroup S;
+	SpriteGroup A;
+	SpriteGroup E;
+	SpriteGroup G;
+	SpriteGroup H;
+	SpriteGroup K;
+	SpriteGroup L;
+	SpriteGroup M;
+	SpriteGroup N;
+	SpriteGroup O;
+	SpriteGroup P;
+	SpriteGroup Q;
+	SpriteGroup R;
+	SpriteGroup T;
+	SpriteGroup U;
+	SpriteGroup V;
+	SpriteGroup W;
+	SpriteGroup X;
+	SpriteGroup Y;
+	SpriteGroup i;
+	SpriteGroup z;
+	SpriteGroup c;
+	SpriteGroup b;
+	SpriteGroup d;
+	SpriteGroup f;
+	SpriteGroup j;
+	SpriteGroup s;
+	SpriteGroup a;
+	SpriteGroup e;
+	SpriteGroup g;
+	SpriteGroup h;
+	SpriteGroup k;
+	SpriteGroup l;
+	SpriteGroup m;
+	SpriteGroup n;
+	SpriteGroup o;
+	SpriteGroup p;
+	SpriteGroup q;
+	SpriteGroup r;
+	SpriteGroup t;
+	SpriteGroup u;
+	SpriteGroup v;
+	SpriteGroup w;
+	SpriteGroup II;
+	SpriteGroup ZI;
+	SpriteGroup CI;
+	SpriteGroup BI;
+	SpriteGroup DI;
+	SpriteGroup FI;
+	SpriteGroup JI;
+	SpriteGroup SI;
+	SpriteGroup AI;
+	SpriteGroup EI;
+	SpriteGroup GI;
+	SpriteGroup HI;
+	SpriteGroup abs;
+	SpriteGroup KI;
+	SpriteGroup LI;
+	SpriteGroup MI;
+	SpriteGroup NI;
+	SpriteGroup OI;
+	SpriteGroup PI;
+	SpriteGroup QI;
+	SpriteGroup RI;
+	SpriteGroup TI;
+	SpriteGroup UI;
+	SpriteGroup VI;
+	SpriteGroup WI;
+	SpriteGroup XI;
+	SpriteGroup YI;
+	SpriteGroup append;
+	SpriteGroup iI;
+	SpriteGroup zI;
+	SpriteGroup cI;
+	SpriteGroup bI;
+	SpriteGroup dI;
+	SpriteGroup arraycopy;
+	SpriteGroup sprite_group_ship;
+	SpriteGroup black;
 	Sprite spriteTitle;
-	sprite_group jI;
-	sprite_group sI;
-	sprite_group aI;
-	sprite_group eI;
-	sprite_group gI;
-	sprite_group hI;
-	sprite_group kI;
-	sprite_group lI;
-	sprite_group mI;
-	sprite_group nI;
-	sprite_group oI;
-	sprite_group pI;
-	sprite_group qI;
-	sprite_group rI;
-	sprite_group tI;
-	sprite_group uI;
-	sprite_group vI;
-	sprite_group wI;
-	sprite_group xI;
-	sprite_group brighter;
-	sprite_group yI;
-	sprite_group IZ;
-	sprite_group sStarWhite;
-	sprite_group sStarRed;
-	sprite_group sStarBlue;
+	SpriteGroup jI;
+	SpriteGroup sI;
+	SpriteGroup aI;
+	SpriteGroup eI;
+	SpriteGroup gI;
+	SpriteGroup hI;
+	SpriteGroup kI;
+	SpriteGroup lI;
+	SpriteGroup mI;
+	SpriteGroup nI;
+	SpriteGroup oI;
+	SpriteGroup pI;
+	SpriteGroup qI;
+	SpriteGroup rI;
+	SpriteGroup tI;
+	SpriteGroup uI;
+	SpriteGroup vI;
+	SpriteGroup wI;
+	SpriteGroup xI;
+	SpriteGroup brighter;
+	SpriteGroup yI;
+	SpriteGroup IZ;
+	SpriteGroup sStarWhite;
+	SpriteGroup sStarRed;
+	SpriteGroup sStarBlue;
 	Palette DZ;
 	Palette FZ;
 	Palette flashcolor_red;
@@ -3149,7 +3312,7 @@ public final class GameApp extends AppletImplements {
 	Palette darkGray;
 	Palette darker;
 	Palette freeMemory;
-	GameSoundPool NZ;
+	GameSoundPool everySFXs;
 	int OZ;
 	int PZ;
 	int QZ;
@@ -3164,16 +3327,16 @@ public final class GameApp extends AppletImplements {
 	int zZ;
 	int cZ;
 	int bZ;
-	gamemusicseq gc;
+	MusicSequence gameMusic;
 	int getAppletContext;
 	GameObjectPool dZ;
 	int getBackground;
 	int getCodeBase;
 	float getRGB;
-	float fZ;
-	float jZ;
-	float sZ;
-	float aZ;
+	float viewBorderLeft;
+	float viewBorderRight;
+	float viewBorderTop;
+	float viewBorderBottom;
 	int eZ;
 	int gZ;
 	int hZ;
@@ -3203,13 +3366,13 @@ public final class GameApp extends AppletImplements {
 	GameObjectPool AC;
 	GameObjectPool EC;
 	GameObjectPool GC;
-	starfield Starfield;
-	GameCamera Camera;
-	gamemission currentMission;
-	boolean gray;
-	boolean green;
+	oStarfield gameStarfield;
+	GameCamera myCamera;
+	GameMission currentMission;
+	boolean clearedSettings;
+	boolean cheatedCowLevel;
 	float MC;
-	boolean surfaceCreated;
+	boolean isSurfaceCreated;
 	boolean NC;
 	int keyUp;
 	int length;

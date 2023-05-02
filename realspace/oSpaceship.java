@@ -1,29 +1,28 @@
 package realspace;
-// Decompiled by Jad v1.5.8f. Copyright 2001 Pavel Kouznetsov.
 
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) 
-// Source File Name:   star_y
-
-final class oSpaceship extends GameObject {
-	oSpaceship(GameApp applet) {
+final class oSpaceship extends GameObject
+{
+	public oSpaceship(final GameApp applet)
+	{
 		super(applet);
 		YI = 100000F;
-		thrustors = new oShipthrustor(applet);
-		super.k = new GameObjectPool(applet, 10);
+
+		myThrustors = new oShipthrustor(applet);
+		myWeapons = new GameObjectPool(applet, 10);
 	}
 
-	protected final void initialize(sprite_group spr, int grade, int j, int k, int score, int attr1, int attr2,
-			int attr3, boolean flag, int l1) {
-		super.Awake(spr, 8, attr1, attr2, attr3, flag);
-		super.ship_grade = grade;
+	protected final void Initialize(final SpriteGroup atlas, final int ship_grade, final int j, final int k, final int score, final int attr1, final int attr2, final int attr3, final boolean flag, final int l1)
+	{
+		super.Awake(atlas, 8, attr1, attr2, attr3, flag);
+		super.shipGrade = ship_grade;
 		super.AI = j;
 		super.EI = k;
 		super.j = l1;
-		super.J = 0.0F;
-		super.S = 0.0F;
-		super.K = 0.0F;
-		super.L = 0.0F;
+		
+		myX = 0.0F;
+		myY = 0.0F;
+		hSpeed = 0.0F;
+		vSpeed = 0.0F;
 		F = 0.0F;
 		I = null;
 		HNSM = 0.0F;
@@ -31,7 +30,7 @@ final class oSpaceship extends GameObject {
 		Z = false;
 		max = 0;
 		println = 0;
-		super.ascore = score;
+		super.acqScores = score;
 		super.BI = 1.0F;
 		RI = false;
 		LI = 0;
@@ -42,19 +41,19 @@ final class oSpaceship extends GameObject {
 		OI = 0;
 		PI = true;
 		D = 0;
-		thrustors.I();
+		myThrustors.I();
 	}
 
-	final void I(int i, int j, float f) {
-		float f2 = 400F * (GameApp.Instance).viewScale;
-		byte byte0 = 80;
-		float f4 = 400F * (GameApp.Instance).viewScale;
-		byte byte1 = 100;
+	final void I(final int i, final int j, final float f) {
+		final float f2 = 400F * gameApplet.viewScale;
+		final byte byte0 = 80;
+		final float f4 = 400F * gameApplet.viewScale;
+		final byte byte1 = 100;
 		// float f7 = 400F * ((gamebase) (super.KI)).ZB;
 		// byte byte2 = 80;
-		float f9 = 400F * (GameApp.Instance).viewScale;
-		char c = '\240';
-		float f10 = 800F * (GameApp.Instance).viewScale;
+		final float f9 = 400F * gameApplet.viewScale;
+		final char c = '\240';
+		final float f10 = 800F * gameApplet.viewScale;
 		float f1;
 		float f3;
 		float f8;
@@ -72,141 +71,141 @@ final class oSpaceship extends GameObject {
 
 		switch (i) {
 		case 100: // 'd'
-			initialize(GameApp.Instance.U, 1, i, j, 0, 30, 45, 95, false, 0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-14F, 0F);
+			Initialize(gameApplet.U, 1, i, j, 0, 30, 45, 95, false, 0);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 5, 12, 16F, gameApplet.Q);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 10, 12, 16F, gameApplet.Q);
+			myThrustors.I(-14F, 0F);
 			return;
 
 		case 101: // 'e'
-			initialize(GameApp.Instance.V, 1, i, j, 0, 30, 50, 0, false, 0);
-			sprite_group sprite_group1 = GameApp.Instance.LI;
-			int k = GameApp.Instance.OZ;
+			Initialize(gameApplet.V, 1, i, j, 0, 30, 50, 0, false, 0);
+			final SpriteGroup sprite_group1 = gameApplet.LI;
+			final int k = gameApplet.OZ;
 			weaponize(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, sprite_group1, null, k, 50, 40, true, 2,
 					30, f3, f4, byte1);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-10F * (GameApp.Instance).viewScale, 0F * (GameApp.Instance).viewScale);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 5, 12, 16F, gameApplet.Q);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 10, 12, 16F, gameApplet.Q);
+			myThrustors.I(-10F * gameApplet.viewScale, 0F * gameApplet.viewScale);
 			return;
 
 		case 102: // 'f'
-			initialize(GameApp.Instance.W, 1, i, j, 0, 30, 35, 55, false, 0);
-			weaponize(16F * (GameApp.Instance).viewScale, -10F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.RI, GameApp.Instance.Q, GameApp.Instance.RZ, 70, 40, true,
+			Initialize(gameApplet.W, 1, i, j, 0, 30, 35, 55, false, 0);
+			weaponize(16F * gameApplet.viewScale, -10F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, gameApplet.RI, gameApplet.Q, gameApplet.RZ, 70, 40, true,
 					4, 30, f8, f9, c);
-			weaponize(16F * (GameApp.Instance).viewScale, 10F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.RI, GameApp.Instance.Q, GameApp.Instance.RZ, 70, 40, true,
+			weaponize(16F * gameApplet.viewScale, 10F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, gameApplet.RI, gameApplet.Q, gameApplet.RZ, 70, 40, true,
 					4, 30, f8, f9, c);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-15F * (GameApp.Instance).viewScale, -7F * (GameApp.Instance).viewScale);
-			thrustors.I(-15F * (GameApp.Instance).viewScale, 7F * (GameApp.Instance).viewScale);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 5, 12, 16F, gameApplet.Q);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 10, 12, 16F, gameApplet.Q);
+			myThrustors.I(-15F * gameApplet.viewScale, -7F * gameApplet.viewScale);
+			myThrustors.I(-15F * gameApplet.viewScale, 7F * gameApplet.viewScale);
 			return;
 
 		case 103: // 'g'
-			initialize(GameApp.Instance.X, 1, i, j, 0, 200, 45, 0, false, 0);
+			Initialize(gameApplet.X, 1, i, j, 0, 200, 45, 0, false, 0);
 			abs();
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-15F * (GameApp.Instance).viewScale, 0F * (GameApp.Instance).viewScale);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 5, 12, 16F, gameApplet.Q);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 10, 12, 16F, gameApplet.Q);
+			myThrustors.I(-15F * gameApplet.viewScale, 0F * gameApplet.viewScale);
 			return;
 
 		case 111: // 'o'
-			initialize(GameApp.Instance.i, 2, i, j, 0, 50, 80, 95, false, 0);
-			sprite_group sprite_group2 = GameApp.Instance.LI;
-			int l = GameApp.Instance.OZ;
+			Initialize(gameApplet.i, 2, i, j, 0, 50, 80, 95, false, 0);
+			final SpriteGroup sprite_group2 = gameApplet.LI;
+			final int l = gameApplet.OZ;
 			weaponize(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, sprite_group2, null, l, 30, 20, true, 2,
 					45, f3, f4, byte1);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 5, 12, 16F, GameApp.Instance.R);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 10, 12, 16F, GameApp.Instance.R);
-			thrustors.I(-20F * (GameApp.Instance).viewScale, 0F * (GameApp.Instance).viewScale);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 5, 12, 16F, gameApplet.R);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 10, 12, 16F, gameApplet.R);
+			myThrustors.I(-20F * gameApplet.viewScale, 0F * gameApplet.viewScale);
 			return;
 
 		case 112: // 'p'
-			initialize(GameApp.Instance.z, 2, i, j, 0, 50, 90, 110, false, 0);
-			weaponize(2.0F * (GameApp.Instance).viewScale, -15F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.QI, GameApp.Instance.Q, GameApp.Instance.RZ, 40, 30, true,
+			Initialize(gameApplet.z, 2, i, j, 0, 50, 90, 110, false, 0);
+			weaponize(2.0F * gameApplet.viewScale, -15F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, gameApplet.QI, gameApplet.Q, gameApplet.RZ, 40, 30, true,
 					4, 40, f8, f9, c);
-			weaponize(2.0F * (GameApp.Instance).viewScale, 15F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.QI, GameApp.Instance.Q, GameApp.Instance.RZ, 40, 30, true,
+			weaponize(2.0F * gameApplet.viewScale, 15F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, gameApplet.QI, gameApplet.Q, gameApplet.RZ, 40, 30, true,
 					4, 40, f8, f9, c);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 4, 12, 16F, GameApp.Instance.R);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 8, 12, 16F, GameApp.Instance.R);
-			thrustors.I(-15F * (GameApp.Instance).viewScale, -12F * (GameApp.Instance).viewScale);
-			thrustors.I(-15F * (GameApp.Instance).viewScale, 12F * (GameApp.Instance).viewScale);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 4, 12, 16F, gameApplet.R);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 8, 12, 16F, gameApplet.R);
+			myThrustors.I(-15F * gameApplet.viewScale, -12F * gameApplet.viewScale);
+			myThrustors.I(-15F * gameApplet.viewScale, 12F * gameApplet.viewScale);
 			return;
 
 		case 120: // 'x'
-			initialize(GameApp.Instance.c, 3, i, j, 0, 70, 120, 250, false, 0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 2, 12, 16F, GameApp.Instance.T);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-41F * (GameApp.Instance).viewScale, -28F * (GameApp.Instance).viewScale);
-			thrustors.I(-41F * (GameApp.Instance).viewScale, 28F * (GameApp.Instance).viewScale);
-			weaponize(30F * (GameApp.Instance).viewScale, -21F * (GameApp.Instance).viewScale,
-					2.0F * (GameApp.Instance).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
-					GameApp.Instance.MI, null, GameApp.Instance.PZ, 20, 12, true, 3, 50, GameApp.Instance.nZ, f2, 30);
-			weaponize(30F * (GameApp.Instance).viewScale, 21F * (GameApp.Instance).viewScale,
-					2.0F * (GameApp.Instance).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
-					GameApp.Instance.MI, null, GameApp.Instance.PZ, 20, 12, true, 3, 50, GameApp.Instance.nZ, f2, 30);
-			weaponize(-2F * (GameApp.Instance).viewScale, -45F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.RI, GameApp.Instance.Q, GameApp.Instance.RZ, 22, 12, true,
+			Initialize(gameApplet.c, 3, i, j, 0, 70, 120, 250, false, 0);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 2, 12, 16F, gameApplet.T);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 4, 12, 16F, gameApplet.T);
+			myThrustors.I(-41F * gameApplet.viewScale, -28F * gameApplet.viewScale);
+			myThrustors.I(-41F * gameApplet.viewScale, 28F * gameApplet.viewScale);
+			weaponize(30F * gameApplet.viewScale, -21F * gameApplet.viewScale,
+					2.0F * gameApplet.viewScale, 0.0F, 0.0F, 0.0F, true, gameApplet.KI, false,
+					gameApplet.MI, null, gameApplet.PZ, 20, 12, true, 3, 50, gameApplet.nZ, f2, 30);
+			weaponize(30F * gameApplet.viewScale, 21F * gameApplet.viewScale,
+					2.0F * gameApplet.viewScale, 0.0F, 0.0F, 0.0F, true, gameApplet.KI, false,
+					gameApplet.MI, null, gameApplet.PZ, 20, 12, true, 3, 50, gameApplet.nZ, f2, 30);
+			weaponize(-2F * gameApplet.viewScale, -45F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, gameApplet.RI, gameApplet.Q, gameApplet.RZ, 22, 12, true,
 					4, 45, f8, f9, c);
-			weaponize(-2F * (GameApp.Instance).viewScale, 45F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.RI, GameApp.Instance.Q, GameApp.Instance.RZ, 22, 12, true,
+			weaponize(-2F * gameApplet.viewScale, 45F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, gameApplet.RI, gameApplet.Q, gameApplet.RZ, 22, 12, true,
 					4, 45, f8, f9, c);
 			return;
 
 		case 121: // 'y'
-			initialize(GameApp.Instance.b, 3, i, j, 0, 70, 110, 250, false, 0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 2, 12, 16F, GameApp.Instance.T);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-50F * (GameApp.Instance).viewScale, -18F * (GameApp.Instance).viewScale);
-			thrustors.I(-50F * (GameApp.Instance).viewScale, 18F * (GameApp.Instance).viewScale);
-			weaponize(-2F * (GameApp.Instance).viewScale, -16F * (GameApp.Instance).viewScale,
-					2.0F * (GameApp.Instance).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
-					GameApp.Instance.MI, null, GameApp.Instance.PZ, 20, 12, true, 3, 50, GameApp.Instance.nZ, f2, 30);
-			weaponize(-2F * (GameApp.Instance).viewScale, 16F * (GameApp.Instance).viewScale,
-					2.0F * (GameApp.Instance).viewScale, 0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false,
-					GameApp.Instance.MI, null, GameApp.Instance.PZ, 20, 12, true, 3, 50, GameApp.Instance.nZ, f2, 30);
+			Initialize(gameApplet.b, 3, i, j, 0, 70, 110, 250, false, 0);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 2, 12, 16F, gameApplet.T);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 4, 12, 16F, gameApplet.T);
+			myThrustors.I(-50F * gameApplet.viewScale, -18F * gameApplet.viewScale);
+			myThrustors.I(-50F * gameApplet.viewScale, 18F * gameApplet.viewScale);
+			weaponize(-2F * gameApplet.viewScale, -16F * gameApplet.viewScale,
+					2.0F * gameApplet.viewScale, 0.0F, 0.0F, 0.0F, true, gameApplet.KI, false,
+					gameApplet.MI, null, gameApplet.PZ, 20, 12, true, 3, 50, gameApplet.nZ, f2, 30);
+			weaponize(-2F * gameApplet.viewScale, 16F * gameApplet.viewScale,
+					2.0F * gameApplet.viewScale, 0.0F, 0.0F, 0.0F, true, gameApplet.KI, false,
+					gameApplet.MI, null, gameApplet.PZ, 20, 12, true, 3, 50, gameApplet.nZ, f2, 30);
 			return;
 
 		case 122: // 'z'
-			initialize(GameApp.Instance.d, 3, i, j, 0, 70, 100, 160, false, 0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 2, 12, 16F, GameApp.Instance.T);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-32F * (GameApp.Instance).viewScale, -6F * (GameApp.Instance).viewScale);
-			thrustors.I(-32F * (GameApp.Instance).viewScale, 6F * (GameApp.Instance).viewScale);
+			Initialize(gameApplet.d, 3, i, j, 0, 70, 100, 160, false, 0);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 2, 12, 16F, gameApplet.T);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 4, 12, 16F, gameApplet.T);
+			myThrustors.I(-32F * gameApplet.viewScale, -6F * gameApplet.viewScale);
+			myThrustors.I(-32F * gameApplet.viewScale, 6F * gameApplet.viewScale);
 			thruster_add(-5F, -40F, null, false, 40, 10, f10, 4.712389F, 1, 4, 101);
 			thruster_add(-5F, 40F, null, false, 40, 10, f10, 1.570796F, 1, 4, 101);
 			return;
 
 		case 123: // '{'
-			initialize(GameApp.Instance.f, 3, i, j, 0, 70, 160, 250, false, 0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 2, 12, 16F, GameApp.Instance.T);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-71F * (GameApp.Instance).viewScale, -11F * (GameApp.Instance).viewScale);
-			thrustors.I(-74F * (GameApp.Instance).viewScale, 0.0F * (GameApp.Instance).viewScale);
-			thrustors.I(-71F * (GameApp.Instance).viewScale, 11F * (GameApp.Instance).viewScale);
+			Initialize(gameApplet.f, 3, i, j, 0, 70, 160, 250, false, 0);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 2, 12, 16F, gameApplet.T);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 4, 12, 16F, gameApplet.T);
+			myThrustors.I(-71F * gameApplet.viewScale, -11F * gameApplet.viewScale);
+			myThrustors.I(-74F * gameApplet.viewScale, 0.0F * gameApplet.viewScale);
+			myThrustors.I(-71F * gameApplet.viewScale, 11F * gameApplet.viewScale);
 			thruster_add(-32F, -40F, null, false, 40, 10, f10, 4.712389F, 1, 5, 101);
 			thruster_add(-32F, 40F, null, false, 40, 10, f10, 1.570796F, 1, 5, 101);
 			thruster_add(34F, -32F, null, false, 40, 10, f10, 4.712389F, 1, 5, 101);
@@ -214,409 +213,443 @@ final class oSpaceship extends GameObject {
 			return;
 
 		case 130:
-			initialize(GameApp.Instance.j, 4, i, j, 0, 100, 300, 500, false, 0);
-			weaponize(18F * (GameApp.Instance).viewScale, -35F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false, GameApp.Instance.MI, null, GameApp.Instance.PZ, 12, 5, true, 3,
-					50, GameApp.Instance.nZ, f2, 30);
-			weaponize(18F * (GameApp.Instance).viewScale, -18F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, GameApp.Instance.KI, false, GameApp.Instance.MI, null, GameApp.Instance.PZ, 12, 5, true, 3,
-					50, GameApp.Instance.nZ, f2, 30);
-			weaponize(-58F * (GameApp.Instance).viewScale, -18F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 3.926991F, false, GameApp.Instance.s, true, GameApp.Instance.PI, GameApp.Instance.Q, GameApp.Instance.RZ,
+			Initialize(gameApplet.j, 4, i, j, 0, 100, 300, 500, false, 0);
+			weaponize(18F * gameApplet.viewScale, -35F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, gameApplet.KI, false, gameApplet.MI, null, gameApplet.PZ, 12, 5, true, 3,
+					50, gameApplet.nZ, f2, 30);
+			weaponize(18F * gameApplet.viewScale, -18F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, gameApplet.KI, false, gameApplet.MI, null, gameApplet.PZ, 12, 5, true, 3,
+					50, gameApplet.nZ, f2, 30);
+			weaponize(-58F * gameApplet.viewScale, -18F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 3.926991F, false, gameApplet.s, true, gameApplet.PI, gameApplet.Q, gameApplet.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(58F * (GameApp.Instance).viewScale, -18F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 5.497787F, false, GameApp.Instance.a, true, GameApp.Instance.PI, GameApp.Instance.Q, GameApp.Instance.RZ,
+			weaponize(58F * gameApplet.viewScale, -18F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 5.497787F, false, gameApplet.a, true, gameApplet.PI, gameApplet.Q, gameApplet.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(-62F * (GameApp.Instance).viewScale, 33F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 2.356194F, false, GameApp.Instance.e, true, GameApp.Instance.PI, GameApp.Instance.Q, GameApp.Instance.RZ,
+			weaponize(-62F * gameApplet.viewScale, 33F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 2.356194F, false, gameApplet.e, true, gameApplet.PI, gameApplet.Q, gameApplet.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(62F * (GameApp.Instance).viewScale, 32F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.7853982F, false, GameApp.Instance.g, true, GameApp.Instance.PI, GameApp.Instance.Q, GameApp.Instance.RZ,
+			weaponize(62F * gameApplet.viewScale, 32F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.7853982F, false, gameApplet.g, true, gameApplet.PI, gameApplet.Q, gameApplet.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
 			return;
 
 		case 131:
-			initialize(GameApp.Instance.h, 4, i, j, 0, 100, 300, 800, false, 0);
+			Initialize(gameApplet.h, 4, i, j, 0, 100, 300, 800, false, 0);
 			return;
 
 		case 200:
-			initialize(GameApp.Instance.k, 1, i, j, 200, 30, 20, 50, false, 0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-14F * (GameApp.Instance).viewScale, 0F * (GameApp.Instance).viewScale);
+			Initialize(gameApplet.k, 1, i, j, 200, 30, 20, 50, false, 0);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 5, 12, 16F, gameApplet.Q);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 10, 12, 16F, gameApplet.Q);
+			myThrustors.I(-14F * gameApplet.viewScale, 0F * gameApplet.viewScale);
 			return;
 
 		case 201:
-			initialize(GameApp.Instance.l, 1, i, j, 200, 20, 30, 0, false, 0);
-			sprite_group sprite_group3 = GameApp.Instance.WI;
-			int i1 = GameApp.Instance.OZ;
+			Initialize(gameApplet.l, 1, i, j, 200, 20, 30, 0, false, 0);
+			final SpriteGroup sprite_group3 = gameApplet.WI;
+			final int i1 = gameApplet.OZ;
 			weaponize(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, sprite_group3, null, i1, 45, 30, true, 1,
 					30, f1, f2, byte0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-14F * (GameApp.Instance).viewScale, 0F * (GameApp.Instance).viewScale);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 5, 12, 16F, gameApplet.Q);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 10, 12, 16F, gameApplet.Q);
+			myThrustors.I(-14F * gameApplet.viewScale, 0F * gameApplet.viewScale);
 			return;
 
 		case 202:
-			initialize(GameApp.Instance.m, 1, i, j, 200, 20, 20, 40, false, 0);
-			sprite_group sprite_group4 = GameApp.Instance.WI;
-			int j1 = GameApp.Instance.OZ;
+			Initialize(gameApplet.m, 1, i, j, 200, 20, 20, 40, false, 0);
+			final SpriteGroup sprite_group4 = gameApplet.WI;
+			final int j1 = gameApplet.OZ;
 			weaponize(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, sprite_group4, null, j1, 40, 30, true, 1,
 					30, f1, f2, byte0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-14F * (GameApp.Instance).viewScale, 0F * (GameApp.Instance).viewScale);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 5, 12, 16F, gameApplet.Q);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 10, 12, 16F, gameApplet.Q);
+			myThrustors.I(-14F * gameApplet.viewScale, 0F * gameApplet.viewScale);
 			return;
 
 		case 203:
-			initialize(GameApp.Instance.n, 1, i, j, 300, 25, 20, 40, false, 0);
-			sprite_group sprite_group5 = GameApp.Instance.OI;
-			int k1 = GameApp.Instance.OZ;
+			Initialize(gameApplet.n, 1, i, j, 300, 25, 20, 40, false, 0);
+			final SpriteGroup sprite_group5 = gameApplet.OI;
+			final int k1 = gameApplet.OZ;
 			weaponize(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, sprite_group5, null, k1, 40, 30, true, 2,
 					40, f3, f4, byte1);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 5, 12, 16F, GameApp.Instance.Q);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-12F * (GameApp.Instance).viewScale, -4F * (GameApp.Instance).viewScale);
-			thrustors.I(-12F * (GameApp.Instance).viewScale, 4F * (GameApp.Instance).viewScale);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 5, 12, 16F, gameApplet.Q);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 10, 12, 16F, gameApplet.Q);
+			myThrustors.I(-12F * gameApplet.viewScale, -4F * gameApplet.viewScale);
+			myThrustors.I(-12F * gameApplet.viewScale, 4F * gameApplet.viewScale);
 			return;
 
 		case 210:
-			initialize(GameApp.Instance.o, 2, i, j, 400, 50, 60, 90, false, 0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(1, 5, 12, 16F, GameApp.Instance.R);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 10, 12, 16F, GameApp.Instance.R);
-			thrustors.I(-18F * (GameApp.Instance).viewScale, -5F * (GameApp.Instance).viewScale);
-			thrustors.I(-18F * (GameApp.Instance).viewScale, 5F * (GameApp.Instance).viewScale);
+			Initialize(gameApplet.o, 2, i, j, 400, 50, 60, 90, false, 0);
+			if (gameApplet.QC == 1)
+				myThrustors.I(1, 5, 12, 16F, gameApplet.R);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 10, 12, 16F, gameApplet.R);
+			myThrustors.I(-18F * gameApplet.viewScale, -5F * gameApplet.viewScale);
+			myThrustors.I(-18F * gameApplet.viewScale, 5F * gameApplet.viewScale);
 			return;
 
 		case 211:
-			initialize(GameApp.Instance.p, 2, i, j, 500, 40, 60, 80, false, 0);
-			weaponize(13F * (GameApp.Instance).viewScale, -17F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.LI, null, GameApp.Instance.OZ, 50, 40, true, 1, 45, f1,
+			Initialize(gameApplet.p, 2, i, j, 500, 40, 60, 80, false, 0);
+			weaponize(13F * gameApplet.viewScale, -17F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, gameApplet.LI, null, gameApplet.OZ, 50, 40, true, 1, 45, f1,
 					f2, byte0);
-			weaponize(13F * (GameApp.Instance).viewScale, 17F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.LI, null, GameApp.Instance.OZ, 50, 40, true, 1, 45, f1,
+			weaponize(13F * gameApplet.viewScale, 17F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, gameApplet.LI, null, gameApplet.OZ, 50, 40, true, 1, 45, f1,
 					f2, byte0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(2, 5, 12, 16F, GameApp.Instance.Q);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(2, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-18F * (GameApp.Instance).viewScale, -8F * (GameApp.Instance).viewScale);
-			thrustors.I(-18F * (GameApp.Instance).viewScale, 0.0F * (GameApp.Instance).viewScale);
-			thrustors.I(-18F * (GameApp.Instance).viewScale, 8F * (GameApp.Instance).viewScale);
+			if (gameApplet.QC == 1)
+				myThrustors.I(2, 5, 12, 16F, gameApplet.Q);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(2, 10, 12, 16F, gameApplet.Q);
+			myThrustors.I(-18F * gameApplet.viewScale, -8F * gameApplet.viewScale);
+			myThrustors.I(-18F * gameApplet.viewScale, 0.0F * gameApplet.viewScale);
+			myThrustors.I(-18F * gameApplet.viewScale, 8F * gameApplet.viewScale);
 			return;
 
 		case 212:
-			initialize(GameApp.Instance.q, 2, i, j, 600, 40, 70, 30, false, 0);
-			sprite_group sprite_group6 = GameApp.Instance.WI;
-			int l1 = GameApp.Instance.OZ;
+			Initialize(gameApplet.q, 2, i, j, 600, 40, 70, 30, false, 0);
+			final SpriteGroup sprite_group6 = gameApplet.WI;
+			final int l1 = gameApplet.OZ;
 			weaponize(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, sprite_group6, null, l1, 35, 30, true, 2,
 					45, f3, f4, byte1);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(2, 5, 12, 16F, GameApp.Instance.Q);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(2, 10, 12, 16F, GameApp.Instance.Q);
-			thrustors.I(-14F * (GameApp.Instance).viewScale, -10F * (GameApp.Instance).viewScale);
-			thrustors.I(-15F * (GameApp.Instance).viewScale, 2.0F * (GameApp.Instance).viewScale);
-			thrustors.I(-15F * (GameApp.Instance).viewScale, -2F * (GameApp.Instance).viewScale);
-			thrustors.I(-14F * (GameApp.Instance).viewScale, 10F * (GameApp.Instance).viewScale);
+			if (gameApplet.QC == 1)
+				myThrustors.I(2, 5, 12, 16F, gameApplet.Q);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(2, 10, 12, 16F, gameApplet.Q);
+			myThrustors.I(-14F * gameApplet.viewScale, -10F * gameApplet.viewScale);
+			myThrustors.I(-15F * gameApplet.viewScale, 2.0F * gameApplet.viewScale);
+			myThrustors.I(-15F * gameApplet.viewScale, -2F * gameApplet.viewScale);
+			myThrustors.I(-14F * gameApplet.viewScale, 10F * gameApplet.viewScale);
 			return;
 
 		case 213:
-			initialize(GameApp.Instance.r, 2, i, j, 700, 50, 70, 100, false, 0);
-			weaponize(0.0F * (GameApp.Instance).viewScale, -20F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ, 35, 25, true,
+			Initialize(gameApplet.r, 2, i, j, 700, 50, 70, 100, false, 0);
+			weaponize(0.0F * gameApplet.viewScale, -20F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, gameApplet.XI, gameApplet.Q, gameApplet.RZ, 35, 25, true,
 					4, 45, f8, f9, c);
-			weaponize(0.0F * (GameApp.Instance).viewScale, 20F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ, 35, 25, true,
+			weaponize(0.0F * gameApplet.viewScale, 20F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, gameApplet.XI, gameApplet.Q, gameApplet.RZ, 35, 25, true,
 					4, 45, f8, f9, c);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(2, 5, 12, 16F, GameApp.Instance.R);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(2, 10, 12, 16F, GameApp.Instance.R);
-			thrustors.I(-22F * (GameApp.Instance).viewScale, -7F * (GameApp.Instance).viewScale);
-			thrustors.I(-22F * (GameApp.Instance).viewScale, 7F * (GameApp.Instance).viewScale);
+			if (gameApplet.QC == 1)
+				myThrustors.I(2, 5, 12, 16F, gameApplet.R);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(2, 10, 12, 16F, gameApplet.R);
+			myThrustors.I(-22F * gameApplet.viewScale, -7F * gameApplet.viewScale);
+			myThrustors.I(-22F * gameApplet.viewScale, 7F * gameApplet.viewScale);
 			return;
 
 		case 220:
-			initialize(GameApp.Instance.t, 3, i, j, 900, 70, 80, 150, false, 0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(2, 3, 12, 16F, GameApp.Instance.T);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 3, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-40F * (GameApp.Instance).viewScale, -18F * (GameApp.Instance).viewScale);
-			thrustors.I(-45F * (GameApp.Instance).viewScale, 0.0F * (GameApp.Instance).viewScale);
-			thrustors.I(-40F * (GameApp.Instance).viewScale, 18F * (GameApp.Instance).viewScale);
-			weaponize(-11F * (GameApp.Instance).viewScale, -14F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 22, 12, true,
-					3, 60, GameApp.Instance.nZ, f2, 30);
-			weaponize(-11F * (GameApp.Instance).viewScale, 14F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 22, 12, true,
-					3, 60, GameApp.Instance.nZ, f2, 30);
+			Initialize(gameApplet.t, 3, i, j, 900, 70, 80, 150, false, 0);
+			if (gameApplet.QC == 1)
+				myThrustors.I(2, 3, 12, 16F, gameApplet.T);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 3, 12, 16F, gameApplet.T);
+			myThrustors.I(-40F * gameApplet.viewScale, -18F * gameApplet.viewScale);
+			myThrustors.I(-45F * gameApplet.viewScale, 0.0F * gameApplet.viewScale);
+			myThrustors.I(-40F * gameApplet.viewScale, 18F * gameApplet.viewScale);
+			weaponize(-11F * gameApplet.viewScale, -14F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, gameApplet.HI, false, gameApplet.NI, null, gameApplet.PZ, 22, 12, true,
+					3, 60, gameApplet.nZ, f2, 30);
+			weaponize(-11F * gameApplet.viewScale, 14F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, gameApplet.HI, false, gameApplet.NI, null, gameApplet.PZ, 22, 12, true,
+					3, 60, gameApplet.nZ, f2, 30);
 			return;
 
 		case 221:
-			initialize(GameApp.Instance.u, 3, i, j, 800, 60, 60, 120, false, 0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(2, 3, 12, 16F, GameApp.Instance.T);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 4, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-23F * (GameApp.Instance).viewScale, -16F * (GameApp.Instance).viewScale);
-			thrustors.I(-28F * (GameApp.Instance).viewScale, 0.0F * (GameApp.Instance).viewScale);
-			thrustors.I(-23F * (GameApp.Instance).viewScale, 16F * (GameApp.Instance).viewScale);
-			weaponize(12F * (GameApp.Instance).viewScale, -12F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ, 25, 12, true,
+			Initialize(gameApplet.u, 3, i, j, 800, 60, 60, 120, false, 0);
+			if (gameApplet.QC == 1)
+				myThrustors.I(2, 3, 12, 16F, gameApplet.T);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 4, 12, 16F, gameApplet.T);
+			myThrustors.I(-23F * gameApplet.viewScale, -16F * gameApplet.viewScale);
+			myThrustors.I(-28F * gameApplet.viewScale, 0.0F * gameApplet.viewScale);
+			myThrustors.I(-23F * gameApplet.viewScale, 16F * gameApplet.viewScale);
+			weaponize(12F * gameApplet.viewScale, -12F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, gameApplet.XI, gameApplet.Q, gameApplet.RZ, 25, 12, true,
 					4, 45, f8, f9, c);
-			weaponize(12F * (GameApp.Instance).viewScale, 12F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ, 25, 12, true,
+			weaponize(12F * gameApplet.viewScale, 12F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, false, null, false, gameApplet.XI, gameApplet.Q, gameApplet.RZ, 25, 12, true,
 					4, 45, f8, f9, c);
 			return;
 
 		case 222:
-			initialize(GameApp.Instance.v, 3, i, j, 1000, 80, 100, 220, false, 0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(2, 3, 12, 16F, GameApp.Instance.T);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 3, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-42F * (GameApp.Instance).viewScale, -15F * (GameApp.Instance).viewScale);
-			thrustors.I(-50F * (GameApp.Instance).viewScale, 9F * (GameApp.Instance).viewScale);
-			thrustors.I(-50F * (GameApp.Instance).viewScale, -9F * (GameApp.Instance).viewScale);
-			thrustors.I(-42F * (GameApp.Instance).viewScale, 15F * (GameApp.Instance).viewScale);
-			weaponize(17F * (GameApp.Instance).viewScale, -10F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 25, 15, true,
-					3, 50, GameApp.Instance.nZ, f2, 30);
-			weaponize(17F * (GameApp.Instance).viewScale, 10F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 25, 15, true,
-					3, 50, GameApp.Instance.nZ, f2, 30);
-			weaponize(5F * (GameApp.Instance).viewScale, -15F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 25, 15, true,
-					3, 50, GameApp.Instance.nZ, f2, 30);
-			weaponize(5F * (GameApp.Instance).viewScale, 15F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.0F, true, GameApp.Instance.HI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 25, 15, true,
-					3, 50, GameApp.Instance.nZ, f2, 30);
+			Initialize(gameApplet.v, 3, i, j, 1000, 80, 100, 220, false, 0);
+			if (gameApplet.QC == 1)
+				myThrustors.I(2, 3, 12, 16F, gameApplet.T);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 3, 12, 16F, gameApplet.T);
+			myThrustors.I(-42F * gameApplet.viewScale, -15F * gameApplet.viewScale);
+			myThrustors.I(-50F * gameApplet.viewScale, 9F * gameApplet.viewScale);
+			myThrustors.I(-50F * gameApplet.viewScale, -9F * gameApplet.viewScale);
+			myThrustors.I(-42F * gameApplet.viewScale, 15F * gameApplet.viewScale);
+			weaponize(17F * gameApplet.viewScale, -10F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, gameApplet.HI, false, gameApplet.NI, null, gameApplet.PZ, 25, 15, true,
+					3, 50, gameApplet.nZ, f2, 30);
+			weaponize(17F * gameApplet.viewScale, 10F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, gameApplet.HI, false, gameApplet.NI, null, gameApplet.PZ, 25, 15, true,
+					3, 50, gameApplet.nZ, f2, 30);
+			weaponize(5F * gameApplet.viewScale, -15F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, gameApplet.HI, false, gameApplet.NI, null, gameApplet.PZ, 25, 15, true,
+					3, 50, gameApplet.nZ, f2, 30);
+			weaponize(5F * gameApplet.viewScale, 15F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.0F, true, gameApplet.HI, false, gameApplet.NI, null, gameApplet.PZ, 25, 15, true,
+					3, 50, gameApplet.nZ, f2, 30);
 			return;
 
 		case 223:
-			initialize(GameApp.Instance.w, 3, i, j, 1500, 70, 70, 150, false, 0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(2, 3, 12, 16F, GameApp.Instance.T);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 3, 12, 16F, GameApp.Instance.T);
-			thrustors.I(-18F * (GameApp.Instance).viewScale, -39F * (GameApp.Instance).viewScale);
-			thrustors.I(-26F * (GameApp.Instance).viewScale, -34F * (GameApp.Instance).viewScale);
-			thrustors.I(-26F * (GameApp.Instance).viewScale, 34F * (GameApp.Instance).viewScale);
-			thrustors.I(-18F * (GameApp.Instance).viewScale, 39F * (GameApp.Instance).viewScale);
+			Initialize(gameApplet.w, 3, i, j, 1500, 70, 70, 150, false, 0);
+			if (gameApplet.QC == 1)
+				myThrustors.I(2, 3, 12, 16F, gameApplet.T);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 3, 12, 16F, gameApplet.T);
+			myThrustors.I(-18F * gameApplet.viewScale, -39F * gameApplet.viewScale);
+			myThrustors.I(-26F * gameApplet.viewScale, -34F * gameApplet.viewScale);
+			myThrustors.I(-26F * gameApplet.viewScale, 34F * gameApplet.viewScale);
+			myThrustors.I(-18F * gameApplet.viewScale, 39F * gameApplet.viewScale);
 			thruster_add(-27F, 0.0F, null, false, 35, 15, f10, 3.141593F, 1, 5, 202);
 			return;
 
 		case 230:
-			initialize(GameApp.Instance.II, 4, i, j, 5000, 100, 400, 600, false, 0);
-			weaponize(0.0F * (GameApp.Instance).viewScale, 18F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 10F, 0.0F, true, GameApp.Instance.FI, false, GameApp.Instance.NI, null, GameApp.Instance.PZ, 12, 5, true, 3,
-					50, GameApp.Instance.nZ, f2, 30);
-			weaponize(-52F * (GameApp.Instance).viewScale, -12F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 3.926991F, false, GameApp.Instance.ZI, true, GameApp.Instance.YI, GameApp.Instance.Q, GameApp.Instance.RZ,
+			Initialize(gameApplet.II, 4, i, j, 5000, 100, 400, 600, false, 0);
+			weaponize(0.0F * gameApplet.viewScale, 18F * gameApplet.viewScale, 0.0F,
+					0.0F, 10F, 0.0F, true, gameApplet.FI, false, gameApplet.NI, null, gameApplet.PZ, 12, 5, true, 3,
+					50, gameApplet.nZ, f2, 30);
+			weaponize(-52F * gameApplet.viewScale, -12F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 3.926991F, false, gameApplet.ZI, true, gameApplet.YI, gameApplet.Q, gameApplet.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(51F * (GameApp.Instance).viewScale, -13F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 5.497787F, false, GameApp.Instance.CI, true, GameApp.Instance.YI, GameApp.Instance.Q, GameApp.Instance.RZ,
+			weaponize(51F * gameApplet.viewScale, -13F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 5.497787F, false, gameApplet.CI, true, gameApplet.YI, gameApplet.Q, gameApplet.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(-70F * (GameApp.Instance).viewScale, 33F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 2.356194F, false, GameApp.Instance.BI, true, GameApp.Instance.YI, GameApp.Instance.Q, GameApp.Instance.RZ,
+			weaponize(-70F * gameApplet.viewScale, 33F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 2.356194F, false, gameApplet.BI, true, gameApplet.YI, gameApplet.Q, gameApplet.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
-			weaponize(70F * (GameApp.Instance).viewScale, 30F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 0.7853982F, false, GameApp.Instance.DI, true, GameApp.Instance.YI, GameApp.Instance.Q, GameApp.Instance.RZ,
+			weaponize(70F * gameApplet.viewScale, 30F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 0.7853982F, false, gameApplet.DI, true, gameApplet.YI, gameApplet.Q, gameApplet.RZ,
 					30, 25, true, 4, 50, f8, f9, c);
 			return;
 
 		case 231:
-			initialize(GameApp.Instance.JI, 4, i, j, 10000, 100, 600, 1000, false, 0);
-			weaponize(-101F * (GameApp.Instance).viewScale, 85F * (GameApp.Instance).viewScale, 4F,
-					0.0F, 0.0F, 2.199115F, false, GameApp.Instance.SI, true, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ,
+			Initialize(gameApplet.JI, 4, i, j, 10000, 100, 600, 1000, false, 0);
+			weaponize(-101F * gameApplet.viewScale, 85F * gameApplet.viewScale, 4F,
+					0.0F, 0.0F, 2.199115F, false, gameApplet.SI, true, gameApplet.XI, gameApplet.Q, gameApplet.RZ,
 					15, 5, true, 4, 50, f8, f9, c);
-			weaponize(-40F * (GameApp.Instance).viewScale, 125F * (GameApp.Instance).viewScale, 0.0F,
-					0.0F, 0.0F, 2.199115F, false, GameApp.Instance.AI, true, GameApp.Instance.XI, GameApp.Instance.Q, GameApp.Instance.RZ,
+			weaponize(-40F * gameApplet.viewScale, 125F * gameApplet.viewScale, 0.0F,
+					0.0F, 0.0F, 2.199115F, false, gameApplet.AI, true, gameApplet.XI, gameApplet.Q, gameApplet.RZ,
 					15, 5, true, 4, 50, f8, f9, c);
-			thruster_add(61F * (GameApp.Instance).viewScale, 108F * (GameApp.Instance).viewScale,
-					GameApp.Instance.EI, true, 40, 20, f10, 1.256637F, 1, 18, 203);
-			thruster_add(103F * (GameApp.Instance).viewScale, 40F * (GameApp.Instance).viewScale,
-					GameApp.Instance.GI, true, 40, 20, f10, 1.256637F, 1, 18, 212);
+			thruster_add(61F * gameApplet.viewScale, 108F * gameApplet.viewScale,
+					gameApplet.EI, true, 40, 20, f10, 1.256637F, 1, 18, 203);
+			thruster_add(103F * gameApplet.viewScale, 40F * gameApplet.viewScale,
+					gameApplet.GI, true, 40, 20, f10, 1.256637F, 1, 18, 212);
 			return;
 
 		case 150:
-			initialize(GameApp.Instance.Y, 4, i, j, 0, 70, 200, 350, false, 0);
-			if (GameApp.Instance.QC == 1)
-				thrustors.I(2, 2, 10, 16F, GameApp.Instance.R);
-			else if (GameApp.Instance.QC == 2)
-				thrustors.I(1, 3, 10, 16F, GameApp.Instance.R);
+			Initialize(gameApplet.Y, 4, i, j, 0, 70, 200, 350, false, 0);
+			if (gameApplet.QC == 1)
+				myThrustors.I(2, 2, 10, 16F, gameApplet.R);
+			else if (gameApplet.QC == 2)
+				myThrustors.I(1, 3, 10, 16F, gameApplet.R);
 			else
-				thrustors.I(1, 5, 10, 16F, GameApp.Instance.R);
-			thrustors.I(-16F * (GameApp.Instance).viewScale, -16F * (GameApp.Instance).viewScale);
-			thrustors.I(-20F * (GameApp.Instance).viewScale, 0.0F * (GameApp.Instance).viewScale);
-			thrustors.I(-16F * (GameApp.Instance).viewScale, 16F * (GameApp.Instance).viewScale);
-			weaponize(10F, -6F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.UI, null, GameApp.Instance.QZ, 10, 0,
-					false, 1, 70, GameApp.Instance.nZ, f2, 30);
-			weaponize(10F, 6F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, GameApp.Instance.VI, null, GameApp.Instance.QZ, 10, 0,
-					false, 1, 70, GameApp.Instance.nZ, f2, 30);
+				myThrustors.I(1, 5, 10, 16F, gameApplet.R);
+			myThrustors.I(-16F * gameApplet.viewScale, -16F * gameApplet.viewScale);
+			myThrustors.I(-20F * gameApplet.viewScale, 0.0F * gameApplet.viewScale);
+			myThrustors.I(-16F * gameApplet.viewScale, 16F * gameApplet.viewScale);
+			weaponize(10F, -6F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, gameApplet.UI, null, gameApplet.QZ, 10, 0,
+					false, 1, 70, gameApplet.nZ, f2, 30);
+			weaponize(10F, 6F, 0.0F, 0.0F, 0.0F, 0.0F, false, null, false, gameApplet.VI, null, gameApplet.QZ, 10, 0,
+					false, 1, 70, gameApplet.nZ, f2, 30);
 			return;
 		}
 		System.out.println("initStandardShip - undefined ship type");
 	}
 
 	@Override
-	final void I() {
-		super.y = super.x.I(super.d, super.b);
+	final void Update() {
+		super.mySprite = myAtlas.GetSprite(frameIndex, super.animationIndex);
 		if (println > 0) {
 			random--;
 			if (random <= 0) {
 				random = 10 + (int) (Math.random() * println);
-				if (super.ship_grade == 4 && super.AI != 150)
+				if (super.shipGrade == 4 && super.AI != 150)
 					random = random / 2;
-				sprite_group sprite_group1 = null;
+				SpriteGroup sprite_group1 = null;
 				switch ((int) (Math.random() * 3D)) {
 				case 0: // '\0'
-					sprite_group1 = GameApp.Instance.S;
+					sprite_group1 = gameApplet.S;
 					break;
 
 				case 1: // '\001'
-					sprite_group1 = GameApp.Instance.A;
+					sprite_group1 = gameApplet.A;
 					break;
 
 				default:
-					sprite_group1 = GameApp.Instance.E;
+					sprite_group1 = gameApplet.E;
 					break;
 				}
-				Explosion explosion1 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.qZ);
+				final Explosion explosion1 = (Explosion) gameApplet.rZ.GiveLastInstanceTo(gameApplet.qZ);
 				if (explosion1 != null)
 					explosion1.I(sprite_group1, 1,
-							super.J + (float) ((Math.random() - 0.5D) * super.x.C * 0.66000000000000003D),
-							super.S + (float) ((Math.random() - 0.5D) * super.x.B * 0.66000000000000003D),
-							super.K + (float) (Math.random() - 0.5D) * super.x.B * 0.05F,
-							super.L + (float) (Math.random() - 0.5D) * super.x.B * 0.05F, 0, 4, 0, false);
+							myX + (float) ((Math.random() - 0.5D) * myAtlas.C * 0.66000000000000003D),
+							myY + (float) ((Math.random() - 0.5D) * myAtlas.B * 0.66000000000000003D),
+							hSpeed + (float) (Math.random() - 0.5D) * myAtlas.B * 0.05F,
+							vSpeed + (float) (Math.random() - 0.5D) * myAtlas.B * 0.05F, 0, 4, 0, false);
 			}
 		}
-		super.I();
-		if (super.J < (GameApp.Instance).worldBorderLeft) {
-			super.J = (GameApp.Instance).worldBorderLeft;
-			super.K = 0.0F;
-			F();
-		} else if (super.J > (GameApp.Instance).worldBorderRight) {
-			super.J = (GameApp.Instance).worldBorderRight;
-			super.K = 0.0F;
-			F();
+
+		// Limit world borders
+		super.Update();
+		if (myX < gameApplet.worldBorderLeft)
+		{
+			myX = gameApplet.worldBorderLeft;
+			hSpeed = 0.0F;
+			CalcCollisionBox();
+		} else if (myX > gameApplet.worldBorderRight)
+		{
+			myX = gameApplet.worldBorderRight;
+			hSpeed = 0.0F;
+			CalcCollisionBox();
 		}
-		if (super.S < (GameApp.Instance).worldBorderTop) {
-			super.S = (GameApp.Instance).worldBorderTop;
-			super.L = 0.0F;
-			F();
-		} else if (super.S > (GameApp.Instance).worldBorderBottom) {
-			super.S = (GameApp.Instance).worldBorderBottom;
-			super.L = 0.0F;
-			F();
+		if (myY < gameApplet.worldBorderTop)
+		{
+			myY = gameApplet.worldBorderTop;
+			vSpeed = 0.0F;
+			CalcCollisionBox();
+		} else if (myY > gameApplet.worldBorderBottom)
+		{
+			myY = gameApplet.worldBorderBottom;
+			vSpeed = 0.0F;
+			CalcCollisionBox();
 		}
-		if (I != null && I.e != 1)
+
+		if (I != null && I.activeMode != 1)
 			I = null;
-		if (super.g != null && super.g.e == 2)
+
+		if (super.g != null && super.g.activeMode == 2)
+		{
 			super.g = null;
-		if (RI) {
-			if (TI) {
+		}
+
+		if (RI)
+		{
+			if (TI)
+			{
 				UI++;
 				if (UI >= 20)
-					switch (VI) {
+				{
+					switch (VI)
+					{
 					case 1: // '\001'
 						Equip(true, null);
 						break;
 
 					case 2: // '\002'
 						if (UI == 20)
-							I(super.J, super.S, super.K, super.L, 0.0F, 0.05F, true);
-						else if (super.S > (GameApp.Instance).screen_height + super.y.J)
+							SetupPhysics1(myX, myY, hSpeed, vSpeed, 0.0F, 0.05F, true);
+						else if (myY > gameApplet.screen_height + super.mySprite.J)
 							Equip(true, null);
 						break;
 					}
-			} else if (Math.abs(super.Q.J - super.J) < 10F && Math.abs(super.Q.S - super.S) < 10F)
+				}
+			}
+			else if (Math.abs(myFollower.myX - myX) < 10F && Math.abs(myFollower.myY - myY) < 10F)
+			{
 				TI = true;
-		} else {
-			switch (QI) {
+			}
+		}
+		else
+		{
+			switch (QI)
+			{
 			case 1: // '\001'
 			case 4: // '\004'
 			default:
 				break;
 
 			case 2: // '\002'
-				if ((I == null || I.e != 1) && Math.random() * 80D > 79D)
+				if ((I == null || I.activeMode != 1) && Math.random() * 80D > 79D)
 					super.i = (float) Math.random() * 6.283185F;
-				I(I);
-				super.d = super.x.I(super.Y);
+				UpdateWithAttacks(I);
+
+				frameIndex = myAtlas.GetFrameByRotation(myRotation);
 				break;
 
 			case 3: // '\003'
-				if (OI > 0) {
+				if (OI > 0)
+				{
 					OI--;
-					if (OI == 0 && super.Q == null)
+					if (OI == 0 && myFollower == null)
 						E();
 					break;
 				}
-				if (MI >= 0) {
-					if (MI > 0) {
+
+				if (MI >= 0)
+				{
+					if (MI > 0)
+					{
 						MI--;
 						break;
 					}
+
 					if (super.CI)
-						super.e = 3;
+						super.activeMode = 3;
 					else
 						Equip(true, null);
 					break;
 				}
-				if (super.Q == null) {
+
+				if (myFollower == null)
+				{
 					E();
-					if (super.Q != null || super.s % 20 != 0)
+					if (myFollower != null || timeSinceEpoch % 20 != 0)
 						break;
-					float f = (super.R + super.U) - super.J;
-					float f2 = (super.T + super.V) - super.S;
-					if (f * f + f2 * f2 < 10000F) {
-						super.R = (GameApp.Instance).YC + (GameApp.Instance).worldHrz * 0.1F
-								+ (float) Math.random() * 0.8F * (GameApp.Instance).worldHrz;
-						super.T = (GameApp.Instance).zC + (GameApp.Instance).worldVrt * 0.1F
-								+ (float) Math.random() * 0.8F * (GameApp.Instance).worldVrt;
-						super.U = 0.0F;
-						super.V = 0.0F;
+
+					final float f = (super.myDestX + hRandomSpeed) - myX;
+					final float f2 = (super.myDestY + vRandomSpeed) - myY;
+					if (f * f + f2 * f2 < 10000F)
+					{
+						super.myDestX = gameApplet.YC + gameApplet.worldDimension[0] * 0.1F
+								+ (float) Math.random() * 0.8F * gameApplet.worldDimension[0];
+						super.myDestY = gameApplet.zC + gameApplet.worldDimension[1] * 0.1F
+								+ (float) Math.random() * 0.8F * gameApplet.worldDimension[1];
+						hRandomSpeed = 0.0F;
+						vRandomSpeed = 0.0F;
 					}
 					break;
 				}
-				if (super.Q.JI != 11)
+				if (myFollower.JI != 11)
 					break;
-				float f1 = (super.Q.J + super.U) - super.J;
-				float f3 = (super.Q.S + super.V) - super.S;
+
+				final float f1 = (myFollower.myX + hRandomSpeed) - myX;
+				final float f3 = (myFollower.myY + vRandomSpeed) - myY;
 				if (f1 * f1 + f3 * f3 >= 10000F)
 					break;
-				oWaypoint oWaypoint1 = (oWaypoint) super.Q;
+
+				final oWaypoint waypoint_1 = (oWaypoint) myFollower;
 				LI++;
-				super.Q = null;
-				if (oWaypoint1.I == 1) {
+				myFollower = null;
+				if (waypoint_1.I == 1) {
 					MI = 25;
-					Explosion explosion2 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.qZ);
+					final Explosion explosion2 = (Explosion) gameApplet.rZ.GiveLastInstanceTo(gameApplet.qZ);
 					if (explosion2 != null)
-						explosion2.I(GameApp.Instance.sprite_group_ship, 1, (int) (super.J + super.K * 25F),
-								(int) (super.S + super.L * 25F), 0.0F, 0.0F, 1, 2, 0, false);
-					I(super.J, super.S, super.K, super.L, super.f);
+						explosion2.I(gameApplet.sprite_group_ship, 1, (int) (myX + hSpeed * 25F),
+								(int) (myY + vSpeed * 25F), 0.0F, 0.0F, 1, 2, 0, false);
+					SetupPhysics2(myX, myY, hSpeed, vSpeed, hasAnimation);
 					break;
 				}
-				if (oWaypoint1.I == 4) {
+				if (waypoint_1.I == 4) {
 					LI = 0;
 					E();
 					break;
 				}
-				if (oWaypoint1.I == 2) {
-					I(super.J, super.S, null, super.J + super.K * 10F, super.S + super.L * 10F, super.M, super.O, false,
+				if (waypoint_1.I == 2) {
+					SetupPhysics5(myX, myY, null, myX + hSpeed * 10F, myY + vSpeed * 10F, super.M, myFriction, false,
 							true);
 					QI = 2;
 				} else {
@@ -625,7 +658,7 @@ final class oSpaceship extends GameObject {
 				break;
 			}
 		}
-		thrustors.I(this);
+		myThrustors.I(this);
 		if (Z) {
 			B++;
 			if (B >= C) {
@@ -636,22 +669,22 @@ final class oSpaceship extends GameObject {
 	}
 
 	@Override
-	final void Draw(Canvas surface) {
-		thrustors.I(surface);
+	final void Draw(final Canvas surface) {
+		myThrustors.I(surface);
 		super.Draw(surface);
 	}
 
 	final void abs() {
 		out = true;
 		PI = false;
-		super.U = 0.0F;
-		super.V = 0.0F;
+		hRandomSpeed = 0.0F;
+		vRandomSpeed = 0.0F;
 	}
 
-	final void weaponize(float f, float f1, float f2, float f3, float f4, float f5, boolean flag,
-			sprite_group sprite_group1, boolean flag1, sprite_group sprite_group2, sprite_group sprite_group3, int i,
-			int j, int k, boolean flag2, int l, int i1, float f6, float f7, int j1) {
-		oWeapon oWeapon1 = (oWeapon) GameApp.Instance.FC.I(super.k);
+	final void weaponize(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final boolean flag,
+			final SpriteGroup sprite_group1, final boolean flag1, final SpriteGroup sprite_group2, final SpriteGroup sprite_group3, final int i,
+			final int j, final int k, final boolean flag2, final int l, final int i1, final float f6, final float f7, final int j1) {
+		final oWeapon oWeapon1 = (oWeapon) gameApplet.FC.GiveLastInstanceTo(super.myWeapons);
 		if (oWeapon1 != null) {
 			oWeapon1.I(this, flag1, f, f1, f2, f3, f4, f5, flag, sprite_group1, 0, 0, 1, 0, false);
 			oWeapon1.I(sprite_group2, sprite_group3, i, j, k, flag2, l, i1, f6, f7, j1);
@@ -661,9 +694,9 @@ final class oSpaceship extends GameObject {
 		}
 	}
 
-	final void thruster_add(float f, float f1, sprite_group sprite_group1, boolean flag, int i, int j, float f2,
-			float f3, int k, int l, int i1) {
-		oWeapon oWeapon1 = (oWeapon) GameApp.Instance.FC.I(super.k);
+	final void thruster_add(final float f, final float f1, final SpriteGroup sprite_group1, final boolean flag, final int i, final int j, final float f2,
+			final float f3, final int k, final int l, final int i1) {
+		final oWeapon oWeapon1 = (oWeapon) gameApplet.FC.GiveLastInstanceTo(super.myWeapons);
 		if (oWeapon1 != null) {
 			oWeapon1.I(this, flag, f, f1, 0.0F, 0.0F, 0.0F, f3, false, sprite_group1, 0, 0, 1, 0, false);
 			oWeapon1.I(i, j, f2, k, i1);
@@ -673,10 +706,10 @@ final class oSpaceship extends GameObject {
 	}
 
 	final void J() {
-		GameObjectPool oGameObjectlist1 = super.k;
-		int k = oGameObjectlist1.mySize;
+		final GameObjectPool oGameObjectlist1 = super.myWeapons;
+		final int k = oGameObjectlist1.mySize;
 		for (int i = max + 1; i < k; i++) {
-			oWeapon oWeapon1 = (oWeapon) super.k.internalList[i];
+			final oWeapon oWeapon1 = (oWeapon) super.myWeapons.internalList[i];
 			if (!oWeapon1.MI) {
 				oWeapon1.J();
 				max = i;
@@ -685,7 +718,7 @@ final class oSpaceship extends GameObject {
 		}
 
 		for (int j = 0; j <= max; j++) {
-			oWeapon oWeapon2 = (oWeapon) super.k.internalList[j];
+			final oWeapon oWeapon2 = (oWeapon) super.myWeapons.internalList[j];
 			if (!oWeapon2.MI) {
 				oWeapon2.J();
 				max = j;
@@ -698,45 +731,45 @@ final class oSpaceship extends GameObject {
 	protected final GameObject A() {
 		WI = null;
 		if (super.EI == 2) {
-			out(GameApp.Instance.vZ, HNSM);
-			out(GameApp.Instance.dZ, HNSM);
-			out(GameApp.Instance.EC, HNSM);
+			out(gameApplet.vZ, HNSM);
+			out(gameApplet.dZ, HNSM);
+			out(gameApplet.EC, HNSM);
 		} else if (super.EI == 1) {
-			out(GameApp.Instance.wZ, HNSM);
-			out(GameApp.Instance.GC, HNSM);
+			out(gameApplet.wZ, HNSM);
+			out(gameApplet.GC, HNSM);
 		}
 		return WI;
 	}
 
-	protected final void out(GameObjectPool oGameObjectlist1, float f) {
-		float f8 = f * f;
-		float f3 = F;
-		int j = oGameObjectlist1.mySize;
+	protected final void out(final GameObjectPool oGameObjectlist1, final float f) {
+		final float f8 = f * f;
+		final float f3 = F;
+		final int j = oGameObjectlist1.mySize;
 		for (int k = 0; k < j; k++) {
-			GameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[k];
-			if (oGameObject1.e == 1 && oGameObject1.v && oGameObject1.h && oGameObject1.BI > 0.0001F) {
+			final GameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[k];
+			if (oGameObject1.activeMode == 1 && oGameObject1.isVisible && oGameObject1.h && oGameObject1.BI > 0.0001F) {
 				if (oGameObject1.l)
-					out(oGameObject1.k, f);
-				float f9 = oGameObject1.J - super.J;
-				float f10 = oGameObject1.S - super.S;
+					out(oGameObject1.myWeapons, f);
+				final float f9 = oGameObject1.myX - myX;
+				final float f10 = oGameObject1.myY - myY;
 				if (f9 * f9 + f10 * f10 <= f8) {
-					float f2 = (oGameObject1.n + oGameObject1.o) / f3;
+					final float f2 = (oGameObject1.n + oGameObject1.o) / f3;
 					float f1 = 0.0F;
 					if (oGameObject1.JI == 8) {
-						oSpaceship oSpaceship1 = (oSpaceship) oGameObject1;
+						final oSpaceship oSpaceship1 = (oSpaceship) oGameObject1;
 						f1 = oSpaceship1.F;
 					} else if (oGameObject1.JI == 7) {
-						oMeteor oMeteor1 = (oMeteor) oGameObject1;
-						if (((GameObject) (oMeteor1)).L != 0.0F) {
-							float f6 = (((GameObject) (oMeteor1)).S - super.S) / ((GameObject) (oMeteor1)).L;
+						final oMeteor oMeteor1 = (oMeteor) oGameObject1;
+						if (((GameObject) (oMeteor1)).vSpeed != 0.0F) {
+							final float f6 = (((GameObject) (oMeteor1)).myY - myY) / ((GameObject) (oMeteor1)).vSpeed;
 							if (f6 > 7F && f6 < 50F) {
-								float f7 = ((GameObject) (oMeteor1)).J + ((GameObject) (oMeteor1)).K * f6;
+								final float f7 = ((GameObject) (oMeteor1)).myX + ((GameObject) (oMeteor1)).hSpeed * f6;
 								int i;
-								if (((GameObject) (oMeteor1)).ship_grade == 3)
+								if (((GameObject) (oMeteor1)).shipGrade == 3)
 									i = ((GameObject) (oMeteor1)).m / 2;
 								else
-									i = ((GameObject) (oMeteor1)).x.C / 2;
-								if (super.A < f7 + i && super.G > f7 - i)
+									i = ((GameObject) (oMeteor1)).myAtlas.C / 2;
+								if (super.borderLeft < f7 + i && super.borderRight > f7 - i)
 									f1 = ((GameObject) (oMeteor1)).m;
 							}
 						}
@@ -769,16 +802,16 @@ final class oSpaceship extends GameObject {
 	@SuppressWarnings("unused")
 	final void E() {
 		Object obj = null;
-		gameobjectivelist gameobjectivelist1;
+		GameQuest gameobjectivelist1;
 		if (super.EI == 2)
-			gameobjectivelist1 = GameApp.Instance.currentMission.C;
+			gameobjectivelist1 = gameApplet.currentMission.C;
 		else
-			gameobjectivelist1 = GameApp.Instance.currentMission.I;
+			gameobjectivelist1 = gameApplet.currentMission.I;
 		GameObjectPool oGameObjectlist2;
 		while (obj == null && LI < (oGameObjectlist2 = gameobjectivelist1.D).mySize) {
-			GameObjectPool oGameObjectlist1 = gameobjectivelist1.D;
-			int i = LI;
-			oWaypoint oWaypoint1 = (oWaypoint) (i < 0 || i >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[i]);
+			final GameObjectPool oGameObjectlist1 = gameobjectivelist1.D;
+			final int i = LI;
+			final oWaypoint oWaypoint1 = (oWaypoint) (i < 0 || i >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[i]);
 			if (oWaypoint1.Z == -1 || super.AI == oWaypoint1.Z)
 				obj = oWaypoint1;
 			else
@@ -786,62 +819,74 @@ final class oSpaceship extends GameObject {
 		}
 		if (obj == null)
 			obj = I(-1F);
-		if (obj != null) {
-			if (super.DI != 8) {
-				I(super.J, super.S, ((GameObject) (obj)), 0.0F, 0.0F, super.M, super.c, super.O, super.f);
-			} else {
-				super.Q = ((GameObject) (obj));
+
+		if (obj != null)
+		{
+			if (super.DI != 8)
+			{
+				SetupPhysics6(myX, myY, ((GameObject) (obj)), 0.0F, 0.0F, super.M, super.c, myFriction, hasAnimation);
+			}
+			else
+			{
+				myFollower = ((GameObject) (obj));
 				super.P = true;
 			}
-			if (PI) {
-				super.U = ((float) Math.random() - 0.5F) * 200F;
-				super.V = ((float) Math.random() - 0.5F) * 200F;
+
+			if (PI)
+			{
+				hRandomSpeed = ((float) Math.random() - 0.5F) * 200F;
+				vRandomSpeed = ((float) Math.random() - 0.5F) * 200F;
 			}
 		}
 	}
 
-	protected final GameObject I(float f) {
+	protected final GameObject I(final float f)
+	{
 		WI = null;
-		if (super.EI == 2) {
-			println(GameApp.Instance.vZ, f);
-			println(GameApp.Instance.EC, f);
+		if (super.EI == 2)
+		{
+			println(gameApplet.vZ, f);
+			println(gameApplet.EC, f);
 			if (WI == null)
-				println(GameApp.Instance.dZ, f);
-		} else if (super.EI == 1) {
-			println(GameApp.Instance.wZ, f);
-			println(GameApp.Instance.GC, f);
+				println(gameApplet.dZ, f);
 		}
+		else if (super.EI == 1)
+		{
+			println(gameApplet.wZ, f);
+			println(gameApplet.GC, f);
+		}
+
 		return WI;
 	}
 
-	protected final void println(GameObjectPool oGameObjectlist1, float f) {
-		float f8 = f * f;
-		float f3 = F;
-		int j = oGameObjectlist1.mySize;
+	protected final void println(final GameObjectPool oGameObjectlist1, final float f) {
+		final float f8 = f * f;
+		final float f3 = F;
+		final int j = oGameObjectlist1.mySize;
 		for (int k = 0; k < j; k++) {
-			GameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[k];
-			if (oGameObject1.e == 1 && oGameObject1.v && oGameObject1.h && oGameObject1.BI > 0.0001F) {
-				float f10 = oGameObject1.J - super.J;
-				float f11 = oGameObject1.S - super.S;
-				float f9 = f10 * f10 + f11 * f11;
+			final GameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[k];
+			if (oGameObject1.activeMode == 1 && oGameObject1.isVisible && oGameObject1.h && oGameObject1.BI > 0.0001F) {
+				final float f10 = oGameObject1.myX - myX;
+				final float f11 = oGameObject1.myY - myY;
+				final float f9 = f10 * f10 + f11 * f11;
 				if (f <= 0.0F || f9 <= f8) {
-					float f2 = (oGameObject1.n + oGameObject1.o) / f3;
+					final float f2 = (oGameObject1.n + oGameObject1.o) / f3;
 					float f1 = 0.0F;
 					if (oGameObject1.JI == 8) {
-						oSpaceship oSpaceship1 = (oSpaceship) oGameObject1;
+						final oSpaceship oSpaceship1 = (oSpaceship) oGameObject1;
 						f1 = oSpaceship1.F;
 					} else if (oGameObject1.JI == 7) {
-						oMeteor oMeteor1 = (oMeteor) oGameObject1;
-						if (((GameObject) (oMeteor1)).L != 0.0F) {
-							float f6 = (((GameObject) (oMeteor1)).S - super.S) / ((GameObject) (oMeteor1)).L;
+						final oMeteor oMeteor1 = (oMeteor) oGameObject1;
+						if (((GameObject) (oMeteor1)).vSpeed != 0.0F) {
+							final float f6 = (((GameObject) (oMeteor1)).myY - myY) / ((GameObject) (oMeteor1)).vSpeed;
 							if (f6 > 7F && f6 < 50F) {
-								float f7 = ((GameObject) (oMeteor1)).J + ((GameObject) (oMeteor1)).K * f6;
+								final float f7 = ((GameObject) (oMeteor1)).myX + ((GameObject) (oMeteor1)).hSpeed * f6;
 								int i;
-								if (((GameObject) (oMeteor1)).ship_grade == 3)
+								if (((GameObject) (oMeteor1)).shipGrade == 3)
 									i = ((GameObject) (oMeteor1)).m / 2;
 								else
-									i = ((GameObject) (oMeteor1)).x.C / 2;
-								if (super.A < f7 + i && super.G > f7 - i)
+									i = ((GameObject) (oMeteor1)).myAtlas.C / 2;
+								if (super.borderLeft < f7 + i && super.borderRight > f7 - i)
 									f1 = ((GameObject) (oMeteor1)).m;
 							}
 						}
@@ -868,191 +913,191 @@ final class oSpaceship extends GameObject {
 
 	}
 
-	final void I(oSpaceship oSpaceship1, int i, float f) {
+	final void I(final oSpaceship oSpaceship1, final int i, final float f) {
 		RI = true;
 		VI = i;
 		UI = 0;
 		TI = false;
-		I(super.J, super.S, oSpaceship1, 0.0F, 0.0F, f, 0.2F, false, true);
+		SetupPhysics5(myX, myY, oSpaceship1, 0.0F, 0.0F, f, 0.2F, false, true);
 	}
 
 	@Override
-	final void Equip(boolean flag, GameObject oGameObject1) {
+	final void Equip(final boolean flag, final GameObject oGameObject1) {
 		if (flag)
-			super.ascore = 0;
+			super.acqScores = 0;
 		else if (super.EI == 2 && oGameObject1 != null
 				&& (oGameObject1.JI == 8 && oGameObject1.AI == 150 || oGameObject1.JI == 6 && oGameObject1.g != null
 						&& oGameObject1.g.g != null && oGameObject1.g.g.AI == 150)) {
 			boolean flag1 = false;
-			if (GameApp.Instance.currentMission.J > 0 && Math.random() < GameApp.Instance.currentMission.D) {
+			if (gameApplet.currentMission.J > 0 && Math.random() < gameApplet.currentMission.D) {
 				flag1 = true;
 			} else {
-				GameApp.Instance.currentMission.G++;
-				int i = Math.round((1.0F / GameApp.Instance.currentMission.D) * 1.5F);
-				if (GameApp.Instance.currentMission.G >= i)
+				gameApplet.currentMission.G++;
+				final int i = Math.round((1.0F / gameApplet.currentMission.D) * 1.5F);
+				if (gameApplet.currentMission.G >= i)
 					flag1 = true;
 			}
 			if (flag1) {
-				GameApp.Instance.currentMission.G = 0;
-				int k = GameApp.Instance.currentMission.J;
+				gameApplet.currentMission.G = 0;
+				final int k = gameApplet.currentMission.J;
 				int l = -1;
-				int i1 = (int) (Math.random() * GameApp.Instance.currentMission.E);
+				int i1 = (int) (Math.random() * gameApplet.currentMission.E);
 				for (int j1 = 0; j1 < k && l == -1; j1++) {
-					int j = GameApp.Instance.currentMission.A[j1];
+					final int j = gameApplet.currentMission.A[j1];
 					if (i1 > j)
 						i1 -= j;
 					else
-						l = GameApp.Instance.currentMission.S[j1];
+						l = gameApplet.currentMission.S[j1];
 				}
 
 				if (l != -1) {
-					oPowerup oPowerup1 = (oPowerup) GameApp.Instance.DC.I(GameApp.Instance.BC);
+					final oPowerup oPowerup1 = (oPowerup) gameApplet.DC.GiveLastInstanceTo(gameApplet.BC);
 					if (oPowerup1 != null) {
-						oPowerup1.Z(l);
-						float f3 = super.K * 0.3F;
-						float f4 = super.L * 0.3F;
-						if (super.J < (GameApp.Instance).YC
-								+ (GameApp.Instance).screen_width * 2.0F && super.K < 0.0F)
-							super.K = -super.K;
-						if (super.J > (GameApp.Instance).iC
-								- (GameApp.Instance).screen_width * 2.0F && super.K > 0.0F)
-							super.K = -super.K;
-						if (super.S < (GameApp.Instance).zC
-								+ (GameApp.Instance).screen_height * 2.0F && super.L < 0.0F)
-							super.L = -super.L;
-						if (super.S > (GameApp.Instance).cC
-								- (GameApp.Instance).screen_height * 2.0F && super.L > 0.0F)
-							super.L = -super.L;
-						oPowerup1.I(super.J, super.S, f3, f4, true);
+						oPowerup1.Awake(l);
+						final float f3 = hSpeed * 0.3F;
+						final float f4 = vSpeed * 0.3F;
+						if (myX < gameApplet.YC
+								+ gameApplet.screen_width * 2.0F && hSpeed < 0.0F)
+							hSpeed = -hSpeed;
+						if (myX > gameApplet.iC
+								- gameApplet.screen_width * 2.0F && hSpeed > 0.0F)
+							hSpeed = -hSpeed;
+						if (myY < gameApplet.zC
+								+ gameApplet.screen_height * 2.0F && vSpeed < 0.0F)
+							vSpeed = -vSpeed;
+						if (myY > gameApplet.cC
+								- gameApplet.screen_height * 2.0F && vSpeed > 0.0F)
+							vSpeed = -vSpeed;
+						oPowerup1.SetupPhysics2(myX, myY, f3, f4, true);
 					}
 				}
 			}
 		} else {
-			super.ascore = 0;
+			super.acqScores = 0;
 		}
 		super.Equip(flag, oGameObject1);
 		byte byte0 = 0;
 		byte byte1 = 0;
 		if (!flag) {
-			sprite_group sprite_group1 = null;
+			SpriteGroup sprite_group1 = null;
 			Palette palette = null;
-			float f = (float) Math.random();
+			final float f = (float) Math.random();
 			if (f > 0.67000000000000004D)
-				sprite_group1 = GameApp.Instance.D;
+				sprite_group1 = gameApplet.D;
 			else if (f > 0.33000000000000002D)
-				sprite_group1 = GameApp.Instance.B;
+				sprite_group1 = gameApplet.B;
 			else
-				sprite_group1 = GameApp.Instance.C;
-			switch (super.ship_grade) {
+				sprite_group1 = gameApplet.C;
+			switch (super.shipGrade) {
 			default:
 				break;
 
 			case 1: // '\001'
-				if (GameApp.Instance.QC == 1)
+				if (gameApplet.QC == 1)
 					byte1 = 2;
-				else if (GameApp.Instance.QC == 2)
+				else if (gameApplet.QC == 2)
 					byte1 = 1;
 				if (super.EI == 2) {
 					if (super.AI == 102)
-						GameApp.Instance.NZ.I(GameApp.Instance.XZ, true, false);
+						gameApplet.everySFXs.Play(gameApplet.XZ, true, false);
 					else
-						GameApp.Instance.NZ.I(GameApp.Instance.TZ, true, false);
-					palette = GameApp.Instance.DZ;
+						gameApplet.everySFXs.Play(gameApplet.TZ, true, false);
+					palette = gameApplet.DZ;
 				} else if (super.EI == 1) {
-					GameApp.Instance.NZ.I(GameApp.Instance.TZ, true, false);
-					palette = GameApp.Instance.FZ;
+					gameApplet.everySFXs.Play(gameApplet.TZ, true, false);
+					palette = gameApplet.FZ;
 				}
 				break;
 
 			case 2: // '\002'
-				if (GameApp.Instance.QC == 1)
+				if (gameApplet.QC == 1)
 					byte1 = 3;
-				else if (GameApp.Instance.QC == 2)
+				else if (gameApplet.QC == 2)
 					byte1 = 1;
-				GameApp.Instance.NZ.I(GameApp.Instance.WZ, true, false);
+				gameApplet.everySFXs.Play(gameApplet.WZ, true, false);
 				if (super.EI == 2) {
-					palette = GameApp.Instance.DZ;
+					palette = gameApplet.DZ;
 					break;
 				}
 				if (super.EI == 1)
-					palette = GameApp.Instance.FZ;
+					palette = gameApplet.FZ;
 				break;
 
 			case 3: // '\003'
-				if (GameApp.Instance.QC == 1)
+				if (gameApplet.QC == 1)
 					byte1 = 4;
-				else if (GameApp.Instance.QC == 2)
+				else if (gameApplet.QC == 2)
 					byte1 = 2;
 				if (super.EI == 2) {
-					GameApp.Instance.NZ.I(GameApp.Instance.XZ, true, false);
-					palette = GameApp.Instance.DZ;
+					gameApplet.everySFXs.Play(gameApplet.XZ, true, false);
+					palette = gameApplet.DZ;
 					break;
 				}
 				if (super.EI == 1) {
-					GameApp.Instance.NZ.I(GameApp.Instance.YZ, true, false);
-					palette = GameApp.Instance.FZ;
+					gameApplet.everySFXs.Play(gameApplet.YZ, true, false);
+					palette = gameApplet.FZ;
 				}
 				break;
 
 			case 4: // '\004'
-				if (GameApp.Instance.QC == 1)
+				if (gameApplet.QC == 1)
 					byte1 = 7;
-				else if (GameApp.Instance.QC == 2)
+				else if (gameApplet.QC == 2)
 					byte1 = 3;
 				byte0 = 5;
 				if (super.EI == 2) {
-					GameApp.Instance.NZ.I(GameApp.Instance.YZ, true, false);
-					palette = GameApp.Instance.DZ;
+					gameApplet.everySFXs.Play(gameApplet.YZ, true, false);
+					palette = gameApplet.DZ;
 					break;
 				}
 				if (super.EI == 1) {
-					GameApp.Instance.NZ.I(GameApp.Instance.YZ, true, false);
-					palette = GameApp.Instance.FZ;
+					gameApplet.everySFXs.Play(gameApplet.YZ, true, false);
+					palette = gameApplet.FZ;
 				}
 				break;
 			}
-			Explosion explosion1 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.oZ);
+			final Explosion explosion1 = (Explosion) gameApplet.rZ.GiveLastInstanceTo(gameApplet.oZ);
 			if (explosion1 != null) {
-				explosion1.I(sprite_group1, 3, super.J, super.S, super.K, super.L, 1, 2, super.m + super.n, out);
+				explosion1.I(sprite_group1, 3, myX, myY, hSpeed, vSpeed, 1, 2, super.m + super.n, out);
 				if (palette != null)
 					explosion1.F = palette;
 			}
 			for (int k1 = 0; k1 < byte1; k1++) {
-				sprite_group sprite_group2;
+				SpriteGroup sprite_group2;
 				if (super.AI >= 200 && super.AI < 300) {
-					float f1 = (float) Math.random();
+					final float f1 = (float) Math.random();
 					if (f1 > 0.75D)
-						sprite_group2 = GameApp.Instance.G;
+						sprite_group2 = gameApplet.G;
 					else if (f1 > 0.5D)
-						sprite_group2 = GameApp.Instance.H;
+						sprite_group2 = gameApplet.H;
 					else if (f1 > 0.25D)
-						sprite_group2 = GameApp.Instance.K;
+						sprite_group2 = gameApplet.K;
 					else
-						sprite_group2 = GameApp.Instance.L;
+						sprite_group2 = gameApplet.L;
 				} else {
-					float f2 = (float) Math.random();
+					final float f2 = (float) Math.random();
 					if (f2 > 0.75D)
-						sprite_group2 = GameApp.Instance.M;
+						sprite_group2 = gameApplet.M;
 					else if (f2 > 0.5D)
-						sprite_group2 = GameApp.Instance.N;
+						sprite_group2 = gameApplet.N;
 					else if (f2 > 0.25D)
-						sprite_group2 = GameApp.Instance.O;
+						sprite_group2 = gameApplet.O;
 					else
-						sprite_group2 = GameApp.Instance.P;
+						sprite_group2 = gameApplet.P;
 				}
-				explosionbit explosionbit1 = (explosionbit) GameApp.Instance.uZ.I(GameApp.Instance.tZ);
+				final explosionbit explosionbit1 = (explosionbit) gameApplet.uZ.GiveLastInstanceTo(gameApplet.tZ);
 				if (explosionbit1 != null)
-					explosionbit1.I(sprite_group2, GameApp.Instance.J, this, super.m + super.n);
+					explosionbit1.I(sprite_group2, gameApplet.J, this, super.m + super.n);
 			}
 
 			for (int l1 = 0; l1 < byte0; l1++) {
-				Explosion explosion2 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.qZ);
+				final Explosion explosion2 = (Explosion) gameApplet.rZ.GiveLastInstanceTo(gameApplet.qZ);
 				if (explosion2 != null) {
 					explosion2.I(sprite_group1, 3,
-							super.J + (float) (Math.random() * super.y.C - super.y.D),
-							super.S + (float) (Math.random() * super.y.B - super.y.F), super.K,
-							super.L, 1, 2, 300, false);
-					explosion2.s = (int) (Math.random() * -30D);
+							myX + (float) (Math.random() * super.mySprite.C - super.mySprite.D),
+							myY + (float) (Math.random() * super.mySprite.B - super.mySprite.F), hSpeed,
+							vSpeed, 1, 2, 300, false);
+					explosion2.timeSinceEpoch = (int) (Math.random() * -30D);
 				}
 			}
 
@@ -1060,32 +1105,32 @@ final class oSpaceship extends GameObject {
 	}
 
 	@Override
-	final boolean Z(GameObject oGameObject1) {
-		if (oGameObject1.JI != 10 && super.Z(oGameObject1))
+	final boolean CheckCollision(final GameObject oGameObject1) {
+		if (oGameObject1.JI != 10 && super.CheckCollision(oGameObject1))
 			return true;
 		if (oGameObject1.JI == 8 || oGameObject1.JI == 10) {
-			if (oGameObject1.JI == 10 && super.Q != null && super.Q.JI == 11)
+			if (oGameObject1.JI == 10 && myFollower != null && myFollower.JI == 11)
 				return false;
-			int i = (int) (super.J - oGameObject1.J);
+			final int i = (int) (myX - oGameObject1.myX);
 			if (i > -500 && i < 500) {
-				int j = (int) (super.S - oGameObject1.S);
+				final int j = (int) (myY - oGameObject1.myY);
 				if (j > -500 && j < 500) {
 					int k = (int) (HNSM * 0.6F);
-					int l = super.y.A + oGameObject1.y.A;
+					final int l = super.mySprite.A + oGameObject1.mySprite.A;
 					if (l > k) {
 						k = l;
 						if (oGameObject1.JI == 8)
-							if (oGameObject1.ship_grade == 4)
+							if (oGameObject1.shipGrade == 4)
 								k = (int) (k * 1.5F);
 							else
 								k = (int) (k * 2.5F);
 					}
-					int i1 = k * k;
-					int j1 = i * i + j * j;
+					final int i1 = k * k;
+					final int j1 = i * i + j * j;
 					if (j1 < i1) {
 						random(i, j, j1);
 						if (oGameObject1.JI == 8) {
-							oSpaceship oSpaceship1 = (oSpaceship) oGameObject1;
+							final oSpaceship oSpaceship1 = (oSpaceship) oGameObject1;
 							oSpaceship1.random(-i, -j, j1);
 						}
 					}
@@ -1095,7 +1140,7 @@ final class oSpaceship extends GameObject {
 		return false;
 	}
 
-	final void random(int i, int j, int k) {
+	final void random(final int i, final int j, final int k) {
 		if (OI > 0 || !PI || QI != 3)
 			return;
 		float f;
@@ -1104,18 +1149,18 @@ final class oSpaceship extends GameObject {
 			f = 0.0F;
 			f1 = 1.0F;
 		} else {
-			float f2 = (float) Math.sqrt(k);
+			final float f2 = (float) Math.sqrt(k);
 			f = i / f2;
 			f1 = j / f2;
 		}
-		super.R = super.J + f * (0.7F + (float) Math.random() * 0.6F) * 300F + ((float) Math.random() * 300F - 150F);
-		super.T = super.S + f1 * (0.7F + (float) Math.random() * 0.6F) * 300F + ((float) Math.random() * 300F - 150F);
-		super.Q = null;
+		super.myDestX = myX + f * (0.7F + (float) Math.random() * 0.6F) * 300F + ((float) Math.random() * 300F - 150F);
+		super.myDestY = myY + f1 * (0.7F + (float) Math.random() * 0.6F) * 300F + ((float) Math.random() * 300F - 150F);
+		myFollower = null;
 		OI = 60;
 	}
 
 	@Override
-	final void I(GameObject oGameObject1, int i, int j) {
+	final void I(final GameObject oGameObject1, final int i, final int j) {
 		if (i > 0 && super.q > 0) {
 			println = 5 + (int) (Math.sin((float) super.o / (float) super.q * 1.5707963267948966D) * 20D);
 			random = 0;
@@ -1134,7 +1179,7 @@ final class oSpaceship extends GameObject {
 	int B;
 	int max;
 	int D;
-	oShipthrustor thrustors;
+	oShipthrustor myThrustors;
 	boolean out;
 	int println;
 	int random;

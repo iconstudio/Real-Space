@@ -18,7 +18,7 @@ final class oShipthrustor {
 		E = null;
 	}
 
-	final void I(int i, int j, int k, float f, sprite_group sprite_group1) {
+	final void I(int i, int j, int k, float f, SpriteGroup sprite_group1) {
 		H = i;
 		K = j;
 		M = f;
@@ -70,10 +70,10 @@ final class oShipthrustor {
 			if (owner.QI == 3 || owner.QI == 4) {
 				L++;
 				if (L % K == 0 && Z < 25) {
-					float f = (((GameObject) (owner)).W * ((GameObject) (owner)).W
-							+ ((GameObject) (owner)).X * ((GameObject) (owner)).X) * M;
+					float f = (((GameObject) (owner)).hAccel * ((GameObject) (owner)).hAccel
+							+ ((GameObject) (owner)).vAccel * ((GameObject) (owner)).vAccel) * M;
 					if (f > 0.01F) {
-						float f1 = ((float) ((GameObject) (owner)).d / (float) ((GameObject) (owner)).x.Z)
+						float f1 = ((float) ((GameObject) (owner)).frameIndex / (float) ((GameObject) (owner)).myAtlas.xCapacity)
 								* 6.283185F;
 						float f2 = (float) Math.cos(f1);
 						float f3 = (float) Math.sin(f1);
@@ -81,12 +81,12 @@ final class oShipthrustor {
 							f = (float) Math.sqrt(f);
 							float f4 = D[A];
 							float f5 = J[A];
-							HNSM[Z] = (((GameObject) (owner)).J + ((GameObject) (owner)).y.E + f4 * f2)
+							HNSM[Z] = (((GameObject) (owner)).myX + ((GameObject) (owner)).mySprite.E + f4 * f2)
 									- f5 * f3;
-							cos[Z] = ((GameObject) (owner)).S + ((GameObject) (owner)).y.G + f4 * f3
+							cos[Z] = ((GameObject) (owner)).myY + ((GameObject) (owner)).mySprite.G + f4 * f3
 									+ f5 * f2;
-							sin[Z] = ((GameObject) (owner)).K - f2 * f;
-							sqrt[Z] = ((GameObject) (owner)).L - f3 * f;
+							sin[Z] = ((GameObject) (owner)).hSpeed - f2 * f;
+							sqrt[Z] = ((GameObject) (owner)).vSpeed - f3 * f;
 							I[Z] = 0;
 							Z++;
 							A = (A + 1) % S;
@@ -109,9 +109,9 @@ final class oShipthrustor {
 				return;
 			}
 			for (int l = 0; l < Z; l++) {
-				int j = (E.I[0] * I[l]) / B;
-				if (j < E.I[0]) {
-					Sprite sprite1 = E.I(0, j);
+				int j = (E.spriteFrames[0] * I[l]) / B;
+				if (j < E.spriteFrames[0]) {
+					Sprite sprite1 = E.GetSprite(0, j);
 					surface1.I(sprite1, ((int) HNSM[l] - sprite1.D) + ((AppletImplements) (F)).WC,
 							((int) cos[l] - sprite1.F) + ((AppletImplements) (F)).XC, F);
 				}
@@ -133,7 +133,7 @@ final class oShipthrustor {
 	float J[];
 	int S;
 	int A;
-	sprite_group E;
+	SpriteGroup E;
 	boolean G;
 	int H;
 	int K;

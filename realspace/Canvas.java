@@ -113,9 +113,9 @@ final class Canvas implements ImageProducer {
 			HNSM(sprite1, i, j, applet);
 			return;
 		}
-		if (i < I && i + sprite1.C >= 0 && j < Z && j + sprite1.B >= 0) {
+		if (i < I && i + sprite1.GetWidth() >= 0 && j < Z && j + sprite1.B >= 0) {
 			int i3 = sprite1.Z;
-			if (i >= 0 && i + sprite1.C < I && j >= 0 && j + sprite1.B < Z) {
+			if (i >= 0 && i + sprite1.GetWidth() < I && j >= 0 && j + sprite1.B < Z) {
 				int i1 = j * I + i;
 				for (int k = 0; k < i3; k++) {
 					rlepart rlepart1 = sprite1.I[k];
@@ -156,9 +156,9 @@ final class Canvas implements ImageProducer {
 	}
 
 	final void DrawSprite(Sprite spr, int i, int j, int k, GameApp applet) {
-		if (j < I && j + spr.C >= 0 && k < Z && k + spr.B >= 0) {
+		if (j < I && j + spr.GetWidth() >= 0 && k < Z && k + spr.B >= 0) {
 			int l3 = spr.Z;
-			if (j >= 0 && j + spr.C < I && k >= 0 && k + spr.B < Z) {
+			if (j >= 0 && j + spr.GetWidth() < I && k >= 0 && k + spr.B < Z) {
 				int k1 = k * I + j;
 				for (int l = 0; l < l3; l++) {
 					rlepart rlepart1 = spr.I[l];
@@ -216,15 +216,16 @@ final class Canvas implements ImageProducer {
 			return;
 		}
 
-		if (i < I && i + spr.C >= 0 && j < Z && j + spr.B >= 0) 
+		if (i < I && i + spr.GetWidth() >= 0 && j < Z && j + spr.B >= 0) 
 		{
 			int l7 = spr.Z;
 			if (f < 0.0F)
 				f = 0.0F;
 			else if (f > 1.0F)
 				f = 1.0F;
+
 			int k4 = (int) (f * 255F);
-			if (i >= 0 && i + spr.C < I && j >= 0 && j + spr.B < Z) {
+			if (i >= 0 && i + spr.GetWidth() < I && j >= 0 && j + spr.B < Z) {
 				int j1 = j * I + i;
 				for (int k = 0; k < l7; k++) {
 					rlepart rlepart1 = spr.I[k];
@@ -291,9 +292,9 @@ final class Canvas implements ImageProducer {
 	}
 
 	final void HNSM(Sprite sprite1, int i, int j, GameApp applet) {
-		if (i < I && i + sprite1.C >= 0 && j < Z && j + sprite1.B >= 0) {
+		if (i < I && i + sprite1.GetWidth() >= 0 && j < Z && j + sprite1.B >= 0) {
 			int i8 = sprite1.Z;
-			if (i >= 0 && i + sprite1.C < I && j >= 0 && j + sprite1.B < Z) {
+			if (i >= 0 && i + sprite1.GetWidth() < I && j >= 0 && j + sprite1.B < Z) {
 				int j1 = j * I + i;
 				for (int k = 0; k < i8; k++) {
 					rlepart rlepart1 = sprite1.I[k];
@@ -377,7 +378,7 @@ final class Canvas implements ImageProducer {
 		int l = caption.length();
 		for (int i1 = 0; i1 < l; i1++) {
 			char char_current = caption.charAt(i1);
-			Sprite curr = char_current <= 0 || char_current >= Font.D ? null : font.I[char_current];
+			Sprite curr = char_current <= 0 || char_current >= Font.D ? null : font.fragSprites[char_current];
 			if (curr != null) {
 				if (color != 0xffffff)
 					DrawSprite(curr, color, j,
@@ -386,11 +387,11 @@ final class Canvas implements ImageProducer {
 				else
 					I(curr, j, (k - curr.B) + (char_current <= 0 || char_current >= Font.D ? 0 : font.Z[char_current]),
 							addConsumer);
-				j += curr.C + font.B;
+				j += curr.GetWidth() + font.myScaledWidth;
 			} else if (char_current == ' ')
-				j += font.B * 2;
+				j += font.myScaledWidth * 2;
 			else
-				j += font.B;
+				j += font.myScaledWidth;
 		}
 
 	}

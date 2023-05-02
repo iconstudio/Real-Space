@@ -5,9 +5,9 @@ package realspace;
 // Decompiler options: packimports(3) 
 // Source File Name:   star_y
 
-final class starfield {
+final class oStarfield {
 
-	starfield(GameApp applet, int number, int j, Palette agamecolorlist[]) {
+	oStarfield(GameApp applet, int number, int j, Palette agamecolorlist[]) {
 		owner = applet;
 		star_number = number;
 		star_number_start = number;
@@ -24,7 +24,7 @@ final class starfield {
 		star_blinking = new boolean[number];
 		star_blink = new int[number];
 		star_z = new float[number];
-		star_sprite_groups = new sprite_group[number];
+		star_sprite_groups = new SpriteGroup[number];
 		initialize();
 	}
 
@@ -123,7 +123,7 @@ final class starfield {
 				if (star_fade[i])
 					sprite1 = star_sprite_groups[i].I(0, star_blinkcounter[i], star_lifetime[i]);
 				else
-					sprite1 = star_sprite_groups[i].I(0, 0);
+					sprite1 = star_sprite_groups[i].GetSprite(0, 0);
 				surface1.I(sprite1, ((int) star_x[i] - sprite1.D) + sprite1.E,
 						((int) star_y[i] - sprite1.F) + sprite1.G, owner);
 			}
@@ -145,6 +145,6 @@ final class starfield {
 	int star_lifetime[];
 	int star_blink[];
 	float star_z[];
-	sprite_group star_sprite_groups[];
+	SpriteGroup star_sprite_groups[];
 	GameApp owner;
 }

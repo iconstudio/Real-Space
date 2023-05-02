@@ -11,51 +11,51 @@ final class oMeteor extends GameObject {
 	}
 
 	@Override
-	final void I() {
+	final void Update() {
 		if (F == -1)
-			super.y = super.x.I(super.d, super.x.I[0] - 1 - super.b % super.x.I[0]);
+			super.mySprite = super.myAtlas.GetSprite(super.frameIndex, super.myAtlas.spriteFrames[0] - 1 - super.animationIndex % super.myAtlas.spriteFrames[0]);
 		else
-			super.y = super.x.I(super.d, super.b);
-		C();
-		super.s++;
-		if (super.K > 0.0F && super.J > (GameApp.Instance).worldBorderRight
-				|| super.K < 0.0F && super.J < (GameApp.Instance).worldBorderLeft
-				|| super.L > 0.0F && super.S > (GameApp.Instance).worldBorderBottom
-				|| super.L < 0.0F && super.S < (GameApp.Instance).worldBorderTop)
+			super.mySprite = super.myAtlas.GetSprite(super.frameIndex, super.animationIndex);
+		UpdateWithSpeed();
+		super.timeSinceEpoch++;
+		if (super.hSpeed > 0.0F && super.myX > (GameApp.Instance).worldBorderRight
+				|| super.hSpeed < 0.0F && super.myX < (GameApp.Instance).worldBorderLeft
+				|| super.vSpeed > 0.0F && super.myY > (GameApp.Instance).worldBorderBottom
+				|| super.vSpeed < 0.0F && super.myY < (GameApp.Instance).worldBorderTop)
 			Equip(true, null);
 	}
 
 	@Override
 	final void Equip(boolean flag, GameObject oGameObject1) {
 		if (oGameObject1 != null && oGameObject1.JI == 8)
-			super.ascore = 0;
+			super.acqScores = 0;
 		super.Equip(flag, oGameObject1);
 		int i = super.m + super.n / 3;
 		byte byte0 = 1;
 		boolean flag1 = false;
-		sprite_group sprite_group1 = GameApp.Instance.C;
+		SpriteGroup sprite_group1 = GameApp.Instance.C;
 		Palette palette = null;
 		if (!flag) {
-			switch (super.ship_grade) {
+			switch (super.shipGrade) {
 			case 1: // '\001'
-				GameApp.Instance.NZ.I(GameApp.Instance.WZ, true, false);
+				GameApp.Instance.everySFXs.Play(GameApp.Instance.WZ, true, false);
 				break;
 
 			case 2: // '\002'
-				GameApp.Instance.NZ.I(GameApp.Instance.WZ, true, false);
+				GameApp.Instance.everySFXs.Play(GameApp.Instance.WZ, true, false);
 				break;
 
 			case 3: // '\003'
-				GameApp.Instance.NZ.I(GameApp.Instance.iZ, true, false);
+				GameApp.Instance.everySFXs.Play(GameApp.Instance.iZ, true, false);
 				sprite_group1 = GameApp.Instance.C;
 				palette = GameApp.Instance.FZ;
 				byte0 = 3;
 				flag1 = true;
 				break;
 			}
-			Explosion explosion1 = (Explosion) GameApp.Instance.rZ.I(GameApp.Instance.oZ);
+			Explosion explosion1 = (Explosion) GameApp.Instance.rZ.GiveLastInstanceTo(GameApp.Instance.oZ);
 			if (explosion1 != null) {
-				explosion1.I(sprite_group1, byte0, super.J, super.S, super.K, super.L, 1, 2, i, flag1);
+				explosion1.I(sprite_group1, byte0, super.myX, super.myY, super.hSpeed, super.vSpeed, 1, 2, i, flag1);
 				if (palette != null)
 					explosion1.F = palette;
 			}

@@ -1,47 +1,60 @@
 package realspace;
-// Decompiled by Jad v1.5.8f. Copyright 2001 Pavel Kouznetsov.
 
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) 
-// Source File Name:   star_y
+class GameObject
+{
+	GameApp gameApplet;
+	int activeMode;
+	boolean isEnabled;
+	boolean isVisible;
+	GameObjectPool ownsPool;
 
-class GameObject {
-	float J;
-	float S;
-	int A;
-	int E;
-	int G;
-	int H;
-	float K;
-	float L;
+	SpriteGroup myAtlas;
+	Sprite mySprite;
+	int animationIndex;
+	int frameIndex;
+	boolean hasAnimation;
+	
+	int timeSinceEpoch;
+	int warpCounter;
+	
+	float myX;
+	float myY;
+	float hSpeed;
+	float vSpeed;
+	float hAccel;
+	float vAccel;
+	float myFriction;
+	float hRandomSpeed;
+	float vRandomSpeed;
+	float myRotation;
+
+	float accelFactorOnStage;
+	boolean wouldWarpApproximately;
+
+	int borderLeft;
+	int borderBottom;
+	int borderRight;
+	int borderTop;
+	boolean wouldRenderHealthbar;
+
+	GameObject myFollower;
+	float myDestX;
+	float myDestY;
+
+	GameObjectPool myWeapons;
+	int shipGrade;
+	int acqScores;
+
 	float M;
-	float N;
-	float O;
 	boolean P;
-	GameObject Q;
-	float R;
-	float T;
-	float U;
-	float V;
-	float W;
-	float X;
-	float Y;
 	float i;
 	boolean atan;
 	float z;
 	float c;
-	boolean cos;
-	int b;
-	int d;
-	boolean f;
 	int j;
-	int round;
-	int s;
 	int a;
-	int e;
 	GameObject g;
 	boolean h;
-	GameObjectPool k;
 	boolean l;
 	int m;
 	int n;
@@ -52,39 +65,46 @@ class GameObject {
 	boolean r;
 	int sqrt;
 	int t;
-	boolean u;
-	boolean v;
-	boolean w;
-	sprite_group x;
-	Sprite y;
 	boolean II;
 	String ZI;
 	boolean CI;
 	float BI;
 	int DI;
 	int JI;
-	int ship_grade;
 	int AI;
 	int EI;
-	int ascore;
 	int HI;
-	GameObjectPool FI;
 
-	public GameObject(GameApp applet)
+	public GameObject(final GameApp applet)
 	{
-		GameApp.Instance = applet;
-		k = null;
-		FI = null;
-		e = 2;
+		gameApplet = applet;
+		myWeapons = null;
+		ownsPool = null;
+		activeMode = 2;
 	}
 
-	protected final void Awake(sprite_group spr, int i1, int j1, int k1, int l1, boolean flag)
+	protected final void Awake(final SpriteGroup atlas, final int i1, final int j1, final int k1, final int l1, final boolean flag)
 	{
-		Awake(spr, i1, j1, k1, l1, flag, null, true);
+		Awake(atlas, i1, j1, k1, l1, flag, null, true);
 	}
 
-	protected final void Awake(sprite_group spr, int i1, int j1, int k1, int l1, boolean flag, GameObject oGameObject1, boolean flag1) {
-		x = spr;
+	protected final void Awake(final SpriteGroup atlas, final int i1, final int j1, final int k1, final int l1, final boolean flag, final GameObject oGameObject1, final boolean flag1)
+	{
+		activeMode = 1;
+		isEnabled = true;
+		isVisible = false;
+		timeSinceEpoch = 0;
+		warpCounter = 0;
+		wouldRenderHealthbar = false;
+
+		myAtlas = atlas;
+		mySprite = null;
+
+		borderLeft = 0;
+		borderRight = 0;
+		borderBottom = 0;
+		borderTop = 0;
+
 		m = j1;
 		o = k1;
 		n = l1;
@@ -94,37 +114,26 @@ class GameObject {
 		r = flag;
 		sqrt = 0;
 		t = 0;
-		u = false;
-		s = 0;
-		b = 0;
-		d = 0;
-		round = 0;
-		f = false;
-		y = null;
-		e = 1;
-		w = true;
-		v = false;
-		Q = null;
-		U = 0.0F;
-		V = 0.0F;
+		animationIndex = 0;
+		frameIndex = 0;
+		hasAnimation = false;
+		myFollower = null;
+		hRandomSpeed = 0.0F;
+		vRandomSpeed = 0.0F;
 		P = false;
 		i = 0.0F;
 		z = 0.0F;
 		c = 0.0F;
-		K = 0.0F;
-		L = 0.0F;
+		hSpeed = 0.0F;
+		vSpeed = 0.0F;
 		DI = 1;
 		EI = 3;
-		ascore = 0;
+		acqScores = 0;
 		BI = 0.0F;
 		JI = i1;
-		ship_grade = 0;
+		shipGrade = 0;
 		AI = 0;
-		A = 0;
-		G = 0;
-		E = 0;
-		H = 0;
-		Y = 0.0F;
+		myRotation = 0.0F;
 		atan = false;
 		CI = false;
 		II = false;
@@ -132,453 +141,593 @@ class GameObject {
 		HI = -1;
 		g = oGameObject1;
 		h = flag1;
-		if (k != null)
-			k.I();
+
+		if (myWeapons != null)
+		{
+			myWeapons.I();
+		}
+
 		l = false;
 		if (g != null && flag1)
+		{
 			g.l = true;
+		}
 	}
 
-	void Draw(Canvas surface1) {
-		if (y != null && w) {
-			if (t > 0) {
+	void Draw(final Canvas canvas)
+	{
+		if (mySprite != null && isEnabled)
+		{
+			if (t > 0)
+			{
 				if (n <= 0)
-					surface1.Z((int) J + (GameApp.Instance).WC, (int) S + (GameApp.Instance).XC,
-							(y.D + 10) - sqrt * 3, (y.F + 10) - sqrt * 3, (GameApp.Instance).MB.Pick(sqrt, t));
+				{
+					canvas.Z((int) myX + (GameApp.Instance).WC, (int) myY + (GameApp.Instance).XC,
+						(mySprite.D + 10) - sqrt * 3, (mySprite.F + 10) - sqrt * 3, (GameApp.Instance).MB.Pick(sqrt, t));
+				}
 				else
-					surface1.Z((int) J + (GameApp.Instance).WC, (int) S + (GameApp.Instance).XC, y.D + 10, y.F + 10,
-							(GameApp.Instance).LB.Pick(sqrt, t));
+				{
+					canvas.Z((int) myX + (GameApp.Instance).WC, (int) myY + (GameApp.Instance).XC, mySprite.D + 10, mySprite.F + 10, (GameApp.Instance).LB.Pick(sqrt, t));
+				}
+
 				sqrt++;
-				if (sqrt >= t)
+				if (t <= sqrt)
+				{
 					t = 0;
+				}
 			}
 
-			surface1.I(y, A + (GameApp.Instance).WC, E + (GameApp.Instance).XC, GameApp.Instance);
+			canvas.I(mySprite, borderLeft + (GameApp.Instance).WC, borderBottom + (GameApp.Instance).XC, GameApp.Instance);
 
-			if (u) {
-				int i1 = (Math.round(J) - 15) + (GameApp.Instance).WC;
-				int j1 = Math.round(S) + y.F + 5 + (GameApp.Instance).XC;
-				float f1 = (float) (o + n) / (float) (p + q);
+			// false
+			if (wouldRenderHealthbar)
+			{
+				final int i1 = (Math.round(myX) - 15) + (GameApp.Instance).WC;
+				final int j1 = Math.round(myY) + mySprite.F + 5 + (GameApp.Instance).XC;
+				final float f1 = (float) (o + n) / (float) (p + q);
 
-				gameutil.DrawGaugebar(surface1, i1, j1, 30, 10, f1, Colours.Red, Colours.Green);
+				gameutil.DrawGaugebar(canvas, i1, j1, 30, 10, f1, Colours.Red, Colours.Green);
 			}
 		}
 
-		if (k != null) {
-			k.I(surface1);
+		if (myWeapons != null)
+		{
+			myWeapons.Draw(canvas);
 		}
 	}
 
-	final void Z() {
-		if (s < 0)
-			s++;
-		else if (j == 0) {
-			I();
-			v = true;
-		} else {
-			round--;
-			if (round <= 0) {
-				I();
-				v = true;
-				round = j;
+	final void Warp()
+	{
+		if (timeSinceEpoch < 0)
+		{
+			timeSinceEpoch++;
+		}
+		else if (j == 0)
+		{
+			Update();
+			isVisible = true;
+		}
+		else
+		{
+			if (--warpCounter <= 0)
+			{
+				Update();
+
+				isVisible = true;
+				warpCounter = j;
 			}
 		}
-		if (k != null)
-			k.Z();
+
+		if (myWeapons != null)
+		{
+			myWeapons.Warp();
+		}
 	}
 
-	void I() {
-		switch (DI) {
+	void Update()
+	{
+		switch (DI)
+		{
 			case 5: // '\005'
 				S();
-				s++;
+				timeSinceEpoch++;
 				return;
 
 			case 8: // '\b'
-				D();
+				UpdateWithFollower2();
 				return;
 
 			case 6: // '\006'
-				B();
-				s++;
+				UpdateWithFollower1();
+				timeSinceEpoch++;
 				return;
 
 			case 3: // '\003'
-				C();
-				s++;
+				UpdateWithSpeed();
+				timeSinceEpoch++;
 				return;
 
 			case 4: // '\004'
-				HNSM();
-				s++;
+				UpdateWithFriction();
+				timeSinceEpoch++;
 				return;
 
 			case 2: // '\002'
-				F();
-				if (f)
-					b++;
-				s++;
+				CalcCollisionBox();
+				if (hasAnimation)
+					animationIndex++;
+				timeSinceEpoch++;
 				return;
 
 			case 7: // '\007'
 			default:
-				F();
+				CalcCollisionBox();
 				break;
 		}
-		if (f)
-			b++;
-		s++;
+
+		if (hasAnimation)
+		{
+			animationIndex++;
+		}
+
+		timeSinceEpoch++;
 	}
 
-	final void C() {
-		J += K;
-		S += L;
-		if (f)
-			b++;
-		F();
+	final void UpdateWithSpeed()
+	{
+		myX += hSpeed;
+		myY += vSpeed;
+
+		if (hasAnimation)
+		{
+			animationIndex++;
+		}
+
+		CalcCollisionBox();
 	}
 
-	final void HNSM() {
-		float f1 = K * O;
-		float f2 = L * O;
-		K = K - f1;
-		L = L - f2;
-		J += K;
-		S += L;
-		F();
-		if (f)
-			b++;
+	final void UpdateWithFriction()
+	{
+		final float f1 = hSpeed * myFriction;
+		final float f2 = vSpeed * myFriction;
+		hSpeed = hSpeed - f1;
+		vSpeed = vSpeed - f2;
+		myX += hSpeed;
+		myY += vSpeed;
+
+		if (hasAnimation)
+		{
+			animationIndex++;
+		}
+
+		CalcCollisionBox();
 	}
 
-	final void S() {
-		K += W;
-		L += X;
-		J += K;
-		S += L;
-		if (f)
-			b++;
-		F();
+	final void S() 
+	{
+		hSpeed += hAccel;
+		vSpeed += vAccel;
+		myX += hSpeed;
+		myY += vSpeed;
+
+		if (hasAnimation)
+		{
+			animationIndex++;
+		}
+
+		CalcCollisionBox();
 	}
 
-	final void B() {
-		if (P) {
-			if (Q != null && Q.e == 1 && Q.v) {
-				R = Q.J;
-				T = Q.S;
+	final void UpdateWithFollower1()
+	{
+		if (P)
+		{
+			if (myFollower != null && myFollower.activeMode == 1 && myFollower.isVisible)
+			{
+				myDestX = myFollower.myX;
+				myDestY = myFollower.myY;
 			}
-			if (P) {
-				float f1 = (R + U) - J;
-				float f2 = (T + V) - S;
-				float f3 = (float) Math.sqrt(f1 * f1 + f2 * f2);
-				float f4 = K * K + L * L;
-				if (cos) {
-					if (f3 < 1.0F) {
-						W = 0.0F;
-						X = 0.0F;
-						K = 0.0F;
-						L = 0.0F;
-					} else {
-						W = (f1 / f3) * N;
-						X = (f2 / f3) * N;
-						if (f3 < M) {
-							K = K * (f3 / M);
-							L = L * (f3 / M);
+
+			if (P)
+			{
+				final float f1 = (myDestX + hRandomSpeed) - myX;
+				final float f2 = (myDestY + vRandomSpeed) - myY;
+				final float square_dist = (float) Math.sqrt(f1 * f1 + f2 * f2);
+				final float square_speed = hSpeed * hSpeed + vSpeed * vSpeed;
+
+				if (wouldWarpApproximately)
+				{
+					if (square_dist < 1.0F)
+					{
+						// Stops and warp now
+						hAccel = 0.0F;
+						vAccel = 0.0F;
+						hSpeed = 0.0F;
+						vSpeed = 0.0F;
+					}
+					else
+					{
+						// Slide
+						hAccel = (f1 / square_dist) * accelFactorOnStage;
+						vAccel = (f2 / square_dist) * accelFactorOnStage;
+
+						if (square_dist < M)
+						{
+							hSpeed = hSpeed * (square_dist / M);
+							vSpeed = vSpeed * (square_dist / M);
 						}
 					}
-				} else if (f3 < 1.0F && f4 < 0.04F) {
-					K = (float) Math.random() * 2.0F - 1.0F;
-					L = (float) Math.random() * 2.0F - 1.0F;
-					W = 0.0F;
-					X = 0.0F;
-				} else if (f3 < 0.001F) {
-					W = 0.0F;
-					X = 0.0F;
-				} else {
-					W = (f1 / f3) * N;
-					X = (f2 / f3) * N;
+				}
+				else if (square_dist < 1.0F && square_speed < 0.04F)
+				{
+					hSpeed = (float) Math.random() * 2.0F - 1.0F;
+					vSpeed = (float) Math.random() * 2.0F - 1.0F;
+					hAccel = 0.0F;
+					vAccel = 0.0F;
+				}
+				else if (square_dist < 0.001F)
+				{
+					hAccel = 0.0F;
+					vAccel = 0.0F;
+				}
+				else
+				{
+					hAccel = (f1 / square_dist) * accelFactorOnStage;
+					vAccel = (f2 / square_dist) * accelFactorOnStage;
 				}
 			}
 		}
-		K = (K - K * O) + W;
-		L = (L - L * O) + X;
-		J += K;
-		S += L;
-		if (f)
-			b++;
-		F();
+
+		hSpeed = (hSpeed - hSpeed * myFriction) + hAccel;
+		vSpeed = (vSpeed - vSpeed * myFriction) + vAccel;
+		myX += hSpeed;
+		myY += vSpeed;
+
+		if (hasAnimation)
+		{
+			animationIndex++;
+		}
+
+		CalcCollisionBox();
 	}
 
-	final void D() {
-		if (P) {
-			if (Q != null && Q.e == 1 && Q.v) {
-				R = Q.J;
-				T = Q.S;
+	final void UpdateWithFollower2()
+	{
+		if (P)
+		{
+			if (myFollower != null && myFollower.activeMode == 1 && myFollower.isVisible)
+			{
+				myDestX = myFollower.myX;
+				myDestY = myFollower.myY;
 			}
-			if (P) {
-				float f1 = (R + U) - J;
-				float f2 = (T + V) - S;
-				if (f1 == 0.0F) {
-					if (f2 >= 0.0F)
+
+			if (P)
+			{
+				final float gap_x = (myDestX + hRandomSpeed) - myX;
+				final float gap_y = (myDestY + vRandomSpeed) - myY;
+				if (gap_x == 0.0F)
+				{
+					if (0f <= gap_y)
 						i = 1.570796F;
 					else
 						i = 4.712389F;
-				} else {
-					float f3 = f2 / f1;
+				}
+				else
+				{
+					final float f3 = gap_y / gap_x;
 					i = (float) Math.atan(f3);
-					if (f1 >= 0.0F) {
-						if (f2 < 0.0F)
+
+					if (0f <= gap_x)
+					{
+						if (gap_y < 0.0F)
+						{
 							i = 6.283185F + i;
-					} else {
+						}
+					}
+					else
+					{
 						i = 3.141593F + i;
 					}
 				}
-				float f4 = i - Y;
+
+				float f4 = i - myRotation;
 				if (f4 < -3.141593F)
 					f4 += 6.283185F;
 				else if (f4 > 3.141593F)
 					f4 -= 6.283185F;
+					
 				if (f4 < -z)
-					Y -= z;
+					myRotation -= z;
 				else if (f4 > z)
-					Y += z;
+					myRotation += z;
 				else
-					Y += f4;
-				if (Y < 0.0F)
-					Y += 6.283185F;
-				else if (Y >= 6.283185F)
-					Y -= 6.283185F;
-				d = x.I(Y);
-				W = (float) Math.cos(Y) * N;
-				X = (float) Math.sin(Y) * N;
+					myRotation += f4;
+
+				if (myRotation < 0.0F)
+					myRotation += 6.283185F;
+				else if (myRotation >= 6.283185F)
+					myRotation -= 6.283185F;
+
+				frameIndex = myAtlas.GetFrameByRotation(myRotation);
+				hAccel = (float) Math.cos(myRotation) * accelFactorOnStage;
+				vAccel = (float) Math.sin(myRotation) * accelFactorOnStage;
 			}
 		}
-		if (f)
-			b++;
-		y = x.I(d, b);
-		K = (K - K * O) + W;
-		L = (L - L * O) + X;
-		J += K;
-		S += L;
-		F();
-		s++;
+
+		mySprite = myAtlas.GetSprite(frameIndex, animationIndex);
+		hSpeed = (hSpeed - hSpeed * myFriction) + hAccel;
+		vSpeed = (vSpeed - vSpeed * myFriction) + vAccel;
+		myX += hSpeed;
+		myY += vSpeed;
+
+		if (hasAnimation)
+		{
+			animationIndex++;
+		}
+
+		CalcCollisionBox();
+
+		timeSinceEpoch++;
 	}
 
-	final void I(GameObject oGameObject1) {
-		if (oGameObject1 != null && oGameObject1.e == 1) {
-			float f1 = oGameObject1.J - J;
-			float f3 = oGameObject1.S - S;
-			if (f1 == 0.0F) {
-				if (f3 >= 0.0F)
+	final void UpdateWithAttacks(final GameObject target)
+	{
+		if (target != null && target.activeMode == 1)
+		{
+			final float gap_x = target.myX - myX;
+			final float gap_y = target.myY - myY;
+
+			if (gap_x == 0.0F)
+			{
+				if (gap_y >= 0.0F)
 					i = 1.570796F;
 				else
 					i = 4.712389F;
-			} else {
-				float f4 = f3 / f1;
+			}
+			else
+			{
+				final float f4 = gap_y / gap_x;
 				i = (float) Math.atan(f4);
-				if (f1 >= 0.0F) {
-					if (f3 < 0.0F)
+
+				if (gap_x >= 0.0F)
+				{
+					if (gap_y < 0.0F)
 						i = 6.283185F + i;
-				} else {
+				}
+				else 
+				{
 					i = 3.141593F + i;
 				}
 			}
 		}
-		float f2 = i - Y;
+
+		float f2 = i - myRotation;
 		if (f2 < -3.1415926535897931D)
 			f2 += 6.283185F;
 		else if (f2 > 3.1415926535897931D)
 			f2 -= 6.283185F;
 		if (f2 < -z)
-			Y -= z;
+			myRotation -= z;
 		else if (f2 > z)
-			Y += z;
+			myRotation += z;
 		else
-			Y = i;
-		if (Y < 0.0F) {
-			for (; Y < 0.0F; Y += 6.283185F)
+			myRotation = i;
+		if (myRotation < 0.0F)
+		{
+			for (; myRotation < 0.0F; myRotation += 6.283185F)
 				;
 			return;
 		}
-		if (Y >= 6.283185F)
-			for (; Y >= 6.283185F; Y -= 6.283185F)
-				;
-	}
 
-	final void F() {
-		if (y != null) {
-			A = ((int) (J + 0.5F) - y.D) + y.E;
-			E = ((int) (S + 0.5F) - y.F) + y.G;
-			G = A + y.C;
-			H = E + y.B;
+		if (myRotation >= 6.283185F)
+		{
+			for (; myRotation >= 6.283185F; myRotation -= 6.283185F)
+			{}
 		}
 	}
 
-	final void I(float f1, float f2, boolean flag) {
-		J = f1;
-		S = f2;
-		K = 0.0F;
-		L = 0.0F;
-		W = 0.0F;
-		X = 0.0F;
+	final void CalcCollisionBox()
+	{
+		if (mySprite != null)
+		{
+			borderLeft = ((int) (myX + 0.5F) - mySprite.D) + mySprite.E;
+			borderBottom = ((int) (myY + 0.5F) - mySprite.F) + mySprite.G;
+			borderRight = borderLeft + mySprite.C;
+			borderTop = borderBottom + mySprite.B;
+		}
+	}
+
+	final void CleanupPhysics(final float x, final float y, final boolean flag)
+	{
+		myX = x;
+		myY = y;
+		hSpeed = 0.0F;
+		vSpeed = 0.0F;
+
+		hAccel = 0.0F;
+		vAccel = 0.0F;
 		P = false;
-		f = flag;
+
+		hasAnimation = flag;
 		DI = 2;
 	}
 
-	final void I(float f1, float f2, float f3, float f4, float f5, float f6, boolean flag) {
-		J = f1;
-		S = f2;
-		K = f3;
-		L = f4;
-		W = f5;
-		X = f6;
+	final void SetupPhysics1(final float f1, final float f2, final float f3, final float f4, final float f5, final float f6, final boolean flag)
+	{
+		myX = f1;
+		myY = f2;
+		hSpeed = f3;
+		vSpeed = f4;
+		hAccel = f5;
+		vAccel = f6;
 		P = false;
-		f = flag;
+
+		hasAnimation = flag;
 		DI = 5;
 	}
 
-	final void I(float f1, float f2, float f3, float f4, boolean flag) {
-		J = f1;
-		S = f2;
-		K = f3;
-		L = f4;
-		W = 0.0F;
-		X = 0.0F;
+	final void SetupPhysics2(final float f1, final float f2, final float f3, final float f4, final boolean flag) 
+	{
+		myX = f1;
+		myY = f2;
+		hSpeed = f3;
+		vSpeed = f4;
+
+		hAccel = 0.0F;
+		vAccel = 0.0F;
 		P = false;
-		f = flag;
+
+		hasAnimation = flag;
 		DI = 3;
 	}
 
-	final void Z(float f1, float f2, float f3, float f4, float f5, float f6, boolean flag) {
-		J = f1;
-		S = f2;
-		K = f3;
-		L = f4;
+	final void SetupPhysics3(final float f1, final float f2, final float f3, final float f4, final float f5, final float f6, final boolean flag)
+	{
+		myX = f1;
+		myY = f2;
+		hSpeed = f3;
+		vSpeed = f4;
 		M = f5;
-		N = f5 * 0.08F;
-		O = f6;
-		W = 0.0F;
-		X = 0.0F;
-		f = flag;
+		accelFactorOnStage = f5 * 0.08F;
+		myFriction = f6;
+		hAccel = 0.0F;
+		vAccel = 0.0F;
+		hasAnimation = flag;
 		DI = 4;
 	}
 
-	final void I(float f1, float f2, float f3, float f4, float f5, boolean flag) {
-		J = f1;
-		S = f2;
-		float f6 = f3 - f1;
-		float f7 = f4 - f2;
-		float f8 = (float) Math.sqrt(f6 * f6 + f7 * f7);
+	final void SetupPhysics4(final float f1, final float f2, final float f3, final float f4, final float f5, final boolean flag)
+	{
+		myX = f1;
+		myY = f2;
+
+		final float f6 = f3 - f1;
+		final float f7 = f4 - f2;
+		final float f8 = (float) Math.sqrt(f6 * f6 + f7 * f7);
 		if (f8 != 0.0F) {
-			K = (f6 / f8) * f5;
-			L = (f7 / f8) * f5;
+			hSpeed = (f6 / f8) * f5;
+			vSpeed = (f7 / f8) * f5;
 		} else {
-			K = 1.0F;
-			L = 0.0F;
+			hSpeed = 1.0F;
+			vSpeed = 0.0F;
 		}
+
 		P = false;
-		W = 0.0F;
-		X = 0.0F;
-		f = flag;
+		hAccel = 0.0F;
+		vAccel = 0.0F;
+
+		hasAnimation = flag;
 		DI = 3;
 	}
 
-	final void I(float f1, float f2, GameObject oGameObject1, float f3, float f4, float f5, float f6, boolean flag,
-			boolean flag1) {
-		J = f1;
-		S = f2;
+	final void SetupPhysics5(final float f1, final float f2, final GameObject oGameObject1, float f3, float f4, final float f5, final float f6, final boolean flag, final boolean flag1)
+	{
+		myX = f1;
+		myY = f2;
 		if (oGameObject1 != null) {
-			f3 = oGameObject1.J;
-			f4 = oGameObject1.S;
+			f3 = oGameObject1.myX;
+			f4 = oGameObject1.myY;
 		}
-		U = 0.0F;
-		V = 0.0F;
+
+		hRandomSpeed = 0.0F;
+		vRandomSpeed = 0.0F;
+
 		P = true;
-		cos = flag;
-		Q = oGameObject1;
-		R = f3;
-		T = f4;
-		float f7 = f3 - f1;
-		float f8 = f4 - f2;
-		float f9 = (float) Math.sqrt(f7 * f7 + f8 * f8);
+		wouldWarpApproximately = flag;
+
+		myFollower = oGameObject1;
+		myDestX = f3;
+		myDestY = f4;
+		final float f7 = f3 - f1;
+		final float f8 = f4 - f2;
+		final float f9 = (float) Math.sqrt(f7 * f7 + f8 * f8);
 		if (f9 == 0.0F) {
-			K = 0.0F;
-			L = f5;
+			hSpeed = 0.0F;
+			vSpeed = f5;
 		} else {
-			K = (f7 / f9) * f5;
-			L = (f8 / f9) * f5;
+			hSpeed = (f7 / f9) * f5;
+			vSpeed = (f8 / f9) * f5;
 		}
-		W = K;
-		X = L;
+
+		hAccel = hSpeed;
+		vAccel = vSpeed;
 		M = f5;
-		N = f5 * f6;
-		O = f6;
-		f = flag1;
+		accelFactorOnStage = f5 * f6;
+		myFriction = f6;
+
+		hasAnimation = flag1;
 		DI = 6;
 	}
 
-	final void I(float f1, float f2, GameObject oGameObject1, float f3, float f4, float f5, float f6, float f7,
-			boolean flag) {
-		J = f1;
-		S = f2;
-		if (oGameObject1 != null) {
-			f3 = oGameObject1.J;
-			f4 = oGameObject1.S;
+	final void SetupPhysics6(final float f1, final float f2, final GameObject follower, float f3, float f4, final float f5, final float f6, final float f7, final boolean flag)
+	{
+		myX = f1;
+		myY = f2;
+		if (follower != null) {
+			f3 = follower.myX;
+			f4 = follower.myY;
 		}
-		U = 0.0F;
-		V = 0.0F;
-		if (!atan) {
+		hRandomSpeed = 0.0F;
+		vRandomSpeed = 0.0F;
+
+		myFollower = follower;
+		hSpeed = (float) Math.cos(myRotation) * f5;
+		vSpeed = (float) Math.sin(myRotation) * f5;
+		hAccel = hSpeed;
+		vAccel = vSpeed;
+		M = f5;
+		accelFactorOnStage = f5 * f7;
+		myFriction = f7;
+		P = true;
+		myDestX = f3;
+		myDestY = f4;
+		z = myAtlas.S * f6;
+		c = f6;
+
+		hAccel = (float) Math.cos(myRotation) * f5;
+		vAccel = (float) Math.sin(myRotation) * f5;
+
+		if (!atan)
+		{
 			atan = true;
-			float f8 = f3 - J;
-			float f9 = f4 - S;
+			final float f8 = f3 - myX;
+			final float f9 = f4 - myY;
 			if (f8 == 0.0F) {
 				if (f9 >= 0.0F)
-					Y = 1.570796F;
+					myRotation = 1.570796F;
 				else
-					Y = 4.712389F;
+					myRotation = 4.712389F;
 			} else {
-				float f10 = f9 / f8;
-				Y = (float) Math.atan(f10);
+				final float f10 = f9 / f8;
+				myRotation = (float) Math.atan(f10);
 				if (f8 >= 0.0F) {
 					if (f9 < 0.0F)
-						Y = 6.283185F + Y;
+						myRotation = 6.283185F + myRotation;
 				} else {
-					Y = 3.141593F + Y;
+					myRotation = 3.141593F + myRotation;
 				}
 			}
 		}
-		K = (float) Math.cos(Y) * f5;
-		L = (float) Math.sin(Y) * f5;
-		W = K;
-		X = L;
-		M = f5;
-		N = f5 * f7;
-		O = f7;
-		P = true;
-		Q = oGameObject1;
-		R = f3;
-		T = f4;
-		z = x.S * f6;
-		c = f6;
-		W = (float) Math.cos(Y) * f5;
-		X = (float) Math.sin(Y) * f5;
-		b = 0;
-		d = x.I(Y);
-		y = x.I(d, b);
-		f = flag;
+
+		animationIndex = 0;
+		frameIndex = myAtlas.GetFrameByRotation(myRotation);
+		mySprite = myAtlas.GetSprite(frameIndex, animationIndex);
+		hasAnimation = flag;
 		DI = 8;
 	}
 
-	void Equip(boolean flag, GameObject oGameObject1) {
-		e = 2;
-		if (EI == 2 && !flag && ascore > 0)
-			GameApp.Instance.Z(ascore);
-		if (k != null) {
-			GameObjectPool oGameObjectlist1 = k;
+	void Equip(final boolean flag, final GameObject oGameObject1)
+	{
+		activeMode = 2;
+		if (EI == 2 && !flag && acqScores > 0)
+			GameApp.Instance.Z(acqScores);
+		if (myWeapons != null) {
+			final GameObjectPool oGameObjectlist1 = myWeapons;
 			oGameObjectlist1.I(flag, oGameObject1, -1, -1, -1, -1);
 		}
+
 		if (II) {
-			gameobjectivelist gameobjectivelist1;
+			GameQuest gameobjectivelist1;
 			if (EI == 2)
 				gameobjectivelist1 = GameApp.Instance.currentMission.C;
 			else
@@ -606,68 +755,97 @@ class GameObject {
 		}
 	}
 
-	boolean Z(GameObject oGameObject1) {
-		if (A < oGameObject1.G && G > oGameObject1.A && E < oGameObject1.H && H > oGameObject1.E
-				&& atan(oGameObject1)) {
-			int i1 = oGameObject1.m + oGameObject1.n;
-			int j1 = m + n;
-			I(i1, oGameObject1);
-			oGameObject1.I(j1, this);
+	boolean CheckCollision(final GameObject other)
+	{
+		if (borderLeft < other.borderRight && borderRight > other.borderLeft
+		&& borderBottom < other.borderTop && borderTop > other.borderBottom 
+		&& atan(other))
+		{
+			final int i1 = other.m + other.n;
+			final int j1 = m + n;
+			I(i1, other);
+			other.I(j1, this);
+
 			return true;
-		} else {
+		}
+		else
+		{
 			return false;
 		}
 	}
 
-	final boolean atan(GameObject oGameObject1) {
-		if (y == null || oGameObject1.y == null)
+	final boolean atan(final GameObject part)
+	{
+		if (mySprite == null || part.mySprite == null)
+		{
 			return false;
-		Sprite sprite1 = y;
-		Sprite sprite2 = oGameObject1.y;
-		int i1 = sprite1.Z;
-		int j1 = sprite2.Z;
+		}
+
+		final Sprite sprite1 = mySprite;
+		final Sprite sprite2 = part.mySprite;
+		final int i1 = sprite1.Z;
+		final int j1 = sprite2.Z;
 		rlepart rlepart1 = sprite1.I[0];
 		rlepart rlepart2 = sprite2.I[0];
-		int k1 = E + rlepart1.Z;
-		int l1 = oGameObject1.E + rlepart2.Z;
+		int k1 = borderBottom + rlepart1.Z;
+		int l1 = part.borderBottom + rlepart2.Z;
 		int i2 = 0;
+
 		for (int j2 = 0; i2 < i1 && j2 < j1;)
-			if (k1 == l1) {
-				int k2 = A + rlepart1.I;
-				int l2 = k2 + rlepart1.C;
-				int i3 = oGameObject1.A + rlepart2.I;
-				int j3 = i3 + rlepart2.C;
+		{
+			if (k1 == l1)
+			{
+				final int k2 = borderLeft + rlepart1.I;
+				final int l2 = k2 + rlepart1.C;
+				final int i3 = part.borderLeft + rlepart2.I;
+				final int j3 = i3 + rlepart2.C;
 				if (k2 < j3 && l2 > i3)
 					return true;
-				if (k2 < i3) {
-					if (++i2 < i1) {
+
+				if (k2 < i3)
+				{
+					if (++i2 < i1)
+					{
 						rlepart1 = sprite1.I[i2];
-						k1 = E + rlepart1.Z;
+						k1 = borderBottom + rlepart1.Z;
 					}
-				} else if (++j2 < j1) {
+				}
+				else if (++j2 < j1)
+				{
 					rlepart2 = sprite2.I[j2];
-					l1 = oGameObject1.E + rlepart2.Z;
+					l1 = part.borderBottom + rlepart2.Z;
 				}
-			} else if (k1 < l1) {
-				if (++i2 < i1) {
-					rlepart1 = sprite1.I[i2];
-					k1 = E + rlepart1.Z;
-				}
-			} else if (++j2 < j1) {
-				rlepart2 = sprite2.I[j2];
-				l1 = oGameObject1.E + rlepart2.Z;
 			}
+			else if (k1 < l1)
+			{
+				if (++i2 < i1)
+				{
+					rlepart1 = sprite1.I[i2];
+					k1 = borderBottom + rlepart1.Z;
+				}
+			}
+			else if (++j2 < j1)
+			{
+				rlepart2 = sprite2.I[j2];
+				l1 = part.borderBottom + rlepart2.Z;
+			}
+		}
 
 		return false;
 	}
 
-	void I(int i1, GameObject oGameObject1) {
-		if (e != 1)
+	void I(int i1, final GameObject oGameObject1)
+	{
+		if (activeMode != 1)
+		{
 			return;
+		}
+
 		int j1 = 0;
 		int k1 = 0;
 		if (n > 0)
-			if (i1 > n) {
+			if (i1 > n)
+			{
 				j1 = n;
 				if (!r)
 					n = 0;
@@ -696,14 +874,17 @@ class GameObject {
 			I(oGameObject1, k1, j1);
 	}
 
-	void I(GameObject oGameObject1, int i1, int j1) {
-		if (j1 > 0 && p > 0) {
+	void I(final GameObject oGameObject1, final int i1, final int j1)
+	{
+		if (j1 > 0 && p > 0)
+		{
 			sqrt = 0;
 			t = 5 + (j1 / p) * 8;
 		}
 	}
 
-	final void Z(float f1, float f2, boolean flag) {
+	final void Z(final float f1, final float f2, final boolean flag)
+	{
 		if (flag) {
 			m = (int) (sin * f1);
 			n = (int) (p * f2);
@@ -722,11 +903,13 @@ class GameObject {
 		I(((GameObject) (null)), 0, 0);
 	}
 
-	final void I(int i1) {
-		e = i1;
+	final void SetActiveMode(final int mode)
+	{
+		activeMode = mode;
 	}
 
-	final void I(String s1) {
+	final void I(final String s1)
+	{
 		II = true;
 		ZI = s1;
 	}

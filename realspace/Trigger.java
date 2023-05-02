@@ -1,16 +1,12 @@
 package realspace;
-// Decompiled by Jad v1.5.8f. Copyright 2001 Pavel Kouznetsov.
-
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) 
-// Source File Name:   star_y
 
 import java.awt.Color;
 
-final class missioncmd {
-
-	missioncmd(int j) {
-		i = j;
+final class Trigger
+{
+	Trigger(final int command)
+	{
+		myCategory = command;
 	}
 
 	int I;
@@ -22,7 +18,7 @@ final class missioncmd {
 	int J;
 	int S;
 	int A;
-	boolean E;
+	boolean wouldResetStarfield;
 	boolean G;
 	boolean H;
 	boolean K;
@@ -38,6 +34,6 @@ final class missioncmd {
 	Palette V;
 	Palette W;
 	GameSoundPool X;
-	sprite_group Y;
-	int i;
+	SpriteGroup Y;
+	int myCategory;
 }
