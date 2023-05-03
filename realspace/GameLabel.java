@@ -4,7 +4,7 @@ import java.awt.Color;
 
 final class GameLabel extends GameObject
 {
-	public GameLabel(GameApp applet)
+	public GameLabel(final GameApp applet)
 	{
 		super(applet);
 
@@ -13,7 +13,7 @@ final class GameLabel extends GameObject
 		iI = new int[51];
 	}
 
-	public final void Draw(String caption, Color color, Font font, boolean flag, final int x, final int y, int k, int l, int i1, boolean flag1)
+	public final void Draw(final String caption, final Color color, final Font font, final boolean flag, final int x, final int y, final int k, final int l, final int i1, final boolean flag1)
 	{
 		if (font == null)
 		{
@@ -91,12 +91,12 @@ final class GameLabel extends GameObject
 		Z = flag1;
 	}
 
-	final void I(float f, float f1, float f2, float f3)
+	final void I(final float f, final float f1, final float f2, final float f3)
 	{
 		super.SetupPhysics2(f, f1, f2, f3, false);
 	}
 
-	final void ApplyColours(Palette main_color, Palette under_color)
+	final void ApplyColours(final Palette main_color, final Palette under_color)
 	{
 		D = main_color;
 		MI = main_color;
@@ -104,11 +104,11 @@ final class GameLabel extends GameObject
 		NI = under_color;
 	}
 
-	final void Z(int i)
+	final void Z(final int active_mode)
 	{
 		getRGB = true;
 		length = 0;
-		max = i;
+		max = active_mode;
 		min = 0;
 		cI = 0;
 	}
@@ -118,7 +118,7 @@ final class GameLabel extends GameObject
 	{
 		if (UI != null)
 		{
-			if (UI.activeMode != 1)
+			if (UI.IsDisabled())
 			{
 				UI = null;
 			}
@@ -127,21 +127,21 @@ final class GameLabel extends GameObject
 				super.myX = UI.myX;
 
 				if (VI == 1) {
-					Font gamefont1 = RI;
+					final Font gamefont1 = RI;
 
 					// @iconstudio
 					// !warning
 					// UI.E
 					super.myY = UI.borderBottom - gamefont1.myHeight;
 					if (Z && super.DI == 1) {
-						Font gamefont2 = RI;
+						final Font gamefont2 = RI;
 						super.myY -= (gamefont2.myHeight * (zI - 1)) / 2;
 					}
 				} else {
-					Font gamefont3 = RI;
+					final Font gamefont3 = RI;
 					super.myY = UI.borderTop + gamefont3.myHeight;
 					if (Z && super.DI == 1) {
-						Font gamefont4 = RI;
+						final Font gamefont4 = RI;
 						super.myY += (gamefont4.myHeight * (zI - 1)) / 2;
 					}
 				}
@@ -156,16 +156,18 @@ final class GameLabel extends GameObject
 		{
 			toCharArray++;
 			if (toCharArray >= I)
-				Equip(true, null);
+				Attach(true, null);
 		}
 
 		if (getRGB)
 		{
 			length--;
 
-			if (length <= 0) {
+			if (length <= 0)
+			{
 				min++;
 				length = max;
+
 				if (cI < zI && min >= XI[cI] + YI[cI])
 					cI++;
 			}
@@ -173,7 +175,7 @@ final class GameLabel extends GameObject
 	}
 
 	@Override
-	final void Draw(Canvas surface1)
+	final void Draw(final Canvas surface1)
 	{
 		int i = 0;
 		int j;
@@ -183,60 +185,60 @@ final class GameLabel extends GameObject
 			j = (int) super.myX;
 			k = (int) super.myY;
 		} else {
-			j = (int) super.myX + (GameApp.Instance).WC;
-			k = (int) super.myY + (GameApp.Instance).XC;
+			j = (int) super.myX + (GameApp.Instance).viewRelativeX;
+			k = (int) super.myY + (GameApp.Instance).viewRelativeY;
 		}
 
 		if (Z && super.DI == 1) {
-			Font gamefont1 = RI;
+			final Font gamefont1 = RI;
 			k -= (gamefont1.myHeight * (zI - 1)) / 2;
 		}
 		super.borderLeft = j;
 		super.borderRight = j;
-		Font gamefont2 = RI;
+		final Font gamefont2 = RI;
 
 		// super.E
 		super.borderBottom = k - gamefont2.myHeight;
 		super.borderTop = k;
 		if (OI != null) {
-			int l = WI;
-			Font gamefont3 = RI;
-			int j1 = gamefont3.myHeight * zI;
-			int l1 = QI.GetSprite(0, 0).C;
-			int j2 = QI.GetSprite(0, 0).B;
+			final int l = WI;
+			final Font gamefont3 = RI;
+			final int j1 = gamefont3.myHeight * zI;
+			final int l1 = QI.GetSprite(0, 0).C;
+			final int j2 = QI.GetSprite(0, 0).B;
 			int l2 = l + PI * 2;
 			int j3 = j1 + PI * 2;
-			int l3 = l2 / l1 + 1;
-			int i4 = j3 / j2 + 1;
+			final int l3 = l2 / l1 + 1;
+			final int i4 = j3 / j2 + 1;
 			l2 = l3 * l1;
 			j3 = i4 * j2;
-			Font gamefont8 = RI;
-			int k4 = k - gamefont8.myHeight - PI;
+			final Font gamefont8 = RI;
+			final int k4 = k - gamefont8.myHeight - PI;
 			int j4;
 			if (Z)
 				j4 = j - l2 / 2;
 			else
 				j4 = j - PI;
 
-			int l4 = j4 + l3 * l1;
-			int i5 = k4 + i4 * j2;
+			final int l4 = j4 + l3 * l1;
+			final int i5 = k4 + i4 * j2;
 			surface1.I(j4, k4, l2, j3, OI.getRGB());
 			for (int j5 = 0; j5 < l3; j5++) 
 			{
-				surface1.I(QI.GetSprite(0, 1), j4 + j5 * l1, k4 - j2, GameApp.Instance);
-				surface1.I(QI.GetSprite(0, 7), j4 + j5 * l1, i5, GameApp.Instance);
+				surface1.Draw(QI.GetSprite(0, 1), j4 + j5 * l1, k4 - j2, GameApp.Instance);
+				surface1.Draw(QI.GetSprite(0, 7), j4 + j5 * l1, i5, GameApp.Instance);
 			}
 
 			for (int k5 = 0; k5 < i4; k5++) 
 			{
-				surface1.I(QI.GetSprite(0, 3), j4 - l1, k4 + k5 * j2, GameApp.Instance);
-				surface1.I(QI.GetSprite(0, 5), l4, k4 + k5 * j2, GameApp.Instance);
+				surface1.Draw(QI.GetSprite(0, 3), j4 - l1, k4 + k5 * j2, GameApp.Instance);
+				surface1.Draw(QI.GetSprite(0, 5), l4, k4 + k5 * j2, GameApp.Instance);
 			}
 
-			surface1.I(QI.GetSprite(0, 0), j4 - l1, k4 - j2, GameApp.Instance);
-			surface1.I(QI.GetSprite(0, 2), l4, k4 - j2, GameApp.Instance);
-			surface1.I(QI.GetSprite(0, 6), j4 - l1, i5, GameApp.Instance);
-			surface1.I(QI.GetSprite(0, 8), l4, i5, GameApp.Instance);
+			surface1.Draw(QI.GetSprite(0, 0), j4 - l1, k4 - j2, GameApp.Instance);
+			surface1.Draw(QI.GetSprite(0, 2), l4, k4 - j2, GameApp.Instance);
+			surface1.Draw(QI.GetSprite(0, 6), j4 - l1, i5, GameApp.Instance);
+			surface1.Draw(QI.GetSprite(0, 8), l4, i5, GameApp.Instance);
 		}
 
 		int k2 = 0;
@@ -251,7 +253,7 @@ final class GameLabel extends GameObject
 		else
 			i2 = C.getRGB();
 		for (; i <= cI && i < zI; i++) {
-			int k1 = YI[i];
+			final int k1 = YI[i];
 			int k3 = j;
 			if (Z)
 				k3 = j - iI[i] / 2;
@@ -262,17 +264,17 @@ final class GameLabel extends GameObject
 			super.borderTop = k;
 			int i3 = 0;
 			for (int i1 = XI[i]; i3 < k1 && i1 < min && i1 < mySize; i3++) {
-				char c = myBuffer[i1];
-				Font gamefont4 = RI;
-				Sprite sprite1 = c <= 0 || c >= Font.D ? null : gamefont4.fragSprites[c];
+				final char c = myBuffer[i1];
+				final Font gamefont4 = RI;
+				final Sprite sprite1 = c <= 0 || c >= Font.D ? null : gamefont4.fragSprites[c];
 				if (sprite1 != null) {
 					if (B != null || LI != null) {
 						if (getRGB && LI != null)
 							if (min > mySize + LI.GetCapacity())
 								k2 = LI.Pick(toCharArray, I);
 							else
-								k2 = LI.Pick(min - i1);
-						Font gamefont5 = RI;
+								k2 = LI.PickOrLast(min - i1);
+						final Font gamefont5 = RI;
 						surface1.DrawSprite(sprite1, k2, k3 - 1,
 								(k - sprite1.B) + (c <= 0 || c >= Font.D ? 0 : gamefont5.Z[c]) + 1, GameApp.Instance);
 					}
@@ -280,8 +282,8 @@ final class GameLabel extends GameObject
 						if (min > mySize + D.GetCapacity())
 							i2 = D.Pick(toCharArray, I);
 						else
-							i2 = D.Pick(min - i1);
-					Font gamefont6 = RI;
+							i2 = D.PickOrLast(min - i1);
+					final Font gamefont6 = RI;
 					surface1.DrawSprite(sprite1, i2, k3, (k - sprite1.B) + (c <= 0 || c >= Font.D ? 0 : gamefont6.Z[c]),
 							GameApp.Instance);
 					k3 += sprite1.C + RI.myScaledWidth;
@@ -292,7 +294,7 @@ final class GameLabel extends GameObject
 				i1++;
 			}
 
-			Font gamefont7 = RI;
+			final Font gamefont7 = RI;
 			k += gamefont7.myHeight;
 		}
 

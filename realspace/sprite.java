@@ -136,7 +136,7 @@ final class Sprite
 					System.arraycopy(ai, k3 - l4, rlepart1.B, 0, l4);
 					k4++;
 				}
-				j5 += surface1.I - i;
+				j5 += surface1.hSize - i;
 			}
 
 			return;
@@ -154,7 +154,7 @@ final class Sprite
 			rlepart rlepart2 = I[k4] = new rlepart();
 			rlepart2.I = 0;
 			rlepart2.Z = (short) i3;
-			rlepart2.D = (short) surface1.I;
+			rlepart2.D = (short) surface1.hSize;
 			rlepart2.C = (short) i5;
 			rlepart2.B = new int[i5];
 			System.arraycopy(ai, l3, rlepart2.B, 0, i5);

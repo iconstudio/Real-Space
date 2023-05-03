@@ -19,13 +19,16 @@ final class GameMission
 
 		I = new GameQuest(applet, 1, 20);
 		C = new GameQuest(applet, 2, 20);
-		O = -1;
+		usingTriggersCount = -1;
 	}
 
-	final void F(final int i) {
-		O = i;
+	final void F(final int using_triggers_count)
+	{
 		for (int j = 0; j < triggersCount; j++)
+		{
 			myTriggers[j] = null;
+		}
+		usingTriggersCount = using_triggers_count;
 
 		Z = 0;
 		abs = 0;
@@ -43,37 +46,49 @@ final class GameMission
 		I.I();
 		C.I();
 		append = false;
+
 		GameObjectPool oGameObjectlist1 = gameApplet.vZ;
 		int i1 = oGameObjectlist1.mySize;
-		for (int k = 0; k < i1; k++) {
+		for (int k = 0; k < i1; k++)
+		{
 			oGameObjectlist1 = gameApplet.vZ;
-			final oSpaceship oSpaceship1 = (oSpaceship) (k < 0 || k >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[k]);
-			oSpaceship1.II = false;
-			oSpaceship1.NI = false;
-			oSpaceship1.LI = 0;
-			oSpaceship1.MI = -1;
-			if (!((GameObject) (oSpaceship1)).CI)
-				oSpaceship1.Equip(true, null);
-			else if (((GameObject) (oSpaceship1)).g != null) {
-				((oSpaceship) ((GameObject) (oSpaceship1)).g).D++;
-				oSpaceship1.Equip(true, null);
+			final oSpaceship ship = (oSpaceship) (k < 0 || k >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[k]);
+			ship.II = false;
+			ship.NI = false;
+			ship.LI = 0;
+			ship.MI = -1;
+			
+			if (!ship.CI)
+			{
+				ship.Attach(true, null);
+			}
+			else if (ship.myFollower != null)
+			{
+				((oSpaceship) (ship.myFollower)).fellowsCount++;
+				
+				ship.Attach(true, null);
 			}
 		}
 
 		oGameObjectlist1 = gameApplet.wZ;
 		i1 = oGameObjectlist1.mySize;
-		for (int l = 0; l < i1; l++) {
+		for (int l = 0; l < i1; l++)
+		{
 			final GameObjectPool oGameObjectlist2 = gameApplet.wZ;
-			final oSpaceship oSpaceship2 = (oSpaceship) (l < 0 || l >= oGameObjectlist2.mySize ? null : oGameObjectlist2.internalList[l]);
-			oSpaceship2.II = false;
-			oSpaceship2.NI = false;
-			oSpaceship2.LI = 0;
-			oSpaceship2.MI = -1;
-			if (!((GameObject) (oSpaceship2)).CI)
-				oSpaceship2.Equip(true, null);
-			else if (((GameObject) (oSpaceship2)).g != null) {
-				((oSpaceship) ((GameObject) (oSpaceship2)).g).D++;
-				oSpaceship2.Equip(true, null);
+			final oSpaceship ship = (oSpaceship) (l < 0 || l >= oGameObjectlist2.mySize ? null : oGameObjectlist2.internalList[l]);
+			ship.II = false;
+			ship.NI = false;
+			ship.LI = 0;
+			ship.MI = -1;
+			if (!((GameObject) (ship)).CI)
+			{
+				ship.Attach(true, null);
+			}
+			else if (((GameObject) (ship)).myFollower != null)
+			{
+				((oSpaceship) (ship.myFollower)).fellowsCount++;
+
+				ship.Attach(true, null);
 			}
 		}
 
@@ -81,23 +96,31 @@ final class GameMission
 		gameApplet.OC = true;
 	}
 
-	final void I(final int i) {
-		F(i);
+	final void ExecuteTriggers(final int category) {
+		F(category);
+		
 		final int j = gameApplet.viewWidth / 2;
 		final int k = gameApplet.viewHeight / 2;
+
 		final int l = gameApplet.viewWidth / 2;
 		final int i1 = gameApplet.viewHeight / 4;
+
 		final int j1 = gameApplet.viewWidth / 2;
 		final int k1 = gameApplet.viewHeight / 4;
+
 		final int l1 = gameApplet.viewWidth / 2;
 		final int i2 = (gameApplet.viewHeight * 2) / 3;
+
 		final int j2 = (int) (200F * gameApplet.viewScale);
 		final int k2 = gameApplet.viewHeight - gameApplet.fontNormal.myHeight - 5;
+
 		final int l2 = gameApplet.viewWidth / 2;
 		final int i3 = gameApplet.viewHeight - (gameApplet.fontNormal.myHeight + 20);
+		
 		Palette temp_palette_1, temp_palette_2;
 
-		switch (i) {
+		switch (category)
+		{
 			case 1200:
 				max(true, true, -1, -1, -1, -1, -1);
 				compareTo(1, 3F);
@@ -202,9 +225,9 @@ final class GameMission
 
 			case 1001:
 				Object obj3 = gameApplet.vZ;
-				((GameObjectPool) (obj3)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj3)).Attach(true, null, -1, -1, -1, -1);
 				obj3 = gameApplet.wZ;
-				((GameObjectPool) (obj3)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj3)).Attach(true, null, -1, -1, -1, -1);
 				toString(9);
 				gray(0.0F, 0.0F, true, 30F);
 				obj3 = "Visit " + gameApplet.labelSimpleURL;
@@ -389,35 +412,35 @@ final class GameMission
 			case 300:
 				gameApplet.NC = false;
 				GameObjectPool oGameObjectlist1 = gameApplet.gameUIObjects;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				gray(0.0F, 0.0F, true, 30F);
 				gameApplet.PC = 1;
 				oGameObjectlist1 = gameApplet.oZ;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				oGameObjectlist1 = gameApplet.pZ;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				oGameObjectlist1 = gameApplet.qZ;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				oGameObjectlist1 = gameApplet.tZ;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				oGameObjectlist1 = gameApplet.vZ;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				oGameObjectlist1 = gameApplet.wZ;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				oGameObjectlist1 = gameApplet.yZ;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				oGameObjectlist1 = gameApplet.IC;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				oGameObjectlist1 = gameApplet.ZC;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				oGameObjectlist1 = gameApplet.AC;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				oGameObjectlist1 = gameApplet.EC;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				oGameObjectlist1 = gameApplet.GC;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				oGameObjectlist1 = gameApplet.BC;
-				oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 				toString(10);
 				int j3 = (int) (120F * gameApplet.viewScale);
 				Object obj12 = gameApplet.flashcolor_yellow;
@@ -467,7 +490,7 @@ final class GameMission
 
 			case 301:
 				final GameObjectPool oGameObjectlist2 = gameApplet.gameUIObjects;
-				oGameObjectlist2.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist2.Attach(true, null, -1, -1, -1, -1);
 				gameApplet.PC = 1;
 				max(true, true, -1, -1, -1, -1, -1);
 				int k3 = (int) (120F * gameApplet.viewScale);
@@ -521,7 +544,7 @@ final class GameMission
 
 			case 302:
 				final GameObjectPool oGameObjectlist3 = gameApplet.gameUIObjects;
-				oGameObjectlist3.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist3.Attach(true, null, -1, -1, -1, -1);
 				gameApplet.PC = gameApplet.QC;
 				max(true, true, -1, -1, -1, -1, -1);
 				int l3 = (int) (120F * gameApplet.viewScale);
@@ -568,7 +591,7 @@ final class GameMission
 			case 100: // 'd'
 				gameApplet.NC = true;
 				final GameObjectPool oGameObjectlist4 = gameApplet.gameUIObjects;
-				oGameObjectlist4.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist4.Attach(true, null, -1, -1, -1, -1);
 				max(true, true, -1, -1, -1, -1, -1);
 				P = 0;
 				lightGray(5);
@@ -748,11 +771,11 @@ final class GameMission
 				final float f1 = gameApplet.worldBorderLeft + gameApplet.worldDimension[0] * 0.25F;
 				final float f20 = gameApplet.worldBorderTop + gameApplet.worldDimension[1] * 0.75F;
 				Object obj22 = gameApplet.gameUIObjects;
-				((GameObjectPool) (obj22)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj22)).Attach(true, null, -1, -1, -1, -1);
 				obj22 = gameApplet.vZ;
-				((GameObjectPool) (obj22)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj22)).Attach(true, null, -1, -1, -1, -1);
 				obj22 = gameApplet.wZ;
-				((GameObjectPool) (obj22)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj22)).Attach(true, null, -1, -1, -1, -1);
 				out(-1, -1, -1, -1, 100, ((SpriteGroup) (null)), 2, 1);
 				random(0.0F, 2, -1, -1, -1, 100);
 				getName(0.25F);
@@ -833,7 +856,7 @@ final class GameMission
 				final float f2 = gameApplet.worldBorderLeft + gameApplet.worldDimension[0] * 0.25F;
 				final float f21 = gameApplet.worldBorderTop + gameApplet.worldDimension[1] * 0.75F;
 				Object obj23 = gameApplet.wZ;
-				((GameObjectPool) (obj23)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj23)).Attach(true, null, -1, -1, -1, -1);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				P++;
 				obj23 = gameApplet.flashcolor_red;
@@ -898,7 +921,7 @@ final class GameMission
 
 			case 111: // 'o'
 				final Object obj4 = gameApplet.gameUIObjects;
-				((GameObjectPool) (obj4)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj4)).Attach(true, null, -1, -1, -1, -1);
 				getName(0.25F);
 				compareTo(1, 110);
 				compareTo(2, 100);
@@ -967,7 +990,7 @@ final class GameMission
 				final float f74 = gameApplet.worldBorderLeft + gameApplet.worldDimension[0] * 0.5F;
 				final float f75 = gameApplet.worldBorderTop + gameApplet.worldDimension[1] * 0.6F;
 				final Object obj49 = gameApplet.wZ;
-				((GameObjectPool) (obj49)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj49)).Attach(true, null, -1, -1, -1, -1);
 				P++;
 				toString(2);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
@@ -1106,7 +1129,7 @@ final class GameMission
 				final float f5 = gameApplet.worldBorderLeft + gameApplet.worldDimension[0] * 0.2F;
 				final float f24 = gameApplet.worldBorderTop + gameApplet.worldDimension[1] * 0.2F;
 				Object obj24 = gameApplet.gameUIObjects;
-				((GameObjectPool) (obj24)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj24)).Attach(true, null, -1, -1, -1, -1);
 				getName(0.3F);
 				compareTo(1, 80);
 				compareTo(2, 80);
@@ -1155,7 +1178,7 @@ final class GameMission
 				final float f25 = gameApplet.worldBorderTop + gameApplet.worldDimension[1] * 0.2F;
 				P++;
 				Object obj25 = gameApplet.wZ;
-				((GameObjectPool) (obj25)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj25)).Attach(true, null, -1, -1, -1, -1);
 				toString(4);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				F(1, -1, -1, -1, -1, 3);
@@ -1209,7 +1232,7 @@ final class GameMission
 				final float f7 = gameApplet.worldBorderLeft + gameApplet.worldDimension[0] * 0.5F;
 				final float f26 = gameApplet.worldBorderTop + gameApplet.worldDimension[1] * 0.2F;
 				Object obj26 = gameApplet.gameUIObjects;
-				((GameObjectPool) (obj26)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj26)).Attach(true, null, -1, -1, -1, -1);
 				getName(0.33F);
 				compareTo(2, 100);
 				compareTo(3, 100);
@@ -1295,7 +1318,7 @@ final class GameMission
 				final float f44 = ((GameObject) (obj6)).myY;
 				P++;
 				Object obj34 = gameApplet.wZ;
-				((GameObjectPool) (obj34)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj34)).Attach(true, null, -1, -1, -1, -1);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				red(1, 0.0F, 0.0F, -1, 4);
 				gray(f27, f44, true, 30F);
@@ -1329,7 +1352,7 @@ final class GameMission
 
 			case 141:
 				Object obj7 = gameApplet.gameUIObjects;
-				gameApplet.gameUIObjects.I(true, null, -1, -1, -1, -1);
+				gameApplet.gameUIObjects.Attach(true, null, -1, -1, -1, -1);
 				
 				getName(0.25F);
 				compareTo(1, 120);
@@ -1393,7 +1416,7 @@ final class GameMission
 				Palette temp_palette;
 				P++;
 				final Object obj27 = gameApplet.wZ;
-				((GameObjectPool) (obj27)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj27)).Attach(true, null, -1, -1, -1, -1);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				F(1, -1, -1, -1, -1, 3);
 				toString(3);
@@ -1448,7 +1471,7 @@ final class GameMission
 				final float f9 = gameApplet.worldBorderLeft + gameApplet.worldDimension[0] * 0.7F;
 				final float f29 = gameApplet.worldBorderTop + gameApplet.worldDimension[1] * 0.3F;
 				final GameObjectPool oGameObjectlist5 = gameApplet.gameUIObjects;
-				oGameObjectlist5.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist5.Attach(true, null, -1, -1, -1, -1);
 				getName(0.25F);
 				compareTo(1, 120);
 				compareTo(5, 100);
@@ -1534,7 +1557,7 @@ final class GameMission
 				final float f30 = gameApplet.worldBorderLeft + gameApplet.worldDimension[0] * 0.2F;
 				P++;
 				final GameObjectPool oGameObjectlist6 = gameApplet.wZ;
-				oGameObjectlist6.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist6.Attach(true, null, -1, -1, -1, -1);
 				max(true, true, 1, -1, -1, 130, -1);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				F(1, -1, -1, -1, -1, 3);
@@ -1583,7 +1606,7 @@ final class GameMission
 				final float f11 = gameApplet.worldBorderLeft + gameApplet.worldDimension[0] * 0.8F;
 				final float f31 = gameApplet.worldBorderLeft + gameApplet.worldDimension[0] * 0.2F;
 				final GameObjectPool oGameObjectlist7 = gameApplet.gameUIObjects;
-				oGameObjectlist7.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist7.Attach(true, null, -1, -1, -1, -1);
 				getName(0.25F);
 				compareTo(1, 120);
 				compareTo(5, 120);
@@ -1707,7 +1730,7 @@ final class GameMission
 				P++;
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				Object obj28 = gameApplet.wZ;
-				((GameObjectPool) (obj28)).I(true, null, -1, -1, -1, -1);
+				((GameObjectPool) (obj28)).Attach(true, null, -1, -1, -1, -1);
 				max(true, true, 1, -1, -1, 100, -1);
 				max(true, true, 1, -1, -1, 131, -1);
 				F(1, -1, -1, -1, -1, 3);
@@ -1748,7 +1771,7 @@ final class GameMission
 				final float f13 = gameApplet.worldBorderLeft + gameApplet.worldDimension[0] * 0.4F;
 				final float f33 = gameApplet.worldBorderTop + gameApplet.worldDimension[1] * 0.5F;
 				final GameObjectPool oGameObjectlist8 = gameApplet.gameUIObjects;
-				oGameObjectlist8.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist8.Attach(true, null, -1, -1, -1, -1);
 				getName(0.25F);
 				compareTo(1, 100);
 				compareTo(5, 60);
@@ -1822,7 +1845,7 @@ final class GameMission
 				final float f56 = gameApplet.worldBorderTop + gameApplet.worldDimension[1] * 0.2F;
 				P++;
 				final GameObjectPool oGameObjectlist11 = gameApplet.wZ;
-				oGameObjectlist11.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist11.Attach(true, null, -1, -1, -1, -1);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				F(1, -1, -1, -1, -1, 3);
 				toString(7);
@@ -1880,7 +1903,7 @@ final class GameMission
 				final float f15 = gameApplet.worldBorderLeft + gameApplet.worldDimension[0] * 0.2F;
 				final float f35 = gameApplet.worldBorderTop + gameApplet.worldDimension[1] * 0.2F;
 				final GameObjectPool oGameObjectlist9 = gameApplet.gameUIObjects;
-				oGameObjectlist9.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist9.Attach(true, null, -1, -1, -1, -1);
 				getName(0.25F);
 				compareTo(1, 100);
 				compareTo(5, 60);
@@ -1933,7 +1956,7 @@ final class GameMission
 				final float f57 = gameApplet.worldBorderTop + gameApplet.worldDimension[1] * 0.8F;
 				P++;
 				final GameObjectPool oGameObjectlist12 = gameApplet.wZ;
-				oGameObjectlist12.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist12.Attach(true, null, -1, -1, -1, -1);
 				out(1, 0.5F, 0.5F, false, -1, -1, -1, -1);
 				F(1, -1, -1, -1, -1, 3);
 				toString(8);
@@ -1996,7 +2019,7 @@ final class GameMission
 				final float f17 = gameApplet.worldBorderLeft + gameApplet.worldDimension[0] * 0.2F;
 				final float f37 = gameApplet.worldBorderTop + gameApplet.worldDimension[1] * 0.8F;
 				final GameObjectPool oGameObjectlist10 = gameApplet.gameUIObjects;
-				oGameObjectlist10.I(true, null, -1, -1, -1, -1);
+				oGameObjectlist10.Attach(true, null, -1, -1, -1, -1);
 				getName(0.25F);
 				compareTo(1, 120);
 				compareTo(5, 80);
@@ -2046,7 +2069,7 @@ final class GameMission
 				final float f18 = gameApplet.worldBorderLeft + gameApplet.worldDimension[0] * 0.65F;
 				final float f38 = gameApplet.worldBorderTop + gameApplet.worldDimension[1] * 0.3F;
 
-				gameApplet.wZ.I(true, null, -1, -1, -1, -1);
+				gameApplet.wZ.Attach(true, null, -1, -1, -1, -1);
 
 				random(1);
 				lightGray(80);
@@ -2142,7 +2165,7 @@ final class GameMission
 				{
 					final GameObjectPool oGameObjectlist1 = gameApplet.dZ;
 					if (oGameObjectlist1.mySize == 0)
-						I(1101);
+						ExecuteTriggers(1101);
 				}
 				if (valueOf) {
 					if (!gameApplet.myCamera.A())
@@ -2196,7 +2219,7 @@ final class GameMission
 			if (oGameObjectlist2.mySize <= 0) {
 				flag = false;
 			} else {
-				oGameObjectlist2.internalList[0].Equip(flag1, null);
+				oGameObjectlist2.internalList[0].Attach(flag1, null);
 				flag = true;
 			}
 			if (!flag) {
@@ -2205,7 +2228,7 @@ final class GameMission
 				if (oGameObjectlist5.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist5.internalList[0].Equip(flag2, null);
+					oGameObjectlist5.internalList[0].Attach(flag2, null);
 					flag = true;
 				}
 			}
@@ -2215,7 +2238,7 @@ final class GameMission
 				if (oGameObjectlist6.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist6.internalList[0].Equip(flag3, null);
+					oGameObjectlist6.internalList[0].Attach(flag3, null);
 					flag = true;
 				}
 			}
@@ -2225,7 +2248,7 @@ final class GameMission
 				if (oGameObjectlist7.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist7.internalList[0].Equip(flag4, null);
+					oGameObjectlist7.internalList[0].Attach(flag4, null);
 					flag = true;
 				}
 			}
@@ -2235,7 +2258,7 @@ final class GameMission
 				if (oGameObjectlist8.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist8.internalList[0].Equip(flag5, null);
+					oGameObjectlist8.internalList[0].Attach(flag5, null);
 					flag = true;
 				}
 			}
@@ -2245,7 +2268,7 @@ final class GameMission
 				if (oGameObjectlist9.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist9.internalList[0].Equip(flag6, null);
+					oGameObjectlist9.internalList[0].Attach(flag6, null);
 					flag = true;
 				}
 			}
@@ -2255,7 +2278,7 @@ final class GameMission
 				if (oGameObjectlist10.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist10.internalList[0].Equip(flag7, null);
+					oGameObjectlist10.internalList[0].Attach(flag7, null);
 					flag = true;
 				}
 			}
@@ -2265,7 +2288,7 @@ final class GameMission
 				if (oGameObjectlist11.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist11.internalList[0].Equip(flag8, null);
+					oGameObjectlist11.internalList[0].Attach(flag8, null);
 					flag = true;
 				}
 			}
@@ -2275,7 +2298,7 @@ final class GameMission
 				if (oGameObjectlist12.mySize <= 0) {
 					flag = false;
 				} else {
-					oGameObjectlist12.internalList[0].Equip(flag9, null);
+					oGameObjectlist12.internalList[0].Attach(flag9, null);
 					flag = true;
 				}
 			}
@@ -2298,9 +2321,9 @@ final class GameMission
 			if (abs >= Z) {
 				flag1 = false;
 			} else {
-				final Trigger missioncmd1 = myTriggers[abs];
+				final Trigger trigger = myTriggers[abs];
 				abs++;
-				switch (missioncmd1.myCategory) {
+				switch (trigger.myCategory) {
 					default:
 						break;
 
@@ -2309,7 +2332,7 @@ final class GameMission
 						break;
 
 					case 101: // 'e'
-						if (missioncmd1.wouldResetStarfield) {
+						if (trigger.wouldResetStarfield) {
 							gameApplet.qC = false;
 							final GameObjectPool obj = gameApplet.dZ;
 							oSpaceship nobj = null;
@@ -2329,7 +2352,7 @@ final class GameMission
 						break;
 
 					case 102: // 'f'
-						gameApplet.OC = missioncmd1.wouldResetStarfield;
+						gameApplet.OC = trigger.wouldResetStarfield;
 						break;
 
 					case 103: // 'g'
@@ -2339,7 +2362,7 @@ final class GameMission
 
 					case 104: // 'h'
 						if (!flag)
-							missioncmd1.X.Play(missioncmd1.I, true, missioncmd1.wouldResetStarfield);
+							trigger.X.Play(trigger.I, true, trigger.wouldResetStarfield);
 						break;
 
 					case 105: // 'i'
@@ -2368,143 +2391,143 @@ final class GameMission
 						if (!gameApplet.isHiscoreEnabled)
 							break;
 
-						if (missioncmd1.I == 1)
+						if (trigger.I == 1)
 						{
-							gameApplet.TB.I(gameApplet, "Recent High Scores", missioncmd1.Q, missioncmd1.R,
-									missioncmd1.U, missioncmd1.Z, missioncmd1.C, missioncmd1.L, missioncmd1.M,
-									missioncmd1.B);
+							gameApplet.TB.I(gameApplet, "Recent High Scores", trigger.Q, trigger.R,
+									trigger.U, trigger.Z, trigger.C, trigger.L, trigger.M,
+									trigger.B);
 						}
 						else
 						{
-							gameApplet.UB.I(gameApplet, "All Time High Scores", missioncmd1.Q,
-									missioncmd1.R,
-									missioncmd1.U, missioncmd1.Z, missioncmd1.C, missioncmd1.L, missioncmd1.M,
-									missioncmd1.B);
+							gameApplet.UB.I(gameApplet, "All Time High Scores", trigger.Q,
+									trigger.R,
+									trigger.U, trigger.Z, trigger.C, trigger.L, trigger.M,
+									trigger.B);
 						}
 						break;
 
 					case 200:
-						H = missioncmd1.I;
+						H = trigger.I;
 						flag1 = false;
 						break;
 
 					case 203:
-						getName(missioncmd1.I, missioncmd1.L, missioncmd1.M, missioncmd1.wouldResetStarfield, missioncmd1.Z,
-								missioncmd1.C,
-								missioncmd1.B, missioncmd1.D);
+						getName(trigger.I, trigger.L, trigger.M, trigger.wouldResetStarfield, trigger.Z,
+								trigger.C,
+								trigger.B, trigger.D);
 						break;
 
 					case 202:
 						getName = 0;
 						C.M = 0;
 						I.M = 0;
-						if (flag || missioncmd1.G) {
-							if (missioncmd1.I == -1 || missioncmd1.I == 2) {
+						if (flag || trigger.G) {
+							if (trigger.I == -1 || trigger.I == 2) {
 								GameObjectPool oGameObjectlist1 = gameApplet.wZ;
-								boolean flag2 = missioncmd1.wouldResetStarfield;
-								int k5 = missioncmd1.Z;
-								int i7 = missioncmd1.C;
-								int j8 = missioncmd1.B;
-								int i9 = missioncmd1.D;
-								oGameObjectlist1.I(flag2, null, k5, i7, j8, i9);
+								boolean flag2 = trigger.wouldResetStarfield;
+								int k5 = trigger.Z;
+								int i7 = trigger.C;
+								int j8 = trigger.B;
+								int i9 = trigger.D;
+								oGameObjectlist1.Attach(flag2, null, k5, i7, j8, i9);
 								oGameObjectlist1 = gameApplet.yZ;
-								flag2 = missioncmd1.wouldResetStarfield;
-								k5 = missioncmd1.Z;
-								i7 = missioncmd1.C;
-								j8 = missioncmd1.B;
-								i9 = missioncmd1.D;
-								oGameObjectlist1.I(flag2, null, k5, i7, j8, i9);
+								flag2 = trigger.wouldResetStarfield;
+								k5 = trigger.Z;
+								i7 = trigger.C;
+								j8 = trigger.B;
+								i9 = trigger.D;
+								oGameObjectlist1.Attach(flag2, null, k5, i7, j8, i9);
 							}
 
-							if (missioncmd1.I == -1 || missioncmd1.I == 1) {
+							if (trigger.I == -1 || trigger.I == 1) {
 								GameObjectPool oGameObjectlist2 = gameApplet.vZ;
-								boolean flag3 = missioncmd1.wouldResetStarfield;
-								int l5 = missioncmd1.Z;
-								int j7 = missioncmd1.C;
-								int k8 = missioncmd1.B;
-								int j9 = missioncmd1.D;
-								oGameObjectlist2.I(flag3, null, l5, j7, k8, j9);
+								boolean flag3 = trigger.wouldResetStarfield;
+								int l5 = trigger.Z;
+								int j7 = trigger.C;
+								int k8 = trigger.B;
+								int j9 = trigger.D;
+								oGameObjectlist2.Attach(flag3, null, l5, j7, k8, j9);
 								oGameObjectlist2 = gameApplet.IC;
-								flag3 = missioncmd1.wouldResetStarfield;
-								l5 = missioncmd1.Z;
-								j7 = missioncmd1.C;
-								k8 = missioncmd1.B;
-								j9 = missioncmd1.D;
-								oGameObjectlist2.I(flag3, null, l5, j7, k8, j9);
+								flag3 = trigger.wouldResetStarfield;
+								l5 = trigger.Z;
+								j7 = trigger.C;
+								k8 = trigger.B;
+								j9 = trigger.D;
+								oGameObjectlist2.Attach(flag3, null, l5, j7, k8, j9);
 								oGameObjectlist2 = gameApplet.dZ;
-								flag3 = missioncmd1.wouldResetStarfield;
-								l5 = missioncmd1.Z;
-								j7 = missioncmd1.C;
-								k8 = missioncmd1.B;
-								j9 = missioncmd1.D;
-								oGameObjectlist2.I(flag3, null, l5, j7, k8, j9);
+								flag3 = trigger.wouldResetStarfield;
+								l5 = trigger.Z;
+								j7 = trigger.C;
+								k8 = trigger.B;
+								j9 = trigger.D;
+								oGameObjectlist2.Attach(flag3, null, l5, j7, k8, j9);
 							}
-							if (missioncmd1.Z == 10) {
+							if (trigger.Z == 10) {
 								GameObjectPool oGameObjectlist3 = gameApplet.AC;
-								boolean flag4 = missioncmd1.wouldResetStarfield;
-								int i6 = missioncmd1.Z;
-								int k7 = missioncmd1.C;
-								int l8 = missioncmd1.B;
-								int k9 = missioncmd1.D;
-								oGameObjectlist3.I(flag4, null, i6, k7, l8, k9);
+								boolean flag4 = trigger.wouldResetStarfield;
+								int i6 = trigger.Z;
+								int k7 = trigger.C;
+								int l8 = trigger.B;
+								int k9 = trigger.D;
+								oGameObjectlist3.Attach(flag4, null, i6, k7, l8, k9);
 								oGameObjectlist3 = gameApplet.EC;
-								flag4 = missioncmd1.wouldResetStarfield;
-								i6 = missioncmd1.Z;
-								k7 = missioncmd1.C;
-								l8 = missioncmd1.B;
-								k9 = missioncmd1.D;
-								oGameObjectlist3.I(flag4, null, i6, k7, l8, k9);
+								flag4 = trigger.wouldResetStarfield;
+								i6 = trigger.Z;
+								k7 = trigger.C;
+								l8 = trigger.B;
+								k9 = trigger.D;
+								oGameObjectlist3.Attach(flag4, null, i6, k7, l8, k9);
 								oGameObjectlist3 = gameApplet.GC;
-								flag4 = missioncmd1.wouldResetStarfield;
-								i6 = missioncmd1.Z;
-								k7 = missioncmd1.C;
-								l8 = missioncmd1.B;
-								k9 = missioncmd1.D;
-								oGameObjectlist3.I(flag4, null, i6, k7, l8, k9);
+								flag4 = trigger.wouldResetStarfield;
+								i6 = trigger.Z;
+								k7 = trigger.C;
+								l8 = trigger.B;
+								k9 = trigger.D;
+								oGameObjectlist3.Attach(flag4, null, i6, k7, l8, k9);
 							}
 						} else {
 							L = true;
-							M = missioncmd1.wouldResetStarfield;
+							M = trigger.wouldResetStarfield;
 						}
 						flag1 = false;
 						break;
 
 					case 432:
-						if (missioncmd1.I == 2)
-							C.Z(missioncmd1.Z, missioncmd1.C, missioncmd1.B, missioncmd1.D);
+						if (trigger.I == 2)
+							C.Z(trigger.Z, trigger.C, trigger.B, trigger.D);
 						else
-							I.Z(missioncmd1.Z, missioncmd1.C, missioncmd1.B, missioncmd1.D);
+							I.Z(trigger.Z, trigger.C, trigger.B, trigger.D);
 						break;
 
 					case 461:
-						D = missioncmd1.L;
+						D = trigger.L;
 						break;
 
 					case 460:
 						if (J < 10) {
-							S[J] = missioncmd1.I;
-							A[J] = missioncmd1.Z;
-							E += missioncmd1.Z;
+							S[J] = trigger.I;
+							A[J] = trigger.Z;
+							E += trigger.Z;
 							J++;
 						}
 						break;
 
 					case 400:
 						if (out < 20) {
-							println += missioncmd1.I;
-							random[out] = missioncmd1.I;
-							red[out] = missioncmd1.Z;
-							toString[out] = missioncmd1.L;
+							println += trigger.I;
+							random[out] = trigger.I;
+							red[out] = trigger.Z;
+							toString[out] = trigger.L;
 							out++;
 						}
 						break;
 
 					case 402:
-						compareTo = missioncmd1.I;
-						getName = missioncmd1.I;
-						gray = missioncmd1.Z;
-						lightGray = missioncmd1.C;
-						max = missioncmd1.B;
+						compareTo = trigger.I;
+						getName = trigger.I;
+						gray = trigger.Z;
+						lightGray = trigger.C;
+						max = trigger.B;
 						break;
 
 					case 403:
@@ -2513,21 +2536,21 @@ final class GameMission
 						break;
 
 					case 410:
-						if (missioncmd1.I == 2)
-							C.I(missioncmd1.Z, missioncmd1.C, missioncmd1.L);
+						if (trigger.I == 2)
+							C.I(trigger.Z, trigger.C, trigger.L);
 						else
-							I.I(missioncmd1.Z, missioncmd1.C, missioncmd1.L);
+							I.I(trigger.Z, trigger.C, trigger.L);
 						break;
 
 					case 412:
-						if (missioncmd1.I == 2)
-							C.I(missioncmd1.Z, missioncmd1.C, missioncmd1.B);
+						if (trigger.I == 2)
+							C.I(trigger.Z, trigger.C, trigger.B);
 						else
-							I.I(missioncmd1.Z, missioncmd1.C, missioncmd1.B);
+							I.I(trigger.Z, trigger.C, trigger.B);
 						break;
 
 					case 413:
-						if (missioncmd1.I == 2) {
+						if (trigger.I == 2) {
 							C.T = 0;
 							C.R = 0;
 						} else {
@@ -2537,16 +2560,16 @@ final class GameMission
 						break;
 
 					case 420:
-						F(missioncmd1.I, missioncmd1.Z, missioncmd1.L, missioncmd1.G, missioncmd1.wouldResetStarfield, missioncmd1.C,
-								missioncmd1.M, missioncmd1.N, missioncmd1.B, missioncmd1.P);
+						F(trigger.I, trigger.Z, trigger.L, trigger.G, trigger.wouldResetStarfield, trigger.C,
+								trigger.M, trigger.N, trigger.B, trigger.P);
 						break;
 
 					case 441:
-						Z(missioncmd1.I, missioncmd1.L, missioncmd1.M, missioncmd1.N);
+						Z(trigger.I, trigger.L, trigger.M, trigger.N);
 						break;
 
 					case 442:
-						if (missioncmd1.I == 2) {
+						if (trigger.I == 2) {
 							compareTo(gameApplet.wZ);
 						} else {
 							compareTo(gameApplet.vZ);
@@ -2555,31 +2578,32 @@ final class GameMission
 						break;
 
 					case 440:
-						abs(missioncmd1.I);
+						abs(trigger.I);
 						break;
 
 					case 421:
-						if (missioncmd1.I == 2) {
-							HNSM(gameApplet.wZ, missioncmd1.L, missioncmd1.M, missioncmd1.N, missioncmd1.O);
+						if (trigger.I == 2) {
+							HNSM(gameApplet.wZ, trigger.L, trigger.M, trigger.N, trigger.O);
 						} else {
-							HNSM(gameApplet.vZ, missioncmd1.L, missioncmd1.M, missioncmd1.N, missioncmd1.O);
-							HNSM(gameApplet.dZ, missioncmd1.L, missioncmd1.M, missioncmd1.N, missioncmd1.O);
+							HNSM(gameApplet.vZ, trigger.L, trigger.M, trigger.N, trigger.O);
+							HNSM(gameApplet.dZ, trigger.L, trigger.M, trigger.N, trigger.O);
 						}
 						break;
 
 					case 422:
-						if (missioncmd1.I == 2) {
+						if (trigger.I == 2) {
 							final GameObjectPool oGameObjectlist6 = gameApplet.wZ;
 							final int i2 = oGameObjectlist6.mySize;
 							for (int i = 0; i < i2; i++) {
 								final GameObjectPool oGameObjectlist7 = gameApplet.wZ;
 								final GameObject oGameObject4 = i < 0 || i >= oGameObjectlist7.mySize ? null
 										: oGameObjectlist7.internalList[i];
-								if (oGameObject4.activeMode == 1 && (missioncmd1.Z == -1 || oGameObject4.JI == missioncmd1.Z)
-										&& (missioncmd1.C == -1 || oGameObject4.shipGrade == missioncmd1.C)
-										&& (missioncmd1.B == -1 || oGameObject4.AI == missioncmd1.B)
-										&& (missioncmd1.D == -1 || oGameObject4.HI == missioncmd1.D))
-									oGameObject4.SetActiveMode(missioncmd1.F);
+								if (oGameObject4.IsActivated() && (trigger.Z == -1 || oGameObject4.JI == trigger.Z)
+										&& (trigger.C == -1 || oGameObject4.shipGrade == trigger.C)
+										&& (trigger.B == -1 || oGameObject4.prefabID == trigger.B)
+										&& (trigger.D == -1 || oGameObject4.HI == trigger.D))
+
+									oGameObject4.SetActiveState(trigger.propertyBoolean);
 							}
 
 							break;
@@ -2589,11 +2613,13 @@ final class GameMission
 						for (int j = 0; j < j2; j++) {
 							oGameObjectlist8 = gameApplet.vZ;
 							final GameObject oGameObject5 = j < 0 || j >= oGameObjectlist8.mySize ? null : oGameObjectlist8.internalList[j];
-							if (oGameObject5.activeMode == 1 && (missioncmd1.Z == -1 || oGameObject5.JI == missioncmd1.Z)
-									&& (missioncmd1.C == -1 || oGameObject5.shipGrade == missioncmd1.C)
-									&& (missioncmd1.B == -1 || oGameObject5.AI == missioncmd1.B)
-									&& (missioncmd1.D == -1 || oGameObject5.HI == missioncmd1.D))
-								oGameObject5.SetActiveMode(missioncmd1.F);
+							if (oGameObject5.IsActivated() && (trigger.Z == -1 || oGameObject5.JI == trigger.Z)
+									&& (trigger.C == -1 || oGameObject5.shipGrade == trigger.C)
+									&& (trigger.B == -1 || oGameObject5.prefabID == trigger.B)
+									&& (trigger.D == -1 || oGameObject5.HI == trigger.D))
+							{
+								oGameObject5.SetActiveState(trigger.propertyBoolean);
+							}
 						}
 
 						oGameObjectlist8 = gameApplet.dZ;
@@ -2601,28 +2627,32 @@ final class GameMission
 						for (int k = 0; k < j2; k++) {
 							final GameObjectPool oGameObjectlist9 = gameApplet.dZ;
 							final GameObject oGameObject6 = k < 0 || k >= oGameObjectlist9.mySize ? null : oGameObjectlist9.internalList[k];
-							if (oGameObject6.activeMode == 1 && (missioncmd1.Z == -1 || oGameObject6.JI == missioncmd1.Z)
-									&& (missioncmd1.C == -1 || oGameObject6.shipGrade == missioncmd1.C)
-									&& (missioncmd1.B == -1 || oGameObject6.AI == missioncmd1.B)
-									&& (missioncmd1.D == -1 || oGameObject6.HI == missioncmd1.D))
-								oGameObject6.SetActiveMode(missioncmd1.F);
+							if (oGameObject6.IsActivated() && (trigger.Z == -1 || oGameObject6.JI == trigger.Z)
+									&& (trigger.C == -1 || oGameObject6.shipGrade == trigger.C)
+									&& (trigger.B == -1 || oGameObject6.prefabID == trigger.B)
+									&& (trigger.D == -1 || oGameObject6.HI == trigger.D))
+							{
+								oGameObject6.SetActiveState(trigger.propertyBoolean);
+							}
 						}
 
 						break;
 
 					case 423:
-						if (missioncmd1.I == 2) {
+						if (trigger.I == 2) {
 							final GameObjectPool oGameObjectlist10 = gameApplet.wZ;
 							final int k2 = oGameObjectlist10.mySize;
 							for (int l = 0; l < k2; l++) {
 								final GameObjectPool oGameObjectlist11 = gameApplet.wZ;
 								final GameObject oGameObject7 = l < 0 || l >= oGameObjectlist11.mySize ? null
 										: oGameObjectlist11.internalList[l];
-								if (oGameObject7.activeMode == 1 && (missioncmd1.Z == -1 || oGameObject7.JI == missioncmd1.Z)
-										&& (missioncmd1.C == -1 || oGameObject7.shipGrade == missioncmd1.C)
-										&& (missioncmd1.B == -1 || oGameObject7.AI == missioncmd1.B)
-										&& (missioncmd1.D == -1 || oGameObject7.HI == missioncmd1.D))
-									oGameObject7.I(missioncmd1.P);
+								if (oGameObject7.IsActivated() && (trigger.Z == -1 || oGameObject7.JI == trigger.Z)
+										&& (trigger.C == -1 || oGameObject7.shipGrade == trigger.C)
+										&& (trigger.B == -1 || oGameObject7.prefabID == trigger.B)
+										&& (trigger.D == -1 || oGameObject7.HI == trigger.D))
+								{
+									oGameObject7.I(trigger.P);
+								}
 							}
 
 							break;
@@ -2633,28 +2663,28 @@ final class GameMission
 							final GameObjectPool oGameObjectlist13 = gameApplet.vZ;
 							final GameObject oGameObject8 = i1 < 0 || i1 >= oGameObjectlist13.mySize ? null
 									: oGameObjectlist13.internalList[i1];
-							if (oGameObject8.activeMode == 1 && (missioncmd1.Z == -1 || oGameObject8.JI == missioncmd1.Z)
-									&& (missioncmd1.C == -1 || oGameObject8.shipGrade == missioncmd1.C)
-									&& (missioncmd1.B == -1 || oGameObject8.AI == missioncmd1.B)
-									&& (missioncmd1.D == -1 || oGameObject8.HI == missioncmd1.D))
-								oGameObject8.I(missioncmd1.P);
+							if (oGameObject8.IsActivated() && (trigger.Z == -1 || oGameObject8.JI == trigger.Z)
+									&& (trigger.C == -1 || oGameObject8.shipGrade == trigger.C)
+									&& (trigger.B == -1 || oGameObject8.prefabID == trigger.B)
+									&& (trigger.D == -1 || oGameObject8.HI == trigger.D))
+								oGameObject8.I(trigger.P);
 						}
 
 						break;
 
 					case 424:
-						if (missioncmd1.I == 2) {
+						if (trigger.I == 2) {
 							final GameObjectPool oGameObjectlist14 = gameApplet.wZ;
 							final int i3 = oGameObjectlist14.mySize;
 							for (int j1 = 0; j1 < i3; j1++) {
 								final GameObjectPool oGameObjectlist15 = gameApplet.wZ;
 								final GameObject oGameObject9 = j1 < 0 || j1 >= oGameObjectlist15.mySize ? null
 										: oGameObjectlist15.internalList[j1];
-								if (oGameObject9.activeMode == 1 && (missioncmd1.Z == -1 || oGameObject9.JI == missioncmd1.Z)
-										&& (missioncmd1.C == -1 || oGameObject9.shipGrade == missioncmd1.C)
-										&& (missioncmd1.B == -1 || oGameObject9.AI == missioncmd1.B)
-										&& (missioncmd1.D == -1 || oGameObject9.HI == missioncmd1.D))
-									oGameObject9.CI = missioncmd1.wouldResetStarfield;
+								if (oGameObject9.IsActivated() && (trigger.Z == -1 || oGameObject9.JI == trigger.Z)
+										&& (trigger.C == -1 || oGameObject9.shipGrade == trigger.C)
+										&& (trigger.B == -1 || oGameObject9.prefabID == trigger.B)
+										&& (trigger.D == -1 || oGameObject9.HI == trigger.D))
+									oGameObject9.CI = trigger.wouldResetStarfield;
 							}
 
 							break;
@@ -2665,25 +2695,25 @@ final class GameMission
 							final GameObjectPool oGameObjectlist17 = gameApplet.vZ;
 							final GameObject oGameObject10 = k1 < 0 || k1 >= oGameObjectlist17.mySize ? null
 									: oGameObjectlist17.internalList[k1];
-							if (oGameObject10.activeMode == 1 && (missioncmd1.Z == -1 || oGameObject10.JI == missioncmd1.Z)
-									&& (missioncmd1.C == -1 || oGameObject10.shipGrade == missioncmd1.C)
-									&& (missioncmd1.B == -1 || oGameObject10.AI == missioncmd1.B)
-									&& (missioncmd1.D == -1 || oGameObject10.HI == missioncmd1.D))
-								oGameObject10.CI = missioncmd1.wouldResetStarfield;
+							if (oGameObject10.IsActivated() && (trigger.Z == -1 || oGameObject10.JI == trigger.Z)
+									&& (trigger.C == -1 || oGameObject10.shipGrade == trigger.C)
+									&& (trigger.B == -1 || oGameObject10.prefabID == trigger.B)
+									&& (trigger.D == -1 || oGameObject10.HI == trigger.D))
+								oGameObject10.CI = trigger.wouldResetStarfield;
 						}
 
 						break;
 
 					case 426:
-						if (missioncmd1.I == 2)
-							C.I(missioncmd1.Z, missioncmd1.C, missioncmd1.B, missioncmd1.D);
+						if (trigger.I == 2)
+							C.I(trigger.Z, trigger.C, trigger.B, trigger.D);
 						else
-							I.I(missioncmd1.Z, missioncmd1.C, missioncmd1.B, missioncmd1.D);
+							I.I(trigger.Z, trigger.C, trigger.B, trigger.D);
 						break;
 
 					case 427:
 						GameObjectPool oGameObjectlist18;
-						if (missioncmd1.I == 2)
+						if (trigger.I == 2)
 							oGameObjectlist18 = gameApplet.wZ;
 						else
 							oGameObjectlist18 = gameApplet.vZ;
@@ -2691,44 +2721,44 @@ final class GameMission
 						for (int l1 = 0; l1 < k3; l1++) {
 							final oSpaceship oSpaceship1 = (oSpaceship) (l1 < 0 || l1 >= oGameObjectlist18.mySize ? null
 									: oGameObjectlist18.internalList[l1]);
-							if (((GameObject) (oSpaceship1)).activeMode == 1 && (oSpaceship1.QI == 3 || oSpaceship1.QI == 2)
-									&& (missioncmd1.Z == -1 || ((GameObject) (oSpaceship1)).JI == missioncmd1.Z)
-									&& (missioncmd1.C == -1 || ((GameObject) (oSpaceship1)).shipGrade == missioncmd1.C)
-									&& (missioncmd1.B == -1 || ((GameObject) (oSpaceship1)).AI == missioncmd1.B)
-									&& (missioncmd1.D == -1 || ((GameObject) (oSpaceship1)).HI == missioncmd1.D)) {
-								oSpaceship1.M = missioncmd1.L;
-								oSpaceship1.accelFactorOnStage = missioncmd1.L * ((GameObject) (oSpaceship1)).myFriction;
+							if (((GameObject) (oSpaceship1)).IsActivated() && (oSpaceship1.QI == 3 || oSpaceship1.QI == 2)
+									&& (trigger.Z == -1 || ((GameObject) (oSpaceship1)).JI == trigger.Z)
+									&& (trigger.C == -1 || ((GameObject) (oSpaceship1)).shipGrade == trigger.C)
+									&& (trigger.B == -1 || ((GameObject) (oSpaceship1)).prefabID == trigger.B)
+									&& (trigger.D == -1 || ((GameObject) (oSpaceship1)).HI == trigger.D)) {
+								oSpaceship1.M = trigger.L;
+								oSpaceship1.accelFactorOnStage = trigger.L * ((GameObject) (oSpaceship1)).myFriction;
 							}
 						}
 
 						break;
 
 					case 425:
-						if (missioncmd1.I == 2) {
-							C.wasResetStarfield = missioncmd1.wouldResetStarfield;
-							C.H = missioncmd1.G;
-							C.K = missioncmd1.L;
+						if (trigger.I == 2) {
+							C.wasResetStarfield = trigger.wouldResetStarfield;
+							C.H = trigger.G;
+							C.K = trigger.L;
 						} else {
-							I.wasResetStarfield = missioncmd1.wouldResetStarfield;
-							I.H = missioncmd1.G;
-							I.K = missioncmd1.L;
+							I.wasResetStarfield = trigger.wouldResetStarfield;
+							I.H = trigger.G;
+							I.K = trigger.L;
 						}
 						break;
 
 					case 428:
-						if (missioncmd1.I == 2) {
+						if (trigger.I == 2) {
 							final GameQuest gameobjectivelist1 = C;
-							final int l3 = missioncmd1.Z;
-							final int j6 = missioncmd1.C;
-							final int l7 = missioncmd1.B;
+							final int l3 = trigger.Z;
+							final int j6 = trigger.C;
+							final int l7 = trigger.B;
 							gameobjectivelist1.F = l3;
 							gameobjectivelist1.J = j6;
 							gameobjectivelist1.A = l7;
 						} else {
 							final GameQuest gameobjectivelist2 = I;
-							final int i4 = missioncmd1.Z;
-							final int k6 = missioncmd1.C;
-							final int i8 = missioncmd1.B;
+							final int i4 = trigger.Z;
+							final int k6 = trigger.C;
+							final int i8 = trigger.B;
 							gameobjectivelist2.F = i4;
 							gameobjectivelist2.J = k6;
 							gameobjectivelist2.A = i8;
@@ -2736,10 +2766,10 @@ final class GameMission
 						break;
 
 					case 430:
-						if (missioncmd1.I == 2)
-							blue(missioncmd1.I, gameApplet.wZ, missioncmd1.Z, missioncmd1.C, missioncmd1.B, missioncmd1.L);
+						if (trigger.I == 2)
+							blue(trigger.I, gameApplet.wZ, trigger.Z, trigger.C, trigger.B, trigger.L);
 						else
-							blue(missioncmd1.I, gameApplet.vZ, missioncmd1.Z, missioncmd1.C, missioncmd1.B, missioncmd1.L);
+							blue(trigger.I, gameApplet.vZ, trigger.Z, trigger.C, trigger.B, trigger.L);
 						break;
 
 					case 600:
@@ -2748,32 +2778,35 @@ final class GameMission
 						if (gametext1 == null)
 							break;
 
-						gametext1.Draw(missioncmd1.P, missioncmd1.Q, missioncmd1.U, missioncmd1.K, missioncmd1.I,
-								missioncmd1.Z, missioncmd1.C, missioncmd1.B, missioncmd1.D, missioncmd1.wouldResetStarfield);
-						if (missioncmd1.G)
-							gametext1.Z(missioncmd1.F);
-						if (missioncmd1.J != -1) {
-							final int j4 = missioncmd1.J;
+						gametext1.Draw(trigger.P, trigger.Q, trigger.U, trigger.K, trigger.I,
+								trigger.Z, trigger.C, trigger.B, trigger.D, trigger.wouldResetStarfield);
+
+						if (trigger.G)
+							gametext1.Z(trigger.propertyBoolean);
+
+						if (trigger.J != -1)
+						{
+							final int j4 = trigger.J;
 							gametext1.HI = j4;
 						}
-						if (missioncmd1.H)
-							gametext1.ApplyColours(missioncmd1.V, missioncmd1.W);
-						else if (missioncmd1.R != null) {
-							final Color color = missioncmd1.R;
+						if (trigger.H)
+							gametext1.ApplyColours(trigger.V, trigger.W);
+						else if (trigger.R != null) {
+							final Color color = trigger.R;
 							gametext1.B = color;
 						}
-						if (missioncmd1.Y != null && missioncmd1.T != null) {
-							final Color color1 = missioncmd1.T;
-							final SpriteGroup sprite_group1 = missioncmd1.Y;
+						if (trigger.Y != null && trigger.T != null) {
+							final Color color1 = trigger.T;
+							final SpriteGroup sprite_group1 = trigger.Y;
 							gametext1.OI = color1;
 							gametext1.QI = sprite_group1;
 							gametext1.PI = 2;
 						}
-						if (missioncmd1.S == -1)
+						if (trigger.S == -1)
 							break;
-						final GameObject oGameObject3 = gameApplet.I(-1, -1, -1, -1, missioncmd1.S);
+						final GameObject oGameObject3 = gameApplet.I(-1, -1, -1, -1, trigger.S);
 						if (oGameObject3 != null) {
-							final int l6 = missioncmd1.A;
+							final int l6 = trigger.A;
 							gametext1.UI = oGameObject3;
 							gametext1.VI = l6;
 							gametext1.TI = false;
@@ -2785,21 +2818,21 @@ final class GameMission
 								.GiveLastInstanceTo(gameApplet.gameUIObjects);
 						if (gametext2 == null)
 							break;
-						gametext2.Draw(missioncmd1.P, missioncmd1.Q, missioncmd1.U, missioncmd1.K, missioncmd1.I,
-								missioncmd1.Z, missioncmd1.C, missioncmd1.B, missioncmd1.D, missioncmd1.wouldResetStarfield);
-						if (missioncmd1.G)
-							gametext2.Z(missioncmd1.F);
-						gametext2.I(missioncmd1.I, missioncmd1.Z,
-								missioncmd1.L * gameApplet.viewScale,
-								missioncmd1.M * gameApplet.viewScale);
+						gametext2.Draw(trigger.P, trigger.Q, trigger.U, trigger.K, trigger.I,
+								trigger.Z, trigger.C, trigger.B, trigger.D, trigger.wouldResetStarfield);
+						if (trigger.G)
+							gametext2.Z(trigger.propertyBoolean);
+						gametext2.I(trigger.I, trigger.Z,
+								trigger.L * gameApplet.viewScale,
+								trigger.M * gameApplet.viewScale);
 
-						if (missioncmd1.H)
+						if (trigger.H)
 						{
-							gametext2.ApplyColours(missioncmd1.V, missioncmd1.W);
+							gametext2.ApplyColours(trigger.V, trigger.W);
 							break;
 						}
-						if (missioncmd1.R != null) {
-							final Color color2 = missioncmd1.R;
+						if (trigger.R != null) {
+							final Color color2 = trigger.R;
 							gametext2.B = color2;
 						}
 						break;
@@ -2810,20 +2843,20 @@ final class GameMission
 						break;
 
 					case 204:
-						gameApplet.myCamera.I(missioncmd1.L, missioncmd1.M, missioncmd1.wouldResetStarfield,
-								missioncmd1.N * gameApplet.viewScale, 0.02F);
+						gameApplet.myCamera.I(trigger.L, trigger.M, trigger.wouldResetStarfield,
+								trigger.N * gameApplet.viewScale, 0.02F);
 						break;
 
 					case 205:
 						GameObject oGameObject1;
-						if (missioncmd1.I == 101) {
+						if (trigger.I == 101) {
 							final GameObjectPool oGameObjectlist5 = gameApplet.dZ;
 							oGameObject1 = oGameObjectlist5.mySize <= 0 ? null : oGameObjectlist5.internalList[0];
 						} else {
-							oGameObject1 = gameApplet.I(-1, -1, -1, -1, missioncmd1.I);
+							oGameObject1 = gameApplet.I(-1, -1, -1, -1, trigger.I);
 						}
 						if (oGameObject1 != null)
-							gameApplet.myCamera.I(oGameObject1, missioncmd1.wouldResetStarfield, 30F, 0.02F);
+							gameApplet.myCamera.I(oGameObject1, trigger.wouldResetStarfield, 30F, 0.02F);
 						break;
 
 					case 107: // 'k'
@@ -2831,26 +2864,29 @@ final class GameMission
 						break;
 
 					case 431:
-						final GameObject oGameObject2 = gameApplet.I(missioncmd1.I, missioncmd1.Z, missioncmd1.C, missioncmd1.B,
-								missioncmd1.D);
-						if (oGameObject2 == null)
+						final GameObject prefab = gameApplet.I(trigger.I, trigger.Z, trigger.C, trigger.B, trigger.D);
+						if (prefab == null)
+						{
 							break;
-						oGameObject2.frameIndex = missioncmd1.F;
-						oGameObject2.animationIndex = missioncmd1.J;
-						if (missioncmd1.Y != null)
-							oGameObject2.myAtlas = missioncmd1.Y;
-						oGameObject2.mySprite = oGameObject2.myAtlas.GetSprite(oGameObject2.frameIndex, oGameObject2.animationIndex);
+						}
+
+						prefab.frameIndex = trigger.propertyBoolean;
+						prefab.animationIndex = trigger.J;
+						if (trigger.Y != null)
+							prefab.myAtlas = trigger.Y;
+
+						prefab.SetSprite(prefab.myAtlas.GetSprite(prefab.frameIndex, prefab.animationIndex));
 						break;
 
 					case 450:
-						if (missioncmd1.I == 2)
-							C.I(missioncmd1.L, missioncmd1.Z, missioncmd1.C, missioncmd1.B, missioncmd1.D);
+						if (trigger.I == 2)
+							C.I(trigger.L, trigger.Z, trigger.C, trigger.B, trigger.D);
 						else
-							I.I(missioncmd1.L, missioncmd1.Z, missioncmd1.C, missioncmd1.B, missioncmd1.D);
+							I.I(trigger.L, trigger.Z, trigger.C, trigger.B, trigger.D);
 						break;
 
 					case 451:
-						if (missioncmd1.I == 2) {
+						if (trigger.I == 2) {
 							final GameQuest gameobjectivelist3 = C;
 							if (gameobjectivelist3.Z < gameobjectivelist3.objectivesCount) {
 								final GameObjective gameobjective1 = gameobjectivelist3.myObjectives[gameobjectivelist3.Z];
@@ -2868,16 +2904,16 @@ final class GameMission
 						break;
 
 					case 456:
-						if (missioncmd1.I == 2)
-							C.I(missioncmd1.L, missioncmd1.M, missioncmd1.Z, missioncmd1.C);
+						if (trigger.I == 2)
+							C.I(trigger.L, trigger.M, trigger.Z, trigger.C);
 						else
-							I.I(missioncmd1.L, missioncmd1.M, missioncmd1.Z, missioncmd1.C);
+							I.I(trigger.L, trigger.M, trigger.Z, trigger.C);
 						break;
 
 					case 452:
-						if (missioncmd1.I == 2) {
+						if (trigger.I == 2) {
 							final GameQuest gameobjectivelist5 = C;
-							final int k4 = missioncmd1.Z;
+							final int k4 = trigger.Z;
 							if (gameobjectivelist5.Z < gameobjectivelist5.objectivesCount) {
 								final GameObjective gameobjective3 = gameobjectivelist5.myObjectives[gameobjectivelist5.Z];
 								gameobjective3.myCategory = 3;
@@ -2888,7 +2924,7 @@ final class GameMission
 							break;
 						}
 						final GameQuest gameobjectivelist6 = I;
-						final int l4 = missioncmd1.Z;
+						final int l4 = trigger.Z;
 						if (gameobjectivelist6.Z < gameobjectivelist6.objectivesCount) {
 							final GameObjective gameobjective4 = gameobjectivelist6.myObjectives[gameobjectivelist6.Z];
 							gameobjective4.myCategory = 3;
@@ -2899,23 +2935,23 @@ final class GameMission
 						break;
 
 					case 457:
-						if (missioncmd1.I == 2)
+						if (trigger.I == 2)
 							C.I();
 						else
 							I.I();
 						break;
 
 					case 453:
-						if (missioncmd1.I == 2)
-							C.I(missioncmd1.Z, missioncmd1.C, missioncmd1.B, missioncmd1.D, missioncmd1.F);
+						if (trigger.I == 2)
+							C.I(trigger.Z, trigger.C, trigger.B, trigger.D, trigger.propertyBoolean);
 						else
-							I.I(missioncmd1.Z, missioncmd1.C, missioncmd1.B, missioncmd1.D, missioncmd1.F);
+							I.I(trigger.Z, trigger.C, trigger.B, trigger.D, trigger.propertyBoolean);
 						break;
 
 					case 454:
-						if (missioncmd1.I == 2) {
+						if (trigger.I == 2) {
 							final GameQuest gameobjectivelist7 = C;
-							final int i5 = missioncmd1.Z;
+							final int i5 = trigger.Z;
 							if (gameobjectivelist7.Z < gameobjectivelist7.objectivesCount) {
 								final GameObjective gameobjective5 = gameobjectivelist7.myObjectives[gameobjectivelist7.Z];
 								gameobjective5.myCategory = 6;
@@ -2925,7 +2961,7 @@ final class GameMission
 							break;
 						}
 						final GameQuest gameobjectivelist8 = I;
-						final int j5 = missioncmd1.Z;
+						final int j5 = trigger.Z;
 						if (gameobjectivelist8.Z < gameobjectivelist8.objectivesCount) {
 							final GameObjective gameobjective6 = gameobjectivelist8.myObjectives[gameobjectivelist8.Z];
 							gameobjective6.myCategory = 6;
@@ -2936,30 +2972,30 @@ final class GameMission
 
 					case 455:
 						append = true;
-						blue = missioncmd1.I;
+						blue = trigger.I;
 						flag1 = false;
 						break;
 
 					case 501:
 						if (flag) {
 							GameObjectPool oGameObjectlist4 = gameApplet.oZ;
-							oGameObjectlist4.I(true, null, -1, -1, -1, -1);
+							oGameObjectlist4.Attach(true, null, -1, -1, -1, -1);
 							oGameObjectlist4 = gameApplet.qZ;
-							oGameObjectlist4.I(true, null, -1, -1, -1, -1);
+							oGameObjectlist4.Attach(true, null, -1, -1, -1, -1);
 							oGameObjectlist4 = gameApplet.yZ;
-							oGameObjectlist4.I(true, null, -1, -1, -1, -1);
+							oGameObjectlist4.Attach(true, null, -1, -1, -1, -1);
 							oGameObjectlist4 = gameApplet.IC;
-							oGameObjectlist4.I(true, null, -1, -1, -1, -1);
+							oGameObjectlist4.Attach(true, null, -1, -1, -1, -1);
 							oGameObjectlist4 = gameApplet.pZ;
-							oGameObjectlist4.I(true, null, -1, -1, -1, -1);
+							oGameObjectlist4.Attach(true, null, -1, -1, -1, -1);
 							oGameObjectlist4 = gameApplet.tZ;
-							oGameObjectlist4.I(true, null, -1, -1, -1, -1);
+							oGameObjectlist4.Attach(true, null, -1, -1, -1, -1);
 							oGameObjectlist4 = gameApplet.ZC;
-							oGameObjectlist4.I(true, null, -1, -1, -1, -1);
+							oGameObjectlist4.Attach(true, null, -1, -1, -1, -1);
 							oGameObjectlist4 = gameApplet.gameUIObjects;
-							oGameObjectlist4.I(true, null, -1, -1, -1, -1);
+							oGameObjectlist4.Attach(true, null, -1, -1, -1, -1);
 							oGameObjectlist4 = gameApplet.BC;
-							oGameObjectlist4.I(true, null, -1, -1, -1, -1);
+							oGameObjectlist4.Attach(true, null, -1, -1, -1, -1);
 							gameApplet.dZ.C();
 							gameApplet.oZ.C();
 							gameApplet.pZ.C();
@@ -2975,7 +3011,7 @@ final class GameMission
 							gameApplet.GC.C();
 							gameApplet.BC.C();
 						}
-						I(missioncmd1.I);
+						ExecuteTriggers(trigger.I);
 						flag1 = false;
 						break;
 				}
@@ -2983,7 +3019,7 @@ final class GameMission
 	}
 
 	final void CompleteImmediately() {
-		for (final int i = O; abs < Z && O == i;)
+		for (final int i = usingTriggersCount; abs < Z && usingTriggersCount == i;)
 			HNSM(true);
 
 	}
@@ -3176,15 +3212,18 @@ final class GameMission
 		}
 	}
 
-	final void F(final int i, final int j, final int k, final int l, final int i1, final int j1) {
+	final void F(final int i, final int j, final int k, final int l, final int i1, final int actve_mode)
+	{
 		final Trigger missioncmd1 = new Trigger(422);
 		missioncmd1.I = i;
 		missioncmd1.Z = j;
 		missioncmd1.C = k;
 		missioncmd1.B = l;
 		missioncmd1.D = i1;
-		missioncmd1.F = j1;
-		if (Z < triggersCount) {
+		missioncmd1.propertyBoolean = actve_mode;
+
+		if (Z < triggersCount)
+		{
 			myTriggers[Z] = missioncmd1;
 			Z++;
 		}
@@ -3198,7 +3237,9 @@ final class GameMission
 		missioncmd1.B = l;
 		missioncmd1.D = i1;
 		missioncmd1.L = f;
-		if (Z < triggersCount) {
+
+		if (Z < triggersCount)
+		{
 			myTriggers[Z] = missioncmd1;
 			Z++;
 		}
@@ -3211,7 +3252,9 @@ final class GameMission
 		missioncmd1.C = k;
 		missioncmd1.B = l;
 		missioncmd1.D = i1;
-		if (Z < triggersCount) {
+
+		if (Z < triggersCount)
+		{
 			myTriggers[Z] = missioncmd1;
 			Z++;
 		}
@@ -3223,7 +3266,9 @@ final class GameMission
 		missioncmd1.Z = j;
 		missioncmd1.C = k;
 		missioncmd1.B = l;
-		if (Z < triggersCount) {
+
+		if (Z < triggersCount)
+		{
 			myTriggers[Z] = missioncmd1;
 			Z++;
 		}
@@ -3296,7 +3341,7 @@ final class GameMission
 		missioncmd1.C = k;
 		missioncmd1.B = l;
 		missioncmd1.D = i1;
-		missioncmd1.F = j1;
+		missioncmd1.propertyBoolean = j1;
 		missioncmd1.J = k1;
 		missioncmd1.Y = sprite_group1;
 		if (Z < triggersCount) {
@@ -3348,8 +3393,10 @@ final class GameMission
 		missioncmd1.C = k;
 		missioncmd1.B = l;
 		missioncmd1.D = i1;
-		missioncmd1.F = j1;
-		if (Z < triggersCount) {
+		missioncmd1.propertyBoolean = j1;
+
+		if (Z < triggersCount)
+		{
 			myTriggers[Z] = missioncmd1;
 			Z++;
 		}
@@ -3382,7 +3429,7 @@ final class GameMission
 		missioncmd1.C = l;
 		missioncmd1.B = i1;
 		missioncmd1.D = j1;
-		missioncmd1.F = k1;
+		missioncmd1.propertyBoolean = k1;
 		missioncmd1.J = i;
 		missioncmd1.S = l1;
 		missioncmd1.A = i2;
@@ -3403,7 +3450,6 @@ final class GameMission
 		missioncmd1.Q = null;
 		missioncmd1.R = null;
 
-
 		missioncmd1.V = main_color;
 		missioncmd1.W = under_color;
 		missioncmd1.U = quote_font;
@@ -3412,7 +3458,8 @@ final class GameMission
 		missioncmd1.C = l;
 		missioncmd1.B = i1;
 		missioncmd1.D = j1;
-		missioncmd1.F = k1;
+		missioncmd1.propertyBoolean = k1;
+
 		missioncmd1.J = i;
 		missioncmd1.S = l1;
 		missioncmd1.A = i2;
@@ -3703,7 +3750,7 @@ final class GameMission
 		final int i = oGameObjectlist1.mySize;
 		for (int j = 0; j < i; j++) {
 			final oSpaceship oSpaceship1 = (oSpaceship) (j < 0 || j >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[j]);
-			if (((GameObject) (oSpaceship1)).activeMode == 3) {
+			if (((GameObject) (oSpaceship1)).GetActiveState() == ActiveMode.DisableExtent) {
 				float f4 = f + ((float) Math.random() - 0.5F) * f2;
 				final float f5 = f1 + ((float) Math.random() - 0.5F) * f3;
 				int k = 0;
@@ -3717,7 +3764,8 @@ final class GameMission
 							false);
 					explosion1.timeSinceEpoch = -k;
 				}
-				oSpaceship1.activeMode = 1;
+
+				oSpaceship1.SetActiveState(ActiveMode.Activated);
 				if (((GameObject) (oSpaceship1)).HI == 101) {
 					oSpaceship1.SetupPhysics3(f4, f5, 2.0F, 0.0F, ((GameObject) (oSpaceship1)).M, ((GameObject) (oSpaceship1)).myFriction,
 							false);
@@ -3918,7 +3966,7 @@ final class GameMission
 		final oSpaceship aspaceship[] = new oSpaceship[k2];
 		for (int i1 = 0; i1 < k2; i1++) {
 			final oSpaceship oSpaceship1 = (oSpaceship) (i1 < 0 || i1 >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[i1]);
-			if (((GameObject) (oSpaceship1)).AI == j) {
+			if (((GameObject) (oSpaceship1)).prefabID == j) {
 				aspaceship[i2] = oSpaceship1;
 				i2++;
 			}
@@ -3929,7 +3977,7 @@ final class GameMission
 		final oSpaceship aspaceship1[] = new oSpaceship[k2];
 		for (int j1 = 0; j1 < k2; j1++) {
 			final oSpaceship oSpaceship2 = (oSpaceship) (j1 < 0 || j1 >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[j1]);
-			if (((GameObject) (oSpaceship2)).AI == k) {
+			if (((GameObject) (oSpaceship2)).prefabID == k) {
 				aspaceship1[j2] = oSpaceship2;
 				j2++;
 			}
@@ -3954,7 +4002,7 @@ final class GameMission
 		{
 			final oSpaceship oSpaceship1 = (oSpaceship) (j < 0 || j >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[j]);
 
-			if (((GameObject) (oSpaceship1)).activeMode == 1)
+			if (((GameObject) (oSpaceship1)).IsActivated())
 			{
 				oSpaceship1.QI = 3;
 				oSpaceship1.MI = 25;
@@ -4029,7 +4077,7 @@ final class GameMission
 	boolean L;
 	boolean M;
 	GameApp gameApplet;
-	int O;
+	int usingTriggersCount;
 	int P;
 	int Q;
 }

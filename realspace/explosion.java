@@ -80,7 +80,7 @@ final class Explosion extends GameObject
 	final void Update() {
 		super.timeSinceEpoch++;
 		if (super.timeSinceEpoch >= super.a) {
-			Equip(true, null);
+			Attach(true, null);
 			return;
 		}
 		if (super.timeSinceEpoch < Z) {
@@ -108,15 +108,15 @@ final class Explosion extends GameObject
 				else
 					i = Color.lightGray.hashCode();
 				for (int j = 0; j < D; j++)
-					canvas.I((int) explosion_property_0[j] + (GameApp.Instance).WC,
-							(int) explosion_property_1[j] + (GameApp.Instance).XC, 3, 3, i);
+					canvas.I((int) explosion_property_0[j] + (GameApp.Instance).viewRelativeX,
+							(int) explosion_property_1[j] + (GameApp.Instance).viewRelativeY, 3, 3, i);
 
 			}
 		}
 	}
 
 	@Override
-	final void I(int i, GameObject oGameObject1) {
+	public final void I(int i, GameObject oGameObject1) {
 		if (super.m > 0) {
 			if (i > super.m) {
 				super.m = 0;
@@ -135,10 +135,10 @@ final class Explosion extends GameObject
 		for (int k1 = 0; k1 < pool.mySize; k1++)
 		{
 			GameObject oGameObject1 = pool.internalList[k1];
-			if (oGameObject1.activeMode == 1 && oGameObject1.isVisible && oGameObject1.h && oGameObject1.BI >= 0.0001F)
+			if (oGameObject1.IsActivated() && oGameObject1.isVisible && oGameObject1.h && oGameObject1.BI >= 0.0001F)
 			{
-				if (oGameObject1.l)
-					HNSM(i, oGameObject1.myWeapons);
+				if (oGameObject1.hasChildren)
+					HNSM(i, oGameObject1.myChildren);
 
 				int j = (int) (super.myX - oGameObject1.myX);
 				int k = (int) (super.myY - oGameObject1.myY);

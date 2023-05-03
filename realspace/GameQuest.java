@@ -74,7 +74,7 @@ final class GameQuest
 						GameObjectPool oGameObjectlist2 = gameApplet.wZ;
 						oSpaceship oSpaceship1 = (oSpaceship) (j < 0 || j >= oGameObjectlist2.mySize ? null
 								: oGameObjectlist2.internalList[j]);
-						if (((GameObject) (oSpaceship1)).activeMode == 1 && oSpaceship1.QI != round && oSpaceship1.QI != 1) {
+						if (((GameObject) (oSpaceship1)).IsActivated() && oSpaceship1.QI != round && oSpaceship1.QI != 1) {
 							i++;
 							oSpaceship1.QI = round;
 						}
@@ -87,7 +87,7 @@ final class GameQuest
 						GameObjectPool oGameObjectlist4 = gameApplet.vZ;
 						oSpaceship oSpaceship2 = (oSpaceship) (k < 0 || k >= oGameObjectlist4.mySize ? null
 								: oGameObjectlist4.internalList[k]);
-						if (((GameObject) (oSpaceship2)).activeMode == 1 && oSpaceship2.QI != round && oSpaceship2.QI != 1) {
+						if (((GameObject) (oSpaceship2)).IsActivated() && oSpaceship2.QI != round && oSpaceship2.QI != 1) {
 							i++;
 							oSpaceship2.QI = round;
 						}
@@ -167,7 +167,7 @@ final class GameQuest
 				break;
 
 			case 6: // '\006'
-				gameApplet.currentMission.I(quest_objective.L);
+				gameApplet.currentMission.ExecuteTriggers(quest_objective.L);
 				return;
 			}
 

@@ -30,7 +30,7 @@ final class explosionbit extends GameObject
 		super.timeSinceEpoch++;
 		if (super.timeSinceEpoch >= super.a)
 		{
-			Equip(true, null);
+			Attach(true, null);
 			return;
 		}
 

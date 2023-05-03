@@ -1,10 +1,8 @@
 package realspace;
 
-import java.util.Enumeration;
-
 final class GameObjectPool
 {
-	GameObjectPool(GameApp applet, final int pool_size)
+	GameObjectPool(final GameApp applet, final int pool_size)
 	{
 		gameApplet = applet;
 
@@ -13,12 +11,12 @@ final class GameObjectPool
 		mySize = 0;
 	}
 
-	final void Add(GameObject instance)
+	final void Add(final GameObject instance)
 	{
 		internalList[mySize++] = instance;
 	}
 
-	final synchronized void SafeAdd(GameObject instance)
+	final synchronized void SafeAdd(final GameObject instance)
 	{
 		if (mySize < myCapacity)
 		{
@@ -26,16 +24,16 @@ final class GameObjectPool
 		}
 	}
 
-	final GameObject GiveLastInstanceTo(GameObjectPool other_pool)
+	final GameObject GiveLastInstanceTo(final GameObjectPool other_pool)
 	{
 		if (mySize <= 0 || other_pool.myCapacity <= other_pool.mySize)
 			return null;
 
 		mySize--;
 
-		GameObject last = internalList[mySize];
+		final GameObject last = internalList[mySize];
 		last.isVisible = false;
-		last.activeMode = 2;
+		last.SetActiveState(ActiveMode.Disabled);
 		last.ownsPool = this;
 		internalList[mySize] = null;
 
@@ -47,15 +45,16 @@ final class GameObjectPool
 		return last;
 	}
 
-	final void RemoveOuters(GameObject instance)
+	final void RemoveOuters(final GameObject instance)
 	{
-		instance.activeMode = 2;
-		if (instance.g != null)
-			instance.g = null;
-		if (instance.myFollower != null)
-			instance.myFollower = null;
-		if (instance.myWeapons != null)
-			instance.myWeapons.I();
+		instance.SetActiveState(ActiveMode.Disabled);
+		instance.myFollower = null;
+		instance.myParent = null;
+
+		if (instance.myChildren != null)
+		{
+			instance.myChildren.I();
+		}
 
 		for (int i = 0; i < mySize; i++)
 		{
@@ -80,38 +79,45 @@ final class GameObjectPool
 		}
 	}
 
-	final void I() {
-		while (mySize > 0) {
-			mySize--;
-			GameObject oGameObject1 = internalList[mySize];
-			if (oGameObject1.myWeapons != null)
-				oGameObject1.myWeapons.I();
-			if (oGameObject1.ownsPool != null) {
-				GameObjectPool oGameObjectlist1 = oGameObject1.ownsPool;
-				if (oGameObjectlist1.mySize < oGameObjectlist1.myCapacity) {
-					oGameObjectlist1.internalList[oGameObjectlist1.mySize] = oGameObject1;
-					oGameObjectlist1.mySize++;
-				}
-				oGameObject1.ownsPool = null;
+	final void I()
+	{
+		while (0 < mySize)
+		{
+			final GameObject obj = internalList[--mySize];
+			
+			if (obj.myChildren != null)
+			{
+				obj.myChildren.I();
 			}
+
+			if (obj.ownsPool != null)
+			{
+				obj.ownsPool.Add(obj);
+
+				obj.ownsPool = null;
+			}
+			
 			internalList[mySize] = null;
 		}
 	}
 
-	final boolean I(final boolean flag, GameObject oGameObject1, int i, int j, int k, int l)
+	final boolean Attach(final boolean attach_flag, final GameObject target, final int i, final int ship_grade, final int prefab_id, final int l)
 	{
 		if (mySize <= 0)
 		{
 			return false;
 		}
 
-		for (int i1 = 0; i1 < mySize; i1++)
+		for (GameObject obj : internalList)
 		{
-			GameObject oGameObject2 = internalList[i1];
-			
-			if (oGameObject2.activeMode != 2 && (i == -1 || oGameObject2.JI == i) && (j == -1 || oGameObject2.shipGrade == j) && (k == -1 || oGameObject2.AI == k) && (l == -1 || oGameObject2.HI == l))
+			// !IsExplicitDisabled()
+			if (obj.IsActivated()
+					&& (i == -1 || obj.JI == i)
+					&& (ship_grade == -1 || obj.shipGrade == ship_grade)
+					&& (prefab_id == -1 || obj.prefabID == prefab_id)
+					&& (l == -1 || obj.HI == l))
 			{
-				oGameObject2.Equip(flag, oGameObject1);
+				obj.Attach(attach_flag, target);
 			}
 		}
 
@@ -120,49 +126,53 @@ final class GameObjectPool
 
 	final void Warp()
 	{
-		for (GameObject obj : internalList)
+		for (final GameObject obj : internalList)
 		{
-			if (obj.activeMode == 1)
+			if (obj.IsActivated())
 			{
 				obj.Warp();
 			}
 		}
 	}
 
-	final void Draw(Canvas surface) 
+	final void Draw(final Canvas surface) 
 	{
 		for (int i = 0; i < mySize; i++)
 		{
-			GameObject instance = internalList[i];
-			if (instance.activeMode == 1 && instance.isVisible)
+			final GameObject instance = internalList[i];
+			if (instance.IsActivated() && instance.isVisible)
 			{
 				instance.Draw(surface);
 			}
 		}
 	}
 
-	final boolean Z(GameObjectPool other_pool)
+	final boolean CheckCollision(final GameObjectPool other_pool)
 	{
-		for (int i = 0; i < mySize; i++)
+		for (final GameObject obj : internalList)
 		{
-			GameObject oGameObject1 = internalList[i];
-
-			if (oGameObject1.activeMode == 1 && oGameObject1.isVisible && oGameObject1.h && oGameObject1.BI >= 0.0001F)
+			if (obj.IsActivated() && obj.isVisible
+			&& obj.h && obj.BI >= 0.0001F)
 			{
-				if (oGameObject1.l && oGameObject1.myWeapons.Z(other_pool))
-					return true;
-
-				for (int j = 0; j < other_pool.mySize; j++)
+				if (obj.hasChildren && obj.myChildren.CheckCollision(other_pool))
 				{
-					GameObject oGameObject2 = other_pool.internalList[j];
+					return true;
+				}
 
-					if (oGameObject2.activeMode == 1 && oGameObject2.isVisible && oGameObject2.h && oGameObject2.BI >= 0.0001F)
+				for (final GameObject other_obj : other_pool.internalList)
+				{
+					if (other_obj.IsActivated() && other_obj.isVisible
+					&& other_obj.h && other_obj.BI >= 0.0001F)
 					{
-						if (oGameObject2.l && oGameObject2.myWeapons.CheckActivatedNow(oGameObject1))
+						if (other_obj.hasChildren && other_obj.myChildren.CheckActivatedNow(obj))
+						{
 							return true;
+						}
 
-						if (oGameObject1.CheckCollision(oGameObject2))
+						if (obj.CheckCollision(other_obj))
+						{
 							return true;
+						}
 					}
 				}
 			}
@@ -173,22 +183,26 @@ final class GameObjectPool
 
 	final boolean CheckActivatedNow(final GameObject target)
 	{
-		for (int i = 0; i < mySize; i++)
+		for (GameObject obj : internalList)
 		{
-			GameObject obj = internalList[i];
-
-			if (obj.activeMode == 1 && obj.isVisible && obj.h)
+			if (obj.IsActivated() && obj.isVisible && obj.h)
 			{
-				if (obj.l && obj.myWeapons.CheckActivatedNow(target))
-					return true;
-
-				if (target.activeMode == 1 && target.isVisible && target.h)
+				if (obj.hasChildren && obj.myChildren.CheckActivatedNow(target))
 				{
-					if (target.l && target.myWeapons.CheckActivatedNow(obj))
+					return true;
+				}
+
+				if (target.IsActivated() && target.isVisible && target.h)
+				{
+					if (target.hasChildren && target.myChildren.CheckActivatedNow(obj))
+					{
 						return true;
+					}
 
 					if (obj.CheckCollision(target))
+					{
 						return true;
+					}
 				}
 			}
 		}
@@ -198,9 +212,9 @@ final class GameObjectPool
 
 	final GameObject OnMouseHover(final int mx, final int my)
 	{
-		for (GameObject obj : internalList)
+		for (final GameObject obj : internalList)
 		{
-			if (obj.activeMode == 1
+			if (obj.IsActivated()
 					&& obj.isEnabled
 					&& mx < obj.borderRight && mx >= obj.borderLeft
 					&& my < obj.borderTop && my >= obj.borderBottom)
@@ -208,66 +222,81 @@ final class GameObjectPool
 				return obj;
 			}
 		}
-		return null;
-	}
-
-	final void I(float f, float f1, boolean flag, int i, int j, int k, int l) {
-		int i1 = mySize;
-		for (int j1 = 0; j1 < i1; j1++) {
-			GameObject oGameObject1 = internalList[j1];
-			if ((oGameObject1.activeMode == 1 || oGameObject1.activeMode == 3) && (i == -1 || oGameObject1.JI == i)
-					&& (j == -1 || oGameObject1.shipGrade == j) && (k == -1 || oGameObject1.AI == k)
-					&& (l == -1 || oGameObject1.HI == l))
-				oGameObject1.Z(f, f1, flag);
-		}
-
-	}
-
-	final GameObject I(int i, int j, int k, int l, int i1, float f) {
-		int j1 = mySize;
-		for (int k1 = 0; k1 < j1; k1++) {
-			GameObject oGameObject1 = internalList[k1];
-			if (i == -1 || oGameObject1.activeMode == i && (j == -1 || oGameObject1.JI == j)
-					&& (k == -1 || oGameObject1.shipGrade == k) && (l == -1 || oGameObject1.AI == l)
-					&& (i1 == -1 || oGameObject1.HI == i1) && (f <= -1F || oGameObject1.BI >= f))
-				return oGameObject1;
-		}
 
 		return null;
 	}
 
-	final void C() {
-		for (int i = 0; i < mySize;)
+	final void I(final float f, final float f1, final boolean flag, final int i, final int ship_grade, final int prefab_id, final int l)
+	{
+		for (final GameObject obj : internalList)
 		{
-			GameObject oGameObject1 = internalList[i];
-			if (oGameObject1.activeMode == 2)
+			//if ((obj.IsActivated() || obj.GetActiveState() == ActiveMode.DisableExtent)
+			if ((!obj.IsDisabled()
+			&& (i == -1 || obj.JI == i)
+			&& (ship_grade == -1 || obj.shipGrade == ship_grade)
+			&& (prefab_id == -1 || obj.prefabID == prefab_id)
+			&& (l == -1 || obj.HI == l)))
 			{
-				RemoveOuters(oGameObject1);
+				obj.Z(f, f1, flag);
+			}
+		}
+	}
+
+	final GameObject I(final int active_mode, final int j, final int ship_grade, final int prefab_id, final int i1, final float f)
+	{
+		for (final GameObject obj : internalList)
+		{
+			if (active_mode == -1 || obj.GetActiveState() == active_mode
+			&& (j == -1 || obj.JI == j)
+			&& (ship_grade == -1 || obj.shipGrade == ship_grade)
+			&& (prefab_id == -1 || obj.prefabID == prefab_id)
+			&& (i1 == -1 || obj.HI == i1)
+			&& (f <= -1F || obj.BI >= f))
+			{
+				return obj;
+			}
+		}
+
+		return null;
+	}
+
+	final void C()
+	{
+		for (final GameObject obj : internalList)
+		{
+			if (obj.IsDisabled())
+			{
+				RemoveOuters(obj);
 			}
 			else
 			{
-				if (oGameObject1.myFollower != null && oGameObject1.myFollower.activeMode != 1) {
-					oGameObject1.myFollower = null;
-					oGameObject1.P = false;
-					if (oGameObject1.hAccel * oGameObject1.hAccel + oGameObject1.vAccel * oGameObject1.vAccel <= 0.02F) {
-						oGameObject1.hAccel = 0.0F;
-						oGameObject1.vAccel = -0.2F;
+				if (obj.myParent != null && obj.myParent.IsDisabled())
+				{
+					obj.myParent = null;
+					obj.P = false;
+
+					if (obj.hAccel * obj.hAccel + obj.vAccel * obj.vAccel <= 0.02F)
+					{
+						obj.hAccel = 0.0F;
+						obj.vAccel = -0.2F;
 					}
 				}
-				i++;
 			}
 		}
-
 	}
 
-	final void I(float f, int i, int j, int k, int l)
+	final void I(final float f, final int i, final int ship_grade, final int prefab_id, final int l)
 	{
-		int i1 = mySize;
-		for (int j1 = 0; j1 < i1; j1++) {
-			GameObject oGameObject1 = internalList[j1];
-			if (oGameObject1.activeMode == 1 && (i == -1 || oGameObject1.JI == i) && (j == -1 || oGameObject1.shipGrade == j)
-					&& (k == -1 || oGameObject1.AI == k) && (l == -1 || oGameObject1.HI == l))
-				oGameObject1.BI = f;
+		for (final GameObject obj : internalList)
+		{
+			if (obj.IsActivated()
+			&& (i == -1 || obj.JI == i)
+			&& (ship_grade == -1 || obj.shipGrade == ship_grade)
+			&& (prefab_id == -1 || obj.prefabID == prefab_id)
+			&& (l == -1 || obj.HI == l))
+			{
+				obj.BI = f;
+			}
 		}
 
 	}

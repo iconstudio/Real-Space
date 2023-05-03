@@ -15,7 +15,7 @@ final class oWeaponfire extends GameObject
 
 	final void I(SpriteGroup sprite_group1, SpriteGroup sprite_group2, oWeapon oWeapon1, GameObject oGameObject1,
 			int i, int j, int k, int l, float f) {
-		oSpaceship oSpaceship1 = (oSpaceship) ((GameObject) (oWeapon1)).g;
+		oSpaceship oSpaceship1 = (oSpaceship) ((GameObject) (oWeapon1)).myFollower;
 		float f1 = (float) Math.cos(((GameObject) (oSpaceship1)).myRotation);
 		float f4 = (float) Math.sin(((GameObject) (oSpaceship1)).myRotation);
 		super.myX = (((GameObject) (oSpaceship1)).myX + ((GameObject) (oSpaceship1)).mySprite.E + oWeapon1.I * f1)
@@ -49,7 +49,7 @@ final class oWeaponfire extends GameObject
 			j1 = (int) oGameObject1.myY;
 		}
 		F(sprite_group1, sprite_group2, oGameObject1, i, j, k, (int) super.myX, (int) super.myY, i1, j1, l, f);
-		super.g = oWeapon1;
+		super.myFollower = oWeapon1;
 	}
 
 	@SuppressWarnings("unused")
@@ -60,7 +60,7 @@ final class oWeaponfire extends GameObject
 		super.M = f;
 		super.shipGrade = i;
 		super.EI = j;
-		super.myFollower = oGameObject1;
+		super.myParent = oGameObject1;
 		B = false;
 		super.a = l1;
 		super.BI = 1.0F;
@@ -109,14 +109,14 @@ final class oWeaponfire extends GameObject
 				I = 1.0F;
 				Z = 1.0F;
 			}
-			F[0] = (l - (int) I) + (GameApp.Instance).WC;
-			HNSM[0] = (i1 - (int) Z) + (GameApp.Instance).XC;
-			F[1] = l + (int) I + (GameApp.Instance).WC;
-			HNSM[1] = i1 + (int) Z + (GameApp.Instance).XC;
-			F[2] = j1 + (int) I + (GameApp.Instance).WC;
-			HNSM[2] = k1 + (int) Z + (GameApp.Instance).XC;
-			F[3] = (j1 - (int) I) + (GameApp.Instance).WC;
-			HNSM[3] = (k1 - (int) Z) + (GameApp.Instance).XC;
+			F[0] = (l - (int) I) + (GameApp.Instance).viewRelativeX;
+			HNSM[0] = (i1 - (int) Z) + (GameApp.Instance).viewRelativeY;
+			F[1] = l + (int) I + (GameApp.Instance).viewRelativeX;
+			HNSM[1] = i1 + (int) Z + (GameApp.Instance).viewRelativeY;
+			F[2] = j1 + (int) I + (GameApp.Instance).viewRelativeX;
+			HNSM[2] = k1 + (int) Z + (GameApp.Instance).viewRelativeY;
+			F[3] = (j1 - (int) I) + (GameApp.Instance).viewRelativeX;
+			HNSM[3] = (k1 - (int) Z) + (GameApp.Instance).viewRelativeY;
 			return;
 
 		case 6: // '\006'
@@ -189,7 +189,7 @@ final class oWeaponfire extends GameObject
 			UpdateWithSpeed();
 			timeSinceEpoch++;
 			if (timeSinceEpoch >= super.a)
-				Equip(true, null);
+				Attach(true, null);
 			break;
 
 		case 3: // '\003'
@@ -197,42 +197,56 @@ final class oWeaponfire extends GameObject
 			UpdateWithSpeed();
 			timeSinceEpoch++;
 			if (timeSinceEpoch >= super.a)
-				Equip(true, null);
+				Attach(true, null);
 			break;
 
 		case 2: // '\002'
 			super.mySprite = super.myAtlas.GetSprite(super.frameIndex, super.animationIndex);
 			UpdateWithFollower1();
 			timeSinceEpoch++;
+
 			if (timeSinceEpoch >= super.a)
-				Equip(true, null);
+			{
+				Attach(true, null);
+			}
 			break;
 
 		case 4: // '\004'
 			UpdateWithFollower2();
 			timeSinceEpoch++;
+
 			if (timeSinceEpoch >= super.a)
-				Equip(true, null);
+			{
+				Attach(true, null);
+			}
 			break;
 
 		case 5: // '\005'
 			timeSinceEpoch++;
 			if (timeSinceEpoch >= super.a)
-				Equip(false, null);
-			else if (super.g != null && super.g.activeMode != 1) {
-				Equip(true, null);
-			} else {
-				if (super.g != null) {
-					F[0] = (int) (super.g.myX - I) + (GameApp.Instance).WC;
-					HNSM[0] = (int) (super.g.myY - Z) + (GameApp.Instance).XC;
-					F[1] = (int) (super.g.myX + I) + (GameApp.Instance).WC;
-					HNSM[1] = (int) (super.g.myY + Z) + (GameApp.Instance).XC;
+			{
+				Attach(false, null);
+			}
+			else if (super.myFollower != null && super.myFollower.IsDisabled())
+			{
+				Attach(true, null);
+			}
+			else
+			{
+				if (super.myFollower != null)
+				{
+					F[0] = (int) (super.myFollower.myX - I) + (GameApp.Instance).viewRelativeX;
+					HNSM[0] = (int) (super.myFollower.myY - Z) + (GameApp.Instance).viewRelativeY;
+					F[1] = (int) (super.myFollower.myX + I) + (GameApp.Instance).viewRelativeX;
+					HNSM[1] = (int) (super.myFollower.myY + Z) + (GameApp.Instance).viewRelativeY;
 				}
-				if (super.myFollower != null) {
-					F[2] = (int) (super.myFollower.myX + I) + (GameApp.Instance).WC;
-					HNSM[2] = (int) (super.myFollower.myY + Z) + (GameApp.Instance).XC;
-					F[3] = (int) (super.myFollower.myX - I) + (GameApp.Instance).WC;
-					HNSM[3] = (int) (super.myFollower.myY - Z) + (GameApp.Instance).XC;
+
+				if (super.myParent != null)
+				{
+					F[2] = (int) (super.myParent.myX + I) + (GameApp.Instance).viewRelativeX;
+					HNSM[2] = (int) (super.myParent.myY + Z) + (GameApp.Instance).viewRelativeY;
+					F[3] = (int) (super.myParent.myX - I) + (GameApp.Instance).viewRelativeX;
+					HNSM[3] = (int) (super.myParent.myY - Z) + (GameApp.Instance).viewRelativeY;
 				}
 			}
 			break;
@@ -240,10 +254,10 @@ final class oWeaponfire extends GameObject
 		case 6: // '\006'
 			timeSinceEpoch++;
 			if (timeSinceEpoch >= super.a)
-				Equip(false, null);
+				Attach(false, null);
 			break;
 		}
-		if (D != null && super.activeMode == 1 && timeSinceEpoch % 3 == 0) {
+		if (D != null && super.IsActivated() && timeSinceEpoch % 3 == 0) {
 			Explosion explosion1 = (Explosion) GameApp.Instance.rZ.GiveLastInstanceTo(GameApp.Instance.pZ);
 			if (explosion1 != null)
 				explosion1.I(D, 1, super.myX, super.myY, super.hSpeed * 0.4F, super.vSpeed * 0.4F, 0, 1, 0, false);
@@ -279,13 +293,13 @@ final class oWeaponfire extends GameObject
 	}
 
 	@Override
-	final boolean CheckCollision(GameObject oGameObject1) {
+	public final boolean CheckCollision(GameObject oGameObject1) {
 		switch (super.shipGrade) {
 		case 5: // '\005'
 			break;
 
 		case 6: // '\006'
-			if (super.activeMode == 1 && oGameObject1.activeMode == 1) {
+			if (super.IsActivated() && oGameObject1.IsActivated()) {
 				for (int i = 0; i < C; i++)
 					if (timeSinceEpoch < random[i]) {
 						int j = 40 * i + timeSinceEpoch;
@@ -300,7 +314,7 @@ final class oWeaponfire extends GameObject
 							}
 							if (!B) {
 								B = true;
-								if (oGameObject1.JI == 9 || oGameObject1.JI == 8 && oGameObject1.AI == 130)
+								if (oGameObject1.JI == 9 || oGameObject1.JI == 8 && oGameObject1.prefabID == 130)
 									GameApp.Instance.everySFXs.Play(GameApp.Instance.UZ, true, false);
 								else
 									GameApp.Instance.everySFXs.Play(GameApp.Instance.VZ, true, false);
@@ -324,7 +338,7 @@ final class oWeaponfire extends GameObject
 	}
 
 	@Override
-	final void Equip(boolean flag, GameObject oGameObject1) {
+	public final void Attach(boolean flag, GameObject oGameObject1) {
 		if (!flag) {
 			SpriteGroup sprite_group1;
 			if (super.EI == 2)
@@ -341,7 +355,7 @@ final class oWeaponfire extends GameObject
 				if (explosion1 != null) {
 					explosion1.I(sprite_group1, 1, super.myX, super.myY, super.hSpeed, super.vSpeed, 1, 2, super.m + super.n, true);
 					if (oGameObject1 != null
-							&& (oGameObject1.JI == 9 || oGameObject1.JI == 8 && oGameObject1.AI == 130))
+							&& (oGameObject1.JI == 9 || oGameObject1.JI == 8 && oGameObject1.prefabID == 130))
 						GameApp.Instance.everySFXs.Play(GameApp.Instance.UZ, true, false);
 					else
 						GameApp.Instance.everySFXs.Play(GameApp.Instance.VZ, true, false);
@@ -354,23 +368,23 @@ final class oWeaponfire extends GameObject
 				if (explosion2 == null)
 					break;
 				explosion2.I(sprite_group1, 1, super.myX, super.myY, super.hSpeed, super.vSpeed, 1, 2, super.m + super.n, true);
-				if (oGameObject1 != null && (oGameObject1.JI == 9 || oGameObject1.JI == 8 && oGameObject1.AI == 130))
+				if (oGameObject1 != null && (oGameObject1.JI == 9 || oGameObject1.JI == 8 && oGameObject1.prefabID == 130))
 					GameApp.Instance.everySFXs.Play(GameApp.Instance.UZ, true, false);
 				else
 					GameApp.Instance.everySFXs.Play(GameApp.Instance.VZ, true, false);
 				break;
 
 			case 5: // '\005'
-				if (super.myFollower == null || super.myFollower.activeMode != 1)
+				if (super.myParent == null || super.myParent.IsDisabled())
 					break;
-				super.myFollower.I(super.m, this);
+				super.myParent.I(super.m, this);
 				Explosion explosion3 = (Explosion) GameApp.Instance.rZ.GiveLastInstanceTo(GameApp.Instance.qZ);
 				if (explosion3 != null)
-					explosion3.I(sprite_group1, 1, super.myFollower.myX, super.myFollower.myY, Z, -I, 1, 2, 0, true);
+					explosion3.I(sprite_group1, 1, super.myParent.myX, super.myParent.myY, Z, -I, 1, 2, 0, true);
 				break;
 			}
 		}
-		super.Equip(flag, oGameObject1);
+		super.Attach(flag, oGameObject1);
 	}
 
 	int F[];

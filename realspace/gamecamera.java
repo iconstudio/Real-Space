@@ -2,7 +2,7 @@ package realspace;
 
 final class GameCamera extends GameObject
 {
-	public GameCamera(GameApp applet)
+	public GameCamera(final GameApp applet)
 	{
 		super(applet);
 	}
@@ -18,7 +18,7 @@ final class GameCamera extends GameObject
 	@Override
 	final void Update()
 	{
-		if (GameApp.Instance.currentMission.O == 1001 && super.myFollower == null)
+		if (gameApplet.currentMission.usingTriggersCount == 1001 && myParent == null)
 		{
 			if (HNSM == -1)
 			{
@@ -32,14 +32,14 @@ final class GameCamera extends GameObject
 			{
 				GameObjectPool oGameObjectlist1;
 				if (Math.random() < 0.5D)
-					oGameObjectlist1 = GameApp.Instance.vZ;
+					oGameObjectlist1 = gameApplet.vZ;
 				else
-					oGameObjectlist1 = GameApp.Instance.wZ;
+					oGameObjectlist1 = gameApplet.wZ;
 
-				int i = oGameObjectlist1.mySize;
+				final int i = oGameObjectlist1.mySize;
 				if (0 < i)
 				{
-					int j = (int) (Math.random() * 0.99900000000000011D * i);
+					final int j = (int) (Math.random() * 0.99900000000000011D * i);
 
 					I(j < 0 || j >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[j], true, 30F, 0.02F);
 				}
@@ -48,25 +48,25 @@ final class GameCamera extends GameObject
 			}
 		}
 
-		if (super.myFollower != null)
+		if (myParent != null)
 		{
-			if (super.myFollower.activeMode != 1)
+			if (myParent.IsDisabled())
 			{
-				super.myFollower = null;
+				myParent = null;
 				super.P = false;
 
-				CleanupPhysics(super.myX, super.myY, super.hasAnimation);
+				CleanupPhysics(myX, myY, super.hasAnimation);
 			}
-			else if (!super.myFollower.isVisible || !super.myFollower.isEnabled)
+			else if (!myParent.isVisible || !myParent.isEnabled)
 			{
 				super.Update();
 			}
 			else if (wouldResetStarfield)
 			{
-				super.myX = super.myFollower.myX;
-				super.myY = super.myFollower.myY;
-				super.hSpeed = super.myFollower.hSpeed;
-				super.vSpeed = super.myFollower.vSpeed;
+				myX = myParent.myX;
+				myY = myParent.myY;
+				hSpeed = myParent.hSpeed;
+				vSpeed = myParent.vSpeed;
 			}
 			else
 			{
@@ -78,55 +78,56 @@ final class GameCamera extends GameObject
 			super.Update();
 		}
 
-		GameApp.Instance.WC = (int) (-super.myX) + (GameApp.Instance).viewWidth / 2;
-		GameApp.Instance.XC = (int) (-super.myY) + (GameApp.Instance).viewHeight / 2;
+		gameApplet.viewRelativeX = (int) (-myX) + gameApplet.viewWidth / 2;
+		gameApplet.viewRelativeY = (int) (-myY) + gameApplet.viewHeight / 2;
 	}
 
-	final void I(float f, float f1, final boolean reset_starfield, float f2, float f3) {
+	final void I(final float f, final float f1, final boolean reset_starfield, final float f2, final float f3) {
 		wouldResetStarfield = reset_starfield;
-		super.myFollower = null;
+		myParent = null;
 
 		if (reset_starfield)
 		{
 			CleanupPhysics(f, f1, false);
-			if (GameApp.Instance.gameStarfield != null)
+			if (gameApplet.gameStarfield != null)
 			{
-				GameApp.Instance.gameStarfield.initialize();
+				gameApplet.gameStarfield.initialize();
 			}
 		}
 		else
 		{
-			SetupPhysics5(super.myX, super.myY, null, f, f1, f2, f3, true, false);
+			SetupPhysics5(myX, myY, null, f, f1, f2, f3, true, false);
 		}
 
-		GameApp.Instance.WC = (int) (-super.myX) + (GameApp.Instance).viewWidth / 2;
-		GameApp.Instance.XC = (int) (-super.myY) + (GameApp.Instance).viewHeight / 2;
+		gameApplet.viewRelativeX = (int) (-myX) + gameApplet.viewWidth / 2;
+		gameApplet.viewRelativeY = (int) (-myY) + gameApplet.viewHeight / 2;
 	}
 
-	final void I(GameObject oGameObject1, final boolean reset_starfield, float f, float f1) {
+	final void I(final GameObject oGameObject1, final boolean reset_starfield, final float f, final float f1)
+	{
 		wouldResetStarfield = reset_starfield;
-		super.myFollower = oGameObject1;
+		myParent = oGameObject1;
 
 		if (wouldResetStarfield)
 		{
-			float f2 = super.myFollower.myX - super.myX;
-			float f3 = super.myFollower.myY - super.myY;
-			super.myX = super.myFollower.myX;
-			super.myY = super.myFollower.myY;
-			super.hSpeed = 0.0F;
-			super.vSpeed = 0.0F;
+			final float f2 = myParent.myX - myX;
+			final float f3 = myParent.myY - myY;
+			myX = myParent.myX;
+			myY = myParent.myY;
+			hSpeed = 0.0F;
+			vSpeed = 0.0F;
 
-			if (f2 * f2 + f3 * f3 > 16F && GameApp.Instance.gameStarfield != null)
+			if (f2 * f2 + f3 * f3 > 16F && gameApplet.gameStarfield != null)
 			{
-				GameApp.Instance.gameStarfield.initialize();
+				gameApplet.gameStarfield.initialize();
 			}
 		}
 		else
 		{
-			SetupPhysics5(super.myX, super.myY, oGameObject1, 0.0F, 0.0F, f, f1, true, false);
+			SetupPhysics5(myX, myY, oGameObject1, 0.0F, 0.0F, f, f1, true, false);
 		}
-		GameApp.Instance.WC = (int) (-super.myX) + (GameApp.Instance).viewWidth / 2;
-		GameApp.Instance.XC = (int) (-super.myY) + (GameApp.Instance).viewHeight / 2;
+		gameApplet.viewRelativeX = (int) (-myX) + gameApplet.viewWidth / 2;
+		gameApplet.viewRelativeY = (int) (-myY) + gameApplet.viewHeight / 2;
 	}
 
 	final boolean A()
@@ -136,8 +137,8 @@ final class GameCamera extends GameObject
 			return true;
 		}
 
-		float f = super.myX - super.myDestX;
-		float f1 = super.myY - super.myDestY;
+		final float f = myX - super.myDestX;
+		final float f1 = myY - super.myDestY;
 
 		return f * f + f1 * f1 < 2.0F;
 	}

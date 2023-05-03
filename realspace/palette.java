@@ -69,7 +69,12 @@ final class Palette
 		return myData[mySize - 1];
 	}
 
-	final int Pick(final int index)
+	final int Pick(final int index) 
+	{
+		return Pick(index, 0);
+	}
+
+	final int PickOrLast(final int index)
 	{
 		if (0 <= index && index < mySize)
 		{

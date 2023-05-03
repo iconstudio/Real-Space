@@ -8,14 +8,14 @@ final class oSpaceship extends GameObject
 		YI = 100000F;
 
 		myThrustors = new oShipthrustor(applet);
-		myWeapons = new GameObjectPool(applet, 10);
+		myChildren = new GameObjectPool(applet, 10);
 	}
 
 	protected final void Initialize(final SpriteGroup atlas, final int ship_grade, final int j, final int k, final int score, final int attr1, final int attr2, final int attr3, final boolean flag, final int l1)
 	{
 		super.Awake(atlas, 8, attr1, attr2, attr3, flag);
 		super.shipGrade = ship_grade;
-		super.AI = j;
+		prefabID = j;
 		super.EI = k;
 		super.j = l1;
 		
@@ -40,7 +40,7 @@ final class oSpaceship extends GameObject
 		QI = 1;
 		OI = 0;
 		PI = true;
-		D = 0;
+		fellowsCount = 0;
 		myThrustors.I();
 	}
 
@@ -477,7 +477,7 @@ final class oSpaceship extends GameObject
 			random--;
 			if (random <= 0) {
 				random = 10 + (int) (Math.random() * println);
-				if (super.shipGrade == 4 && super.AI != 150)
+				if (super.shipGrade == 4 && prefabID != 150)
 					random = random / 2;
 				SpriteGroup sprite_group1 = null;
 				switch ((int) (Math.random() * 3D)) {
@@ -528,12 +528,12 @@ final class oSpaceship extends GameObject
 			CalcCollisionBox();
 		}
 
-		if (I != null && I.activeMode != 1)
+		if (I != null && I.IsDisabled())
 			I = null;
 
-		if (super.g != null && super.g.activeMode == 2)
+		if (super.myFollower != null && super.myFollower.IsDisabled())
 		{
-			super.g = null;
+			super.myFollower = null;
 		}
 
 		if (RI)
@@ -546,19 +546,23 @@ final class oSpaceship extends GameObject
 					switch (VI)
 					{
 					case 1: // '\001'
-						Equip(true, null);
+						Attach(true, null);
 						break;
 
 					case 2: // '\002'
 						if (UI == 20)
+						{
 							SetupPhysics1(myX, myY, hSpeed, vSpeed, 0.0F, 0.05F, true);
+						}
 						else if (myY > gameApplet.screen_height + super.mySprite.J)
-							Equip(true, null);
+						{
+							Attach(true, null);
+						}
 						break;
 					}
 				}
 			}
-			else if (Math.abs(myFollower.myX - myX) < 10F && Math.abs(myFollower.myY - myY) < 10F)
+			else if (Math.abs(myParent.myX - myX) < 10F && Math.abs(myParent.myY - myY) < 10F)
 			{
 				TI = true;
 			}
@@ -573,8 +577,10 @@ final class oSpaceship extends GameObject
 				break;
 
 			case 2: // '\002'
-				if ((I == null || I.activeMode != 1) && Math.random() * 80D > 79D)
+				if ((I == null || I.IsDisabled()) && Math.random() * 80D > 79D)
+				{
 					super.i = (float) Math.random() * 6.283185F;
+				}
 				UpdateWithAttacks(I);
 
 				frameIndex = myAtlas.GetFrameByRotation(myRotation);
@@ -584,8 +590,11 @@ final class oSpaceship extends GameObject
 				if (OI > 0)
 				{
 					OI--;
-					if (OI == 0 && myFollower == null)
+
+					if (OI == 0 && myParent == null)
+					{
 						E();
+					}
 					break;
 				}
 
@@ -598,16 +607,20 @@ final class oSpaceship extends GameObject
 					}
 
 					if (super.CI)
-						super.activeMode = 3;
+					{
+						super.SetActiveState(ActiveMode.DisableExtent);
+					}
 					else
-						Equip(true, null);
+					{
+						Attach(true, null);
+					}
 					break;
 				}
 
-				if (myFollower == null)
+				if (myParent == null)
 				{
 					E();
-					if (myFollower != null || timeSinceEpoch % 20 != 0)
+					if (myParent != null || timeSinceEpoch % 20 != 0)
 						break;
 
 					final float f = (super.myDestX + hRandomSpeed) - myX;
@@ -623,17 +636,17 @@ final class oSpaceship extends GameObject
 					}
 					break;
 				}
-				if (myFollower.JI != 11)
+				if (myParent.JI != 11)
 					break;
 
-				final float f1 = (myFollower.myX + hRandomSpeed) - myX;
-				final float f3 = (myFollower.myY + vRandomSpeed) - myY;
+				final float f1 = (myParent.myX + hRandomSpeed) - myX;
+				final float f3 = (myParent.myY + vRandomSpeed) - myY;
 				if (f1 * f1 + f3 * f3 >= 10000F)
 					break;
 
-				final oWaypoint waypoint_1 = (oWaypoint) myFollower;
+				final oWaypoint waypoint_1 = (oWaypoint) myParent;
 				LI++;
-				myFollower = null;
+				myParent = null;
 				if (waypoint_1.I == 1) {
 					MI = 25;
 					final Explosion explosion2 = (Explosion) gameApplet.rZ.GiveLastInstanceTo(gameApplet.qZ);
@@ -684,7 +697,7 @@ final class oSpaceship extends GameObject
 	final void weaponize(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final boolean flag,
 			final SpriteGroup sprite_group1, final boolean flag1, final SpriteGroup sprite_group2, final SpriteGroup sprite_group3, final int i,
 			final int j, final int k, final boolean flag2, final int l, final int i1, final float f6, final float f7, final int j1) {
-		final oWeapon oWeapon1 = (oWeapon) gameApplet.FC.GiveLastInstanceTo(super.myWeapons);
+		final oWeapon oWeapon1 = (oWeapon) gameApplet.FC.GiveLastInstanceTo(super.myChildren);
 		if (oWeapon1 != null) {
 			oWeapon1.I(this, flag1, f, f1, f2, f3, f4, f5, flag, sprite_group1, 0, 0, 1, 0, false);
 			oWeapon1.I(sprite_group2, sprite_group3, i, j, k, flag2, l, i1, f6, f7, j1);
@@ -696,20 +709,20 @@ final class oSpaceship extends GameObject
 
 	final void thruster_add(final float f, final float f1, final SpriteGroup sprite_group1, final boolean flag, final int i, final int j, final float f2,
 			final float f3, final int k, final int l, final int i1) {
-		final oWeapon oWeapon1 = (oWeapon) gameApplet.FC.GiveLastInstanceTo(super.myWeapons);
+		final oWeapon oWeapon1 = (oWeapon) gameApplet.FC.GiveLastInstanceTo(super.myChildren);
 		if (oWeapon1 != null) {
 			oWeapon1.I(this, flag, f, f1, 0.0F, 0.0F, 0.0F, f3, false, sprite_group1, 0, 0, 1, 0, false);
 			oWeapon1.I(i, j, f2, k, i1);
-			D += l * k;
+			fellowsCount += l * k;
 			F += 100F / (i + j * 0.5F);
 		}
 	}
 
 	final void J() {
-		final GameObjectPool oGameObjectlist1 = super.myWeapons;
+		final GameObjectPool oGameObjectlist1 = super.myChildren;
 		final int k = oGameObjectlist1.mySize;
 		for (int i = max + 1; i < k; i++) {
-			final oWeapon oWeapon1 = (oWeapon) super.myWeapons.internalList[i];
+			final oWeapon oWeapon1 = (oWeapon) super.myChildren.internalList[i];
 			if (!oWeapon1.MI) {
 				oWeapon1.J();
 				max = i;
@@ -718,7 +731,7 @@ final class oSpaceship extends GameObject
 		}
 
 		for (int j = 0; j <= max; j++) {
-			final oWeapon oWeapon2 = (oWeapon) super.myWeapons.internalList[j];
+			final oWeapon oWeapon2 = (oWeapon) super.myChildren.internalList[j];
 			if (!oWeapon2.MI) {
 				oWeapon2.J();
 				max = j;
@@ -747,9 +760,9 @@ final class oSpaceship extends GameObject
 		final int j = oGameObjectlist1.mySize;
 		for (int k = 0; k < j; k++) {
 			final GameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[k];
-			if (oGameObject1.activeMode == 1 && oGameObject1.isVisible && oGameObject1.h && oGameObject1.BI > 0.0001F) {
-				if (oGameObject1.l)
-					out(oGameObject1.myWeapons, f);
+			if (oGameObject1.IsActivated() && oGameObject1.isVisible && oGameObject1.h && oGameObject1.BI > 0.0001F) {
+				if (oGameObject1.hasChildren)
+					out(oGameObject1.myChildren, f);
 				final float f9 = oGameObject1.myX - myX;
 				final float f10 = oGameObject1.myY - myY;
 				if (f9 * f9 + f10 * f10 <= f8) {
@@ -812,7 +825,7 @@ final class oSpaceship extends GameObject
 			final GameObjectPool oGameObjectlist1 = gameobjectivelist1.D;
 			final int i = LI;
 			final oWaypoint oWaypoint1 = (oWaypoint) (i < 0 || i >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[i]);
-			if (oWaypoint1.Z == -1 || super.AI == oWaypoint1.Z)
+			if (oWaypoint1.Z == -1 || prefabID == oWaypoint1.Z)
 				obj = oWaypoint1;
 			else
 				LI++;
@@ -828,7 +841,7 @@ final class oSpaceship extends GameObject
 			}
 			else
 			{
-				myFollower = ((GameObject) (obj));
+				myParent = ((GameObject) (obj));
 				super.P = true;
 			}
 
@@ -865,7 +878,7 @@ final class oSpaceship extends GameObject
 		final int j = oGameObjectlist1.mySize;
 		for (int k = 0; k < j; k++) {
 			final GameObject oGameObject1 = k < 0 || k >= oGameObjectlist1.mySize ? null : oGameObjectlist1.internalList[k];
-			if (oGameObject1.activeMode == 1 && oGameObject1.isVisible && oGameObject1.h && oGameObject1.BI > 0.0001F) {
+			if (oGameObject1.IsActivated() && oGameObject1.isVisible && oGameObject1.h && oGameObject1.BI > 0.0001F) {
 				final float f10 = oGameObject1.myX - myX;
 				final float f11 = oGameObject1.myY - myY;
 				final float f9 = f10 * f10 + f11 * f11;
@@ -922,12 +935,12 @@ final class oSpaceship extends GameObject
 	}
 
 	@Override
-	final void Equip(final boolean flag, final GameObject oGameObject1) {
+	public final void Attach(final boolean flag, final GameObject oGameObject1) {
 		if (flag)
 			super.acqScores = 0;
 		else if (super.EI == 2 && oGameObject1 != null
-				&& (oGameObject1.JI == 8 && oGameObject1.AI == 150 || oGameObject1.JI == 6 && oGameObject1.g != null
-						&& oGameObject1.g.g != null && oGameObject1.g.g.AI == 150)) {
+				&& (oGameObject1.JI == 8 && oGameObject1.prefabID == 150 || oGameObject1.JI == 6 && oGameObject1.myFollower != null
+						&& oGameObject1.myFollower.myFollower != null && oGameObject1.myFollower.myFollower.prefabID == 150)) {
 			boolean flag1 = false;
 			if (gameApplet.currentMission.J > 0 && Math.random() < gameApplet.currentMission.D) {
 				flag1 = true;
@@ -975,7 +988,7 @@ final class oSpaceship extends GameObject
 		} else {
 			super.acqScores = 0;
 		}
-		super.Equip(flag, oGameObject1);
+		super.Attach(flag, oGameObject1);
 		byte byte0 = 0;
 		byte byte1 = 0;
 		if (!flag) {
@@ -998,7 +1011,7 @@ final class oSpaceship extends GameObject
 				else if (gameApplet.QC == 2)
 					byte1 = 1;
 				if (super.EI == 2) {
-					if (super.AI == 102)
+					if (prefabID == 102)
 						gameApplet.everySFXs.Play(gameApplet.XZ, true, false);
 					else
 						gameApplet.everySFXs.Play(gameApplet.TZ, true, false);
@@ -1064,7 +1077,7 @@ final class oSpaceship extends GameObject
 			}
 			for (int k1 = 0; k1 < byte1; k1++) {
 				SpriteGroup sprite_group2;
-				if (super.AI >= 200 && super.AI < 300) {
+				if (prefabID >= 200 && prefabID < 300) {
 					final float f1 = (float) Math.random();
 					if (f1 > 0.75D)
 						sprite_group2 = gameApplet.G;
@@ -1105,11 +1118,11 @@ final class oSpaceship extends GameObject
 	}
 
 	@Override
-	final boolean CheckCollision(final GameObject oGameObject1) {
+	public final boolean CheckCollision(final GameObject oGameObject1) {
 		if (oGameObject1.JI != 10 && super.CheckCollision(oGameObject1))
 			return true;
 		if (oGameObject1.JI == 8 || oGameObject1.JI == 10) {
-			if (oGameObject1.JI == 10 && myFollower != null && myFollower.JI == 11)
+			if (oGameObject1.JI == 10 && myParent != null && myParent.JI == 11)
 				return false;
 			final int i = (int) (myX - oGameObject1.myX);
 			if (i > -500 && i < 500) {
@@ -1155,12 +1168,12 @@ final class oSpaceship extends GameObject
 		}
 		super.myDestX = myX + f * (0.7F + (float) Math.random() * 0.6F) * 300F + ((float) Math.random() * 300F - 150F);
 		super.myDestY = myY + f1 * (0.7F + (float) Math.random() * 0.6F) * 300F + ((float) Math.random() * 300F - 150F);
-		myFollower = null;
+		myParent = null;
 		OI = 60;
 	}
 
 	@Override
-	final void I(final GameObject oGameObject1, final int i, final int j) {
+	public final void I(final GameObject oGameObject1, final int i, final int j) {
 		if (i > 0 && super.q > 0) {
 			println = 5 + (int) (Math.sin((float) super.o / (float) super.q * 1.5707963267948966D) * 20D);
 			random = 0;
@@ -1178,7 +1191,7 @@ final class oSpaceship extends GameObject
 	int C;
 	int B;
 	int max;
-	int D;
+	int fellowsCount;
 	oShipthrustor myThrustors;
 	boolean out;
 	int println;

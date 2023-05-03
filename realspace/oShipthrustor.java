@@ -1,34 +1,35 @@
 package realspace;
-// Decompiled by Jad v1.5.8f. Copyright 2001 Pavel Kouznetsov.
 
-// Jad home page: http://www.kpdus.com/jad.html
-// Decompiler options: packimports(3) 
-// Source File Name:   star_y
-
-final class oShipthrustor {
-	oShipthrustor(GameApp gameapp) {
-		F = gameapp;
+final class oShipthrustor
+{
+	oShipthrustor(final GameApp applet)
+	{
+		gameApplet = applet;
 		HNSM = new float[25];
 		cos = new float[25];
 		sin = new float[25];
 		sqrt = new float[25];
 		I = new int[25];
+
 		D = new float[5];
 		J = new float[5];
+
 		E = null;
 	}
 
-	final void I(int i, int j, int k, float f, SpriteGroup sprite_group1) {
+	final void I(final int i, final int j, final int k, final float f, final SpriteGroup atlas)
+	{
+		E = atlas;
 		H = i;
 		K = j;
 		M = f;
 		B = k;
-		E = sprite_group1;
 		I();
 		G = true;
 	}
 
-	final void I() {
+	final void I()
+	{
 		Z = 0;
 		S = 0;
 		A = 0;
@@ -36,15 +37,17 @@ final class oShipthrustor {
 		G = false;
 	}
 
-	final void I(float f, float f1) {
-		if (G && S < 5) {
+	final void I(final float f, final float f1)
+	{
+		if (G && S < 5)
+		{
 			D[S] = f;
 			J[S] = f1;
 			S++;
 		}
 	}
 
-	final void I(oSpaceship owner) {
+	final void I(final oSpaceship owner) {
 		if (S > 0) {
 			for (int i = 0; i < Z; i++) {
 				HNSM[i] += sin[i];
@@ -67,60 +70,74 @@ final class oShipthrustor {
 				}
 			}
 
-			if (owner.QI == 3 || owner.QI == 4) {
+			if (owner.QI == 3 || owner.QI == 4)
+			{
 				L++;
-				if (L % K == 0 && Z < 25) {
-					float f = (((GameObject) (owner)).hAccel * ((GameObject) (owner)).hAccel
-							+ ((GameObject) (owner)).vAccel * ((GameObject) (owner)).vAccel) * M;
-					if (f > 0.01F) {
-						float f1 = ((float) ((GameObject) (owner)).frameIndex / (float) ((GameObject) (owner)).myAtlas.xCapacity)
+				if (L % K == 0 && Z < 25)
+				{
+					float f = (owner.hAccel * owner.hAccel + owner.vAccel * owner.vAccel) * M;
+
+					if (f > 0.01F)
+					{
+						final float f1 = ((float) owner.frameIndex / (float) owner.myAtlas.xCapacity)
 								* 6.283185F;
-						float f2 = (float) Math.cos(f1);
-						float f3 = (float) Math.sin(f1);
-						for (int j = 0; j < H && Z < 25; j++) {
+
+						final float f2 = (float) Math.cos(f1);
+						final float f3 = (float) Math.sin(f1);
+						for (int j = 0; j < H && Z < 25; j++)
+						{
 							f = (float) Math.sqrt(f);
-							float f4 = D[A];
-							float f5 = J[A];
-							HNSM[Z] = (((GameObject) (owner)).myX + ((GameObject) (owner)).mySprite.E + f4 * f2)
+
+							final float f4 = D[A];
+							final float f5 = J[A];
+							HNSM[Z] = (owner.myX + owner.mySprite.E + f4 * f2)
 									- f5 * f3;
-							cos[Z] = ((GameObject) (owner)).myY + ((GameObject) (owner)).mySprite.G + f4 * f3
+							cos[Z] = owner.myY + owner.mySprite.G + f4 * f3
 									+ f5 * f2;
-							sin[Z] = ((GameObject) (owner)).hSpeed - f2 * f;
-							sqrt[Z] = ((GameObject) (owner)).vSpeed - f3 * f;
+
+							sin[Z] = owner.hSpeed - f2 * f;
+							sqrt[Z] = owner.vSpeed - f3 * f;
 							I[Z] = 0;
 							Z++;
+
 							A = (A + 1) % S;
 						}
-
 					}
 				}
 			}
 		}
 	}
 
-	final void I(Canvas surface1) {
-		if (S > 0) {
-			if (E == null) {
-				for (int k = 0; k < Z; k++) {
-					int i = mask.Pick(I[k], B);
-					surface1.I((int) HNSM[k] + ((AppletImplements) (F)).WC, (int) cos[k] + ((AppletImplements) (F)).XC, 3, 3, i);
+	final void I(final Canvas canvas)
+	{
+		if (S > 0)
+		{
+			if (E == null)
+			{
+				for (int k = 0; k < Z; k++)
+				{
+					final int i = mask.Pick(I[k], B);
+					canvas.I((int) HNSM[k] + gameApplet.viewRelativeX, (int) cos[k] + gameApplet.viewRelativeY, 3, 3, i);
 				}
 
 				return;
 			}
-			for (int l = 0; l < Z; l++) {
-				int j = (E.spriteFrames[0] * I[l]) / B;
-				if (j < E.spriteFrames[0]) {
-					Sprite sprite1 = E.GetSprite(0, j);
-					surface1.I(sprite1, ((int) HNSM[l] - sprite1.D) + ((AppletImplements) (F)).WC,
-							((int) cos[l] - sprite1.F) + ((AppletImplements) (F)).XC, F);
+			for (int l = 0; l < Z; l++)
+			{
+				final int j = (E.spriteFrames[0] * I[l]) / B;
+
+				if (j < E.spriteFrames[0])
+				{
+					final Sprite sprite1 = E.GetSprite(0, j);
+
+					canvas.Draw(sprite1, ((int) HNSM[l] - sprite1.D) + gameApplet.viewRelativeX, ((int) cos[l] - sprite1.F) + gameApplet.viewRelativeY, gameApplet);
 				}
 			}
 
 		}
 	}
 
-	GameApp F;
+	GameApp gameApplet;
 	float HNSM[];
 	float cos[];
 	float sin[];

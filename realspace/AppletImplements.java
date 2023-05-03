@@ -62,8 +62,8 @@ public abstract class AppletImplements extends Applet implements Runnable
 	float worldBorderBottom;
 	float worldDimension[];
 
-	int WC;
-	int XC;
+	int viewRelativeX;
+	int viewRelativeY;
 	int YC;
 	int iC;
 	int zC;
@@ -476,7 +476,7 @@ public abstract class AppletImplements extends Applet implements Runnable
 		RenderScene(applicationCanvas);
 		applicationCanvas.I();
 		
-		g.drawImage(applicationCanvas.D, 0, 0, applicationCanvas.I, applicationCanvas.Z, null);
+		g.drawImage(applicationCanvas.gameFrameBuffer, 0, 0, applicationCanvas.hSize, applicationCanvas.vSize, null);
 		Toolkit.getDefaultToolkit().sync();
 		getImage++;
 		getParameter--;

@@ -47,7 +47,7 @@ final class oPowerup extends GameObject
 		timeSinceEpoch++;
 		if (500 <= timeSinceEpoch)
 		{
-			Equip(true, null);
+			Attach(true, null);
 			return;
 		}
 
@@ -81,7 +81,7 @@ final class oPowerup extends GameObject
 	}
 
 	@Override
-	final void Equip(final boolean equip_flag, final GameObject self) {
+	public final void Attach(final boolean equip_flag, final GameObject self) {
 		if (!equip_flag && self != null)
 		{
 			String message = "";
@@ -131,7 +131,7 @@ final class oPowerup extends GameObject
 			}
 		}
 
-		super.Equip(equip_flag, self);
+		super.Attach(equip_flag, self);
 	}
 
 	int myType;

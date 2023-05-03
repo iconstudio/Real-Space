@@ -14,7 +14,7 @@ final class Trigger
 	int C;
 	int B;
 	int D;
-	int F;
+	int propertyBoolean;
 	int J;
 	int S;
 	int A;

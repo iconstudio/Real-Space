@@ -10,10 +10,10 @@ final class oWeapon extends GameObject
 	final void I(oSpaceship object, boolean flag, float f, float f1, float f2, float f3, float f4, float f5, boolean flag1, SpriteGroup sprite_group1, int i, int j, int k, int l, boolean flag2)
 	{
 		super.Awake(sprite_group1, 9, j, k, l, flag2, object, flag);
-		super.g = object;
+		super.myFollower = object;
 		super.shipGrade = 0;
-		super.AI = 0;
-		super.EI = super.g.EI;
+		prefabID = 0;
+		super.EI = super.myFollower.EI;
 		super.acqScores = i;
 		I = f;
 		Z = f1;
@@ -21,7 +21,7 @@ final class oWeapon extends GameObject
 		B = f3;
 		D = f4;
 		F = flag1;
-		super.myRotation = super.g.myRotation;
+		super.myRotation = super.myFollower.myRotation;
 		HNSM = true;
 		super.myAtlas = sprite_group1;
 		NI = 0;
@@ -71,15 +71,15 @@ final class oWeapon extends GameObject
 		if (super.myAtlas != null)
 			if (F)
 			{
-				if (super.myFollower != null)
+				if (super.myParent != null)
 				{
-					UpdateWithAttacks(super.myFollower);
+					UpdateWithAttacks(super.myParent);
 
 					HNSM = false;
 				}
 				else
 				{
-					float f = super.g.hSpeed * super.g.hSpeed + super.g.vSpeed * super.g.vSpeed;
+					float f = super.myFollower.hSpeed * super.myFollower.hSpeed + super.myFollower.vSpeed * super.myFollower.vSpeed;
 
 					if (HNSM)
 					{
@@ -91,39 +91,39 @@ final class oWeapon extends GameObject
 						}
 						else
 						{
-							super.i = super.g.myRotation;
-							super.myRotation = super.g.myRotation;
+							super.i = super.myFollower.myRotation;
+							super.myRotation = super.myFollower.myRotation;
 						}
 					} else {
 						if (f > 2.5F)
-							super.i = super.g.myRotation;
+							super.i = super.myFollower.myRotation;
 						else if (Math.random() * 80D > 79D)
 							super.i = (float) Math.random() * 6.283185F;
 						Update();
-						float f2 = Math.abs(super.myRotation - super.g.myRotation);
+						float f2 = Math.abs(super.myRotation - super.myFollower.myRotation);
 						if (f2 < 0.001F)
 							HNSM = true;
 					}
 				}
 				super.frameIndex = super.myAtlas.GetFrameByRotation(super.myRotation);
 				super.mySprite = super.myAtlas.GetSprite(super.frameIndex, super.animationIndex);
-				float f1 = ((float) super.g.frameIndex / (float) super.g.myAtlas.xCapacity) * 6.283185F;
+				float f1 = ((float) super.myFollower.frameIndex / (float) super.myFollower.myAtlas.xCapacity) * 6.283185F;
 				float f3 = (float) Math.cos(f1);
 				float f4 = (float) Math.sin(f1);
-				super.myX = super.g.myX + Math.round(I * f3 - Z * f4);
-				super.myY = super.g.myY + Math.round(I * f4 + Z * f3);
+				super.myX = super.myFollower.myX + Math.round(I * f3 - Z * f4);
+				super.myY = super.myFollower.myY + Math.round(I * f4 + Z * f3);
 				CalcCollisionBox();
 			} else {
 				super.mySprite = super.myAtlas.GetSprite(super.frameIndex, super.animationIndex);
-				super.myX = super.g.myX + I;
-				super.myY = super.g.myY + Z;
+				super.myX = super.myFollower.myX + I;
+				super.myY = super.myFollower.myY + Z;
 				CalcCollisionBox();
 			}
 		if (MI && GameApp.Instance.OC)
 			if (OI == 2) {
 				abs--;
 				if (abs <= 0) {
-					if (((oSpaceship) super.g).D > 0)
+					if (((oSpaceship) super.myFollower).fellowsCount > 0)
 						abs();
 					abs = (int) (Math.random() * LI) + random;
 					return;
@@ -139,13 +139,13 @@ final class oWeapon extends GameObject
 
 	@Override
 	final void Draw(Canvas surface) {
-		if (super.g.timeSinceEpoch >= 0)
+		if (super.myFollower.timeSinceEpoch >= 0)
 			super.Draw(surface);
 	}
 
 	final void J() {
 		oWeaponfire oWeaponfire1 = null;
-		oSpaceship oSpaceship1 = (oSpaceship) g;
+		oSpaceship oSpaceship1 = (oSpaceship) myFollower;
 		NI++;
 
 		if (MI) {
@@ -155,16 +155,19 @@ final class oWeapon extends GameObject
 					oWeaponfire1 = (oWeaponfire) GameApp.Instance.CC.GiveLastInstanceTo(GameApp.Instance.yZ);
 				else if (((GameObject) (oSpaceship1)).EI == 1)
 					oWeaponfire1 = (oWeaponfire) GameApp.Instance.CC.GiveLastInstanceTo(GameApp.Instance.IC);
-				if (oWeaponfire1 != null) {
+
+				if (oWeaponfire1 != null)
+				{
 					oSpaceship1.I = oGameObject1;
-					super.myFollower = oGameObject1;
+					super.myParent = oGameObject1;
+
 					if (PI == 4) {
 						oWeaponfire1.I(VI, WI, this, null, PI, super.EI, QI, TI, UI);
-						oWeaponfire1.myFollower = oGameObject1;
+						oWeaponfire1.myParent = oGameObject1;
 					} else {
 						oWeaponfire1.I(VI, WI, this, oGameObject1, PI, super.EI, QI, TI, UI);
 					}
-					oWeaponfire1.g = oSpaceship1;
+					oWeaponfire1.myFollower = oSpaceship1;
 					if (XI != -1) {
 						GameApp.Instance.everySFXs.Play(XI, true, false);
 						return;
@@ -235,7 +238,7 @@ final class oWeapon extends GameObject
 	}
 
 	final void abs() {
-		oSpaceship oSpaceship1 = (oSpaceship) super.g;
+		oSpaceship oSpaceship1 = (oSpaceship) super.myFollower;
 		oSpaceship1.I(RI);
 		if (oSpaceship1.WI != null) {
 			float f4 = (float) Math.cos(((GameObject) (oSpaceship1)).myRotation);
@@ -246,7 +249,7 @@ final class oWeapon extends GameObject
 			f5 = (float) Math.sin(((GameObject) (oSpaceship1)).myRotation + zI);
 			float f2 = f + f4 * 50F;
 			float f3 = f1 + f5 * 50F;
-			for (int i = 0; i < YI && oSpaceship1.D > 0; i++) {
+			for (int i = 0; i < YI && oSpaceship1.fellowsCount > 0; i++) {
 				oSpaceship oSpaceship2;
 				if (((GameObject) (oSpaceship1)).EI == 2)
 					oSpaceship2 = (oSpaceship) GameApp.Instance.xZ.GiveLastInstanceTo(GameApp.Instance.wZ);
@@ -259,10 +262,10 @@ final class oWeapon extends GameObject
 					oSpaceship2.QI = 3;
 					oSpaceship2.SetupPhysics6(f, f1, null, f2, f3, ((GameObject) (oSpaceship1)).M * 1.5F, 1.0F,
 							((GameObject) (oSpaceship1)).myFriction, true);
-					oSpaceship2.myFollower = oSpaceship1.WI;
+					oSpaceship2.myParent = oSpaceship1.WI;
 					oSpaceship2.timeSinceEpoch = -i * 8;
-					oSpaceship2.g = oSpaceship1;
-					oSpaceship1.D--;
+					oSpaceship2.myFollower = oSpaceship1;
+					oSpaceship1.fellowsCount--;
 				}
 			}
 
@@ -270,14 +273,14 @@ final class oWeapon extends GameObject
 	}
 
 	@Override
-	final void Equip(boolean flag, GameObject oGameObject1)
+	public final void Attach(boolean flag, GameObject oGameObject1)
 	{
 		if (oGameObject1 != null && oGameObject1.JI == 8)
 		{
 			super.acqScores = 0;
 		}
 
-		super.Equip(flag, oGameObject1);
+		super.Attach(flag, oGameObject1);
 		if (!flag && super.h)
 		{
 			SpriteGroup sprite_group1 = GameApp.Instance.D;
@@ -293,7 +296,7 @@ final class oWeapon extends GameObject
 			}
 			for (int i = 0; i < 2; i++) {
 				SpriteGroup sprite_group2;
-				if (super.g.AI >= 200 && super.g.AI < 300) {
+				if (super.myFollower.prefabID >= 200 && super.myFollower.prefabID < 300) {
 					float f = (float) Math.random();
 					if (f > 0.75D)
 						sprite_group2 = GameApp.Instance.G;

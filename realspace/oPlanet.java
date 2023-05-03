@@ -48,21 +48,23 @@ final class oPlanet extends GameObject
 	}
 
 	@Override
-	final void Equip(final boolean flag, final GameObject oGameObject1) {
+	public final void Attach(final boolean attach_flag, final GameObject oGameObject1) {
 		if (oGameObject1 != null && oGameObject1.JI == 8)
 		{
 			super.acqScores = 0;
 		}
 
-		super.Equip(flag, oGameObject1);
+		super.Attach(attach_flag, oGameObject1);
 
 		// Unattach
-		if (!flag)
+		if (!attach_flag)
 		{
 			// palette palette = null;
 			// palette = super.KI.DZ;
 			GameApp.Instance.everySFXs.Play(GameApp.Instance.YZ, true, false);
-			if (super.HI == 103) {
+
+			if (super.HI == 103)
+			{
 				explosionbit explosionbit1 = (explosionbit) GameApp.Instance.uZ.GiveLastInstanceTo(GameApp.Instance.tZ);
 				if (explosionbit1 != null) {
 					explosionbit1.I(GameApp.Instance.gI, null, this, super.m + super.n);
@@ -130,7 +132,7 @@ final class oPlanet extends GameObject
 	}
 
 	@Override
-	final void I(final GameObject oGameObject1, final int i, final int j) {
+	public final void I(final GameObject oGameObject1, final int i, final int j) {
 		if (i > 0 && super.q > 0) {
 			F = 5 + (int) (Math.sin((float) super.o / (float) super.q * 1.5707963267948966D) * 20D);
 			HNSM = 0;

@@ -116,7 +116,7 @@ final class oStarfield {
 				if (star_fade[i])
 					j = C[i].Pick(star_blinkcounter[i], star_lifetime[i]);
 				else
-					j = C[i].Pick(0);
+					j = C[i].PickOrLast(0);
 				surface1.I((int) star_x[i], (int) star_y[i], D[i], J[i], j);
 			} else {
 				Sprite sprite1;
@@ -124,7 +124,7 @@ final class oStarfield {
 					sprite1 = star_sprite_groups[i].I(0, star_blinkcounter[i], star_lifetime[i]);
 				else
 					sprite1 = star_sprite_groups[i].GetSprite(0, 0);
-				surface1.I(sprite1, ((int) star_x[i] - sprite1.D) + sprite1.E,
+				surface1.Draw(sprite1, ((int) star_x[i] - sprite1.D) + sprite1.E,
 						((int) star_y[i] - sprite1.F) + sprite1.G, owner);
 			}
 

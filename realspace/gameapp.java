@@ -364,7 +364,7 @@ public final class GameApp extends AppletImplements {
 		final GameObjectPool obj = dZ;
 		final oSpaceship nobj = (oSpaceship) (obj.GetSize() <= 0 ? null : (obj).internalList[0]);
 
-		if (nobj != null && ((GameObject) (nobj)).timeSinceEpoch >= 0 && (nobj).QI == 4)
+		if (nobj != null && nobj.timeSinceEpoch >= 0 && (nobj).QI == 4)
 		{
 			if (gZ > 0)
 			{
@@ -381,19 +381,21 @@ public final class GameApp extends AppletImplements {
 					{
 						final float f1 = (float) Math.cos(nobj.myRotation);
 						final float f3 = (float) Math.sin(nobj.myRotation);
-						nobj.hAccel = f1 * ((GameObject) (nobj)).accelFactorOnStage;
-						nobj.vAccel = f3 * ((GameObject) (nobj)).accelFactorOnStage;
+
+						nobj.hAccel = f1 * nobj.accelFactorOnStage;
+						nobj.vAccel = f3 * nobj.accelFactorOnStage;
 					}
 					else
 					{
-						final float f2 = (float) (-Math.cos(((GameObject) (nobj)).myRotation));
-						final float f4 = (float) (-Math.sin(((GameObject) (nobj)).myRotation));
-						nobj.hAccel = f2 * ((GameObject) (nobj)).accelFactorOnStage * 0.3F;
-						nobj.vAccel = f4 * ((GameObject) (nobj)).accelFactorOnStage * 0.3F;
+						final float f2 = (float) (-Math.cos(nobj.myRotation));
+						final float f4 = (float) (-Math.sin(nobj.myRotation));
+
+						nobj.hAccel = f2 * nobj.accelFactorOnStage * 0.3F;
+						nobj.vAccel = f4 * nobj.accelFactorOnStage * 0.3F;
 					}
 
-					nobj.hSpeed += ((GameObject) (nobj)).hAccel;
-					nobj.vSpeed += ((GameObject) (nobj)).vAccel;
+					nobj.hSpeed += nobj.hAccel;
+					nobj.vSpeed += nobj.vAccel;
 				}
 				else
 				{
@@ -407,10 +409,12 @@ public final class GameApp extends AppletImplements {
 					{
 						getRGB -= 0.02454369F;
 						if (getRGB < -0.1963495F)
+						{
 							getRGB = -0.1963495F;
+						}
 						nobj.myRotation += getRGB;
 
-						if (((GameObject) (nobj)).myRotation < 0.0F)
+						if (nobj.myRotation < 0.0F)
 						{
 							nobj.myRotation += 6.283185F;
 						}
@@ -419,16 +423,18 @@ public final class GameApp extends AppletImplements {
 					{
 						getRGB += 0.02454369F;
 						if (getRGB > 0.1963495F)
+						{
 							getRGB = 0.1963495F;
+						}
 						nobj.myRotation += getRGB;
 
-						if (((GameObject) (nobj)).myRotation >= 6.283185F)
+						if (nobj.myRotation >= 6.283185F)
 						{
 							nobj.myRotation -= 6.283185F;
 						}
 					}
 
-					nobj.frameIndex = ((GameObject) (nobj)).myAtlas.GetFrameByRotation(((GameObject) (nobj)).myRotation);
+					nobj.frameIndex = nobj.myAtlas.GetFrameByRotation(nobj.myRotation);
 				}
 			}
 			else if (super.qC && Math.random() * 10D > 9D)
@@ -436,35 +442,50 @@ public final class GameApp extends AppletImplements {
 				abs();
 			}
 
-			if (((GameObject) (nobj)).myX <= viewBorderLeft)
+			if (nobj.myX <= viewBorderLeft)
 			{
-				if (((GameObject) (nobj)).hSpeed < 0.0F)
+				if (nobj.hSpeed < 0.0F)
+				{
 					nobj.hSpeed = 0.0F;
+				}
 				nobj.myX = viewBorderLeft;
-				((GameObject) (nobj)).CalcCollisionBox();
-			} else if (((GameObject) (nobj)).myX >= viewBorderRight) {
-				if (((GameObject) (nobj)).hSpeed > 0.0F)
+				nobj.CalcCollisionBox();
+			}
+			else if (nobj.myX >= viewBorderRight)
+			{
+				if (nobj.hSpeed > 0.0F)
+				{
 					nobj.hSpeed = 0.0F;
+				}
 				nobj.myX = viewBorderRight;
-				((GameObject) (nobj)).CalcCollisionBox();
+				nobj.CalcCollisionBox();
 			}
 
-			if (((GameObject) (nobj)).myY <= viewBorderTop) {
-				if (((GameObject) (nobj)).vSpeed < 0.0F)
+			if (nobj.myY <= viewBorderTop)
+			{
+				if (nobj.vSpeed < 0.0F)
+				{
 					nobj.vSpeed = 0.0F;
+				}
 				nobj.myY = viewBorderTop;
-				((GameObject) (nobj)).CalcCollisionBox();
-			} else if (((GameObject) (nobj)).myY >= viewBorderBottom) {
-				if (((GameObject) (nobj)).vSpeed > 0.0F)
+				nobj.CalcCollisionBox();
+			}
+			else if (nobj.myY >= viewBorderBottom)
+			{
+				if (nobj.vSpeed > 0.0F)
+				{
 					nobj.vSpeed = 0.0F;
+				}
 				nobj.myY = viewBorderBottom;
-				((GameObject) (nobj)).CalcCollisionBox();
+				nobj.CalcCollisionBox();
 			}
 		}
 
-		gameStarfield.update(((GameObject) (myCamera)).hSpeed, ((GameObject) (myCamera)).vSpeed);
+		gameStarfield.update(myCamera.hSpeed, myCamera.vSpeed);
+
 		super.I();
 		currentMission.I();
+
 		dZ.Warp();
 		oZ.Warp();
 		pZ.Warp();
@@ -479,18 +500,19 @@ public final class GameApp extends AppletImplements {
 		EC.Warp();
 		GC.Warp();
 		BC.Warp();
-		IC.Z(wZ);
-		IC.Z(GC);
-		ZC.Z(wZ);
-		wZ.Z(vZ);
-		wZ.Z(dZ);
-		wZ.Z(EC);
-		vZ.Z(GC);
-		yZ.Z(ZC);
-		yZ.Z(vZ);
-		yZ.Z(dZ);
-		yZ.Z(EC);
-		dZ.Z(BC);
+		IC.CheckCollision(wZ);
+		IC.CheckCollision(GC);
+		ZC.CheckCollision(wZ);
+		wZ.CheckCollision(vZ);
+		wZ.CheckCollision(dZ);
+		wZ.CheckCollision(EC);
+		vZ.CheckCollision(GC);
+		yZ.CheckCollision(ZC);
+		yZ.CheckCollision(vZ);
+		yZ.CheckCollision(dZ);
+		yZ.CheckCollision(EC);
+		dZ.CheckCollision(BC);
+
 		dZ.C();
 		oZ.C();
 		pZ.C();
@@ -512,7 +534,7 @@ public final class GameApp extends AppletImplements {
 	{
 		final Canvas surface2 = super.applicationCanvas;
 		final Canvas surface3 = super.mC;
-		System.arraycopy(surface3.B, 0, surface2.B, 0, surface2.C);
+		System.arraycopy(surface3.canvasBuffer, 0, surface2.canvasBuffer, 0, surface2.myDimensionSize);
 
 		if (!isAssetsLoaded)
 		{
@@ -521,7 +543,7 @@ public final class GameApp extends AppletImplements {
 
 			if (spriteTitle != null)
 			{
-				applet_surface.I(spriteTitle, i1, i2, this);
+				applet_surface.Draw(spriteTitle, i1, i2, this);
 			}
 
 			if (0 < loadProgress)
@@ -556,7 +578,7 @@ public final class GameApp extends AppletImplements {
 			final GameObject target = dZ.internalList[0];
 			final GameObject obj = dZ.GetSize() <= 0 ? null : target;
 
-			if (obj != null && obj.activeMode == 1)
+			if (obj != null && obj.IsActivated())
 			{
 				int k1 = (int) (220F * super.viewScale);
 				applet_surface.DrawLabel("Damage", Colours.White, super.fontSmall, k1 - 1, dy + 1);
@@ -589,28 +611,28 @@ public final class GameApp extends AppletImplements {
 				if (hZ == 1)
 					applet_surface.DrawSprite(arraycopy.GetSprite(0, 0), f2, i4, dy, this);
 				else
-					applet_surface.I(arraycopy.GetSprite(0, 0), i4, dy, this);
+					applet_surface.Draw(arraycopy.GetSprite(0, 0), i4, dy, this);
 				applet_surface.DrawLabel("-", Colours.White, super.fontTiny, k4, dy + super.fontTiny.myHeight + 2);
 				dy += k3;
 				obj1 = String.valueOf(kZ);
 				if (hZ == 2)
 					applet_surface.DrawSprite(arraycopy.GetSprite(1, 0), f2, i4, dy, this);
 				else
-					applet_surface.I(arraycopy.GetSprite(1, 0), i4, dy, this);
+					applet_surface.Draw(arraycopy.GetSprite(1, 0), i4, dy, this);
 				applet_surface.DrawLabel(((String) (obj1)), Colours.White, super.fontTiny, k4, dy + super.fontTiny.myHeight + 2);
 				dy += k3;
 				obj1 = String.valueOf(lZ);
 				if (hZ == 3)
 					applet_surface.DrawSprite(arraycopy.GetSprite(2, 0), f2, i4, dy, this);
 				else
-					applet_surface.I(arraycopy.GetSprite(2, 0), i4, dy, this);
+					applet_surface.Draw(arraycopy.GetSprite(2, 0), i4, dy, this);
 				applet_surface.DrawLabel(((String) (obj1)), Colours.White, super.fontTiny, k4, dy + super.fontTiny.myHeight + 2);
 				dy += k3;
 				obj1 = String.valueOf(mZ);
 				if (hZ == 4)
 					applet_surface.DrawSprite(arraycopy.GetSprite(3, 0), f2, i4, dy, this);
 				else
-					applet_surface.I(arraycopy.GetSprite(3, 0), i4, dy, this);
+					applet_surface.Draw(arraycopy.GetSprite(3, 0), i4, dy, this);
 				applet_surface.DrawLabel(((String) (obj1)), Colours.White, super.fontTiny, k4, dy + super.fontTiny.myHeight + 2);
 			}
 
@@ -653,10 +675,10 @@ public final class GameApp extends AppletImplements {
 				k2 += pink;
 			}
 			applet_surface.I(keyUp, length, lightGray, min, Colours.DarkGreen, 1);
-			applet_surface.I(black.GetSprite(0, 0), keyUp + (lightGray - black.C) / 2, length + min + 2, this);
+			applet_surface.Draw(black.GetSprite(0, 0), keyUp + (lightGray - black.C) / 2, length + min + 2, this);
 
-			int l2 = println + (int) (((GameObject) (myCamera)).myX * red);
-			int i3 = random + (int) (((GameObject) (myCamera)).myY * repaint);
+			int l2 = println + (int) (myCamera.myX * red);
+			int i3 = random + (int) (myCamera.myY * repaint);
 			applet_surface.I(l2 - 1, i3 - 1, 3, 3, Colours.Green);
 
 			final int j3 = (int) ((super.viewWidth * red) / 2.0F);
@@ -692,7 +714,7 @@ public final class GameApp extends AppletImplements {
 		{
 			final GameObject obj = pool.internalList[i3];
 
-			if (obj.activeMode == 1 && obj.isVisible && obj.isEnabled)
+			if (obj.IsActivated() && obj.isVisible && obj.isEnabled)
 			{
 				final int i2 = (println + (int) (obj.myX * red)) - k2;
 				final int j2 = (random + (int) (obj.myY * repaint)) - l2;
@@ -727,15 +749,15 @@ public final class GameApp extends AppletImplements {
 				case 1: // '\001'
 					super.uC = "Cheater: Kill All";
 
-					wZ.I(false, null, -1, -1, -1, -1);
-					yZ.I(false, null, -1, -1, -1, -1);
+					wZ.Attach(false, null, -1, -1, -1, -1);
+					yZ.Attach(false, null, -1, -1, -1, -1);
 					break;
 
 				case 5: // '\005'
 					super.uC = "Cheater: Kill Friend";
 
 					if (0 < vZ.GetSize()) {
-						vZ.internalList[0].Equip(false, null);
+						vZ.internalList[0].Attach(false, null);
 					}
 					break;
 
@@ -810,7 +832,7 @@ public final class GameApp extends AppletImplements {
 						break;
 				}
 			}
-			else if (currentMission.O == 300 || currentMission.O == 301 || currentMission.O == 302) {
+			else if (currentMission.usingTriggersCount == 300 || currentMission.usingTriggersCount == 301 || currentMission.usingTriggersCount == 302) {
 				switch (keycode) {
 					case 1004:
 					case 1006:
@@ -909,9 +931,9 @@ public final class GameApp extends AppletImplements {
 
 					case 35: // '#'
 						InitializeSettings(true);
-						final GameObjectPool oGameObjectlist3 = super.gameUIObjects;
-						oGameObjectlist3.I(true, null, -1, -1, -1, -1);
-						currentMission.I(1200);
+						
+						gameUIObjects.Attach(true, null, -1, -1, -1, -1);
+						currentMission.ExecuteTriggers(1200);
 						break;
 
 					case 64: // '@'
@@ -1042,7 +1064,7 @@ public final class GameApp extends AppletImplements {
 	@Override
 	public final boolean mouseMove(final Event event, final int mx, final int my)
 	{
-		if (!super.isPaused && super.isAssetsLoaded && (currentMission.O == 300 || currentMission.O == 301 || currentMission.O == 302))
+		if (!super.isPaused && super.isAssetsLoaded && (currentMission.usingTriggersCount == 300 || currentMission.usingTriggersCount == 301 || currentMission.usingTriggersCount == 302))
 		{
 			final GameLabel gametext1 = (GameLabel) super.gameUIObjects.OnMouseHover(mx, my);
 
@@ -1072,8 +1094,8 @@ public final class GameApp extends AppletImplements {
 			for (int l1 = 0; l1 < j1; l1++) {
 				final GameObjectPool obj1 = super.gameUIObjects;
 				final GameLabel nobj = (GameLabel) (l1 < 0 || l1 >= obj1.GetSize() ? null : obj1.internalList[l1]);
-				if (nobj != null && ((GameObject) (nobj)).HI != -1)
-					{if (((GameObject) (nobj)).HI == i1)
+				if (nobj != null && nobj.HI != -1)
+					{if (nobj.HI == i1)
 					{
 						final Palette palette1 = darker;
 						final Palette palette2 = freeMemory;
@@ -1092,15 +1114,15 @@ public final class GameApp extends AppletImplements {
 
 	final void J(final int i1)
 	{
-		if (currentMission.O == 300)
+		if (currentMission.usingTriggersCount == 300)
 		{
 			switch (i1) {
 				case 1: // '\001'
-					currentMission.I(301);
+					currentMission.ExecuteTriggers(301);
 					return;
 
 				case 2: // '\002'
-					currentMission.I(302);
+					currentMission.ExecuteTriggers(302);
 					return;
 
 				case 3: // '\003'
@@ -1118,40 +1140,40 @@ public final class GameApp extends AppletImplements {
 			}
 
 			final GameObjectPool oGameObjectlist1 = super.gameUIObjects;
-			oGameObjectlist1.I(true, null, -1, -1, -1, -1);
+			oGameObjectlist1.Attach(true, null, -1, -1, -1, -1);
 			InitializeSettings(true);
 			return;
 		}
 
-		if (currentMission.O == 301)
+		if (currentMission.usingTriggersCount == 301)
 		{
 			switch (i1) {
 				case 1: // '\001'
 					currentMission.Q = 0;
-					currentMission.I(100);
+					currentMission.ExecuteTriggers(100);
 					return;
 
 				case 2: // '\002'
 					currentMission.Q = 1;
-					currentMission.I(100);
+					currentMission.ExecuteTriggers(100);
 					return;
 
 				case 3: // '\003'
 					currentMission.Q = 2;
-					currentMission.I(100);
+					currentMission.ExecuteTriggers(100);
 					return;
 
 				case 4: // '\004'
 					currentMission.Q = 3;
-					currentMission.I(100);
+					currentMission.ExecuteTriggers(100);
 					return;
 			}
-			currentMission.I(300);
+			currentMission.ExecuteTriggers(300);
 			I(1);
 			return;
 		}
 
-		if (currentMission.O == 302)
+		if (currentMission.usingTriggersCount == 302)
 		{
 			switch (i1) {
 				case 1: // '\001'
@@ -1175,7 +1197,7 @@ public final class GameApp extends AppletImplements {
 					starfield3.star_number = Math.min(l1, starfield3.star_number_start);
 					break;
 			}
-			currentMission.I(300);
+			currentMission.ExecuteTriggers(300);
 			I(2);
 			return;
 		}
@@ -1187,7 +1209,7 @@ public final class GameApp extends AppletImplements {
 	{
 		final GameObjectPool obj = dZ;
 		final oSpaceship nobj = (oSpaceship) (obj.GetSize() <= 0 ? null : obj.internalList[0]);
-		if (nobj != null && ((GameObject) (nobj)).timeSinceEpoch >= 0 && nobj.QI == 4 && !nobj.Z) {
+		if (nobj != null && nobj.timeSinceEpoch >= 0 && nobj.QI == 4 && !nobj.Z) {
 			nobj.J();
 			nobj.Z = true;
 			nobj.C = 5;
@@ -2977,13 +2999,13 @@ public final class GameApp extends AppletImplements {
 
 		if (flag)
 		{
-			currentMission.I(1000);
+			currentMission.ExecuteTriggers(1000);
 			return;
 		}
 		else
 		{
 			PC = 1;
-			currentMission.I(300);
+			currentMission.ExecuteTriggers(300);
 			return;
 		}
 	}

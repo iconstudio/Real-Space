@@ -22,14 +22,14 @@ final class oMeteor extends GameObject {
 				|| super.hSpeed < 0.0F && super.myX < (GameApp.Instance).worldBorderLeft
 				|| super.vSpeed > 0.0F && super.myY > (GameApp.Instance).worldBorderBottom
 				|| super.vSpeed < 0.0F && super.myY < (GameApp.Instance).worldBorderTop)
-			Equip(true, null);
+			Attach(true, null);
 	}
 
 	@Override
-	final void Equip(boolean flag, GameObject oGameObject1) {
+	public final void Attach(boolean flag, GameObject oGameObject1) {
 		if (oGameObject1 != null && oGameObject1.JI == 8)
 			super.acqScores = 0;
-		super.Equip(flag, oGameObject1);
+		super.Attach(flag, oGameObject1);
 		int i = super.m + super.n / 3;
 		byte byte0 = 1;
 		boolean flag1 = false;

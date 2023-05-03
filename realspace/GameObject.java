@@ -2,48 +2,52 @@ package realspace;
 
 class GameObject
 {
-	GameApp gameApplet;
-	int activeMode;
-	boolean isEnabled;
-	boolean isVisible;
-	GameObjectPool ownsPool;
+	protected GameApp gameApplet;
+	protected boolean isEnabled;
+	protected boolean isVisible;
+	protected int activeMode;
 
-	SpriteGroup myAtlas;
-	Sprite mySprite;
-	int animationIndex;
-	int frameIndex;
-	boolean hasAnimation;
+	protected GameObjectPool ownsPool;
+	protected int prefabID;
+
+	protected SpriteGroup myAtlas;
+	protected Sprite mySprite;
+
+	protected int animationIndex;
+	protected int frameIndex;
+	protected boolean hasAnimation;
 	
-	int timeSinceEpoch;
-	int warpCounter;
+	protected int timeSinceEpoch;
+	protected int warpCounter;
 	
-	float myX;
-	float myY;
-	float hSpeed;
-	float vSpeed;
-	float hAccel;
-	float vAccel;
-	float myFriction;
-	float hRandomSpeed;
-	float vRandomSpeed;
-	float myRotation;
+	public float myX;
+	public float myY;
+	public float hSpeed;
+	public float vSpeed;
+	public float hAccel;
+	public float vAccel;
+	public float myFriction;
+	public float myRotation;
 
-	float accelFactorOnStage;
-	boolean wouldWarpApproximately;
+	protected float accelFactorOnStage;
+	protected boolean wouldWarpApproximately;
+	protected float hRandomSpeed;
+	protected float vRandomSpeed;
 
-	int borderLeft;
-	int borderBottom;
-	int borderRight;
-	int borderTop;
-	boolean wouldRenderHealthbar;
+	protected int borderLeft;
+	protected int borderBottom;
+	protected int borderRight;
+	protected int borderTop;
 
-	GameObject myFollower;
-	float myDestX;
-	float myDestY;
+	protected GameObject myFollower;
+	protected GameObject myParent;
+	protected float myDestX;
+	protected float myDestY;
 
-	GameObjectPool myWeapons;
-	int shipGrade;
-	int acqScores;
+	protected GameObjectPool myChildren;
+	protected int shipGrade;
+	protected int acqScores;
+	private boolean wouldRenderHealthbar;
 
 	float M;
 	boolean P;
@@ -53,9 +57,8 @@ class GameObject
 	float c;
 	int j;
 	int a;
-	GameObject g;
 	boolean h;
-	boolean l;
+	boolean hasChildren;
 	int m;
 	int n;
 	int o;
@@ -71,16 +74,16 @@ class GameObject
 	float BI;
 	int DI;
 	int JI;
-	int AI;
 	int EI;
 	int HI;
 
 	public GameObject(final GameApp applet)
 	{
 		gameApplet = applet;
-		myWeapons = null;
+
+		SetActiveState(ActiveMode.Disabled);
+		myChildren = null;
 		ownsPool = null;
-		activeMode = 2;
 	}
 
 	protected final void Awake(final SpriteGroup atlas, final int i1, final int j1, final int k1, final int l1, final boolean flag)
@@ -88,9 +91,9 @@ class GameObject
 		Awake(atlas, i1, j1, k1, l1, flag, null, true);
 	}
 
-	protected final void Awake(final SpriteGroup atlas, final int i1, final int j1, final int k1, final int l1, final boolean flag, final GameObject oGameObject1, final boolean flag1)
+	protected final void Awake(final SpriteGroup atlas, final int i1, final int j1, final int k1, final int l1, final boolean flag, final GameObject mothership, final boolean attach_flag)
 	{
-		activeMode = 1;
+		activeMode = ActiveMode.Activated;
 		isEnabled = true;
 		isVisible = false;
 		timeSinceEpoch = 0;
@@ -117,7 +120,7 @@ class GameObject
 		animationIndex = 0;
 		frameIndex = 0;
 		hasAnimation = false;
-		myFollower = null;
+		myParent = null;
 		hRandomSpeed = 0.0F;
 		vRandomSpeed = 0.0F;
 		P = false;
@@ -132,25 +135,25 @@ class GameObject
 		BI = 0.0F;
 		JI = i1;
 		shipGrade = 0;
-		AI = 0;
+		prefabID = 0;
 		myRotation = 0.0F;
 		atan = false;
 		CI = false;
 		II = false;
 		ZI = "";
 		HI = -1;
-		g = oGameObject1;
-		h = flag1;
+		h = attach_flag;
 
-		if (myWeapons != null)
+		if (myChildren != null)
 		{
-			myWeapons.I();
+			myChildren.I();
 		}
 
-		l = false;
-		if (g != null && flag1)
+		myFollower = mothership;
+		hasChildren = false;
+		if (myFollower != null && attach_flag)
 		{
-			g.l = true;
+			myFollower.hasChildren = true;
 		}
 	}
 
@@ -162,12 +165,11 @@ class GameObject
 			{
 				if (n <= 0)
 				{
-					canvas.Z((int) myX + (GameApp.Instance).WC, (int) myY + (GameApp.Instance).XC,
-						(mySprite.D + 10) - sqrt * 3, (mySprite.F + 10) - sqrt * 3, (GameApp.Instance).MB.Pick(sqrt, t));
+					canvas.Z((int) myX + gameApplet.viewRelativeX, (int) myY + gameApplet.viewRelativeY, (mySprite.D + 10) - sqrt * 3, (mySprite.F + 10) - sqrt * 3, gameApplet.MB.Pick(sqrt, t));
 				}
 				else
 				{
-					canvas.Z((int) myX + (GameApp.Instance).WC, (int) myY + (GameApp.Instance).XC, mySprite.D + 10, mySprite.F + 10, (GameApp.Instance).LB.Pick(sqrt, t));
+					canvas.Z((int) myX + gameApplet.viewRelativeX, (int) myY + gameApplet.viewRelativeY, mySprite.D + 10, mySprite.F + 10, gameApplet.LB.Pick(sqrt, t));
 				}
 
 				sqrt++;
@@ -177,22 +179,22 @@ class GameObject
 				}
 			}
 
-			canvas.I(mySprite, borderLeft + (GameApp.Instance).WC, borderBottom + (GameApp.Instance).XC, GameApp.Instance);
+			canvas.Draw(mySprite, borderLeft + gameApplet.viewRelativeX, borderBottom + gameApplet.viewRelativeY, gameApplet);
 
 			// false
 			if (wouldRenderHealthbar)
 			{
-				final int i1 = (Math.round(myX) - 15) + (GameApp.Instance).WC;
-				final int j1 = Math.round(myY) + mySprite.F + 5 + (GameApp.Instance).XC;
+				final int i1 = (Math.round(myX) - 15) + gameApplet.viewRelativeX;
+				final int j1 = Math.round(myY) + mySprite.F + 5 + gameApplet.viewRelativeY;
 				final float f1 = (float) (o + n) / (float) (p + q);
 
 				gameutil.DrawGaugebar(canvas, i1, j1, 30, 10, f1, Colours.Red, Colours.Green);
 			}
 		}
 
-		if (myWeapons != null)
+		if (myChildren != null)
 		{
-			myWeapons.Draw(canvas);
+			myChildren.Draw(canvas);
 		}
 	}
 
@@ -218,9 +220,9 @@ class GameObject
 			}
 		}
 
-		if (myWeapons != null)
+		if (myChildren != null)
 		{
-			myWeapons.Warp();
+			myChildren.Warp();
 		}
 	}
 
@@ -322,10 +324,10 @@ class GameObject
 	{
 		if (P)
 		{
-			if (myFollower != null && myFollower.activeMode == 1 && myFollower.isVisible)
+			if (myParent != null && myParent.IsActivated() && myParent.isVisible)
 			{
-				myDestX = myFollower.myX;
-				myDestY = myFollower.myY;
+				myDestX = myParent.myX;
+				myDestY = myParent.myY;
 			}
 
 			if (P)
@@ -395,10 +397,10 @@ class GameObject
 	{
 		if (P)
 		{
-			if (myFollower != null && myFollower.activeMode == 1 && myFollower.isVisible)
+			if (myParent != null && myParent.IsActivated() && myParent.isVisible)
 			{
-				myDestX = myFollower.myX;
-				myDestY = myFollower.myY;
+				myDestX = myParent.myX;
+				myDestY = myParent.myY;
 			}
 
 			if (P)
@@ -472,7 +474,7 @@ class GameObject
 
 	final void UpdateWithAttacks(final GameObject target)
 	{
-		if (target != null && target.activeMode == 1)
+		if (target != null && target.IsActivated())
 		{
 			final float gap_x = target.myX - myX;
 			final float gap_y = target.myY - myY;
@@ -635,7 +637,7 @@ class GameObject
 		P = true;
 		wouldWarpApproximately = flag;
 
-		myFollower = oGameObject1;
+		myParent = oGameObject1;
 		myDestX = f3;
 		myDestY = f4;
 		final float f7 = f3 - f1;
@@ -670,7 +672,7 @@ class GameObject
 		hRandomSpeed = 0.0F;
 		vRandomSpeed = 0.0F;
 
-		myFollower = follower;
+		myParent = follower;
 		hSpeed = (float) Math.cos(myRotation) * f5;
 		vSpeed = (float) Math.sin(myRotation) * f5;
 		hAccel = hSpeed;
@@ -716,46 +718,57 @@ class GameObject
 		DI = 8;
 	}
 
-	void Equip(final boolean flag, final GameObject oGameObject1)
+	public void Attach(final boolean attach_flag, final GameObject target)
 	{
-		activeMode = 2;
-		if (EI == 2 && !flag && acqScores > 0)
-			GameApp.Instance.Z(acqScores);
-		if (myWeapons != null) {
-			final GameObjectPool oGameObjectlist1 = myWeapons;
-			oGameObjectlist1.I(flag, oGameObject1, -1, -1, -1, -1);
+		SetActiveState(ActiveMode.Disabled);
+		if (EI == 2 && !attach_flag && acqScores > 0)
+			gameApplet.Z(acqScores);
+
+		if (myChildren != null)
+		{
+			myChildren.Attach(attach_flag, target, -1, -1, -1, -1);
 		}
 
-		if (II) {
+		if (II)
+		{
 			GameQuest gameobjectivelist1;
 			if (EI == 2)
-				gameobjectivelist1 = GameApp.Instance.currentMission.C;
+				gameobjectivelist1 = gameApplet.currentMission.C;
 			else
-				gameobjectivelist1 = GameApp.Instance.currentMission.I;
-			if (flag)
+				gameobjectivelist1 = gameApplet.currentMission.I;
+
+			if (attach_flag)
 				gameobjectivelist1.E++;
 			else
 				gameobjectivelist1.S++;
-			if (gameobjectivelist1.F != -1) {
+
+			if (gameobjectivelist1.F != -1)
+			{
 				int i1 = 0;
 				int j1 = 0;
-				if (gameobjectivelist1.J != -1) {
+
+				if (gameobjectivelist1.J != -1)
+				{
 					j1 += gameobjectivelist1.S;
 					i1 += gameobjectivelist1.J;
 				}
-				if (gameobjectivelist1.A != -1) {
+
+				if (gameobjectivelist1.A != -1)
+				{
 					j1 += gameobjectivelist1.E;
 					i1 += gameobjectivelist1.A;
 				}
-				if (j1 >= i1) {
-					GameApp.Instance.currentMission.B = ZI;
-					GameApp.Instance.currentMission.I(gameobjectivelist1.F);
+
+				if (j1 >= i1)
+				{
+					gameApplet.currentMission.B = ZI;
+					gameApplet.currentMission.ExecuteTriggers(gameobjectivelist1.F);
 				}
 			}
 		}
 	}
 
-	boolean CheckCollision(final GameObject other)
+	public boolean CheckCollision(final GameObject other)
 	{
 		if (borderLeft < other.borderRight && borderRight > other.borderLeft
 		&& borderBottom < other.borderTop && borderTop > other.borderBottom 
@@ -834,9 +847,9 @@ class GameObject
 		return false;
 	}
 
-	void I(int i1, final GameObject oGameObject1)
+	public void I(int i1, final GameObject oGameObject1)
 	{
-		if (activeMode != 1)
+		if (IsDisabled())
 		{
 			return;
 		}
@@ -867,14 +880,14 @@ class GameObject
 					o -= i1;
 			}
 		if (o <= 0) {
-			Equip(false, oGameObject1);
+			Attach(false, oGameObject1);
 			return;
 		}
 		if (k1 > 0 || j1 > 0)
 			I(oGameObject1, k1, j1);
 	}
 
-	void I(final GameObject oGameObject1, final int i1, final int j1)
+	public void I(final GameObject oGameObject1, final int i1, final int j1)
 	{
 		if (j1 > 0 && p > 0)
 		{
@@ -883,7 +896,7 @@ class GameObject
 		}
 	}
 
-	final void Z(final float f1, final float f2, final boolean flag)
+	public final void Z(final float f1, final float f2, final boolean flag)
 	{
 		if (flag) {
 			m = (int) (sin * f1);
@@ -903,9 +916,39 @@ class GameObject
 		I(((GameObject) (null)), 0, 0);
 	}
 
-	final void SetActiveMode(final int mode)
+	public final void SetActiveState(final int active_mode)
 	{
-		activeMode = mode;
+		activeMode = active_mode;
+	}
+
+	public final int GetActiveState() 
+	{
+		return activeMode;
+	}
+	
+	public final boolean IsActivated()
+	{
+		return activeMode == ActiveMode.Activated;
+	}
+
+	public final boolean IsDisabled()
+	{
+		return activeMode == ActiveMode.Disabled;
+	}
+
+	final boolean IsExplicitDisabled()
+	{
+		return activeMode != ActiveMode.Disabled;
+	}
+
+	public final Sprite GetSprite()
+	{
+		return mySprite;
+	}
+
+	public final void SetSprite(final Sprite sprite)
+	{
+		mySprite = sprite;
 	}
 
 	final void I(final String s1)
